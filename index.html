@@ -1,0 +1,3462 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wollo Market | ወሎ ማርኬት — Kombolcha • Dessie • Harbu • Kemise</title>
+  <style>
+    /* =========================================================================
+       1. DESIGN TOKENS (LIGHT & DARK THEME) — ICONIC BLACK & RED
+       ========================================================================= */
+    :root {
+      --bg-page: #F8F9FA;
+      --bg-card: #FFFFFF;
+      --bg-muted: #F1F3F5;
+      --text-primary: #111318;
+      --text-secondary: #5C6370;
+      --text-muted: #8B92A0;
+      --border: #EAEDF0;
+      --red: #DC2626;
+      --red-dark: #991B1B;
+      --red-soft: #FEE2E2;
+      --red-soft-text: #DC2626;
+      --green: #10B981;
+      --shadow-sm: 0 2px 8px rgba(17, 19, 24, 0.05);
+      --shadow-md: 0 8px 24px rgba(17, 19, 24, 0.09);
+      --shadow-lg: 0 18px 42px rgba(17, 19, 24, 0.18);
+      --header-bg: linear-gradient(160deg, #0F0F12 0%, #2A0A0D 55%, #991B1B 100%);
+      --nav-bg: rgba(255, 255, 255, 0.97);
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #0B0B0E;
+      --bg-card: #16161B;
+      --bg-muted: #202028;
+      --text-primary: #F8F9FA;
+      --text-secondary: #B2B8C4;
+      --text-muted: #7C8494;
+      --border: #272732;
+      --red-soft: rgba(220, 38, 38, 0.2);
+      --red-soft-text: #F87171;
+      --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+      --shadow-md: 0 10px 26px rgba(0, 0, 0, 0.48);
+      --shadow-lg: 0 18px 46px rgba(0, 0, 0, 0.65);
+      --nav-bg: rgba(18, 18, 23, 0.97);
+    }
+
+    /* =========================================================================
+       2. BASE RESET & TYPOGRAPHY
+       ========================================================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Ethiopic", "Abyssinica SIL", Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.45;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 84px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .no-scrollbar {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* =========================================================================
+       3. STICKY CURVED HEADER & PINNED SEARCH BAR (16px 20px MOBILE)
+       ========================================================================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--header-bg);
+      color: #FFFFFF;
+      border-bottom-left-radius: 26px;
+      border-bottom-right-radius: 26px;
+      box-shadow: 0 8px 24px rgba(153, 27, 27, 0.22);
+    }
+
+    .header-inner {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 20px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+      text-align: left;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.42);
+    }
+
+    .brand-text {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .brand-name {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-cities {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.82);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .desktop-nav {
+      display: none;
+      align-items: center;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 4px;
+      border-radius: 999px;
+    }
+
+    .dnav-btn {
+      padding: 7px 15px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.85);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.16s ease, color 0.16s ease;
+    }
+
+    .dnav-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+    }
+
+    .dnav-btn.active {
+      background: #FFFFFF;
+      color: #111318;
+    }
+
+    .dnav-badge {
+      min-width: 18px;
+      height: 18px;
+      padding: 0 5px;
+      border-radius: 999px;
+      background: var(--red);
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dnav-badge.show {
+      display: inline-flex;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .hdr-btn {
+      height: 36px;
+      min-width: 36px;
+      padding: 0 11px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      font-size: 12px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: background 0.16s ease, transform 0.12s ease;
+    }
+
+    .hdr-btn.circle {
+      width: 36px;
+      padding: 0;
+    }
+
+    .hdr-btn:hover {
+      background: rgba(0, 0, 0, 0.52);
+    }
+
+    .hdr-btn:active {
+      transform: scale(0.94);
+    }
+
+    .hdr-wish-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      min-width: 17px;
+      height: 17px;
+      padding: 0 4px;
+      border-radius: 999px;
+      background: #EF4444;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid #22080a;
+    }
+
+    .hdr-wish-badge.show {
+      display: inline-flex;
+    }
+
+    .search-wrap {
+      margin-top: 14px;
+      position: relative;
+      width: 100%;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 44px;
+      border-radius: 999px;
+      border: none;
+      background: #FFFFFF;
+      color: #111318;
+      padding: 0 40px 0 42px;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: #8B92A0;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #8B92A0;
+      display: flex;
+      pointer-events: none;
+    }
+
+    .search-clear {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #EEF0F3;
+      color: #4B5563;
+      font-size: 12px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-clear.show {
+      display: inline-flex;
+    }
+
+    /* =========================================================================
+       4. PEEKING & AUTO-SLIDING PROMO / AD CAROUSEL (20px LEFT MARGIN)
+       ========================================================================= */
+    .carousel-wrap {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding-top: 16px;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 12px;
+      padding: 0 20px 8px 20px;
+      scroll-padding-left: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .banner-card {
+      flex: 0 0 84%;
+      min-width: 84%;
+      scroll-snap-align: start;
+      position: relative;
+      border-radius: 20px;
+      padding: 18px;
+      min-height: 176px;
+      color: #FFFFFF;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .banner-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(95deg, rgba(12, 12, 16, 0.88) 0%, rgba(12, 12, 16, 0.56) 64%, rgba(12, 12, 16, 0.25) 100%);
+      z-index: 1;
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .banner-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      align-self: flex-start;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .banner-dot-live {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #EF4444;
+      box-shadow: 0 0 6px #EF4444;
+      flex-shrink: 0;
+    }
+
+    .banner-title {
+      font-size: 17.5px;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    .banner-sub {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.88);
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .banner-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      align-self: flex-start;
+      margin-top: 2px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 800;
+    }
+
+    .banner-icon-box {
+      position: relative;
+      z-index: 2;
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .carousel-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 6px;
+      margin-bottom: 4px;
+    }
+
+    .c-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #D1D5DB;
+      transition: width 0.22s ease, background-color 0.22s ease;
+    }
+
+    [data-theme="dark"] .c-dot {
+      background: #374151;
+    }
+
+    .c-dot.active {
+      width: 24px;
+      background: var(--red);
+    }
+
+    /* =========================================================================
+       5. HOME SECTIONS, CATEGORIES, SPECIAL OFFERS & PRODUCT GRID
+       ========================================================================= */
+    .tab-panel {
+      display: none;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .section {
+      padding: 14px 0 6px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .section-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .red-bar {
+      width: 4px;
+      height: 18px;
+      border-radius: 4px;
+      background: var(--red);
+    }
+
+    .section-title {
+      font-size: 16.5px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .count-pill {
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: var(--red-soft);
+      color: var(--red-soft-text);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .see-all-btn {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    .req-pill-btn {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 11.5px;
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .cat-row {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .cat-chip {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 12.5px;
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.16s ease;
+    }
+
+    .cat-chip.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+
+    .deals-row {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 2px 0 8px;
+      scroll-snap-type: x proximity;
+    }
+
+    .deal-card {
+      flex: 0 0 218px;
+      scroll-snap-align: start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 10px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .p-media {
+      position: relative;
+      width: 100%;
+      height: 132px;
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .p-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .p-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: #DC2626;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      z-index: 2;
+    }
+
+    .p-wish {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(17, 19, 24, 0.42);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+
+    .p-wish.liked {
+      background: #EF4444;
+    }
+
+    .p-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 35px;
+    }
+
+    .p-foot {
+      margin-top: auto;
+      padding-top: 8px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .p-old {
+      display: block;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    .p-price {
+      font-size: 14.5px;
+      font-weight: 900;
+      color: var(--red);
+    }
+
+    .p-add {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--red);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 3px 10px rgba(220, 38, 38, 0.28);
+    }
+
+    /* =========================================================================
+       6. CART, ORDERS & PROFILE CARDS
+       ========================================================================= */
+    .page-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 16px;
+    }
+
+    .page-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--text-primary);
+    }
+
+    .white-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 12px;
+    }
+
+    .empty-cart-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 52px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .empty-cart-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 16px;
+      border-radius: 16px;
+      background: var(--red-soft);
+      color: var(--red);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      background: var(--red);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+      transition: transform 0.14s ease, opacity 0.16s ease;
+    }
+
+    .btn-red:active {
+      transform: scale(0.97);
+    }
+
+    .btn-red.full {
+      width: 100%;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border-radius: 12px;
+      background: var(--bg-muted);
+      border: 1.5px solid var(--border);
+      color: var(--text-primary);
+      font-size: 13.5px;
+      font-weight: 800;
+      transition: background 0.15s ease, transform 0.14s ease;
+    }
+
+    .btn-outline:active {
+      transform: scale(0.97);
+    }
+
+    .btn-outline.full {
+      width: 100%;
+    }
+
+    .cart-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .cart-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-row:last-child {
+      border-bottom: none;
+    }
+
+    .cart-thumb {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .cart-thumb img, .partner-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .partner-thumb {
+      width: 68px;
+      height: 68px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .qty-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-muted);
+      padding: 4px 8px;
+      border-radius: 999px;
+      margin-top: 6px;
+    }
+
+    .qty-btn {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .form-group {
+      margin-bottom: 11px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 44px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-muted);
+      color: var(--text-primary);
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--red);
+      background: var(--bg-card);
+    }
+
+    .pay-box {
+      background: var(--bg-muted);
+      border: 1px dashed var(--red);
+      border-radius: 14px;
+      padding: 12px;
+      margin: 14px 0;
+    }
+
+    .pay-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 11px;
+      margin-top: 8px;
+    }
+
+    .copy-pill {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--red-soft);
+      color: var(--red-soft-text);
+      font-size: 11.5px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .seg-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .seg-btn {
+      height: 44px;
+      border-radius: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 13.5px;
+      font-weight: 800;
+    }
+
+    .seg-btn.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.28);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+    }
+
+    .status-pill.pending {
+      background: rgba(245, 158, 11, 0.16);
+      color: #D97706;
+    }
+
+    /* VIBRANT GLOWING GREEN DELIVERED BADGE */
+    .status-pill.delivered {
+      background: #10B981;
+      color: #FFFFFF;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.65);
+    }
+
+    .btn-received {
+      margin-top: 12px;
+      width: 100%;
+      height: 42px;
+      border-radius: 12px;
+      background: #10B981;
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.34);
+    }
+
+    .prof-store-card {
+      background: linear-gradient(155deg, #0F0F12 0%, #2A0A0D 55%, #991B1B 100%);
+      color: #FFFFFF;
+      border-radius: 18px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .lang-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .lang-opt {
+      height: 40px;
+      border-radius: 10px;
+      background: var(--bg-muted);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .lang-opt.active {
+      background: var(--red);
+      border-color: var(--red);
+      color: #FFFFFF;
+    }
+
+    .switch-track {
+      width: 48px;
+      height: 26px;
+      border-radius: 999px;
+      background: #E2E5EA;
+      position: relative;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .switch-track.on {
+      background: var(--red);
+    }
+
+    .switch-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #FFFFFF;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease;
+    }
+
+    .switch-track.on .switch-thumb {
+      transform: translateX(22px);
+    }
+
+    .prof-click-card {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 15px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .ad-rental-card {
+      width: 100%;
+      background: linear-gradient(135deg, #2A0A0D 0%, #5C1118 60%, #14080A 100%);
+      color: #FFFFFF;
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      box-shadow: var(--shadow-md);
+    }
+
+    .ai-dark-card {
+      width: 100%;
+      background: #111115;
+      color: #FFFFFF;
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* =========================================================================
+       7. MODALS (PRODUCT, DIRECT ORDER, WISHLIST, PARTNER, INFO AD, AI)
+       ========================================================================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 14, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 150;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-sheet {
+      width: 100%;
+      max-width: 540px;
+      max-height: 90vh;
+      background: var(--bg-card);
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      animation: sheetUp 0.2s ease;
+    }
+
+    @keyframes sheetUp {
+      from { transform: translateY(24px); opacity: 0.4; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .modal-head {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .modal-x {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--bg-muted);
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .modal-body {
+      padding: 16px 18px 24px;
+    }
+
+    .gallery-box {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .gallery-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .gallery-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      height: 230px;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+    }
+
+    .gallery-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-tag {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 4px 11px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #FFFFFF;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .g-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.56);
+      color: #FFFFFF;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 4;
+    }
+
+    .g-arrow.prev { left: 10px; }
+    .g-arrow.next { right: 10px; }
+
+    .g-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .g-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--border);
+    }
+
+    .g-dot.active {
+      width: 20px;
+      background: var(--red);
+    }
+
+    .video-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .btn-tiktok {
+      flex: 1;
+      min-width: 160px;
+      height: 42px;
+      border-radius: 12px;
+      background: #111115;
+      color: #FFFFFF;
+      font-size: 12.5px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .btn-youtube {
+      flex: 1;
+      min-width: 160px;
+      height: 42px;
+      border-radius: 12px;
+      background: #FF0000;
+      color: #FFFFFF;
+      font-size: 12.5px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+    }
+
+    .modal-action-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    /* =========================================================================
+       8. FLOATING AI HELP PILL, CHATBOT, BOTTOM NAV, FOOTER & TOAST
+       ========================================================================= */
+    .ai-fab {
+      position: fixed;
+      right: 16px;
+      bottom: 84px;
+      z-index: 90;
+      height: 44px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: var(--red);
+      color: #FFFFFF;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 6px 20px rgba(220, 38, 38, 0.42);
+    }
+
+    .chat-box {
+      height: 300px;
+      overflow-y: auto;
+      background: var(--bg-muted);
+      border-radius: 14px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 10px;
+    }
+
+    .bubble {
+      max-width: 85%;
+      padding: 10px 13px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.45;
+      white-space: pre-line;
+    }
+
+    .bubble.bot {
+      align-self: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+    }
+
+    .bubble.user {
+      align-self: flex-end;
+      background: var(--red);
+      color: #FFFFFF;
+      border-bottom-right-radius: 4px;
+    }
+
+    .chips-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .chip-btn {
+      flex-shrink: 0;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: var(--bg-muted);
+      border: 1px solid var(--border);
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 80;
+      height: 66px;
+      background: var(--nav-bg);
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 6px 4px;
+    }
+
+    .bnav-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .bnav-btn.active {
+      color: var(--red);
+    }
+
+    .bnav-badge {
+      position: absolute;
+      top: 1px;
+      right: calc(50% - 20px);
+      min-width: 17px;
+      height: 17px;
+      padding: 0 4px;
+      border-radius: 999px;
+      background: var(--red);
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 800;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bnav-badge.show {
+      display: inline-flex;
+    }
+
+    .site-footer {
+      display: none;
+      background: #0F0F12;
+      color: #D1D5DB;
+      margin-top: 48px;
+      padding: 36px 0 24px;
+      border-top: 3px solid var(--red);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 88px;
+      transform: translateX(-50%) translateY(16px);
+      background: #111114;
+      color: #FFFFFF;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: var(--shadow-lg);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* =========================================================================
+       9. RESPONSIVE DESKTOP BREAKPOINTS (>= 900px)
+       ========================================================================= */
+    @media (min-width: 640px) {
+      .modal-backdrop {
+        align-items: center;
+        padding: 18px;
+      }
+      .modal-sheet {
+        border-radius: 22px;
+      }
+    }
+
+    @media (min-width: 900px) {
+      body {
+        padding-bottom: 0;
+      }
+      .container {
+        padding: 0 32px;
+      }
+      .site-header {
+        border-radius: 0;
+      }
+      .header-inner {
+        padding: 18px 32px;
+      }
+      .brand-btn {
+        flex: 0 1 auto;
+      }
+      .desktop-nav {
+        display: inline-flex;
+      }
+      .carousel-track {
+        padding: 0 32px 10px 32px;
+        scroll-padding-left: 32px;
+        gap: 16px;
+      }
+      .banner-card {
+        flex: 0 0 48%;
+        min-width: 48%;
+        min-height: 192px;
+        padding: 22px 24px;
+      }
+      .products-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+      .deals-row {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        overflow: visible;
+        gap: 16px;
+      }
+      .deal-card {
+        flex: auto;
+      }
+      .p-media {
+        height: 158px;
+      }
+      .cart-grid {
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: start;
+      }
+      .bottom-nav {
+        display: none;
+      }
+      .ai-fab {
+        bottom: 24px;
+        right: 24px;
+      }
+      .site-footer {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY CURVED HEADER & PINNED SEARCH BAR -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <button type="button" class="brand-btn" id="btn-brand-home" aria-label="Home">
+          <div class="brand-logo">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <div class="brand-name" id="hdr-brand">Wollo Market</div>
+            <div class="brand-cities">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#FCA5A5" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span id="hdr-cities">Kombolcha • Dessie • Harbu • Kemise</span>
+            </div>
+          </div>
+        </button>
+
+        <nav class="desktop-nav" aria-label="Desktop Navigation">
+          <button type="button" class="dnav-btn active" data-nav="home" id="dnav-home">Home</button>
+          <button type="button" class="dnav-btn" data-nav="cart">
+            <span id="dnav-cart">Cart</span>
+            <span class="dnav-badge" id="dnav-cart-badge">0</span>
+          </button>
+          <button type="button" class="dnav-btn" data-nav="orders">
+            <span id="dnav-orders">Orders</span>
+            <span class="dnav-badge" id="dnav-orders-badge">0</span>
+          </button>
+          <button type="button" class="dnav-btn" data-nav="profile" id="dnav-profile">Profile</button>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="hdr-btn" id="btn-lang">EN</button>
+          <button type="button" class="hdr-btn circle" id="btn-theme" aria-label="Dark Mode">
+            <svg id="ico-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg id="ico-sun" style="display:none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </button>
+          <button type="button" class="hdr-btn circle" id="btn-wishlist" aria-label="Wishlist">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span class="hdr-wish-badge" id="hdr-wish-badge">0</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="search-wrap" id="search-wrap">
+        <span class="search-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <input type="text" class="search-input" id="search-input" placeholder="Search products..." autocomplete="off" />
+        <button type="button" class="search-clear" id="search-clear" aria-label="Clear">✕</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN TABS -->
+  <main>
+    <section class="tab-panel active" id="tab-home">
+      <div class="carousel-wrap" id="carousel-wrap">
+        <div class="carousel-track no-scrollbar" id="carousel-track"></div>
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
+
+      <div class="container">
+        <div class="section">
+          <div class="section-head">
+            <h2 class="section-title" id="lbl-cat">Categories</h2>
+            <button type="button" class="see-all-btn" id="btn-cat-all">See All</button>
+          </div>
+          <div class="cat-row no-scrollbar" id="cat-row"></div>
+        </div>
+
+        <div class="section" id="sec-deals">
+          <div class="section-head">
+            <div class="section-title-row">
+              <span class="red-bar"></span>
+              <h2 class="section-title" id="lbl-deals">Special Offers</h2>
+            </div>
+            <button type="button" class="see-all-btn" id="btn-deals-all">See All</button>
+          </div>
+          <div class="deals-row no-scrollbar" id="deals-row"></div>
+        </div>
+
+        <div class="section" id="sec-products">
+          <div class="section-head">
+            <div class="section-title-row">
+              <h2 class="section-title" id="lbl-all-prod">All Products</h2>
+              <span class="count-pill" id="prod-count">13</span>
+            </div>
+            <button type="button" class="req-pill-btn" id="btn-req-item">+ Request Item</button>
+          </div>
+          <div class="products-grid" id="products-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="tab-cart">
+      <div class="container">
+        <div class="page-head">
+          <h2 class="page-title" id="lbl-cart-head">Cart</h2>
+          <span class="count-pill" id="cart-head-count">0</span>
+        </div>
+        <div id="cart-root"></div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="tab-orders">
+      <div class="container">
+        <div class="page-head">
+          <h2 class="page-title" id="lbl-orders-head">Orders</h2>
+        </div>
+        <div class="seg-tabs">
+          <button type="button" class="seg-btn active" id="seg-active">Active Orders</button>
+          <button type="button" class="seg-btn" id="seg-history">Order History</button>
+        </div>
+        <div id="orders-root"></div>
+      </div>
+    </section>
+
+    <section class="tab-panel" id="tab-profile">
+      <div class="container">
+        <div class="page-head">
+          <h2 class="page-title" id="lbl-profile-head">Profile</h2>
+        </div>
+        <div id="profile-root"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- DESKTOP FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="font-size:17px;font-weight:900;color:#FFFFFF;margin-bottom:8px;" id="ft-brand">Wollo Market</div>
+          <p style="font-size:13px;color:#9CA3AF;line-height:1.6;" id="ft-desc"></p>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:800;color:#FFFFFF;margin-bottom:8px;" id="ft-pol-h">Store Policies</div>
+          <p style="font-size:13px;color:#9CA3AF;line-height:1.75;" id="ft-pol-b"></p>
+        </div>
+        <div>
+          <div style="font-size:14px;font-weight:800;color:#FFFFFF;margin-bottom:8px;" id="ft-cnt-h">Contact Us</div>
+          <p style="font-size:13px;color:#9CA3AF;line-height:1.75;" id="ft-cnt-b"></p>
+        </div>
+      </div>
+      <div style="border-top:1px solid #262630;padding-top:14px;text-align:center;font-size:12px;color:#6B7280;" id="ft-copy">
+        © 2026 Wollo Market
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE BOTTOM NAVIGATION -->
+  <nav class="bottom-nav" aria-label="Bottom Navigation">
+    <button type="button" class="bnav-btn active" data-nav="home">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span id="bnav-home">Home</span>
+    </button>
+    <button type="button" class="bnav-btn" data-nav="cart">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1"></circle>
+        <circle cx="20" cy="21" r="1"></circle>
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+      </svg>
+      <span class="bnav-badge" id="bnav-cart-badge">0</span>
+      <span id="bnav-cart">Cart</span>
+    </button>
+    <button type="button" class="bnav-btn" data-nav="orders">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+      </svg>
+      <span class="bnav-badge" id="bnav-orders-badge">0</span>
+      <span id="bnav-orders">Orders</span>
+    </button>
+    <button type="button" class="bnav-btn" data-nav="profile">
+      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      <span id="bnav-profile">Profile</span>
+    </button>
+  </nav>
+
+  <!-- FLOATING AI HELP PILL -->
+  <button type="button" class="ai-fab" id="btn-ai-fab">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+      <circle cx="12" cy="5" r="2"></circle>
+      <path d="M12 7v4"></path>
+      <line x1="8" y1="16" x2="8" y2="16"></line>
+      <line x1="16" y1="16" x2="16" y2="16"></line>
+    </svg>
+    <span id="lbl-ai-fab">AI Help</span>
+  </button>
+
+  <!-- MODALS -->
+  <div class="modal-backdrop" id="modal-product">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="pm-head">Product Details</strong>
+        <button type="button" class="modal-x" data-close="modal-product">✕</button>
+      </div>
+      <div class="modal-body" id="pm-body"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-direct-order">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="do-head">Delivery Details &amp; Payment</strong>
+        <button type="button" class="modal-x" data-close="modal-direct-order">✕</button>
+      </div>
+      <div class="modal-body" id="do-body"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-wishlist">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="wm-head">Favorites</strong>
+        <button type="button" class="modal-x" data-close="modal-wishlist">✕</button>
+      </div>
+      <div class="modal-body" id="wm-body"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-partner">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="pt-head">Partner Shop</strong>
+        <button type="button" class="modal-x" data-close="modal-partner">✕</button>
+      </div>
+      <div class="modal-body" id="pt-body"></div>
+    </div>
+  </div>
+
+  <!-- INFO AD MODAL (FOR NON-ORDER ADS LIKE REAL ESTATE / SERVICES) -->
+  <div class="modal-backdrop" id="modal-info">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="im-head">Information</strong>
+        <button type="button" class="modal-x" data-close="modal-info">✕</button>
+      </div>
+      <div class="modal-body" id="im-body"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-ai">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="width:9px;height:9px;border-radius:50%;background:#10B981;box-shadow:0 0 8px #10B981;"></span>
+          <strong id="ai-head">Wollo Market AI Assistant</strong>
+        </div>
+        <button type="button" class="modal-x" data-close="modal-ai">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="chat-box" id="ai-box"></div>
+        <div class="chips-row no-scrollbar" id="ai-chips"></div>
+        <form id="ai-form" style="display:flex;gap:8px;">
+          <input type="text" class="form-input" id="ai-input" placeholder="Type your question..." autocomplete="off" />
+          <button type="submit" class="btn-red" style="padding:0 18px;height:44px;" id="ai-send">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ====== EASY EDIT SECTION (EDIT HERE AFTER HOSTING) ======
+
+    /* 1. STORE CONFIGURATION — UPDATE YOUR ACCOUNTS & DELIVERY INFO HERE */
+    const STORE_CONFIG = {
+      defaultLang: "en",                          // Opens in English ("en") by default
+      storeName: { en: "Wollo Market", am: "ወሎ ማርኬት", om: "Gabaa Walloo" },
+      telegramUsername: "YOUR_TELEGRAM_USERNAME", // Replace with your Telegram (without @)
+      accountName: "STORE OWNER NAME",            // Replace with your full name
+      telebirrNumber: "0900000000",               // Replace with your Telebirr number
+      cbeAccount: "1000000000000",                // Replace with your CBE account
+      phone: "0900000000",                        // Replace with your phone number
+      deliveryFee: 200,                           // Upfront delivery fee in Birr
+      deliveryTime: {
+        en: "Within 72 Hours (3 Days) InshaAllah",
+        am: "በ72 ሰዓት (3 ቀን) ውስጥ ኢንሻአላህ",
+        om: "Sa'aatii 72 (Guyyaa 3) keessatti InshaAllah"
+      }
+    };
+
+    /* 2. LOCATIONS — COPY-PASTE 1 LINE TO ADD NEW CITIES OR COUNTRIES */
+    const LOCATIONS = [
+      { id: "kombolcha", en: "Kombolcha", am: "ኮምቦልቻ", om: "Kombolcha" },
+      { id: "dessie",    en: "Dessie",    am: "ደሴ",      om: "Dasee" },
+      { id: "harbu",     en: "Harbu",     am: "ሀርቡ",     om: "Harbuu" },
+      { id: "kemise",    en: "Kemise",    am: "ኬሚሴ",     om: "Kamiisee" }
+      // Example: { id: "addis", en: "Addis Ababa", am: "አዲስ አበባ", om: "Finfinnee" }
+    ];
+
+    /* 3. PROMO BANNERS — COPY-PASTE ANY BLOCK TO ADD 10+ BANNERS
+          Actions: "scroll" | "partner" | "info" | "link" */
+    const PROMO_BANNERS = [
+      {
+        id: "main-delivery",
+        action: "scroll",
+        bgImage: "", // Optional: upload image to GitHub & set e.g. "banner1.jpg"
+        gradient: "linear-gradient(135deg, #DC2626 0%, #7F1D1D 58%, #0F0F12 100%)",
+        icon: "truck",
+        pill: { en: STORE_CONFIG.deliveryTime.en, am: STORE_CONFIG.deliveryTime.am, om: STORE_CONFIG.deliveryTime.om },
+        title: { en: "Pay Only 200 Br Delivery Upfront!", am: "200 ብር የዴሊቨሪ ብቻ ቅድሚያ ይክፈሉ!", om: "Kaffaltii Geessii Br 200 Qofa Dursaa!" },
+        sub: { en: "Pay the product price only on delivery • 24-hour warranty", am: "የእቃውን ዋጋ እቃው እጅዎ ሲደርስ ብቻ ይክፈሉ • የ24 ሰዓት ዋስትና", om: "Gatii mi'aa yeroo harka keessan gahu qofa kaffalaa • Wabii 24h" },
+        cta: { en: "Shop Now", am: "አሁን ይሸምቱ", om: "Amma Bitaa" }
+      },
+      {
+        id: "kimi-banner",
+        action: "partner",
+        partnerId: "kimi",
+        bgImage: "",
+        gradient: "linear-gradient(135deg, #047857 0%, #064E3B 58%, #071A15 100%)",
+        icon: "cake",
+        pill: { en: "Partner Shop • Cakes & Sweets", am: "አጋር ሱቅ • ጣፋጮችና ኬክ", om: "Suuqii Michuu • Mi'aawwan" },
+        title: { en: "Kimi Nesmi Dessert", am: "ኪሚ ነስሚ ዴዘርት", om: "Kimi Nesmi Dessert" },
+        sub: { en: "Fresh cakes, chocolates & custom desserts — order right here!", am: "ትኩስ ኬኮች፣ ቸኮሌቶች እና ልዩ ጣፋጮች — እዚህ ገብተው ይዘዙ!", om: "Keekii haaraa, chokoleetii fi mi'aawwan addaa — asitti ajajaa!" },
+        cta: { en: "Open Menu", am: "ዝርዝሩን ይክፈቱ", om: "Tarree Bani" }
+      },
+      {
+        id: "boutique-banner",
+        action: "partner",
+        partnerId: "boutique",
+        bgImage: "",
+        gradient: "linear-gradient(135deg, #4338CA 0%, #312E81 58%, #0F1029 100%)",
+        icon: "shirt",
+        pill: { en: "Partner Shop • Fashion", am: "አጋር ሱቅ • ፋሽን እና አልባሳት", om: "Suuqii Michuu • Faashinii" },
+        title: { en: "Wollo Boutique & Fashion", am: "ወሎ ቡቲክ እና ፋሽን", om: "Wollo Boutique & Fashion" },
+        sub: { en: "Modern outfits, sneakers & original perfumes!", am: "ዘመናዊ አልባሳት፣ ስኒከር ጫማዎች እና ኦሪጅናል ሽቶዎች!", om: "Uffata ammayyaa, kophee fi urgooftuu orijinaala!" },
+        cta: { en: "Visit Shop", am: "ሱቁን ይጎብኙ", om: "Suuqii Daawwadhu" }
+      },
+      {
+        id: "realestate-info",
+        action: "info",
+        bgImage: "",
+        gradient: "linear-gradient(135deg, #B45309 0%, #78350F 58%, #1C1917 100%)",
+        icon: "building",
+        pill: { en: "Featured Ad • Real Estate", am: "ልዩ ማስታወቂያ • ሪል እስቴት", om: "Beeksisa Addaa • Manaa fi Lafa" },
+        title: { en: "Wollo Homes & Real Estate", am: "ወሎ ሆምስ ሪል እስቴት", om: "Wollo Homes Real Estate" },
+        sub: { en: "Modern apartments & commercial shops in Kombolcha & Dessie.", am: "ዘመናዊ አፓርትመንቶች እና የንግድ ሱቆች በኮምቦልቻ እና ደሴ።", om: "Appaartimaantii fi suuqii daldalaa Kombolcha fi Dasee keessatti." },
+        cta: { en: "View Details", am: "ዝርዝር ይመልከቱ", om: "Bal'ina Ilaali" },
+        infoDetails: {
+          en: "Explore modern 2 & 3 bedroom apartments and prime commercial spaces in Kombolcha and Dessie with flexible payment plans.\n\n• 20% Down Payment\n• Prime Main Road Locations\n• Full Legal Title Deed",
+          am: "በኮምቦልቻ እና ደሴ ዘመናዊ ባለ 2 እና 3 መኝታ አፓርትመንቶች እንዲሁም የንግድ ሱቆች በተመጣጣኝ የክፍያ አማራጭ!\n\n• 20% ቅድመ ክፍያ\n• ዋና መንገድ ዳር\n• ሙሉ ህጋዊ ካርታ ያለው",
+          om: "Kombolcha fi Dasee keessatti appaartimaantii ammayyaa kutaa ciisichaa 2 fi 3 akkasumas suuqii daldalaa.\n\n• Kaffaltii dursaa 20%\n• Daandii guddaa irra\n• Kaartaa seera qabeessa"
+        },
+        contactLink: "https://t.me/YOUR_TELEGRAM_USERNAME",
+        contactLabel: { en: "Contact Advertiser on Telegram", am: "አስተዋዋቂውን በቴሌግራም ያናግሩ", om: "Beeksisa Baasaa Telegramiin Quunnamaa" }
+      },
+      {
+        id: "advertise-here",
+        action: "link",
+        url: "https://t.me/YOUR_TELEGRAM_USERNAME?text=Hello%20Wollo%20Market!%20I%20would%20like%20to%20advertise%20my%20shop%20on%20your%20banner.",
+        bgImage: "",
+        gradient: "linear-gradient(135deg, #1F2937 0%, #111827 55%, #991B1B 100%)",
+        icon: "megaphone",
+        pill: { en: "Ad Rental", am: "የማስታወቂያ ኪራይ", om: "Kiraa Beeksisa" },
+        title: { en: "Advertise Your Shop Here!", am: "ማስታወቂያዎን እዚህ ያስነግሩ!", om: "Beeksisa Keessan Asitti Baasaa!" },
+        sub: { en: "Reach thousands of buyers in Kombolcha, Dessie, Harbu & Kemise.", am: "በኮምቦልቻ፣ ደሴ፣ ሀርቡ እና ኬሚሴ በሺዎች የሚቆጠሩ ገዢዎችን ያግኙ።", om: "Maamiltoota kumaatamaa Kombolcha, Dasee, Harbuu fi Kamiisee bira gahaa." },
+        cta: { en: "Contact Us", am: "በቴሌግራም ያናግሩን", om: "Telegramiin Nu Quunnamaa" }
+      }
+    ];
+
+    /* 4. PARTNER STORES — COPY-PASTE A SHOP TO ADD MORE PARTNER MINI-STORES */
+    const PARTNER_STORES = {
+      kimi: {
+        id: "kimi",
+        name: { en: "Kimi Nesmi Dessert", am: "ኪሚ ነስሚ ዴዘርት", om: "Kimi Nesmi Dessert" },
+        badge: { en: "Verified Partner Shop", am: "አጋር ሱቅ • ጣፋጮች", om: "Suuqii Michuu" },
+        desc: { en: "Fresh cakes, chocolate boxes & cupcakes ordered directly from Kimi Nesmi.", am: "ትኩስ ኬኮች፣ ቸኮሌት ቦክሶች እና ካፕኬኮች በቀጥታ ከኪሚ ነስሚ ይዘዙ።", om: "Keekii haaraa fi chokoleetii kallattiin Kimi Nesmi irraa ajajaa." },
+        gradient: "linear-gradient(135deg, #047857 0%, #064E3B 100%)",
+        telegram: "KIMI_NESMI_TELEGRAM",
+        accountName: "KIMI NESMI DESSERT",
+        telebirr: "0900000001",
+        cbe: "1000000000001",
+        deliveryFee: 100,
+        products: [
+          {
+            id: "kn1", price: 1450, image: "", icon: "cake",
+            gradient: "linear-gradient(135deg, #059669 0%, #064E3B 100%)",
+            name: { en: "Special Chocolate Fudge Cake", am: "ልዩ የቸኮሌት ኬክ", om: "Keekii Chokoleetii Addaa" },
+            desc: { en: "Freshly baked rich chocolate cake for birthdays & gifts.", am: "በትኩሱ የተጋገረ ለልደትና ለስጦታ ተመራጭ።", om: "Haaraa tolfame, guyyaa dhalootaaf mijataa." }
+          },
+          {
+            id: "kn2", price: 950, image: "", icon: "cake",
+            gradient: "linear-gradient(135deg, #7C2D12 0%, #431407 100%)",
+            name: { en: "Luxury Chocolate Box (12 pcs)", am: "የቸኮሌት ስጦታ ቦክስ (12 ፍሬ)", om: "Saanduqa Chokoleetii (12)" },
+            desc: { en: "12 handmade assorted chocolate truffles.", am: "12 ፍሬ የተለያዩ ጣዕም ያላቸው ፕሪሚየም ቸኮሌቶች።", om: "Chokoleetii gosa adda addaa 12." }
+          },
+          {
+            id: "kn3", price: 650, image: "", icon: "cake",
+            gradient: "linear-gradient(135deg, #BE185D 0%, #831843 100%)",
+            name: { en: "Creamy Cupcakes Pack (6 pcs)", am: "ሚኒ ካፕኬክ ፓክ (6 ፍሬ)", om: "Kaapkeekii (6 pcs)" },
+            desc: { en: "6 soft vanilla & chocolate buttercream cupcakes.", am: "በቫኒላና በቸኮሌት ክሬም የተዋቡ 6 ካፕኬኮች።", om: "Kaapkeekii vaanilaa fi chokoleetii 6." }
+          },
+          {
+            id: "kn4", price: 420, image: "", icon: "cake",
+            gradient: "linear-gradient(135deg, #92400E 0%, #451A03 100%)",
+            name: { en: "Creamy Tiramisu Cup", am: "ትራሚሱ ካፕ (Tiramisu)", om: "Tiraamisuu Mi'aawaa" },
+            desc: { en: "Chilled espresso-soaked creamy tiramisu dessert.", am: "ቀዝቃዛና ጣፋጭ የቡና ክሬም ዴዘርት።", om: "Mi'aawaa bunaafi kiriimiin qophaa'e." }
+          }
+        ]
+      },
+      boutique: {
+        id: "boutique",
+        name: { en: "Wollo Boutique & Fashion", am: "ወሎ ቡቲክ እና ፋሽን", om: "Wollo Boutique & Fashion" },
+        badge: { en: "Verified Partner Shop", am: "አጋር ሱቅ • ፋሽን", om: "Suuqii Michuu" },
+        desc: { en: "Trendy hoodies, everyday sneakers & long-lasting perfumes.", am: "ዘመናዊ ሁዲዎች፣ ስኒከር ጫማዎች እና ኦሪጅናል ሽቶዎች።", om: "Huudii ammayyaa, kophee fi urgooftuu orijinaala." },
+        gradient: "linear-gradient(135deg, #4338CA 0%, #312E81 100%)",
+        telegram: "WOLLO_BOUTIQUE_TELEGRAM",
+        accountName: "WOLLO BOUTIQUE",
+        telebirr: "0900000002",
+        cbe: "1000000000002",
+        deliveryFee: 150,
+        products: [
+          {
+            id: "wb1", price: 2200, image: "", icon: "shirt",
+            gradient: "linear-gradient(135deg, #4F46E5 0%, #312E81 100%)",
+            name: { en: "Premium Oversized Hoodie", am: "ኦቨርሳይዝ ፕሪሚየም ሁዲ", om: "Huudii Qulqullina Olaanaa" },
+            desc: { en: "Heavyweight soft cotton hoodie, perfect for Dessie.", am: "ለደሴ ብርድ ተመራጭ ወፍራም ጥጥ ሁዲ።", om: "Qorra Daseetiif mijataa huudii furdaa." }
+          },
+          {
+            id: "wb2", price: 1850, image: "", icon: "shirt",
+            gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)",
+            name: { en: "Men's Original Perfume (100ml)", am: "የወንዶች ኦሪጅናል ሽቶ (100ml)", om: "Urgooftuu Dhiiraa (100ml)" },
+            desc: { en: "Fresh woody EDP scent lasting up to 24 hours.", am: "እስከ 24 ሰዓት የሚቆይ ድንቅ መዓዛ።", om: "Urgaa sa'aatii 24 turu." }
+          },
+          {
+            id: "wb3", price: 3200, image: "", icon: "shirt",
+            gradient: "linear-gradient(135deg, #6D28D9 0%, #3B0764 100%)",
+            name: { en: "Classic Everyday Sneakers", am: "ዘመናዊ ስኒከር ጫማ", om: "Kophee Isniikarii Ammayyaa" },
+            desc: { en: "Lightweight comfort sneakers (sizes 39–44).", am: "ቀላል እና ምቹ ከቁጥር 39 እስከ 44።", om: "Salphaa fi mijataa lakkoofsa 39-44." }
+          }
+        ]
+      }
+    };
+
+    /* 5. PRODUCTS (13 CURATED GADGETS) — COPY-PASTE TO ADD OR EDIT ITEMS */
+    const PRODUCTS = [
+      {
+        id: 1, category: "women", isDeal: true, badge: "-17%", price: 2400, oldPrice: 2900,
+        gradient: "linear-gradient(135deg, #DC2626 0%, #881337 100%)", icon: "belt",
+        images: [], // Add multiple photos: ["belt1.jpg", "belt2.jpg", "belt3.jpg"]
+        tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Cordless Menstrual Heating Belt", am: "የወር አበባ ህመም ማስታገሻ ቀበቶ", om: "Qabattoo Dhukkubbii Lagoo Hir'isu" },
+        desc: { en: "USB-C rechargeable cordless heating belt with 3 heat levels & 4 massage modes. Discreet under clothes for fast relief.", am: "ያለ ገመድ በዩኤስቢ-ሲ የሚቻርጅ፣ 3 የሙቀት እና 4 የማሳጅ ደረጃዎች ያሉት። በልብስ ስር ሳይታይ ህመምን በሰከንዶች ያስታግሳል።", om: "USB-C tiin chaarjii ta'u, sadarkaa ho'aa 3 fi masaajii 4 qaba." }
+      },
+      {
+        id: 2, category: "tech", isDeal: true, badge: "-18%", price: 1800, oldPrice: 2200,
+        gradient: "linear-gradient(135deg, #27272A 0%, #7F1D1D 100%)", icon: "posture",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Smart Posture Corrector", am: "የጀርባ አቀማመጥ ማስተካከያ (Smart Posture)", om: "Sirreessaa Dugdaa Ismaartii" },
+        desc: { en: "Smart sensor gently vibrates when you slouch. Ideal for students, drivers & office workers.", am: "ጀርባዎ ሲጎብጥ በንዝረት (Vibration) የሚያስታውስ ዘመናዊ ሴንሰር። ለተማሪዎችና ለቢሮ ሰራተኞች ምርጥ።", om: "Yeroo dugdi keessan jallatu sochiidhaan isin yaadachiisa." }
+      },
+      {
+        id: 3, category: "home", isDeal: true, badge: "-15%", price: 2100, oldPrice: 2500,
+        gradient: "linear-gradient(135deg, #EA580C 0%, #991B1B 100%)", icon: "blender",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Portable USB Mini Blender", am: "በዩኤስቢ የሚሰራ ሚኒ ጁስ መፍጫ", om: "Miinii Juusii Daaku USB" },
+        desc: { en: "6-blade USB rechargeable mini juicer cup — blends anywhere even during power cuts.", am: "መብራት ቢጠፋም በቻርጅ የሚሰራ ባለ 6 ምላጭ ሚኒ ብሌንደር። ለወሎ ዩኒቨርሲቲ ተማሪዎችና ለጂም ሰሪዎች ምርጥ።", om: "Ibsaan yoo badees chaarjiin hojjeta. Barattootaa fi jiimiif baay'ee gaarii." }
+      },
+      {
+        id: 4, category: "tech", isDeal: true, badge: "-15%", price: 1950, oldPrice: 2300,
+        gradient: "linear-gradient(135deg, #18181B 0%, #B91C1C 100%)", icon: "fan",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Wearable Neck Fan", am: "አንገት ላይ የሚጠለቅ ሚኒ ፋን (Neck Fan)", om: "Faanii Mormaa Chaarjiin Hojjetu" },
+        desc: { en: "Bladeless headphone-style rechargeable neck fan — beats Kombolcha, Harbu & Kemise heat.", am: "ለኬሚሴ፣ ሀርቡ እና ኮምቦልቻ ሙቀት ቀጥታ መፍትሄ! ሄድፎን ይመስላል፣ ፀጉር አይዝም፣ በቻርጅ ይሰራል።", om: "Ho'a Kamiisee, Harbuu fi Kombolchaaf furmaata! Rifeensa hin qabu." }
+      },
+      {
+        id: 5, category: "home", isDeal: false, badge: "", price: 1350, oldPrice: 1600,
+        gradient: "linear-gradient(135deg, #3F3F46 0%, #18181B 100%)", icon: "shaver",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Electric Fabric Shaver", am: "የልብስ ቡትቶ ማንሻ (Fabric Shaver)", om: "Qulqulleessaa Uffataa Elektirikii" },
+        desc: { en: "USB rechargeable lint remover that restores sweaters, jackets & coats to brand-new look.", am: "ለደሴ ብርድ ሹራቦች፣ ጃኬቶች እና ኮቶች አዲስ መልክ የሚመልስ በቻርጅ የሚሰራ ማሽን።", om: "Shuraabaa fi jaakeetii dullooman sekondii keessatti haaraa godha." }
+      },
+      {
+        id: 6, category: "women", isDeal: false, badge: "NEW", price: 2800, oldPrice: 3300,
+        gradient: "linear-gradient(135deg, #BE123C 0%, #4C0519 100%)", icon: "hair",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Cordless Hair Straightener Brush", am: "ያለ ገመድ የሚሰራ የፀጉር መተኮሻ ብሩሽ", om: "Burushii Rifeensa Qajeelchu Chaarjii" },
+        desc: { en: "Cordless rechargeable straightening brush — heats up in 30 seconds anywhere.", am: "መብራት ሲጠፋም በባትሪ የሚሞቅ ተንቀሳቃሽ የፀጉር መተኮሻ ብሩሽ። በ30 ሰከንድ ይሞቃል።", om: "Ibsaan yoo badees baatiriin ho'ee rifeensa qajeelcha." }
+      },
+      {
+        id: 7, category: "home", isDeal: false, badge: "HOT", price: 1250, oldPrice: 1500,
+        gradient: "linear-gradient(135deg, #B91C1C 0%, #450A0A 100%)", icon: "chopper",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Mini Electric Garlic Chopper", am: "በዩኤስቢ የሚሰራ ሚኒ ሽንኩርት መፍጫ", om: "Miinii Shunkurtii Daaku USB" },
+        desc: { en: "One-touch 250ml USB rechargeable chopper with 3 stainless blades for garlic, onions & chili.", am: "በአንድ ቁልፍ ነጭ ሽንኩርት፣ ቀይ ሽንኩርት እና ቃሪያ በሰከንዶች ይፈጫል። 250ml መያዣ።", om: "Qullubbii adii, diimaa fi qaariyaa sekondii keessatti daaka." }
+      },
+      {
+        id: 8, category: "home", isDeal: false, badge: "", price: 1100, oldPrice: 1350,
+        gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)", icon: "pump",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Water Bottle Pump", am: "የ20 ሊትር ውሃ ጀሪካን ኤሌክትሪክ ፓምፕ", om: "Paampii Bishaanii Elektirikii" },
+        desc: { en: "Universal 20L water jug dispenser with USB charging and effortless one-touch pouring.", am: "ከባድ የውሃ ጀሪካን ሳያነሱ በአንድ ንክኪ ንጹህ ውሃ የሚቀዳ በዩኤስቢ የሚቻርጅ ፓምፕ።", om: "Jariikaana bishaanii ulfaataa osoo hin kaasin bishaan waraaba." }
+      },
+      {
+        id: 9, category: "home", isDeal: false, badge: "", price: 2650, oldPrice: 3100,
+        gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)", icon: "steamer",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Handheld Garment Steamer", am: "ተንቀሳቃሽ የልብስ መተኮሻ በእንፋሎት", om: "Istiimarii Uffataa Harkaa" },
+        desc: { en: "Fast 30-second heat-up portable garment steamer safe for suits, dresses & shirts.", am: "ሱፍ፣ ቀሚስ እና ሸሚዝ ሳይቃጠል በእንፋሎት በ30 ሰከንድ የሚተኩስ ቀላልና ፈጣን ማሽን።", om: "Suufii, qamisii fi shamiizii hurkaan sekondii 30 keessatti qajeelcha." }
+      },
+      {
+        id: 10, category: "home", isDeal: false, badge: "NEW", price: 2950, oldPrice: 3400,
+        gradient: "linear-gradient(135deg, #7F1D1D 0%, #09090B 100%)", icon: "scrubber",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Electric Spin Scrubber", am: "የመታጠቢያ ቤትና ኪችን ኤሌክትሪክ ማጠቢያ", om: "Qulqulleessaa Mana Fincaanii fi Kichinii" },
+        desc: { en: "Waterproof cordless spin scrubber with interchangeable brush heads for tiles & sinks.", am: "እጅ ሳይደክም ሴራሚክ፣ ሲንክ እና ድስት በፍጥነት የሚያፀዳ ውሃ የማያበላሸው ባለ ብዙ ብሩሽ ማጠቢያ።", om: "Harki osoo hin dadhabin seraamikii fi kichinii qulqulleessa." }
+      },
+      {
+        id: 11, category: "tech", isDeal: false, badge: "HOT", price: 3400, oldPrice: 3900,
+        gradient: "linear-gradient(135deg, #DC2626 0%, #1F2937 100%)", icon: "printer",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Inkless Pocket Printer", am: "ያለ ቀለም የሚያትም ሚኒ ፕሪንተር", om: "Piriintarii Miinii Halluu Malee" },
+        desc: { en: "Bluetooth thermal pocket printer — prints study notes, diagrams & photos from phone with zero ink.", am: "ለዩኒቨርሲቲ ተማሪዎች ዲያግራም፣ ኖት እና ፎቶ ከስልክ ቀጥታ ያለ ቀለም በብሉቱዝ የሚያትም።", om: "Barattootaaf nootii fi diyaagiraamii bilbila irraa halluu malee maxxansa." }
+      },
+      {
+        id: 12, category: "tech", isDeal: false, badge: "", price: 950, oldPrice: 1200,
+        gradient: "linear-gradient(135deg, #27272A 0%, #DC2626 100%)", icon: "light",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Motion Sensor LED Light", am: "ሰው ሲያልፍ የሚበራ ሴንሰር መብራት", om: "Ibsaa Seensarii Sochii LED" },
+        desc: { en: "Magnetic USB rechargeable LED bar that auto-lights on motion — great for closets & blackouts.", am: "በማግኔት ቁም ሳጥን ወይም ግድግዳ ላይ የሚለጠፍ፤ ሰው ሲቀርብ ራሱ በርቶ የሚጠፋ በቻርጅ የሚሰራ መብራት።", om: "Maagneetiin maxxanfama; yeroo namni darbu ofumaan ifee dhaama." }
+      },
+      {
+        id: 13, category: "tech", isDeal: false, badge: "", price: 2300, oldPrice: 2750,
+        gradient: "linear-gradient(135deg, #111827 0%, #991B1B 100%)", icon: "vacuum",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Cordless Car Vacuum", am: "ለመኪናና ሶፋ ሚኒ ቫኪዩም ክሊነር", om: "Vaakiyuumii Miinii Konkolaataa fi Soofaa" },
+        desc: { en: "High-suction USB-C rechargeable handheld vacuum for cars, bajaj, sofas & keyboards.", am: "ጠንካራ የመምጠጥ ኃይል ያለው በዩኤስቢ-ሲ የሚቻርጅ የመኪና፣ የባጃጅ፣ የሶፋ እና የኪቦርድ አቧራ ማፅጃ።", om: "Awaara konkolaataa, baajaajii fi soofaa humnaan xuuxee qulqulleessa." }
+      }
+    ];
+
+    // ====== END OF EASY EDIT SECTION ======
+
+    /* TRANSLATIONS (ENGLISH DEFAULT, AMHARIC [STRICT ሀርቡ], AFAAN OROMOO) */
+    const I18N = {
+      en: {
+        langCode: "EN", searchPh: "Search products...",
+        home: "Home", cart: "Cart", orders: "Orders", profile: "Profile",
+        categories: "Categories", seeAll: "See All", specialOffers: "Special Offers",
+        allProducts: "All Products", reqItem: "+ Request Item",
+        catAll: "All", catDeals: "Special Offers", catWomen: "For Women", catHome: "Home & Kitchen", catTech: "Tech & Gadgets",
+        emptyCartTitle: "Your cart is empty", emptyCartSub: "Browse our unique gadgets and add items to your cart", shopNow: "Shop Now",
+        checkoutTitle: "Delivery Details & Payment",
+        city: "City / Location", name: "Full Name", phone: "Phone Number", addr: "Neighborhood / Address",
+        payTitle: "Pay Only 200 Br Delivery Upfront",
+        paySub: "Pay the product price only on delivery. Send your 200 Br payment screenshot on Telegram.",
+        copy: "Copy", copied: "Copied!",
+        subtotal: "Items Subtotal", delFee: "Upfront Delivery Fee", payOnDel: "Total on Delivery",
+        orderBtn: "Order & Send Screenshot", fillReq: "Please fill in Name, Phone, and Address!",
+        activeOrders: "Active Orders", orderHistory: "Order History",
+        noActive: "No active orders yet.", noHistory: "Your order history is empty.",
+        pending: "In Progress (72h)", delivered: "Delivered ✓",
+        markRec: "Mark as Received", recToast: "Thank you! Order marked as Delivered ✓",
+        aiFab: "AI Help", aiHead: "Wollo Market AI Assistant", aiPh: "Type your question...", aiSend: "Send",
+        aiWelcome: "Hello! I'm the Wollo Market AI Assistant. Ask me about 72h delivery, locations, 200 Br upfront fee, warranty, or special orders!",
+        prodDetail: "Product Details", orderNow: "Order Now", addToCart: "Add to Cart", added: "Added to cart!",
+        watchTikTok: "Watch Video on TikTok", watchYT: "Watch on YouTube",
+        wishTitle: "Favorites", wishEmpty: "No saved items yet.",
+        delWarranty: STORE_CONFIG.deliveryTime.en + " • 24h Warranty",
+        profSub: "Online delivery only • Physical shop coming InshaAllah",
+        helpPayTitle: "Help Center & Payment Info", selLangTitle: "Select Language / ቋንቋ",
+        darkMode: "Dark Mode", darkModeSub: "Switch between light and dark theme",
+        favorites: "Favorites", savedItems: "saved items",
+        specialOrder: "+ Special Order", specialOrderSub: "Request an unlisted item",
+        adRental: "Ad Rental", adTitle: "Advertise Your Shop Here!",
+        adSub: "For shops & businesses in Kombolcha, Dessie, Harbu & Kemise",
+        policiesTitle: "Store Policies",
+        pol1: "• Only 200 Br delivery paid upfront",
+        pol2: "• Product price paid Cash on Delivery",
+        pol3: "• " + STORE_CONFIG.deliveryTime.en + " • 24h warranty",
+        pol4: "• Discounts on 2+ items & bulk orders",
+        aiCardTitle: "Wollo Market AI Assistant", aiCardSub: "24/7 Ready • Instant Replies",
+        backMenu: "← Back to Menu", contactTitle: "Contact Us"
+      },
+      am: {
+        langCode: "አማ", searchPh: "እቃዎችን ይፈልጉ...",
+        home: "መነሻ", cart: "ቅርጫት", orders: "ትዕዛዞች", profile: "መገለጫ",
+        categories: "ምድቦች", seeAll: "ሁሉንም እይ", specialOffers: "ልዩ ቅናሾች",
+        allProducts: "ሁሉም እቃዎች", reqItem: "+ ሌላ እቃ ይዘዙ",
+        catAll: "ሁሉም", catDeals: "ልዩ ቅናሽ", catWomen: "ለሴቶች", catHome: "ቤትና ማዕድ ቤት", catTech: "ቴክና ጋጄት",
+        emptyCartTitle: "ቅርጫትዎ ባዶ ነው", emptyCartSub: "ለየት ያሉ ጋጄቶቻችንን ይመልከቱና ወደ ቅርጫትዎ ይጨምሩ", shopNow: "አሁን ይሸምቱ",
+        checkoutTitle: "የማድረሻ መረጃ እና ክፍያ",
+        city: "ከተማ / ቦታ", name: "ሙሉ ስም", phone: "ስልክ ቁጥር", addr: "ሰፈር / ትክክለኛ ቦታ",
+        payTitle: "የዴሊቨሪ 200 ብር ብቻ ቅድሚያ ይክፈሉ",
+        paySub: "የእቃውን ዋጋ እቃው ሲደርስ ብቻ ይክፈሉ። የ200 ብር ስክሪንሹት በቴሌግራም ይላኩ።",
+        copy: "ኮፒ", copied: "ተቀድቷል!",
+        subtotal: "የእቃዎች ድምር", delFee: "የዴሊቨሪ ቅድሚያ ክፍያ", payOnDel: "እቃው ሲደርስ የሚከፈል",
+        orderBtn: "ይዘዙ እና ስክሪንሹት ይላኩ", fillReq: "እባክዎ ስም፣ ስልክ እና ሰፈር ይሙሉ!",
+        activeOrders: "ንቁ ትዕዛዞች", orderHistory: "የትዕዛዝ ታሪክ",
+        noActive: "ምንም ንቁ ትዕዛዝ የለም።", noHistory: "የትዕዛዝ ታሪክ ባዶ ነው።",
+        pending: "በሂደት ላይ (72 ሰዓት)", delivered: "ደርሷል ✓",
+        markRec: "ተረክቤያለሁ (Mark as Received)", recToast: "እናመሰግናለን! ትዕዛዙ «ደርሷል ✓» ተብሎ ተመዝግቧል።",
+        aiFab: "AI ረዳት", aiHead: "የወሎ ማርኬት AI ረዳት", aiPh: "ጥያቄዎን እዚህ ይጻፉ...", aiSend: "ላክ",
+        aiWelcome: "ሰላም! የወሎ ማርኬት AI ረዳት ነኝ። ስለ 72 ሰዓት ዴሊቨሪ፣ ከተሞች (ኮምቦልቻ፣ ደሴ፣ ሀርቡ፣ ኬሚሴ)፣ 200 ብር ቅድሚያ ክፍያ ወይም ዋስትና ይጠይቁኝ!",
+        prodDetail: "የእቃው ዝርዝር", orderNow: "አሁን ይዘዙ", addToCart: "ቅርጫት ውስጥ ጨምር", added: "ወደ ቅርጫት ተጨምሯል!",
+        watchTikTok: "ቪዲዮ በቲክቶክ ይመልከቱ", watchYT: "በዩቲዩብ ይመልከቱ",
+        wishTitle: "የተወደዱ እቃዎች", wishEmpty: "እስካሁን የተወደደ እቃ የለም።",
+        delWarranty: STORE_CONFIG.deliveryTime.am + " • የ24 ሰዓት ዋስትና",
+        profSub: "ኦንላይን ዴሊቨሪ ብቻ • ወደፊት ሱቅ እንከፍታለን ኢንሻአላህ",
+        helpPayTitle: "የደንበኛ አገልግሎት እና የክፍያ መረጃ", selLangTitle: "ቋንቋ ይምረጡ / Select Language",
+        darkMode: "ዳርክ ሞድ", darkModeSub: "በላይት እና ዳርክ ገጽታ መካከል ይቀያይሩ",
+        favorites: "የተወደዱ እቃዎች", savedItems: "የተቀመጡ እቃዎች",
+        specialOrder: "+ ሌላ እቃ ይዘዙ", specialOrderSub: "ዌብሳይቱ ላይ የሌለ እቃ ይጠይቁ",
+        adRental: "የማስታወቂያ ኪራይ", adTitle: "ማስታወቂያዎን እዚህ ያስነግሩ!",
+        adSub: "ለኮምቦልቻ፣ ደሴ፣ ሀርቡ እና ኬሚሴ ሱቆች እና ቢዝነሶች",
+        policiesTitle: "የስቶሩ ህጎች",
+        pol1: "• የዴሊቨሪ 200 ብር ብቻ ቅድሚያ ይከፈላል",
+        pol2: "• የእቃው ዋጋ እቃው ሲደርስ ብቻ (Cash on Delivery)",
+        pol3: "• " + STORE_CONFIG.deliveryTime.am + " • የ24 ሰዓት ዋስትና",
+        pol4: "• ከ2 እቃ በላይ እና በብዛት ለሚገዙ ልዩ ቅናሽ አለ",
+        aiCardTitle: "የወሎ ማርኬት AI ረዳት", aiCardSub: "24/7 ዝግጁ • ፈጣን ምላሽ",
+        backMenu: "← ወደ ዝርዝሩ ተመለስ", contactTitle: "ያግኙን"
+      },
+      om: {
+        langCode: "OM", searchPh: "Mi'a barbaadaa...",
+        home: "Fuula Duraa", cart: "Guuboo", orders: "Ajajawwan", profile: "Eenyummaa",
+        categories: "Ramaddiiwwan", seeAll: "Hunda Ilaali", specialOffers: "Hir'ina Addaa",
+        allProducts: "Mi'a Hunda", reqItem: "+ Mi'a Biraa Ajajaa",
+        catAll: "Hunda", catDeals: "Hir'ina Addaa", catWomen: "Dubartootaaf", catHome: "Manaa fi Kichinii", catTech: "Teekii fi Gaajeetii",
+        emptyCartTitle: "Guuboon keessan duwwaa dha", emptyCartSub: "Gaajeetota addaa keenya ilaalaatii guubootti dabaladhaa", shopNow: "Amma Bitaa",
+        checkoutTitle: "Odeeffannoo Geessii fi Kaffaltii",
+        city: "Magaalaa / Bakka", name: "Maqaa Guutuu", phone: "Lakkoofsa Bilbilaa", addr: "Naannoo / Teessoo",
+        payTitle: "Kaffaltii Geessii Br 200 Qofa Dursaa",
+        paySub: "Gatii mi'aa yeroo gahu qofa kaffalaa. Suuraa Br 200 Telegramiin ergaa.",
+        copy: "Koppii", copied: "Koppii ta'eera!",
+        subtotal: "Ida'ama Mi'aa", delFee: "Kaffaltii Geessii Dursaa", payOnDel: "Yeroo Geessii Kaffalamu",
+        orderBtn: "Ajajaa fi Screenshot Ergaa", fillReq: "Maaloo maqaa, bilbila fi teessoo guutaa!",
+        activeOrders: "Ajajawwan Hojii Irra Jiran", orderHistory: "Seenaa Ajajaa",
+        noActive: "Ajajni hojii irra jiru hin jiru.", noHistory: "Seenaan ajajaa duwwaa dha.",
+        pending: "Adeemsa Irra (Sa'aatii 72)", delivered: "Gaheera ✓",
+        markRec: "Fudhadheera (Mark as Received)", recToast: "Galatoomaa! Ajajni «Gaheera ✓» jedhamee galmaa'eera.",
+        aiFab: "Gargaaraa AI", aiHead: "Gargaaraa AI Gabaa Walloo", aiPh: "Gaaffii keessan barreessaa...", aiSend: "Ergi",
+        aiWelcome: "Akkam! Ani Gargaaraa AI Gabaa Walloo ti. Waa'ee geessii (72h), magaalotaa, kaffaltii ykn wabii na gaafadhaa!",
+        prodDetail: "Bal'ina Mi'aa", orderNow: "Amma Ajaji", addToCart: "Kuusaa itti dabali", added: "Guubootti dabalameera!",
+        watchTikTok: "Viidiyoo TikTok irratti Ilaali", watchYT: "YouTube irratti Ilaali",
+        wishTitle: "Mi'a Jaallataman", wishEmpty: "Hanga ammaatti mi'i jaallatame hin jiru.",
+        delWarranty: STORE_CONFIG.deliveryTime.om + " • Wabii 24h",
+        profSub: "Onlaayinii qofa • Suuqii qaamaa ni banna InshaAllah",
+        helpPayTitle: "Tajaajila Maamiltootaa fi Kaffaltii", selLangTitle: "Afaan Filadhaa / Select Language",
+        darkMode: "Dark Mode", darkModeSub: "Light fi Dark gidduutti jijjiiraa",
+        favorites: "Mi'a Jaallataman", savedItems: "mi'a olkaa'aman",
+        specialOrder: "+ Mi'a Biroo Ajajaa", specialOrderSub: "Mi'a as irra hin jirre gaafadhaa",
+        adRental: "Kiraa Beeksisa", adTitle: "Beeksisa Keessan Asitti Baasaa!",
+        adSub: "Suuqiilee Kombolcha, Dasee, Harbuu fi Kamiiseef",
+        policiesTitle: "Seera Suuqii",
+        pol1: "• Kaffaltii geessii Br 200 qofa dursaa",
+        pol2: "• Gatii mi'aa yeroo harka keessan gahu qofa",
+        pol3: "• " + STORE_CONFIG.deliveryTime.om + " • Wabii 24h",
+        pol4: "• Mi'a 2 ol ykn baay'inaan bituuf hir'inni jira",
+        aiCardTitle: "Gargaaraa AI Gabaa Walloo", aiCardSub: "24/7 Qophii • Deebii Saffisaa",
+        backMenu: "← Gara Tarreetti Deebi'i", contactTitle: "Nu Quunnamaa"
+      }
+    };
+
+    /* INLINE SVG ICONS (ZERO EXTERNAL CDNS) */
+    function svgIcon(name, size) {
+      const s = size || 38;
+      const map = {
+        truck: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>`,
+        cake: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"></path><path d="M2 21h20"></path><path d="M7 8v3"></path><path d="M12 8v3"></path><path d="M17 8v3"></path></svg>`,
+        shirt: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"></path></svg>`,
+        building: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="9" y1="6" x2="9.01" y2="6"></line><line x1="15" y1="6" x2="15.01" y2="6"></line><line x1="9" y1="10" x2="9.01" y2="10"></line><line x1="15" y1="10" x2="15.01" y2="10"></line><line x1="9" y1="14" x2="9.01" y2="14"></line><line x1="15" y1="14" x2="15.01" y2="14"></line><path d="M9 22v-4h6v4"></path></svg>`,
+        megaphone: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>`,
+        belt: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="5"></rect><path d="M9 10v4"></path><path d="M12 10v4"></path><path d="M15 10v4"></path></svg>`,
+        posture: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 3v18"></path><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>`,
+        blender: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10l-1 11H8L7 4z"></path><path d="M6 15h12v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4z"></path><path d="M10 2h4"></path></svg>`,
+        fan: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15v-3a8 8 0 0 1 16 0v3"></path><rect x="2" y="14" width="5" height="7" rx="2"></rect><rect x="17" y="14" width="5" height="7" rx="2"></rect></svg>`,
+        shaver: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"></circle><path d="M9 15l-1 6h8l-1-6"></path><circle cx="12" cy="9" r="2"></circle></svg>`,
+        hair: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="9" rx="3"></rect><path d="M9 13v7"></path><path d="M12 13v7"></path><path d="M15 13v7"></path></svg>`,
+        chopper: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="13" rx="3"></rect><path d="M9 7V4h6v3"></path><path d="M9 14h6"></path></svg>`,
+        pump: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8V11a4 4 0 0 0-8 0v10z"></path><path d="M12 7V4h5v3"></path><path d="M17 10v2"></path></svg>`,
+        steamer: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10h10l2 9H5l2-9z"></path><path d="M10 10V6a2 2 0 0 1 4 0v4"></path></svg>`,
+        scrubber: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="6"></circle><path d="M12 2v6"></path><path d="M9 14h6"></path><path d="M12 11v6"></path></svg>`,
+        printer: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>`,
+        light: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="6" rx="3"></rect><line x1="8" y1="4" x2="8" y2="6"></line><line x1="12" y1="3" x2="12" y2="6"></line><line x1="16" y1="4" x2="16" y2="6"></line></svg>`,
+        vacuum: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l8-8 6 6-8 8H4v-6z"></path><path d="M14 6l4-4 2 2-4 4"></path></svg>`
+      };
+      return map[name] || map.belt;
+    }
+
+    const HEART_ICO = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>`;
+    const BAG_ICO = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><line x1="12" y1="11" x2="12" y2="17"></line><line x1="9" y1="14" x2="15" y2="14"></line></svg>`;
+    const BOLT_ICO = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`;
+    const CART_EMPTY_ICO = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>`;
+    const TIKTOK_ICO = `<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>`;
+    const YT_ICO = `<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.4 31.4 0 0 0 0 12a31.4 31.4 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.4 31.4 0 0 0 24 12a31.4 31.4 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>`;
+
+    /* STATE & PERSISTENCE (ENGLISH DEFAULT, 0 WISHLIST, 0 CART ON LOAD) */
+    const LS_KEYS = {
+      lang: "wm_final_lang",
+      theme: "wm_final_theme",
+      cart: "wm_final_cart",
+      wishlist: "wm_final_wishlist",
+      orders: "wm_final_orders"
+    };
+
+    function readLS(k, fb) {
+      try {
+        const v = localStorage.getItem(k);
+        if (!v) return fb;
+        const p = JSON.parse(v);
+        return Array.isArray(fb) ? (Array.isArray(p) ? p : fb) : p;
+      } catch (e) {
+        return fb;
+      }
+    }
+
+    function writeLS(k, v) {
+      try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {}
+    }
+
+    const state = {
+      lang: readLS(LS_KEYS.lang, STORE_CONFIG.defaultLang || "en"),
+      theme: readLS(LS_KEYS.theme, "light"),
+      tab: "home",
+      cat: "all",
+      search: "",
+      cart: readLS(LS_KEYS.cart, []),
+      wishlist: readLS(LS_KEYS.wishlist, []),
+      orders: readLS(LS_KEYS.orders, []),
+      orderView: "active",
+      cIdx: 0,
+      cTimer: null,
+      gIdx: 0,
+      directOrderProd: null,
+      directOrderQty: 1,
+      partnerId: null,
+      partnerItem: null,
+      aiMsgs: []
+    };
+
+    function t(k) { return (I18N[state.lang] && I18N[state.lang][k]) || I18N.en[k] || k; }
+    function br(n) { return Number(n).toLocaleString("en-US") + " Br"; }
+    function locationsLine() {
+      return LOCATIONS.map(function (c) { return c[state.lang] || c.en; }).join(" • ");
+    }
+
+    let toastT = null;
+    function toast(msg) {
+      const el = document.getElementById("toast");
+      el.textContent = msg;
+      el.classList.add("show");
+      if (toastT) clearTimeout(toastT);
+      toastT = setTimeout(function () { el.classList.remove("show"); }, 2300);
+    }
+
+    function copyText(val) {
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = val;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        toast(t("copied") + " " + val);
+      } catch (e) {
+        toast(val);
+      }
+    }
+
+    function openTG(user, text) {
+      const u = String(user || STORE_CONFIG.telegramUsername).replace(/^@/, "");
+      window.open("https://t.me/" + encodeURIComponent(u) + "?text=" + encodeURIComponent(text), "_blank", "noopener,noreferrer");
+    }
+
+    /* THEME, LANGUAGE & BADGES */
+    function applyTheme() {
+      document.documentElement.setAttribute("data-theme", state.theme);
+      document.getElementById("ico-moon").style.display = state.theme === "dark" ? "none" : "block";
+      document.getElementById("ico-sun").style.display = state.theme === "dark" ? "block" : "none";
+      writeLS(LS_KEYS.theme, state.theme);
+    }
+
+    function setLanguage(lang) {
+      state.lang = lang;
+      writeLS(LS_KEYS.lang, lang);
+      state.aiMsgs = [];
+      renderAll();
+    }
+
+    function updateTexts() {
+      const locStr = locationsLine();
+      document.documentElement.lang = state.lang;
+      document.getElementById("hdr-brand").textContent = STORE_CONFIG.storeName[state.lang];
+      document.getElementById("hdr-cities").textContent = locStr;
+      document.getElementById("btn-lang").textContent = t("langCode");
+      document.getElementById("search-input").placeholder = t("searchPh");
+
+      document.getElementById("dnav-home").textContent = t("home");
+      document.getElementById("dnav-cart").textContent = t("cart");
+      document.getElementById("dnav-orders").textContent = t("orders");
+      document.getElementById("dnav-profile").textContent = t("profile");
+
+      document.getElementById("bnav-home").textContent = t("home");
+      document.getElementById("bnav-cart").textContent = t("cart");
+      document.getElementById("bnav-orders").textContent = t("orders");
+      document.getElementById("bnav-profile").textContent = t("profile");
+
+      document.getElementById("lbl-cat").textContent = t("categories");
+      document.getElementById("btn-cat-all").textContent = t("seeAll");
+      document.getElementById("lbl-deals").textContent = t("specialOffers");
+      document.getElementById("btn-deals-all").textContent = t("seeAll");
+      document.getElementById("lbl-all-prod").textContent = t("allProducts");
+      document.getElementById("btn-req-item").textContent = t("reqItem");
+
+      document.getElementById("lbl-cart-head").textContent = t("cart");
+      document.getElementById("lbl-orders-head").textContent = t("orders");
+      document.getElementById("seg-active").textContent = t("activeOrders");
+      document.getElementById("seg-history").textContent = t("orderHistory");
+      document.getElementById("lbl-profile-head").textContent = t("profile");
+
+      document.getElementById("lbl-ai-fab").textContent = t("aiFab");
+      document.getElementById("ai-head").textContent = t("aiHead");
+      document.getElementById("ai-input").placeholder = t("aiPh");
+      document.getElementById("ai-send").textContent = t("aiSend");
+      document.getElementById("pm-head").textContent = t("prodDetail");
+      document.getElementById("do-head").textContent = t("checkoutTitle");
+      document.getElementById("wm-head").textContent = t("wishTitle");
+
+      document.getElementById("ft-brand").textContent = STORE_CONFIG.storeName[state.lang];
+      document.getElementById("ft-desc").textContent = t("delWarranty") + " — " + locStr;
+      document.getElementById("ft-pol-h").textContent = t("policiesTitle");
+      document.getElementById("ft-pol-b").innerHTML = t("pol1") + "<br>" + t("pol2") + "<br>" + t("pol3");
+      document.getElementById("ft-cnt-h").textContent = t("contactTitle");
+      document.getElementById("ft-cnt-b").innerHTML = "Telegram: @" + STORE_CONFIG.telegramUsername + "<br>Phone: " + STORE_CONFIG.phone + "<br>" + locStr;
+      document.getElementById("ft-copy").textContent = "© 2026 " + STORE_CONFIG.storeName[state.lang] + " • " + locStr;
+    }
+
+    function updateBadges() {
+      const cQty = state.cart.reduce(function (a, b) { return a + (b.qty || 0); }, 0);
+      const oQty = state.orders.filter(function (o) { return o.status === "pending"; }).length;
+      const wQty = state.wishlist.length;
+
+      const wEl = document.getElementById("hdr-wish-badge");
+      wEl.textContent = wQty;
+      wEl.classList.toggle("show", wQty > 0);
+
+      ["bnav-cart-badge", "dnav-cart-badge"].forEach(function (id) {
+        const el = document.getElementById(id);
+        el.textContent = cQty;
+        el.classList.toggle("show", cQty > 0);
+      });
+
+      ["bnav-orders-badge", "dnav-orders-badge"].forEach(function (id) {
+        const el = document.getElementById(id);
+        el.textContent = oQty;
+        el.classList.toggle("show", oQty > 0);
+      });
+
+      document.getElementById("cart-head-count").textContent = cQty;
+    }
+
+    /* PEEKING & AUTO-SLIDING CAROUSEL */
+    function renderCarousel() {
+      const track = document.getElementById("carousel-track");
+      const dots = document.getElementById("carousel-dots");
+
+      track.innerHTML = PROMO_BANNERS.map(function (b, i) {
+        const bg = b.bgImage ? `background-image:url('${b.bgImage}');` : `background:${b.gradient};`;
+        const scrim = b.bgImage ? `<div class="banner-scrim"></div>` : "";
+        return `
+          <div class="banner-card" data-bidx="${i}" style="${bg}">
+            ${scrim}
+            <div class="banner-content">
+              <div class="banner-pill"><span class="banner-dot-live"></span><span>${b.pill[state.lang] || b.pill.en}</span></div>
+              <div class="banner-title">${b.title[state.lang] || b.title.en}</div>
+              <div class="banner-sub">${b.sub[state.lang] || b.sub.en}</div>
+              <span class="banner-cta">${b.cta[state.lang] || b.cta.en} &rsaquo;</span>
+            </div>
+            <div class="banner-icon-box">${svgIcon(b.icon, 28)}</div>
+          </div>
+        `;
+      }).join("");
+
+      dots.innerHTML = PROMO_BANNERS.map(function (_, i) {
+        return `<button type="button" class="c-dot ${i === state.cIdx ? "active" : ""}" data-cdot="${i}" aria-label="Slide ${i + 1}"></button>`;
+      }).join("");
+    }
+
+    function goBanner(idx) {
+      const n = PROMO_BANNERS.length;
+      if (!n) return;
+      state.cIdx = ((idx % n) + n) % n;
+      const track = document.getElementById("carousel-track");
+      const card = track && track.children[state.cIdx];
+      if (track && card) {
+        const padL = parseFloat(window.getComputedStyle(track).paddingLeft) || 20;
+        track.scrollTo({ left: Math.max(0, card.offsetLeft - padL), behavior: "smooth" });
+      }
+      document.querySelectorAll(".c-dot").forEach(function (d, i) {
+        d.classList.toggle("active", i === state.cIdx);
+      });
+    }
+
+    function startAutoSlide() {
+      stopAutoSlide();
+      state.cTimer = setInterval(function () {
+        if (state.tab === "home") goBanner(state.cIdx + 1);
+      }, 4000);
+    }
+
+    function stopAutoSlide() {
+      if (state.cTimer) { clearInterval(state.cTimer); state.cTimer = null; }
+    }
+
+    /* INFO AD MODAL (FOR REAL ESTATE / SERVICES / NON-ORDER BANNERS) */
+    function openInfoModal(b) {
+      document.getElementById("im-head").textContent = b.title[state.lang] || b.title.en;
+      const bg = b.bgImage ? `background-image:url('${b.bgImage}');background-size:cover;background-position:center;` : `background:${b.gradient};`;
+      const details = (b.infoDetails && (b.infoDetails[state.lang] || b.infoDetails.en)) || (b.sub[state.lang] || b.sub.en);
+      const ctaLbl = (b.contactLabel && (b.contactLabel[state.lang] || b.contactLabel.en)) || t("contactTitle");
+      document.getElementById("im-body").innerHTML = `
+        <div style="position:relative;border-radius:16px;padding:22px 18px;color:#FFFFFF;overflow:hidden;margin-bottom:14px;${bg}">
+          ${b.bgImage ? `<div class="banner-scrim"></div>` : ""}
+          <div style="position:relative;z-index:2;">
+            <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:rgba(0,0,0,0.35);font-size:11px;font-weight:700;margin-bottom:8px;">${b.pill[state.lang] || b.pill.en}</span>
+            <h3 style="font-size:19px;font-weight:900;">${b.title[state.lang] || b.title.en}</h3>
+          </div>
+        </div>
+        <div class="white-card" style="white-space:pre-line;font-size:13.5px;color:var(--text-secondary);line-height:1.65;">${details}</div>
+        ${b.contactLink ? `<a href="${b.contactLink}" target="_blank" rel="noopener noreferrer" class="btn-red full">${ctaLbl}</a>` : ""}
+      `;
+      openModal("modal-info");
+    }
+
+    /* HOME CATEGORIES & PRODUCTS */
+    function renderCategories() {
+      const cats = [
+        { id: "all", lbl: t("catAll") },
+        { id: "deals", lbl: t("catDeals") },
+        { id: "women", lbl: t("catWomen") },
+        { id: "home", lbl: t("catHome") },
+        { id: "tech", lbl: t("catTech") }
+      ];
+      document.getElementById("cat-row").innerHTML = cats.map(function (c) {
+        return `<button type="button" class="cat-chip ${state.cat === c.id ? "active" : ""}" data-cat="${c.id}">${c.lbl}</button>`;
+      }).join("");
+    }
+
+    function cardHtml(p, isDeal) {
+      const liked = state.wishlist.indexOf(p.id) !== -1;
+      const hasImg = Array.isArray(p.images) && p.images.length > 0 && p.images[0];
+      return `
+        <article class="${isDeal ? "deal-card" : "product-card"}" data-prod="${p.id}">
+          <div class="p-media" style="background:${p.gradient}">
+            ${p.badge ? `<span class="p-badge">${p.badge}</span>` : ""}
+            <button type="button" class="p-wish ${liked ? "liked" : ""}" data-wish="${p.id}" aria-label="Favorite">${HEART_ICO}</button>
+            ${hasImg ? `<img src="${p.images[0]}" alt="${p.name[state.lang]}" loading="lazy" onerror="this.style.display='none'" />` : svgIcon(p.icon, 40)}
+          </div>
+          <h3 class="p-title">${p.name[state.lang]}</h3>
+          <div class="p-foot">
+            <div>
+              ${p.oldPrice ? `<span class="p-old">${br(p.oldPrice)}</span>` : ""}
+              <span class="p-price">${br(p.price)}</span>
+            </div>
+            <button type="button" class="p-add" data-add="${p.id}" aria-label="Add to Cart">${BAG_ICO}</button>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderHomeProducts() {
+      const q = state.search.trim().toLowerCase();
+      const dealsSec = document.getElementById("sec-deals");
+      if (q) {
+        dealsSec.style.display = "none";
+      } else {
+        dealsSec.style.display = "block";
+        document.getElementById("deals-row").innerHTML = PRODUCTS.filter(function (p) { return p.isDeal; }).map(function (p) { return cardHtml(p, true); }).join("");
+      }
+
+      const list = PRODUCTS.filter(function (p) {
+        const okCat = state.cat === "all" || (state.cat === "deals" && p.isDeal) || p.category === state.cat;
+        if (!okCat) return false;
+        if (!q) return true;
+        return (p.name.en + " " + p.name.am + " " + p.name.om + " " + p.desc.en + " " + p.desc.am).toLowerCase().indexOf(q) !== -1;
+      });
+
+      document.getElementById("prod-count").textContent = list.length;
+      document.getElementById("products-grid").innerHTML = list.length
+        ? list.map(function (p) { return cardHtml(p, false); }).join("")
+        : `<div class="white-card" style="grid-column:1/-1;text-align:center;padding:36px;color:var(--text-secondary);">${t("searchPh")}</div>`;
+    }
+
+    /* PRODUCT DETAIL MODAL + DIRECT ORDER MODAL */
+    function openProductModal(id) {
+      const p = PRODUCTS.find(function (x) { return x.id === id; });
+      if (!p) return;
+      state.gIdx = 0;
+      const liked = state.wishlist.indexOf(p.id) !== -1;
+      const hasImgs = Array.isArray(p.images) && p.images.length > 0;
+
+      const slides = hasImgs
+        ? p.images.map(function (src, i) {
+            return `<div class="gallery-slide" style="background:${p.gradient};"><img src="${src}" alt="${p.name[state.lang]}" onerror="this.style.display='none'" /><span class="gallery-tag">${i + 1} / ${p.images.length}</span></div>`;
+          })
+        : [
+            `<div class="gallery-slide" style="background:${p.gradient};">${svgIcon(p.icon, 62)}<span class="gallery-tag">1 / 3</span></div>`,
+            `<div class="gallery-slide" style="background:linear-gradient(135deg,#18181B,#991B1B);">${svgIcon(p.icon, 76)}<span class="gallery-tag">2 / 3</span></div>`,
+            `<div class="gallery-slide" style="background:linear-gradient(135deg,#7F1D1D,#111114);">${svgIcon(p.icon, 54)}<span class="gallery-tag">3 / 3</span></div>`
+          ];
+
+      const total = slides.length;
+      const dots = total > 1
+        ? `<div class="g-dots" id="g-dots">` + slides.map(function (_, i) {
+            return `<button type="button" class="g-dot ${i === 0 ? "active" : ""}" data-gdot="${i}"></button>`;
+          }).join("") + `</div>`
+        : "";
+
+      let videoHtml = "";
+      if (p.tiktokUrl || p.youtubeUrl) {
+        videoHtml = `<div class="video-row">`;
+        if (p.tiktokUrl) videoHtml += `<a href="${p.tiktokUrl}" target="_blank" rel="noopener noreferrer" class="btn-tiktok">${TIKTOK_ICO}<span>${t("watchTikTok")}</span></a>`;
+        if (p.youtubeUrl) videoHtml += `<a href="${p.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="btn-youtube">${YT_ICO}<span>${t("watchYT")}</span></a>`;
+        videoHtml += `</div>`;
+      }
+
+      document.getElementById("pm-body").innerHTML = `
+        <div class="gallery-box">
+          <div class="gallery-track no-scrollbar" id="g-track">${slides.join("")}</div>
+          ${total > 1 ? `<button type="button" class="g-arrow prev" id="g-prev">&#8249;</button><button type="button" class="g-arrow next" id="g-next">&#8250;</button>` : ""}
+        </div>
+        ${dots}
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
+          <div>
+            <h3 style="font-size:18px;font-weight:900;">${p.name[state.lang]}</h3>
+            <div style="margin-top:5px;display:flex;align-items:baseline;gap:8px;">
+              <span style="font-size:20px;font-weight:900;color:var(--red);">${br(p.price)}</span>
+              ${p.oldPrice ? `<span style="font-size:13px;color:var(--text-muted);text-decoration:line-through;">${br(p.oldPrice)}</span>` : ""}
+            </div>
+          </div>
+          <button type="button" class="p-wish ${liked ? "liked" : ""}" style="position:static;width:38px;height:38px;" id="pm-wish">${HEART_ICO}</button>
+        </div>
+        <div style="margin-top:10px;padding:8px 12px;border-radius:10px;background:var(--red-soft);color:var(--red-soft-text);font-size:12px;font-weight:700;">
+          ${t("delWarranty")}
+        </div>
+        <p style="margin-top:12px;font-size:13.5px;color:var(--text-secondary);line-height:1.6;">${p.desc[state.lang]}</p>
+        ${videoHtml}
+        <div class="modal-action-stack">
+          <button type="button" class="btn-red full" id="pm-order-now">${BOLT_ICO}<span>${t("orderNow")} — ${br(p.price)}</span></button>
+          <button type="button" class="btn-outline full" id="pm-add-cart">${BAG_ICO}<span>${t("addToCart")}</span></button>
+        </div>
+      `;
+
+      const gTrack = document.getElementById("g-track");
+      function goG(idx) {
+        state.gIdx = ((idx % total) + total) % total;
+        if (gTrack) gTrack.scrollTo({ left: state.gIdx * gTrack.clientWidth, behavior: "smooth" });
+        document.querySelectorAll("#g-dots .g-dot").forEach(function (d, i) { d.classList.toggle("active", i === state.gIdx); });
+      }
+      const gp = document.getElementById("g-prev");
+      const gn = document.getElementById("g-next");
+      if (gp) gp.addEventListener("click", function () { goG(state.gIdx - 1); });
+      if (gn) gn.addEventListener("click", function () { goG(state.gIdx + 1); });
+      const gd = document.getElementById("g-dots");
+      if (gd) gd.addEventListener("click", function (e) {
+        const b = e.target.closest("[data-gdot]");
+        if (b) goG(Number(b.getAttribute("data-gdot")));
+      });
+      if (gTrack && total > 1) {
+        let gt = null;
+        gTrack.addEventListener("scroll", function () {
+          if (gt) clearTimeout(gt);
+          gt = setTimeout(function () {
+            state.gIdx = Math.round(gTrack.scrollLeft / (gTrack.clientWidth || 1));
+            document.querySelectorAll("#g-dots .g-dot").forEach(function (d, i) { d.classList.toggle("active", i === state.gIdx); });
+          }, 80);
+        }, { passive: true });
+      }
+
+      document.getElementById("pm-wish").addEventListener("click", function () {
+        toggleWish(p.id);
+        this.classList.toggle("liked", state.wishlist.indexOf(p.id) !== -1);
+      });
+      document.getElementById("pm-order-now").addEventListener("click", function () {
+        closeModal("modal-product");
+        openDirectOrderModal(p);
+      });
+      document.getElementById("pm-add-cart").addEventListener("click", function () {
+        addCart(p.id);
+        closeModal("modal-product");
+      });
+
+      openModal("modal-product");
+    }
+
+    function openDirectOrderModal(p) {
+      state.directOrderProd = p;
+      state.directOrderQty = 1;
+      renderDirectOrderModal();
+      openModal("modal-direct-order");
+    }
+
+    function renderDirectOrderModal() {
+      const p = state.directOrderProd;
+      if (!p) return;
+      const qty = state.directOrderQty;
+      const subtotal = p.price * qty;
+      const hasImg = Array.isArray(p.images) && p.images.length > 0 && p.images[0];
+      const cityOpts = LOCATIONS.map(function (c) {
+        const lbl = c[state.lang] || c.en;
+        return `<option value="${lbl}">${lbl}</option>`;
+      }).join("");
+
+      document.getElementById("do-body").innerHTML = `
+        <div class="white-card" style="display:flex;align-items:center;gap:12px;">
+          <div class="cart-thumb" style="background:${p.gradient};">
+            ${hasImg ? `<img src="${p.images[0]}" alt="${p.name[state.lang]}" onerror="this.style.display='none'" />` : svgIcon(p.icon, 26)}
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:14px;font-weight:800;">${p.name[state.lang]}</div>
+            <div style="font-size:14px;font-weight:900;color:var(--red);margin-top:2px;">${br(subtotal)}</div>
+            <div class="qty-pill">
+              <button type="button" class="qty-btn" id="do-dec">−</button>
+              <span style="font-size:13px;font-weight:800;min-width:16px;text-align:center;">${qty}</span>
+              <button type="button" class="qty-btn" id="do-inc">+</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group"><label class="form-label">${t("city")}</label><select class="form-input" id="do-city">${cityOpts}</select></div>
+        <div class="form-group"><label class="form-label">${t("name")}</label><input type="text" class="form-input" id="do-name" /></div>
+        <div class="form-group"><label class="form-label">${t("phone")}</label><input type="tel" class="form-input" id="do-phone" placeholder="09XXXXXXXX" /></div>
+        <div class="form-group"><label class="form-label">${t("addr")}</label><input type="text" class="form-input" id="do-addr" /></div>
+
+        <div class="pay-box">
+          <div style="font-size:13px;font-weight:800;color:var(--red);">${t("payTitle")}</div>
+          <p style="font-size:12px;color:var(--text-secondary);margin-top:3px;">${t("paySub")}</p>
+          <div class="pay-item">
+            <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">Telebirr (${STORE_CONFIG.accountName})</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.telebirrNumber}</div></div>
+            <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.telebirrNumber}">${t("copy")}</button>
+          </div>
+          <div class="pay-item">
+            <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">CBE (${STORE_CONFIG.accountName})</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.cbeAccount}</div></div>
+            <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.cbeAccount}">${t("copy")}</button>
+          </div>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:6px;"><span>${t("subtotal")}</span><strong>${br(subtotal)}</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:8px;"><span>${t("delFee")}</span><strong style="color:var(--red);">${br(STORE_CONFIG.deliveryFee)}</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:15.5px;font-weight:900;padding-top:8px;border-top:1px solid var(--border);margin-bottom:14px;"><span>${t("payOnDel")}</span><span>${br(subtotal)}</span></div>
+
+        <button type="button" class="btn-red full" id="do-submit">${t("orderBtn")}</button>
+      `;
+
+      document.getElementById("do-dec").addEventListener("click", function () {
+        if (state.directOrderQty > 1) { state.directOrderQty -= 1; renderDirectOrderModal(); }
+      });
+      document.getElementById("do-inc").addEventListener("click", function () {
+        state.directOrderQty += 1; renderDirectOrderModal();
+      });
+      document.getElementById("do-submit").addEventListener("click", function () {
+        const city = document.getElementById("do-city").value;
+        const name = document.getElementById("do-name").value.trim();
+        const phone = document.getElementById("do-phone").value.trim();
+        const addr = document.getElementById("do-addr").value.trim();
+        if (!name || !phone || !addr) { toast(t("fillReq")); return; }
+
+        const oid = "WM-" + String(Date.now()).slice(-5);
+        state.orders.unshift({
+          id: oid, store: STORE_CONFIG.storeName[state.lang],
+          items: [{ name: p.name[state.lang], qty: qty, price: p.price }],
+          subtotal: subtotal, deliveryFee: STORE_CONFIG.deliveryFee,
+          city: city, customer: name, phone: phone, address: addr,
+          status: "pending", date: new Date().toLocaleDateString()
+        });
+        writeLS(LS_KEYS.orders, state.orders);
+        updateBadges();
+
+        openTG(STORE_CONFIG.telegramUsername,
+          "🛒 Wollo Market Order #" + oid + "\n\n- " + p.name[state.lang] + " x" + qty + " (" + br(subtotal) + ")" +
+          "\n\n💵 Pay on Delivery: " + br(subtotal) + "\n🚚 Upfront Delivery: " + br(STORE_CONFIG.deliveryFee) +
+          "\n📍 Location: " + city + "\n🏠 Address: " + addr + "\n👤 Name: " + name + "\n📞 Phone: " + phone +
+          "\n\n📸 (Attaching 200 Br payment screenshot)"
+        );
+        closeModal("modal-direct-order");
+        switchTab("orders");
+      });
+    }
+
+    /* WISHLIST, CART & PARTNER MINI-STOREFRONT */
+    function toggleWish(id) {
+      const i = state.wishlist.indexOf(id);
+      if (i === -1) state.wishlist.push(id); else state.wishlist.splice(i, 1);
+      writeLS(LS_KEYS.wishlist, state.wishlist);
+      updateBadges();
+      renderHomeProducts();
+      if (state.tab === "profile") renderProfile();
+    }
+
+    function openWishlistModal() {
+      const items = PRODUCTS.filter(function (p) { return state.wishlist.indexOf(p.id) !== -1; });
+      const body = document.getElementById("wm-body");
+      if (!items.length) {
+        body.innerHTML = `<div style="text-align:center;padding:34px 12px;color:var(--text-secondary);">${t("wishEmpty")}</div>`;
+      } else {
+        body.innerHTML = items.map(function (p) {
+          const hasImg = Array.isArray(p.images) && p.images.length > 0 && p.images[0];
+          return `
+            <div class="cart-row">
+              <div class="cart-thumb" style="background:${p.gradient}">
+                ${hasImg ? `<img src="${p.images[0]}" alt="${p.name[state.lang]}" onerror="this.style.display='none'" />` : svgIcon(p.icon, 24)}
+              </div>
+              <div style="flex:1;min-width:0;">
+                <div style="font-size:13.5px;font-weight:700;">${p.name[state.lang]}</div>
+                <div style="font-size:13px;font-weight:800;color:var(--red);">${br(p.price)}</div>
+              </div>
+              <button type="button" class="p-add" data-wadd="${p.id}">${BAG_ICO}</button>
+              <button type="button" class="modal-x" data-wrm="${p.id}">✕</button>
+            </div>
+          `;
+        }).join("");
+      }
+      openModal("modal-wishlist");
+    }
+
+    function addCart(id) {
+      const f = state.cart.find(function (c) { return c.id === id; });
+      if (f) f.qty += 1; else state.cart.push({ id: id, qty: 1 });
+      writeLS(LS_KEYS.cart, state.cart);
+      updateBadges();
+      toast(t("added"));
+      if (state.tab === "cart") renderCart();
+    }
+
+    function changeQty(id, delta) {
+      const i = state.cart.findIndex(function (c) { return c.id === id; });
+      if (i === -1) return;
+      state.cart[i].qty += delta;
+      if (state.cart[i].qty <= 0) state.cart.splice(i, 1);
+      writeLS(LS_KEYS.cart, state.cart);
+      updateBadges();
+      renderCart();
+    }
+
+    function renderCart() {
+      const root = document.getElementById("cart-root");
+      if (!state.cart.length) {
+        root.innerHTML = `
+          <div class="empty-cart-card">
+            <div class="empty-cart-icon">${CART_EMPTY_ICO}</div>
+            <h3 style="font-size:17px;font-weight:800;margin-bottom:6px;">${t("emptyCartTitle")}</h3>
+            <p style="font-size:13px;color:var(--text-secondary);max-width:280px;margin:0 auto 20px;">${t("emptyCartSub")}</p>
+            <button type="button" class="btn-red" id="btn-empty-go">${t("shopNow")}</button>
+          </div>
+        `;
+        document.getElementById("btn-empty-go").addEventListener("click", function () { switchTab("home"); });
+        return;
+      }
+
+      let subtotal = 0;
+      const rows = state.cart.map(function (c) {
+        const p = PRODUCTS.find(function (x) { return x.id === c.id; });
+        if (!p) return "";
+        subtotal += p.price * c.qty;
+        const hasImg = Array.isArray(p.images) && p.images.length > 0 && p.images[0];
+        return `
+          <div class="cart-row">
+            <div class="cart-thumb" style="background:${p.gradient}">
+              ${hasImg ? `<img src="${p.images[0]}" alt="${p.name[state.lang]}" onerror="this.style.display='none'" />` : svgIcon(p.icon, 24)}
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:13.5px;font-weight:700;">${p.name[state.lang]}</div>
+              <div style="font-size:13px;font-weight:800;color:var(--red);margin-top:2px;">${br(p.price * c.qty)}</div>
+              <div class="qty-pill">
+                <button type="button" class="qty-btn" data-qdec="${p.id}">−</button>
+                <span style="font-size:13px;font-weight:800;min-width:16px;text-align:center;">${c.qty}</span>
+                <button type="button" class="qty-btn" data-qinc="${p.id}">+</button>
+              </div>
+            </div>
+            <button type="button" class="modal-x" data-qdel="${p.id}" aria-label="Delete">✕</button>
+          </div>
+        `;
+      }).join("");
+
+      const cityOpts = LOCATIONS.map(function (c) {
+        const lbl = c[state.lang] || c.en;
+        return `<option value="${lbl}">${lbl}</option>`;
+      }).join("");
+
+      root.innerHTML = `
+        <div class="cart-grid">
+          <div class="white-card">${rows}</div>
+          <div class="white-card">
+            <h3 style="font-size:16px;font-weight:800;margin-bottom:12px;">${t("checkoutTitle")}</h3>
+            <div class="form-group"><label class="form-label">${t("city")}</label><select class="form-input" id="c-city">${cityOpts}</select></div>
+            <div class="form-group"><label class="form-label">${t("name")}</label><input type="text" class="form-input" id="c-name" /></div>
+            <div class="form-group"><label class="form-label">${t("phone")}</label><input type="tel" class="form-input" id="c-phone" placeholder="09XXXXXXXX" /></div>
+            <div class="form-group"><label class="form-label">${t("addr")}</label><input type="text" class="form-input" id="c-addr" /></div>
+
+            <div class="pay-box">
+              <div style="font-size:13px;font-weight:800;color:var(--red);">${t("payTitle")}</div>
+              <p style="font-size:12px;color:var(--text-secondary);margin-top:3px;">${t("paySub")}</p>
+              <div class="pay-item">
+                <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">Telebirr (${STORE_CONFIG.accountName})</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.telebirrNumber}</div></div>
+                <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.telebirrNumber}">${t("copy")}</button>
+              </div>
+              <div class="pay-item">
+                <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">CBE (${STORE_CONFIG.accountName})</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.cbeAccount}</div></div>
+                <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.cbeAccount}">${t("copy")}</button>
+              </div>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:6px;"><span>${t("subtotal")}</span><strong>${br(subtotal)}</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:8px;"><span>${t("delFee")}</span><strong style="color:var(--red);">${br(STORE_CONFIG.deliveryFee)}</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:15.5px;font-weight:900;padding-top:8px;border-top:1px solid var(--border);margin-bottom:14px;"><span>${t("payOnDel")}</span><span>${br(subtotal)}</span></div>
+
+            <button type="button" class="btn-red full" id="btn-place-order">${t("orderBtn")}</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("btn-place-order").addEventListener("click", function () {
+        const city = document.getElementById("c-city").value;
+        const name = document.getElementById("c-name").value.trim();
+        const phone = document.getElementById("c-phone").value.trim();
+        const addr = document.getElementById("c-addr").value.trim();
+        if (!name || !phone || !addr) { toast(t("fillReq")); return; }
+
+        const items = state.cart.map(function (c) {
+          const p = PRODUCTS.find(function (x) { return x.id === c.id; });
+          return { name: p ? p.name[state.lang] : "Item", qty: c.qty, price: p ? p.price : 0 };
+        });
+        const oid = "WM-" + String(Date.now()).slice(-5);
+        state.orders.unshift({
+          id: oid, store: STORE_CONFIG.storeName[state.lang], items: items,
+          subtotal: subtotal, deliveryFee: STORE_CONFIG.deliveryFee,
+          city: city, customer: name, phone: phone, address: addr,
+          status: "pending", date: new Date().toLocaleDateString()
+        });
+        state.cart = [];
+        writeLS(LS_KEYS.orders, state.orders);
+        writeLS(LS_KEYS.cart, state.cart);
+        updateBadges();
+
+        const lines = items.map(function (it) { return "- " + it.name + " x" + it.qty + " (" + br(it.price * it.qty) + ")"; }).join("\n");
+        openTG(STORE_CONFIG.telegramUsername,
+          "🛒 Wollo Market Order #" + oid + "\n\n" + lines + "\n\n💵 Pay on Delivery: " + br(subtotal) +
+          "\n🚚 Upfront Delivery: " + br(STORE_CONFIG.deliveryFee) + "\n📍 Location: " + city + "\n🏠 Address: " + addr +
+          "\n👤 Name: " + name + "\n📞 Phone: " + phone + "\n\n📸 (Attaching 200 Br payment screenshot)"
+        );
+        switchTab("orders");
+      });
+    }
+
+    function openPartnerModal(pid) {
+      const store = PARTNER_STORES[pid];
+      if (!store) return;
+      state.partnerId = pid;
+      state.partnerItem = null;
+      document.getElementById("pt-head").textContent = store.name[state.lang] || store.name.en;
+      renderPartnerBody();
+      openModal("modal-partner");
+    }
+
+    function renderPartnerBody() {
+      const store = PARTNER_STORES[state.partnerId];
+      if (!store) return;
+      const body = document.getElementById("pt-body");
+
+      if (!state.partnerItem) {
+        body.innerHTML = `
+          <div style="background:${store.gradient};color:#FFFFFF;border-radius:16px;padding:16px;margin-bottom:14px;">
+            <span style="display:inline-block;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,0.2);font-size:11px;font-weight:700;margin-bottom:6px;">${store.badge[state.lang] || store.badge.en}</span>
+            <div style="font-size:18px;font-weight:900;">${store.name[state.lang] || store.name.en}</div>
+            <div style="font-size:12.5px;opacity:0.9;margin-top:4px;">${store.desc[state.lang] || store.desc.en}</div>
+          </div>
+          ${store.products.map(function (it) {
+            const hasImg = Boolean(it.image && it.image.trim());
+            const thumbBg = it.gradient || store.gradient;
+            return `
+              <div class="white-card" style="display:flex;align-items:center;gap:12px;">
+                <div class="partner-thumb" style="background:${thumbBg};">
+                  ${hasImg ? `<img src="${it.image}" alt="${it.name[state.lang] || it.name.en}" loading="lazy" onerror="this.style.display='none'" />` : svgIcon(it.icon || "cake", 28)}
+                </div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:14px;font-weight:800;">${it.name[state.lang] || it.name.en}</div>
+                  <div style="font-size:12px;color:var(--text-secondary);margin-top:3px;">${it.desc[state.lang] || it.desc.en}</div>
+                  <div style="font-size:15px;font-weight:900;color:var(--red);margin-top:5px;">${br(it.price)}</div>
+                </div>
+                <button type="button" class="btn-red" style="padding:8px 14px;font-size:12px;flex-shrink:0;" data-pitem="${it.id}">${t("orderNow")}</button>
+              </div>
+            `;
+          }).join("")}
+        `;
+      } else {
+        const it = state.partnerItem;
+        const hasImg = Boolean(it.image && it.image.trim());
+        const thumbBg = it.gradient || store.gradient;
+        const cityOpts = LOCATIONS.map(function (c) {
+          const lbl = c[state.lang] || c.en;
+          return `<option value="${lbl}">${lbl}</option>`;
+        }).join("");
+
+        body.innerHTML = `
+          <button type="button" class="see-all-btn" id="pt-back" style="margin-bottom:10px;">${t("backMenu")}</button>
+          <div class="white-card" style="display:flex;align-items:center;gap:12px;">
+            <div class="partner-thumb" style="background:${thumbBg};">
+              ${hasImg ? `<img src="${it.image}" alt="${it.name[state.lang] || it.name.en}" onerror="this.style.display='none'" />` : svgIcon(it.icon || "cake", 28)}
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:800;color:var(--red);">${store.name[state.lang] || store.name.en}</div>
+              <div style="font-size:15.5px;font-weight:900;margin-top:2px;">${it.name[state.lang] || it.name.en}</div>
+              <div style="font-size:15.5px;font-weight:900;color:var(--red);margin-top:2px;">${br(it.price)}</div>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">${t("city")}</label><select class="form-input" id="p-city">${cityOpts}</select></div>
+          <div class="form-group"><label class="form-label">${t("name")}</label><input type="text" class="form-input" id="p-name" /></div>
+          <div class="form-group"><label class="form-label">${t("phone")}</label><input type="tel" class="form-input" id="p-phone" placeholder="09XXXXXXXX" /></div>
+          <div class="form-group"><label class="form-label">${t("addr")}</label><input type="text" class="form-input" id="p-addr" /></div>
+          <div class="pay-box">
+            <div style="font-size:12.5px;font-weight:800;color:var(--red);">${t("delFee")}: ${br(store.deliveryFee)}</div>
+            <div class="pay-item">
+              <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">Telebirr (${store.accountName})</div><div style="font-size:13px;font-weight:800;">${store.telebirr}</div></div>
+              <button type="button" class="copy-pill" data-copy="${store.telebirr}">${t("copy")}</button>
+            </div>
+            <div class="pay-item">
+              <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">CBE (${store.accountName})</div><div style="font-size:13px;font-weight:800;">${store.cbe}</div></div>
+              <button type="button" class="copy-pill" data-copy="${store.cbe}">${t("copy")}</button>
+            </div>
+          </div>
+          <button type="button" class="btn-red full" id="pt-submit">${t("orderBtn")}</button>
+        `;
+
+        document.getElementById("pt-back").addEventListener("click", function () {
+          state.partnerItem = null;
+          renderPartnerBody();
+        });
+        document.getElementById("pt-submit").addEventListener("click", function () {
+          const city = document.getElementById("p-city").value;
+          const name = document.getElementById("p-name").value.trim();
+          const phone = document.getElementById("p-phone").value.trim();
+          const addr = document.getElementById("p-addr").value.trim();
+          if (!name || !phone || !addr) { toast(t("fillReq")); return; }
+
+          const oid = "PT-" + String(Date.now()).slice(-5);
+          state.orders.unshift({
+            id: oid, store: store.name[state.lang] || store.name.en,
+            items: [{ name: it.name[state.lang] || it.name.en, qty: 1, price: it.price }],
+            subtotal: it.price, deliveryFee: store.deliveryFee,
+            city: city, customer: name, phone: phone, address: addr,
+            status: "pending", date: new Date().toLocaleDateString()
+          });
+          writeLS(LS_KEYS.orders, state.orders);
+          updateBadges();
+          openTG(store.telegram,
+            "🛍️ Partner Order via Wollo Market #" + oid + "\n🏪 Store: " + store.name.en +
+            "\n📦 Item: " + (it.name[state.lang] || it.name.en) + " (" + br(it.price) + ")\n🚚 Delivery: " + br(store.deliveryFee) +
+            "\n📍 Location: " + city + " — " + addr + "\n👤 Name: " + name + "\n📞 Phone: " + phone +
+            "\n\n📸 (Attaching delivery payment screenshot)"
+          );
+          closeModal("modal-partner");
+          switchTab("orders");
+        });
+      }
+    }
+
+    /* ORDERS TAB (WITH GLOWING GREEN DELIVERED BADGE) */
+    function renderOrders() {
+      document.getElementById("seg-active").classList.toggle("active", state.orderView === "active");
+      document.getElementById("seg-history").classList.toggle("active", state.orderView === "history");
+      const list = state.orders.filter(function (o) {
+        return state.orderView === "active" ? o.status === "pending" : o.status === "delivered";
+      });
+      const root = document.getElementById("orders-root");
+      if (!list.length) {
+        root.innerHTML = `<div class="white-card" style="text-align:center;padding:44px 16px;color:var(--text-secondary);">${state.orderView === "active" ? t("noActive") : t("noHistory")}</div>`;
+        return;
+      }
+      root.innerHTML = list.map(function (o) {
+        const done = o.status === "delivered";
+        return `
+          <div class="white-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;">
+              <div>
+                <div style="font-size:14px;font-weight:900;">#${o.id} — ${o.store}</div>
+                <div style="font-size:11.5px;color:var(--text-muted);">${o.date} • ${o.city}</div>
+              </div>
+              <span class="status-pill ${done ? "delivered" : "pending"}">${done ? t("delivered") : t("pending")}</span>
+            </div>
+            ${o.items.map(function (it) { return `<div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">• ${it.name} × ${it.qty} (${br(it.price * it.qty)})</div>`; }).join("")}
+            <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--border);display:flex;justify-content:space-between;font-size:13.5px;font-weight:800;">
+              <span>${t("payOnDel")}:</span><span style="color:var(--red);">${br(o.subtotal)}</span>
+            </div>
+            ${!done ? `<button type="button" class="btn-received" data-rec="${o.id}">✓ ${t("markRec")}</button>` : ""}
+          </div>
+        `;
+      }).join("");
+    }
+
+    /* PROFILE TAB */
+    function renderProfile() {
+      const dark = state.theme === "dark";
+      document.getElementById("profile-root").innerHTML = `
+        <div class="prof-store-card">
+          <div class="brand-logo" style="width:48px;height:48px;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+          </div>
+          <div>
+            <div style="font-size:17px;font-weight:900;">${STORE_CONFIG.storeName[state.lang]}</div>
+            <div style="font-size:12px;opacity:0.9;margin-top:2px;">${locationsLine()}</div>
+            <div style="font-size:11.5px;opacity:0.75;margin-top:3px;">${t("profSub")}</div>
+          </div>
+        </div>
+
+        <div class="white-card">
+          <div style="font-size:14.5px;font-weight:800;margin-bottom:6px;">${t("helpPayTitle")}</div>
+          <div class="info-row"><span style="color:var(--text-secondary);">Telegram</span><strong style="color:var(--red);">@${STORE_CONFIG.telegramUsername}</strong></div>
+          <div class="info-row"><span style="color:var(--text-secondary);">Phone / Telebirr</span><strong>${STORE_CONFIG.telebirrNumber}</strong></div>
+          <div class="info-row"><span style="color:var(--text-secondary);">CBE Account</span><strong>${STORE_CONFIG.cbeAccount}</strong></div>
+          <div class="info-row"><span style="color:var(--text-secondary);">Account Holder</span><strong>${STORE_CONFIG.accountName}</strong></div>
+        </div>
+
+        <div class="white-card">
+          <div style="font-size:14.5px;font-weight:800;">${t("selLangTitle")}</div>
+          <div class="lang-grid">
+            <button type="button" class="lang-opt ${state.lang === "en" ? "active" : ""}" data-setlang="en">English</button>
+            <button type="button" class="lang-opt ${state.lang === "am" ? "active" : ""}" data-setlang="am">አማርኛ</button>
+            <button type="button" class="lang-opt ${state.lang === "om" ? "active" : ""}" data-setlang="om">Afaan Oromoo</button>
+          </div>
+        </div>
+
+        <button type="button" class="prof-click-card" id="prof-dark-btn">
+          <div>
+            <div style="font-size:14.5px;font-weight:800;">${t("darkMode")}</div>
+            <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">${t("darkModeSub")}</div>
+          </div>
+          <div class="switch-track ${dark ? "on" : ""}"><div class="switch-thumb"></div></div>
+        </button>
+
+        <button type="button" class="prof-click-card" id="prof-fav-btn">
+          <div>
+            <div style="font-size:14.5px;font-weight:800;">${t("favorites")}</div>
+            <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">${state.wishlist.length} ${t("savedItems")}</div>
+          </div>
+          <span style="color:var(--red);display:flex;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </span>
+        </button>
+
+        <button type="button" class="prof-click-card" id="prof-spec-btn">
+          <div>
+            <div style="font-size:14.5px;font-weight:800;">${t("specialOrder")}</div>
+            <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">${t("specialOrderSub")}</div>
+          </div>
+          <span style="color:var(--red);font-size:18px;font-weight:800;">&rsaquo;</span>
+        </button>
+
+        <button type="button" class="ad-rental-card" id="prof-ad-btn">
+          <div>
+            <span style="display:inline-block;padding:3px 9px;border-radius:999px;background:var(--red);font-size:10.5px;font-weight:800;margin-bottom:6px;">${t("adRental")}</span>
+            <div style="font-size:15px;font-weight:900;">${t("adTitle")}</div>
+            <div style="font-size:11.5px;opacity:0.82;margin-top:3px;">${t("adSub")}</div>
+          </div>
+          <div style="width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#FCA5A5;">
+            ${svgIcon("megaphone", 20)}
+          </div>
+        </button>
+
+        <div class="white-card">
+          <div style="font-size:14.5px;font-weight:800;margin-bottom:8px;">${t("policiesTitle")}</div>
+          <div style="font-size:12.5px;color:var(--text-secondary);line-height:1.8;">
+            ${t("pol1")}<br>${t("pol2")}<br>${t("pol3")}<br>${t("pol4")}
+          </div>
+        </div>
+
+        <button type="button" class="ai-dark-card" id="prof-ai-btn">
+          <div>
+            <div style="font-size:14.5px;font-weight:800;">${t("aiCardTitle")}</div>
+            <div style="font-size:12px;color:#9CA3AF;margin-top:2px;">${t("aiCardSub")}</div>
+          </div>
+          <span style="color:var(--red);font-size:18px;font-weight:800;">&rsaquo;</span>
+        </button>
+      `;
+
+      document.getElementById("prof-dark-btn").addEventListener("click", function () {
+        state.theme = state.theme === "dark" ? "light" : "dark";
+        applyTheme();
+        renderProfile();
+      });
+      document.getElementById("prof-fav-btn").addEventListener("click", openWishlistModal);
+      document.getElementById("prof-spec-btn").addEventListener("click", function () {
+        openTG(STORE_CONFIG.telegramUsername, "Hello Wollo Market! I would like to request an unlisted item: ");
+      });
+      document.getElementById("prof-ad-btn").addEventListener("click", function () {
+        openTG(STORE_CONFIG.telegramUsername, "Hello Wollo Market! I would like to advertise my shop on your banner.");
+      });
+      document.getElementById("prof-ai-btn").addEventListener("click", function () {
+        renderAi();
+        openModal("modal-ai");
+      });
+    }
+
+    /* OFFLINE SMART AI ASSISTANT */
+    const CHIPS = {
+      en: ["Locations?", "Delivery time?", "Payment?", "Warranty?", "Discounts?", "Special order?"],
+      am: ["ከተሞች?", "በስንት ሰዓት?", "ክፍያ እንዴት?", "ዋስትና?", "ቅናሽ አለ?", "ሌላ እቃ?"],
+      om: ["Magaalota?", "Yeroo?", "Kaffaltii?", "Wabii?", "Hir'ina?", "Mi'a biroo?"]
+    };
+
+    function aiReply(q) {
+      const s = q.toLowerCase();
+      const l = state.lang;
+      if (s.includes("cit") || s.includes("locat") || s.includes("kombolcha") || s.includes("dessie") || s.includes("harbu") || s.includes("kemise") || s.includes("ከተማ") || s.includes("ከተሞች") || s.includes("ሀርቡ") || s.includes("magaal")) {
+        return l === "am" ? "አገልግሎት የምንሰጠው በእነዚህ ቦታዎች ነው፦ " + locationsLine()
+          : l === "om" ? "Magaalota tajaajillu: " + locationsLine()
+          : "We currently deliver to: " + locationsLine() + ".";
+      }
+      if (s.includes("time") || s.includes("deliver") || s.includes("hour") || s.includes("72") || s.includes("ሰዓት") || s.includes("ቀን") || s.includes("yeroo")) {
+        return l === "am" ? "ትዕዛዝዎ " + STORE_CONFIG.deliveryTime.am + " ይደርሳል። በፈለጉት ሰዓት (24/7) ማዘዝ ይችላሉ!"
+          : l === "om" ? STORE_CONFIG.deliveryTime.om + " ni geessina. 24/7 ajajuu dandeessu!"
+          : "Orders arrive " + STORE_CONFIG.deliveryTime.en + "! You can place an order 24/7.";
+      }
+      if (s.includes("pay") || s.includes("200") || s.includes("birr") || s.includes("telebirr") || s.includes("cbe") || s.includes("ክፍያ") || s.includes("ብር") || s.includes("kaffal")) {
+        return l === "am" ? "የዴሊቨሪ " + STORE_CONFIG.deliveryFee + " ብር ብቻ ቅድሚያ በቴሌብር/CBE ከፍለው ስክሪንሹት ይልካሉ፤ የእቃውን ዋጋ ሲደርስ ብቻ ይከፍላሉ!"
+          : l === "om" ? "Kaffaltii geessii Br " + STORE_CONFIG.deliveryFee + " qofa Telebirr/CBE tiin dursitanii kaffaltu; gatii mi'aa yeroo gahu qofa!"
+          : "Pay only " + STORE_CONFIG.deliveryFee + " Br delivery fee upfront via Telebirr/CBE and send the screenshot on Telegram. Product price is paid Cash on Delivery!";
+      }
+      if (s.includes("warrant") || s.includes("return") || s.includes("broken") || s.includes("ዋስትና") || s.includes("ችግር") || s.includes("wabii")) {
+        return l === "am" ? "አዎ! እቃው ሲደርስ ችግር ቢኖርበት ወይም ባይሰራ የ24 ሰዓት የመመለሻ ዋስትና አለው።"
+          : l === "om" ? "Eeyyee! Mi'i yoo rakkina qabaate wabii deebisuu sa'aatii 24 qaba."
+          : "Yes! All items include a 24-hour check & return warranty if there is any defect.";
+      }
+      if (s.includes("discount") || s.includes("bulk") || s.includes("more") || s.includes("ቅናሽ") || s.includes("ብዛት") || s.includes("hir'in")) {
+        return l === "am" ? "አዎ! ከ2 እቃ በላይ እና በብዛት ለሚገዙ ደንበኞች ልዩ ቅናሽ አለን።"
+          : l === "om" ? "Eeyyee! Mi'a 2 ol ykn baay'inaan yoo bittan hir'inni addaa jira."
+          : "Yes! Special discounts are available when buying 2+ items or bulk orders.";
+      }
+      if (s.includes("special") || s.includes("request") || s.includes("unlisted") || s.includes("ሌላ") || s.includes("biroo")) {
+        return l === "am" ? "አዎ! ዌብሳይቱ ላይ የሌለ እቃ ከፈለጉ @" + STORE_CONFIG.telegramUsername + " ላይ ያዋሩን — ፈልገን እናመጣለን!"
+          : l === "om" ? "Eeyyee! Mi'a barbaaddan Telegram @" + STORE_CONFIG.telegramUsername + " irratti nuuf ergaa!"
+          : "Yes! Message @" + STORE_CONFIG.telegramUsername + " on Telegram for any unlisted item and we will source it for you!";
+      }
+      return l === "am" ? "ለተጨማሪ ማብራሪያ በቴሌግራም (@" + STORE_CONFIG.telegramUsername + ") ያዋሩን!"
+        : l === "om" ? "Gaaffii dabalataaf Telegram @" + STORE_CONFIG.telegramUsername + " irratti nu quunnamaa!"
+        : "For more help, please message us directly on Telegram: @" + STORE_CONFIG.telegramUsername;
+    }
+
+    function renderAi() {
+      if (!state.aiMsgs.length) state.aiMsgs.push({ r: "bot", txt: t("aiWelcome") });
+      const box = document.getElementById("ai-box");
+      box.innerHTML = state.aiMsgs.map(function (m) { return `<div class="bubble ${m.r}">${m.txt}</div>`; }).join("");
+      box.scrollTop = box.scrollHeight;
+      document.getElementById("ai-chips").innerHTML = (CHIPS[state.lang] || CHIPS.en).map(function (c) {
+        return `<button type="button" class="chip-btn" data-chip="${c}">${c}</button>`;
+      }).join("");
+    }
+
+    function sendAi(txt) {
+      const clean = txt.trim();
+      if (!clean) return;
+      state.aiMsgs.push({ r: "user", txt: clean });
+      state.aiMsgs.push({ r: "bot", txt: aiReply(clean) });
+      renderAi();
+    }
+
+    /* NAVIGATION, MODALS & INIT */
+    function switchTab(name) {
+      state.tab = name;
+      document.querySelectorAll(".tab-panel").forEach(function (el) { el.classList.toggle("active", el.id === "tab-" + name); });
+      document.querySelectorAll("[data-nav]").forEach(function (b) { b.classList.toggle("active", b.getAttribute("data-nav") === name); });
+      const isHome = name === "home";
+      document.getElementById("search-wrap").style.display = isHome ? "block" : "none";
+
+      if (name === "cart") renderCart();
+      if (name === "orders") renderOrders();
+      if (name === "profile") renderProfile();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openModal(id) { document.getElementById(id).classList.add("open"); document.body.style.overflow = "hidden"; }
+    function closeModal(id) { document.getElementById(id).classList.remove("open"); document.body.style.overflow = ""; }
+
+    function renderAll() {
+      updateTexts();
+      updateBadges();
+      renderCarousel();
+      renderCategories();
+      renderHomeProducts();
+      if (state.tab === "cart") renderCart();
+      if (state.tab === "orders") renderOrders();
+      if (state.tab === "profile") renderProfile();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      applyTheme();
+      renderAll();
+      startAutoSlide();
+
+      document.getElementById("btn-brand-home").addEventListener("click", function () { switchTab("home"); });
+      document.getElementById("btn-lang").addEventListener("click", function () {
+        const order = ["en", "am", "om"];
+        setLanguage(order[(order.indexOf(state.lang) + 1) % 3]);
+      });
+      document.getElementById("btn-theme").addEventListener("click", function () {
+        state.theme = state.theme === "dark" ? "light" : "dark";
+        applyTheme();
+        if (state.tab === "profile") renderProfile();
+      });
+      document.getElementById("btn-wishlist").addEventListener("click", openWishlistModal);
+
+      const sInp = document.getElementById("search-input");
+      const sClr = document.getElementById("search-clear");
+      sInp.addEventListener("input", function () {
+        state.search = sInp.value;
+        sClr.classList.toggle("show", state.search.length > 0);
+        renderHomeProducts();
+      });
+      sClr.addEventListener("click", function () {
+        state.search = ""; sInp.value = ""; sClr.classList.remove("show"); renderHomeProducts();
+      });
+
+      document.querySelectorAll("[data-nav]").forEach(function (b) {
+        b.addEventListener("click", function () { switchTab(b.getAttribute("data-nav")); });
+      });
+
+      const cWrap = document.getElementById("carousel-wrap");
+      const cTrack = document.getElementById("carousel-track");
+      cTrack.addEventListener("click", function (e) {
+        const card = e.target.closest("[data-bidx]");
+        if (!card) return;
+        const b = PROMO_BANNERS[Number(card.getAttribute("data-bidx"))];
+        if (!b) return;
+        if (b.action === "scroll") document.getElementById("sec-products").scrollIntoView({ behavior: "smooth" });
+        else if (b.action === "partner") openPartnerModal(b.partnerId);
+        else if (b.action === "info") openInfoModal(b);
+        else if (b.action === "link" && b.url) window.open(b.url, "_blank", "noopener,noreferrer");
+      });
+      document.getElementById("carousel-dots").addEventListener("click", function (e) {
+        const d = e.target.closest("[data-cdot]");
+        if (d) { goBanner(Number(d.getAttribute("data-cdot"))); startAutoSlide(); }
+      });
+      let csT = null;
+      cTrack.addEventListener("scroll", function () {
+        if (csT) clearTimeout(csT);
+        csT = setTimeout(function () {
+          const padL = parseFloat(window.getComputedStyle(cTrack).paddingLeft) || 20;
+          let best = 0, min = Infinity;
+          Array.prototype.forEach.call(cTrack.children, function (el, i) {
+            const dist = Math.abs((el.offsetLeft - padL) - cTrack.scrollLeft);
+            if (dist < min) { min = dist; best = i; }
+          });
+          state.cIdx = best;
+          document.querySelectorAll(".c-dot").forEach(function (d, i) { d.classList.toggle("active", i === state.cIdx); });
+        }, 90);
+      }, { passive: true });
+      cWrap.addEventListener("touchstart", stopAutoSlide, { passive: true });
+      cWrap.addEventListener("touchend", startAutoSlide, { passive: true });
+      cWrap.addEventListener("mouseenter", stopAutoSlide);
+      cWrap.addEventListener("mouseleave", startAutoSlide);
+
+      document.getElementById("cat-row").addEventListener("click", function (e) {
+        const b = e.target.closest("[data-cat]");
+        if (b) { state.cat = b.getAttribute("data-cat"); renderCategories(); renderHomeProducts(); }
+      });
+      document.getElementById("btn-cat-all").addEventListener("click", function () { state.cat = "all"; renderCategories(); renderHomeProducts(); });
+      document.getElementById("btn-deals-all").addEventListener("click", function () {
+        state.cat = "deals"; renderCategories(); renderHomeProducts();
+        document.getElementById("sec-products").scrollIntoView({ behavior: "smooth" });
+      });
+      document.getElementById("btn-req-item").addEventListener("click", function () {
+        openTG(STORE_CONFIG.telegramUsername, "Hello Wollo Market! I would like to request an unlisted item: ");
+      });
+
+      document.getElementById("seg-active").addEventListener("click", function () { state.orderView = "active"; renderOrders(); });
+      document.getElementById("seg-history").addEventListener("click", function () { state.orderView = "history"; renderOrders(); });
+
+      document.getElementById("btn-ai-fab").addEventListener("click", function () { renderAi(); openModal("modal-ai"); });
+      document.getElementById("ai-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const inp = document.getElementById("ai-input");
+        sendAi(inp.value);
+        inp.value = "";
+      });
+      document.getElementById("ai-chips").addEventListener("click", function (e) {
+        const c = e.target.closest("[data-chip]");
+        if (c) sendAi(c.getAttribute("data-chip"));
+      });
+
+      document.addEventListener("click", function (e) {
+        const cl = e.target.closest("[data-close]");
+        if (cl) { closeModal(cl.getAttribute("data-close")); return; }
+        if (e.target.classList.contains("modal-backdrop")) { closeModal(e.target.id); return; }
+
+        const wBtn = e.target.closest("[data-wish]");
+        if (wBtn) { e.stopPropagation(); toggleWish(Number(wBtn.getAttribute("data-wish"))); return; }
+
+        const aBtn = e.target.closest("[data-add]");
+        if (aBtn) { e.stopPropagation(); addCart(Number(aBtn.getAttribute("data-add"))); return; }
+
+        const pCard = e.target.closest("[data-prod]");
+        if (pCard) { openProductModal(Number(pCard.getAttribute("data-prod"))); return; }
+
+        const wa = e.target.closest("[data-wadd]");
+        if (wa) { addCart(Number(wa.getAttribute("data-wadd"))); return; }
+
+        const wr = e.target.closest("[data-wrm]");
+        if (wr) { toggleWish(Number(wr.getAttribute("data-wrm"))); openWishlistModal(); return; }
+
+        const qd = e.target.closest("[data-qdec]");
+        if (qd) { changeQty(Number(qd.getAttribute("data-qdec")), -1); return; }
+
+        const qi = e.target.closest("[data-qinc]");
+        if (qi) { changeQty(Number(qi.getAttribute("data-qinc")), 1); return; }
+
+        const qx = e.target.closest("[data-qdel]");
+        if (qx) {
+          const id = Number(qx.getAttribute("data-qdel"));
+          state.cart = state.cart.filter(function (c) { return c.id !== id; });
+          writeLS(LS_KEYS.cart, state.cart); updateBadges(); renderCart(); return;
+        }
+
+        const cp = e.target.closest("[data-copy]");
+        if (cp) { copyText(cp.getAttribute("data-copy")); return; }
+
+        const pi = e.target.closest("[data-pitem]");
+        if (pi) {
+          const store = PARTNER_STORES[state.partnerId];
+          if (store) {
+            state.partnerItem = store.products.find(function (x) { return x.id === pi.getAttribute("data-pitem"); }) || null;
+            renderPartnerBody();
+          }
+          return;
+        }
+
+        const rc = e.target.closest("[data-rec]");
+        if (rc) {
+          const ord = state.orders.find(function (o) { return o.id === rc.getAttribute("data-rec"); });
+          if (ord) {
+            ord.status = "delivered";
+            writeLS(LS_KEYS.orders, state.orders);
+            updateBadges();
+            state.orderView = "history";
+            renderOrders();
+            toast(t("recToast"));
+          }
+          return;
+        }
+
+        const sl = e.target.closest("[data-setlang]");
+        if (sl) { setLanguage(sl.getAttribute("data-setlang")); return; }
+      });
+    });
+  </script>
+</body>
+</html>
