@@ -1682,7 +1682,7 @@
           <div class="section-head">
             <div class="section-title-row">
               <h2 class="section-title" id="lbl-all-prod">All Products</h2>
-              <span class="count-pill" id="prod-count">13</span>
+              <span class="count-pill" id="prod-count">29</span>
             </div>
             <button type="button" class="req-pill-btn" id="btn-req-item">+ Request Item</button>
           </div>
@@ -1910,7 +1910,7 @@
         icon: "truck",
         pill: { en: STORE_CONFIG.deliveryTime.en, am: STORE_CONFIG.deliveryTime.am, om: STORE_CONFIG.deliveryTime.om },
         title: { en: "Pay Only 200 Br Delivery Upfront!", am: "200 ብር የዴሊቨሪ ብቻ ቅድሚያ ይክፈሉ!", om: "Kaffaltii Geessii Br 200 Qofa Dursaa!" },
-        sub: { en: "Pay the product price only on delivery • 24-hour warranty", am: "የእቃውን ዋጋ እቃው እጅዎ ሲደርስ ብቻ ይክፈሉ • የ24 ሰዓት ዋስትና", om: "Gatii mi'aa yeroo harka keessan gahu qofa kaffalaa • Wabii 24h" },
+        sub: { en: "Pay the product price only on delivery", am: "የእቃውን ዋጋ እቃው እጅዎ ሲደርስ ብቻ ይክፈሉ", om: "Gatii mi'aa yeroo harka keessan gahu qofa kaffalaa" },
         cta: { en: "Shop Now", am: "አሁን ይሸምቱ", om: "Amma Bitaa" }
       },
       {
@@ -2043,99 +2043,217 @@
       }
     };
 
-    /* 5. PRODUCTS (13 CURATED GADGETS) — COPY-PASTE TO ADD OR EDIT ITEMS */
+    /* 5. PRODUCTS (29 CURATED ITEMS) — COPY-PASTE TO ADD OR EDIT ITEMS */
     const PRODUCTS = [
+      // --- FOR WOMEN (5) ---
       {
-        id: 1, category: "women", isDeal: true, badge: "-17%", price: 2400, oldPrice: 2900,
+        id: 1, category: "women", isDeal: true, badge: "", price: 2400, oldPrice: 0,
         gradient: "linear-gradient(135deg, #DC2626 0%, #881337 100%)", icon: "belt",
-        images: [], // Add multiple photos: ["belt1.jpg", "belt2.jpg", "belt3.jpg"]
-        tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Cordless Menstrual Heating Belt", am: "የወር አበባ ህመም ማስታገሻ ቀበቶ", om: "Qabattoo Dhukkubbii Lagoo Hir'isu" },
-        desc: { en: "USB-C rechargeable cordless heating belt with 3 heat levels & 4 massage modes. Discreet under clothes for fast relief.", am: "ያለ ገመድ በዩኤስቢ-ሲ የሚቻርጅ፣ 3 የሙቀት እና 4 የማሳጅ ደረጃዎች ያሉት። በልብስ ስር ሳይታይ ህመምን በሰከንዶች ያስታግሳል።", om: "USB-C tiin chaarjii ta'u, sadarkaa ho'aa 3 fi masaajii 4 qaba." }
-      },
-      {
-        id: 2, category: "tech", isDeal: true, badge: "-18%", price: 1800, oldPrice: 2200,
-        gradient: "linear-gradient(135deg, #27272A 0%, #7F1D1D 100%)", icon: "posture",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Smart Posture Corrector", am: "የጀርባ አቀማመጥ ማስተካከያ (Smart Posture)", om: "Sirreessaa Dugdaa Ismaartii" },
-        desc: { en: "Smart sensor gently vibrates when you slouch. Ideal for students, drivers & office workers.", am: "ጀርባዎ ሲጎብጥ በንዝረት (Vibration) የሚያስታውስ ዘመናዊ ሴንሰር። ለተማሪዎችና ለቢሮ ሰራተኞች ምርጥ።", om: "Yeroo dugdi keessan jallatu sochiidhaan isin yaadachiisa." }
+        name: { en: "Cordless Period Heating Pad", am: "የወር አበባ ህመም ማስታገሻ (Period Heating Pad)", om: "Qabattoo Dhukkubbii Lagoo Hir'isu" },
+        desc: { en: "USB-C rechargeable cordless heating pad with 3 heat levels & massage modes. Discreet under clothes for fast relief.", am: "ያለ ገመድ በቻርጅ የሚሰራ፣ 3 የሙቀት እና የማሳጅ ደረጃዎች ያሉት። በልብስ ስር ሳይታይ ህመምን በሰከንዶች ያስታግሳል።", om: "USB-C tiin chaarjii ta'u, sadarkaa ho'aa 3 fi masaajii qaba." }
       },
       {
-        id: 3, category: "home", isDeal: true, badge: "-15%", price: 2100, oldPrice: 2500,
+        id: 2, category: "women", isDeal: false, badge: "", price: 1450, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #BE123C 0%, #4C0519 100%)", icon: "fan",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Portable Mini Fan", am: "ሚኒ ተንቀሳቃሽ ፋን (Mini Fan)", om: "Faanii Miinii Chaarjiin Hojjetu" },
+        desc: { en: "Compact USB rechargeable handheld & desk mini fan — easy to carry in any bag for Kombolcha, Harbu & Kemise heat.", am: "በቦርሳ የሚያዝ በቻርጅ የሚሰራ ሚኒ ፋን — ለኮምቦልቻ፣ ሀርቡ እና ኬሚሴ ሙቀት ምርጥ መፍትሄ።", om: "Boorsaa keessatti qabamu, chaarjiin hojjeta — ho'aaf furmaata gaarii." }
+      },
+      {
+        id: 3, category: "women", isDeal: true, badge: "", price: 2800, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #9F1239 0%, #1F1216 100%)", icon: "hair",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Hair Straightener Comb Brush", am: "የሚያበጥር የፀጉር መተኮሻ", om: "Burushii Rifeensa Qajeelchu" },
+        desc: { en: "Fast-heating straightening comb brush that detangles and smooths hair safely in minutes.", am: "ፀጉርን እያበጠረ በፍጥነት እና ሳያቃጥል የሚተኩስ ዘመናዊ የፀጉር መተኮሻ ብሩሽ።", om: "Rifeensa osoo hin gubin saffisaan qajeelchee filu." }
+      },
+      {
+        id: 4, category: "women", isDeal: false, badge: "", price: 1650, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #E11D48 0%, #4C0519 100%)", icon: "cup",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Insulated Travel Cups", am: "የጉዞ መጠጫ ኩባያዎች (Travel Cups)", om: "Kubbaayyaa Imalaa (Travel Cups)" },
+        desc: { en: "Leak-proof thermal travel mugs & tumblers that keep coffee, tea, or cold drinks at the perfect temperature.", am: "የማያፈስ እና ቡና፣ ሻይ ወይም ቀዝቃዛ መጠጥ ሙቀቱን/ቅዝቃዜውን ጠብቆ የሚያቆይ ዘመናዊ የጉዞ ኩባያ።", om: "Buna, shaayii ykn dhugaatii qabbanaa'aa osoo hin dhangalaasin tursiisu." }
+      },
+      {
+        id: 5, category: "women", isDeal: false, badge: "", price: 950, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #3F3F46 0%, #991B1B 100%)", icon: "shoe",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Waterproof Shoe Covers (Size 36–45)", am: "የጫማ ገበር / ከቨር (ለወንድና ለሴት — ቁጥር 36–45)", om: "Uwwisa Kophee Bishaan Hin Seensifne (36–45)" },
+        desc: { en: "Reusable non-slip silicone shoe covers for men & women. Protects shoes from rain and mud (fits sizes 36 to 45).", am: "ለወንድም ለሴትም የሚሆን የማያንሸራትት የዝናብና የጭቃ ጫማ መሸፈኛ — ከቁጥር 36 እስከ 45 ብቻ።", om: "Dhiiraa fi dubaraaf ta'a, roobaa fi dhoqqee irraa kophee eega (lakkoofsa 36–45)." }
+      },
+
+      // --- HOME & KITCHEN (5) ---
+      {
+        id: 6, category: "home", isDeal: true, badge: "", price: 2100, oldPrice: 0,
         gradient: "linear-gradient(135deg, #EA580C 0%, #991B1B 100%)", icon: "blender",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Portable USB Mini Blender", am: "በዩኤስቢ የሚሰራ ሚኒ ጁስ መፍጫ", om: "Miinii Juusii Daaku USB" },
-        desc: { en: "6-blade USB rechargeable mini juicer cup — blends anywhere even during power cuts.", am: "መብራት ቢጠፋም በቻርጅ የሚሰራ ባለ 6 ምላጭ ሚኒ ብሌንደር። ለወሎ ዩኒቨርሲቲ ተማሪዎችና ለጂም ሰሪዎች ምርጥ።", om: "Ibsaan yoo badees chaarjiin hojjeta. Barattootaa fi jiimiif baay'ee gaarii." }
+        name: { en: "Portable Mini Juice Blender", am: "ሚኒ ጁስ መፍጫ (Mini Blender)", om: "Miinii Juusii Daaku USB" },
+        desc: { en: "6-blade USB rechargeable mini juicer cup — blends fresh smoothies & juice anywhere even during power cuts.", am: "መብራት ቢጠፋም በቻርጅ የሚሰራ ባለ 6 ምላጭ ሚኒ ጁስ መፍጫ። ለቤት፣ ለተማሪዎችና ለጂም ምርጥ።", om: "Ibsaan yoo badees chaarjiin hojjeta. Manaa fi barattootaaf baay'ee gaarii." }
       },
       {
-        id: 4, category: "tech", isDeal: true, badge: "-15%", price: 1950, oldPrice: 2300,
-        gradient: "linear-gradient(135deg, #18181B 0%, #B91C1C 100%)", icon: "fan",
+        id: 7, category: "home", isDeal: false, badge: "", price: 1850, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #B91C1C 0%, #450A0A 100%)", icon: "charcoal",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Wearable Neck Fan", am: "አንገት ላይ የሚጠለቅ ሚኒ ፋን (Neck Fan)", om: "Faanii Mormaa Chaarjiin Hojjetu" },
-        desc: { en: "Bladeless headphone-style rechargeable neck fan — beats Kombolcha, Harbu & Kemise heat.", am: "ለኬሚሴ፣ ሀርቡ እና ኮምቦልቻ ሙቀት ቀጥታ መፍትሄ! ሄድፎን ይመስላል፣ ፀጉር አይዝም፣ በቻርጅ ይሰራል።", om: "Ho'a Kamiisee, Harbuu fi Kombolchaaf furmaata! Rifeensa hin qabu." }
+        name: { en: "Electric Charcoal Igniter", am: "የኤሌክትሪክ ከሰል ማንደጃ", om: "Cilee Qabsiistuu Elektirikii" },
+        desc: { en: "Fast electric charcoal starter — lights coffee & cooking charcoal cleanly in minutes without smoke or hassle.", am: "ያለ ጭስ እና ያለ ድካም ለቡና እና ለምግብ ማብሰያ ከሰልን በደቂቃዎች ውስጥ የሚያነድ ኤሌክትሪክ ማንደጃ።", om: "Aara malee daqiiqaa muraasa keessatti cilee qabsiisa." }
       },
       {
-        id: 5, category: "home", isDeal: false, badge: "", price: 1350, oldPrice: 1600,
-        gradient: "linear-gradient(135deg, #3F3F46 0%, #18181B 100%)", icon: "shaver",
+        id: 8, category: "home", isDeal: false, badge: "", price: 1150, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #27272A 0%, #7F1D1D 100%)", icon: "scale",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Electric Fabric Shaver", am: "የልብስ ቡትቶ ማንሻ (Fabric Shaver)", om: "Qulqulleessaa Uffataa Elektirikii" },
-        desc: { en: "USB rechargeable lint remover that restores sweaters, jackets & coats to brand-new look.", am: "ለደሴ ብርድ ሹራቦች፣ ጃኬቶች እና ኮቶች አዲስ መልክ የሚመልስ በቻርጅ የሚሰራ ማሽን።", om: "Shuraabaa fi jaakeetii dullooman sekondii keessatti haaraa godha." }
+        name: { en: "Mini Digital Home Scale", am: "ሚኒ የቤት ሚዛን (Digital Scale)", om: "Madaallii Manaa Miinii Dijitaalaa" },
+        desc: { en: "High-precision compact digital scale for kitchen ingredients, coffee, baking & daily home use.", am: "ለኩሽና፣ ለቡና፣ ለዳቦ መጋገሪያ እና ለዕለታዊ የቤት አገልግሎት የሚሆን ትክክለኛ ሚኒ ዲጂታል ሚዛን።", om: "Kichinii, buna fi itti fayyadama manaa guyyaa guyyaaf madaallii sirrii." }
       },
       {
-        id: 6, category: "women", isDeal: false, badge: "NEW", price: 2800, oldPrice: 3300,
-        gradient: "linear-gradient(135deg, #BE123C 0%, #4C0519 100%)", icon: "hair",
+        id: 9, category: "home", isDeal: false, badge: "", price: 1200, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)", icon: "glass",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Cordless Hair Straightener Brush", am: "ያለ ገመድ የሚሰራ የፀጉር መተኮሻ ብሩሽ", om: "Burushii Rifeensa Qajeelchu Chaarjii" },
-        desc: { en: "Cordless rechargeable straightening brush — heats up in 30 seconds anywhere.", am: "መብራት ሲጠፋም በባትሪ የሚሞቅ ተንቀሳቃሽ የፀጉር መተኮሻ ብሩሽ። በ30 ሰከንድ ይሞቃል።", om: "Ibsaan yoo badees baatiriin ho'ee rifeensa qajeelcha." }
+        name: { en: "Glass & Mirror Cleaner Tool", am: "የመስተዋት ማጽጃ (Glass Cleaner)", om: "Qulqulleessaa Daawitii fi Foddaa" },
+        desc: { en: "Streak-free ergonomic glass & window squeegee cleaner for spotless mirrors, windows, and tables.", am: "መስታወት፣ መስኮት እና ጠረጴዛዎችን ያለ ምንም ምልክት በፍጥነት የሚያጸዳ ዘመናዊ የመስተዋት ማጽጃ።", om: "Daawitii fi foddaa osoo mallattoo hin hambisin qulqulleessa." }
       },
       {
-        id: 7, category: "home", isDeal: false, badge: "HOT", price: 1250, oldPrice: 1500,
-        gradient: "linear-gradient(135deg, #B91C1C 0%, #450A0A 100%)", icon: "chopper",
+        id: 10, category: "home", isDeal: false, badge: "", price: 2450, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)", icon: "rack",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Mini Electric Garlic Chopper", am: "በዩኤስቢ የሚሰራ ሚኒ ሽንኩርት መፍጫ", om: "Miinii Shunkurtii Daaku USB" },
-        desc: { en: "One-touch 250ml USB rechargeable chopper with 3 stainless blades for garlic, onions & chili.", am: "በአንድ ቁልፍ ነጭ ሽንኩርት፣ ቀይ ሽንኩርት እና ቃሪያ በሰከንዶች ይፈጫል። 250ml መያዣ።", om: "Qullubbii adii, diimaa fi qaariyaa sekondii keessatti daaka." }
+        name: { en: "Multi-Layer Shoe Rack", am: "የጫማ መደርደሪያ (Shoe Rack)", om: "Sheelfii Kophee" },
+        desc: { en: "Space-saving, sturdy multi-tier shoe organizer that keeps your entryway neat and tidy.", am: "ቦታ የሚቆጥብ፣ ጠንካራ እና ቤትዎን በስርዓት የሚያስቀምጥ ባለ ብዙ ደረጃ የጫማ መደርደሪያ።", om: "Bakka qusata, jabaa fi kophee keessan sirnaan qaba." }
+      },
+
+      // --- TECH & GADGETS (14) ---
+      {
+        id: 11, category: "tech", isDeal: true, badge: "", price: 1800, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #18181B 0%, #DC2626 100%)", icon: "earbuds",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Wireless AirPods / Earbuds", am: "ሽቦ አልባ ኤርፖድ (AirPods)", om: "AirPods / Earbuds Biluutuuzii" },
+        desc: { en: "Clear stereo sound, touch controls, and compact charging case compatible with Android & iPhone.", am: "ጥርት ያለ ድምጽ፣ ታች ኮንትሮል እና የቻርጅ ሳጥን ያለው ለአንድሮይድ እና አይፎን የሚሰራ ኤርፖድ።", om: "Sagalee qulqulluu fi chaarjii dheeraa kan Android fi iPhone irratti hojjetu." }
       },
       {
-        id: 8, category: "home", isDeal: false, badge: "", price: 1100, oldPrice: 1350,
-        gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)", icon: "pump",
+        id: 12, category: "tech", isDeal: true, badge: "", price: 2600, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #111827 0%, #991B1B 100%)", icon: "watch",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Water Bottle Pump", am: "የ20 ሊትር ውሃ ጀሪካን ኤሌክትሪክ ፓምፕ", om: "Paampii Bishaanii Elektirikii" },
-        desc: { en: "Universal 20L water jug dispenser with USB charging and effortless one-touch pouring.", am: "ከባድ የውሃ ጀሪካን ሳያነሱ በአንድ ንክኪ ንጹህ ውሃ የሚቀዳ በዩኤስቢ የሚቻርጅ ፓምፕ።", om: "Jariikaana bishaanii ulfaataa osoo hin kaasin bishaan waraaba." }
+        name: { en: "Smartwatch", am: "ስማርት ሰዓት (Smartwatch)", om: "Sa'aatii Ismaartii (Smartwatch)" },
+        desc: { en: "HD display smartwatch with Bluetooth calling, notifications, step tracking & interchangeable straps.", am: "ጥሪ የሚያነሳ፣ ኖቲፊኬሽን የሚያሳይ እና የስፖርት እንቅስቃሴ የሚቆጥር ዘመናዊ ስማርት ሰዓት።", om: "Bilbila kaasu, ergaa agarsiisuu fi sochii qaamaa lakkaa'a." }
       },
       {
-        id: 9, category: "home", isDeal: false, badge: "", price: 2650, oldPrice: 3100,
-        gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)", icon: "steamer",
+        id: 13, category: "tech", isDeal: false, badge: "", price: 1600, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #27272A 0%, #B91C1C 100%)", icon: "mic",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Handheld Garment Steamer", am: "ተንቀሳቃሽ የልብስ መተኮሻ በእንፋሎት", om: "Istiimarii Uffataa Harkaa" },
-        desc: { en: "Fast 30-second heat-up portable garment steamer safe for suits, dresses & shirts.", am: "ሱፍ፣ ቀሚስ እና ሸሚዝ ሳይቃጠል በእንፋሎት በ30 ሰከንድ የሚተኩስ ቀላልና ፈጣን ማሽን።", om: "Suufii, qamisii fi shamiizii hurkaan sekondii 30 keessatti qajeelcha." }
+        name: { en: "Wireless Microphones", am: "ሽቦ አልባ ማይክራፎኖች (Microphones)", om: "Maayikiroofoonii Biluutuuzii" },
+        desc: { en: "Plug-and-play noise-cancelling clip-on wireless microphone — ideal for TikTok, YouTube & interviews.", am: "ድምጽን ጥርት አድርጎ የሚቀዳ ሽቦ አልባ ማይክራፎን — ለቲክቶክ፣ ዩቲዩብ እና ቃለ መጠይቅ ምርጥ።", om: "Sagalee qulqulluu waraabuuf TikTok fi YouTube irratti baay'ee gaarii." }
       },
       {
-        id: 10, category: "home", isDeal: false, badge: "NEW", price: 2950, oldPrice: 3400,
-        gradient: "linear-gradient(135deg, #7F1D1D 0%, #09090B 100%)", icon: "scrubber",
+        id: 14, category: "tech", isDeal: false, badge: "", price: 2900, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #1F2937 0%, #7F1D1D 100%)", icon: "powerbank",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Electric Spin Scrubber", am: "የመታጠቢያ ቤትና ኪችን ኤሌክትሪክ ማጠቢያ", om: "Qulqulleessaa Mana Fincaanii fi Kichinii" },
-        desc: { en: "Waterproof cordless spin scrubber with interchangeable brush heads for tiles & sinks.", am: "እጅ ሳይደክም ሴራሚክ፣ ሲንክ እና ድስት በፍጥነት የሚያፀዳ ውሃ የማያበላሸው ባለ ብዙ ብሩሽ ማጠቢያ።", om: "Harki osoo hin dadhabin seraamikii fi kichinii qulqulleessa." }
+        name: { en: "Fast-Charging Power Bank", am: "ፓወር ባንክ (Power Bank)", om: "Paawar Baankii Saffisaa" },
+        desc: { en: "High-capacity fast-charging power bank with dual outputs to keep your phone powered during blackouts.", am: "መብራት ሲጠፋ ስልክዎን በፍጥነት ደጋግሞ የሚሞላ ከፍተኛ አቅም ያለው ፓወር ባንክ።", om: "Yeroo ibsaan badu bilbila keessan saffisaan guutu." }
       },
       {
-        id: 11, category: "tech", isDeal: false, badge: "HOT", price: 3400, oldPrice: 3900,
-        gradient: "linear-gradient(135deg, #DC2626 0%, #1F2937 100%)", icon: "printer",
+        id: 15, category: "tech", isDeal: false, badge: "", price: 2400, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #0F172A 0%, #DC2626 100%)", icon: "coolingpad",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Inkless Pocket Printer", am: "ያለ ቀለም የሚያትም ሚኒ ፕሪንተር", om: "Piriintarii Miinii Halluu Malee" },
-        desc: { en: "Bluetooth thermal pocket printer — prints study notes, diagrams & photos from phone with zero ink.", am: "ለዩኒቨርሲቲ ተማሪዎች ዲያግራም፣ ኖት እና ፎቶ ከስልክ ቀጥታ ያለ ቀለም በብሉቱዝ የሚያትም።", om: "Barattootaaf nootii fi diyaagiraamii bilbila irraa halluu malee maxxansa." }
+        name: { en: "Laptop Cooling Pad with Fans", am: "ባለ ፋን የላፕቶፕ ማቀዝቀዣ (Laptop Cooling Pad)", om: "Qabbaneessaa Laaptooppii Faanii Qabu" },
+        desc: { en: "Quiet multi-fan USB cooling pad with adjustable stand angle to prevent laptop overheating.", am: "ላፕቶፕ እንዳይሞቅ የሚከላከል ከታች ፋን ያለው እና ከፍታው የሚስተካከል የላፕቶፕ ማቀዝቀዣ።", om: "Laaptooppiin akka hin ho'ine eega, faanii fi dhaabbata qaba." }
       },
       {
-        id: 12, category: "tech", isDeal: false, badge: "", price: 950, oldPrice: 1200,
-        gradient: "linear-gradient(135deg, #27272A 0%, #DC2626 100%)", icon: "light",
+        id: 16, category: "tech", isDeal: false, badge: "", price: 1350, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #3F3F46 0%, #18181B 100%)", icon: "stand",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Motion Sensor LED Light", am: "ሰው ሲያልፍ የሚበራ ሴንሰር መብራት", om: "Ibsaa Seensarii Sochii LED" },
-        desc: { en: "Magnetic USB rechargeable LED bar that auto-lights on motion — great for closets & blackouts.", am: "በማግኔት ቁም ሳጥን ወይም ግድግዳ ላይ የሚለጠፍ፤ ሰው ሲቀርብ ራሱ በርቶ የሚጠፋ በቻርጅ የሚሰራ መብራት።", om: "Maagneetiin maxxanfama; yeroo namni darbu ofumaan ifee dhaama." }
+        name: { en: "Foldable Phone & Laptop Stand", am: "የሚታጠፍ የስልክና ላፕቶፕ ማስደገፊያ", om: "Dhaabbata Bilbilaa fi Laaptooppii" },
+        desc: { en: "Lightweight, foldable ergonomic stand for comfortable typing, studying, and hands-free viewing.", am: "ቀላል እና የሚታጠፍ ለጥናት፣ ለስራ እና ቪዲዮ ለማየት ምቹ የሆነ የስልክና ላፕቶፕ ማስደገፊያ።", om: "Salphaa fi dacha'aa, barnootaa fi hojiif mijataa." }
       },
       {
-        id: 13, category: "tech", isDeal: false, badge: "", price: 2300, oldPrice: 2750,
-        gradient: "linear-gradient(135deg, #111827 0%, #991B1B 100%)", icon: "vacuum",
+        id: 17, category: "tech", isDeal: false, badge: "", price: 650, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #991B1B 0%, #111827 100%)", icon: "cable",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Cordless Car Vacuum", am: "ለመኪናና ሶፋ ሚኒ ቫኪዩም ክሊነር", om: "Vaakiyuumii Miinii Konkolaataa fi Soofaa" },
-        desc: { en: "High-suction USB-C rechargeable handheld vacuum for cars, bajaj, sofas & keyboards.", am: "ጠንካራ የመምጠጥ ኃይል ያለው በዩኤስቢ-ሲ የሚቻርጅ የመኪና፣ የባጃጅ፣ የሶፋ እና የኪቦርድ አቧራ ማፅጃ።", om: "Awaara konkolaataa, baajaajii fi soofaa humnaan xuuxee qulqulleessa." }
+        name: { en: "Fast Charging Cables (Short & Long)", am: "የቻርጅ ኬብሎች (አጭር እና ረጅም በተለያየ ሜትር)", om: "Keebilii Chaarjii (Gabaabaa fi Dheeraa)" },
+        desc: { en: "Durable braided fast-charging cables available in multiple lengths (short & long meters) for Type-C & iPhone.", am: "በተለያዩ ሜትሮች (አጭር እና ረጅም) የሚገኙ ጠንካራ እና ፈጣን የቻርጅ ኬብሎች።", om: "Dheerina adda addaan (gabaabaa fi dheeraa) keebilii chaarjii jabaa." }
+      },
+      {
+        id: 18, category: "tech", isDeal: true, badge: "", price: 1250, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #18181B 0%, #991B1B 100%)", icon: "phonecase",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Phone Cases & Upgrade Covers", am: "የስልክ ከቨሮች እና የሞዴል መቀየሪያ ስቲከር (iPhone 13 Pro Max → 17/18 Look)", om: "Uwwisa Bilbilaa fi Istiikarii Haaraa" },
+        desc: { en: "Stylish protective cases & back upgrade covers/stickers that transform models like iPhone 13 Pro Max into a sleek 17/18 Pro Max look.", am: "ስልክዎን የሚጠብቁ ዘመናዊ ከቨሮች እና እንደ iPhone 13 Pro Max ያሉ ስልኮችን ወደ 17/18 Pro Max መልክ የሚቀይሩ የጀርባ ከቨርና ስቲከሮች።", om: "Uwwisa bilbilaa fi istiikarii bifa iPhone 13 Pro Max gara 17/18 Pro Max jijjiiru." }
+      },
+      {
+        id: 19, category: "tech", isDeal: false, badge: "", price: 4900, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #DC2626 0%, #1F2937 100%)", icon: "projector",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Portable Mini Projector", am: "ፖርቴብል ሚኒ ፕሮጀክተር (Mini Projector)", om: "Piroojektarii Miinii" },
+        desc: { en: "Compact HD mini projector for movies, football matches & presentations right on your wall.", am: "ፊልም፣ ኳስ እና ፕረዘንቴሽን በግድግዳዎ ላይ በትልቁ ለማየት የሚያስችል አነስተኛ ፖርቴብል ሚኒ ፕሮጀክተር።", om: "Fiilmii fi kubbaa miilaa girgiddaa irratti guddisanii ilaaluuf piroojektarii miinii." }
+      },
+      {
+        id: 20, category: "tech", isDeal: false, badge: "", price: 2200, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #B91C1C 0%, #18181B 100%)", icon: "ringlight",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "LED Ring Light with Stand", am: "ሪንግ ላይት (Ring Light — ለስትሪም እና ቪዲዮ)", om: "Ibsaa Ring Light Viidiyoo fi Istiriimiif" },
+        desc: { en: "Adjustable brightness & color-tone LED ring light with phone holder for live streaming, TikTok & makeup.", am: "ለላይቭ ስትሪም፣ ለቲክቶክ ቪዲዮ እና ለፎቶ ብርሃኑ የሚስተካከል ሪንግ ላይት ከስልክ ማቆሚያ ጋር።", om: "TikTok, live stream fi suuraaf ibsaa qulqulluu dhaabbata bilbilaa waliin." }
+      },
+      {
+        id: 21, category: "tech", isDeal: false, badge: "", price: 3200, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #1E293B 0%, #991B1B 100%)", icon: "router",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Wi-Fi Router", am: "ዋይፋይ ራውተር (Wi-Fi Router)", om: "Raawutarii Wi-Fi" },
+        desc: { en: "Fast, reliable Wi-Fi router for strong home, dorm, or office internet coverage.", am: "ለቤት፣ ለቢሮ ወይም ለዶርም ጠንካራ እና ፈጣን ኢንተርኔት የሚያሰራጭ ዋይፋይ ራውተር።", om: "Manaa fi biiroof interneetii saffisaa fi cimaa raabsu." }
+      },
+      {
+        id: 22, category: "tech", isDeal: false, badge: "", price: 1100, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #7F1D1D 0%, #111827 100%)", icon: "led",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "RGB LED Strip Lights", am: "ኤልኢዲ መብራቶች (LED Lights)", om: "Ibsaa LED Halluu Adda Addaa" },
+        desc: { en: "Remote-controlled multi-color LED strip lights to upgrade your bedroom, desk, or studio setup.", am: "በሪሞት ቀለም የሚቀያይር ለመኝታ ቤት፣ ለጠረጴዛ እና ለስቱዲዮ ዲኮር የሚሆን ኤልኢዲ መብራት።", om: "Halluu jijjiiramuun kutaa ciisichaa fi istuudiyoo miidhagsa." }
+      },
+      {
+        id: 23, category: "tech", isDeal: false, badge: "", price: 1950, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #DC2626 0%, #09090B 100%)", icon: "speaker",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Mini JBL Bluetooth Speaker", am: "ሚኒ ጄቢኤል ስፒከር (Mini JBL Speaker)", om: "Ispikarii Miinii JBL Biluutuuzii" },
+        desc: { en: "Pocket-sized JBL Bluetooth speaker delivering punchy bass, clear audio & long battery life.", am: "በእጅ የሚያዝ ነገር ግን ጠንካራ ቤዝ እና ጥርት ያለ ድምጽ ያለው ሚኒ ጄቢኤል ብሉቱዝ ስፒከር።", om: "Sagalee cimaa fi qulqulluu baasii gaarii waliin kennu." }
+      },
+      {
+        id: 24, category: "tech", isDeal: false, badge: "", price: 1750, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #27272A 0%, #DC2626 100%)", icon: "diffuser",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Electric Water Aroma Diffuser", am: "በውሃ የሚሰራ የቤት መዓዛ ማሰራጫ (Aroma Diffuser)", om: "Urgeessaa Manaa Bishaanii fi Elektirikiin Hojjetu" },
+        desc: { en: "Electric ultrasonic humidifier & aroma diffuser — add water and fragrance drops for a fresh, soothing mist.", am: "ውሃ እና የመዓዛ ጠብታ ሲጨመርበት በኤሌክትሪክ እየሰራ ንጹህ ጭስ/እንፋሎት በማውጣት ቤትዎን ጥሩ መዓዛ የሚያደርግ።", om: "Bishaan itti naqamee elektirikiin hurka urgaa'aa baasuun mana qulqulleessa." }
+      },
+
+      // --- FITNESS & SPORTS (5) ---
+      {
+        id: 25, category: "fitness", isDeal: true, badge: "", price: 1900, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #27272A 0%, #7F1D1D 100%)", icon: "posture",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Advanced Posture Corrector", am: "አድቫንስድ የጀርባ አቀማመጥ ማስተካከያ (Advanced Posture Corrector)", om: "Sirreessaa Dugdaa Olaanaa (Advanced Posture)" },
+        desc: { en: "Upgraded ergonomic back & shoulder posture corrector for straight posture and back-pain relief.", am: "ጀርባን እና ትከሻን ቀጥ የሚያደርግ፣ ለተማሪዎች፣ ለቢሮ ሰራተኞች እና ለስፖርተኞች የሚሆን አድቫንስድ ፖስቸር ኮሬክተር።", om: "Dugdaa fi gateettii qajeelchee dhukkubbii dugdaa hir'isa." }
+      },
+      {
+        id: 26, category: "fitness", isDeal: false, badge: "", price: 1100, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)", icon: "bottle",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Sports Water Bottles", am: "የስፖርት ውሃ ኮዳዎች (Sports Bottle)", om: "Qaruuraa Bishaanii Ispoortii" },
+        desc: { en: "Leak-proof BPA-free sports water bottles & gym shakers designed for workouts and daily hydration.", am: "ለጂም፣ ለኳስ እና ለዕለታዊ ስፖርት የሚሆኑ የማያፈሱ ጠንካራ የስፖርት ውሃ መጠጫ ኮዳዎች።", om: "Jiimii fi ispoortiif qaruuraa bishaanii jabaa fi hin dhangalaane." }
+      },
+      {
+        id: 27, category: "fitness", isDeal: false, badge: "", price: 750, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #18181B 0%, #B91C1C 100%)", icon: "wrist",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Hand & Wrist Supporter", am: "የእጅ መደገፊያ (Hand Supporter)", om: "Deeggartuu Harkaa (Hand Supporter)" },
+        desc: { en: "Breathable elastic hand & wrist support wrap that protects joints during gym, lifting, and sports.", am: "በስፖርት እና ክብደት ማንሳት ወቅት የእጅ አንጓን ከጉዳት የሚጠብቅ እና የሚደግፍ ሃንድ ሰፖርተር።", om: "Yeroo ispoortii fi ulfaatina kaasan harka miidhaa irraa eega." }
+      },
+      {
+        id: 28, category: "fitness", isDeal: false, badge: "", price: 650, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #DC2626 0%, #111827 100%)", icon: "socks",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "Non-Slip Grip Socks", am: "ግሪፕ ሶክስ (Grip Socks)", om: "Kaalsii Ispoortii Hin Mucucaachifne (Grip Socks)" },
+        desc: { en: "Anti-slip rubber-grip athletic socks for football, running, and gym stability inside any shoe.", am: "ጫማ ውስጥ እግር እንዳይንሸራተት የሚያደርግ ጠንካራ የኳስ እና የስፖርት ግሪፕ ሶክስ።", om: "Kophee keessatti miilli akka hin mucucaanne godhu kaalsii kubbaa miilaa." }
+      },
+      {
+        id: 29, category: "fitness", isDeal: true, badge: "", price: 2400, oldPrice: 0,
+        gradient: "linear-gradient(135deg, #B91C1C 0%, #09090B 100%)", icon: "fitnesspack",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        name: { en: "4-in-1 Fitness Package", am: "4-በ1 የፊትነስ ፓኬጅ (መዝለያ፣ የእጅ ማጠንከሪያ እና ሌሎችም)", om: "Paakeejii Fiitnasii 4-in-1" },
+        desc: { en: "Complete 4-piece home workout kit including jump rope, adjustable hand grip strengthener & fitness accessories.", am: "የዝላይ ገመድ፣ የእጅና ክንድ ጡንቻ ማጠንከሪያ እና ተጨማሪ የስፖርት ዕቃዎችን በአንድ የያዘ ባለ 4 አይነት ሙሉ ፓኬጅ።", om: "Funyoo utaalchaa, cimsuu harkaa fi meeshaalee fiitnasii 4 bakka tokkotti." }
       }
     ];
 
@@ -2148,7 +2266,7 @@
         home: "Home", cart: "Cart", orders: "Orders", profile: "Profile",
         categories: "Categories", seeAll: "See All", specialOffers: "Special Offers",
         allProducts: "All Products", reqItem: "+ Request Item",
-        catAll: "All", catDeals: "Special Offers", catWomen: "For Women", catHome: "Home & Kitchen", catTech: "Tech & Gadgets",
+        catAll: "All", catDeals: "Special Offers", catWomen: "For Women", catHome: "Home & Kitchen", catTech: "Tech & Gadgets", catFitness: "Fitness & Sports",
         emptyCartTitle: "Your cart is empty", emptyCartSub: "Browse our unique gadgets and add items to your cart", shopNow: "Shop Now",
         checkoutTitle: "Delivery Details & Payment",
         city: "City / Location", name: "Full Name", phone: "Phone Number", addr: "Neighborhood / Address",
@@ -2162,11 +2280,11 @@
         pending: "In Progress (72h)", delivered: "Delivered ✓",
         markRec: "Mark as Received", recToast: "Thank you! Order marked as Delivered ✓",
         aiFab: "AI Help", aiHead: "Wollo Market AI Assistant", aiPh: "Type your question...", aiSend: "Send",
-        aiWelcome: "Hello! I'm the Wollo Market AI Assistant. Ask me about 72h delivery, locations, 200 Br upfront fee, warranty, or special orders!",
+        aiWelcome: "Hello! I'm the Wollo Market AI Assistant. Ask me about 72h delivery, locations, 200 Br upfront fee, or special orders!",
         prodDetail: "Product Details", orderNow: "Order Now", addToCart: "Add to Cart", added: "Added to cart!",
         watchTikTok: "Watch Video on TikTok", watchYT: "Watch on YouTube",
         wishTitle: "Favorites", wishEmpty: "No saved items yet.",
-        delWarranty: STORE_CONFIG.deliveryTime.en + " • 24h Warranty",
+        delWarranty: STORE_CONFIG.deliveryTime.en,
         profSub: "Online delivery only • Physical shop coming InshaAllah",
         helpPayTitle: "Help Center & Payment Info", selLangTitle: "Select Language / ቋንቋ",
         darkMode: "Dark Mode", darkModeSub: "Switch between light and dark theme",
@@ -2177,7 +2295,7 @@
         policiesTitle: "Store Policies",
         pol1: "• Only 200 Br delivery paid upfront",
         pol2: "• Product price paid Cash on Delivery",
-        pol3: "• " + STORE_CONFIG.deliveryTime.en + " • 24h warranty",
+        pol3: "• " + STORE_CONFIG.deliveryTime.en,
         pol4: "• Discounts on 2+ items & bulk orders",
         aiCardTitle: "Wollo Market AI Assistant", aiCardSub: "24/7 Ready • Instant Replies",
         backMenu: "← Back to Menu", contactTitle: "Contact Us"
@@ -2187,7 +2305,7 @@
         home: "መነሻ", cart: "ቅርጫት", orders: "ትዕዛዞች", profile: "መገለጫ",
         categories: "ምድቦች", seeAll: "ሁሉንም እይ", specialOffers: "ልዩ ቅናሾች",
         allProducts: "ሁሉም እቃዎች", reqItem: "+ ሌላ እቃ ይዘዙ",
-        catAll: "ሁሉም", catDeals: "ልዩ ቅናሽ", catWomen: "ለሴቶች", catHome: "ቤትና ማዕድ ቤት", catTech: "ቴክና ጋጄት",
+        catAll: "ሁሉም", catDeals: "ልዩ ቅናሽ", catWomen: "ለሴቶች", catHome: "ቤትና ማዕድ ቤት", catTech: "ቴክና ጋጄት", catFitness: "ፊትነስና ስፖርት",
         emptyCartTitle: "ቅርጫትዎ ባዶ ነው", emptyCartSub: "ለየት ያሉ ጋጄቶቻችንን ይመልከቱና ወደ ቅርጫትዎ ይጨምሩ", shopNow: "አሁን ይሸምቱ",
         checkoutTitle: "የማድረሻ መረጃ እና ክፍያ",
         city: "ከተማ / ቦታ", name: "ሙሉ ስም", phone: "ስልክ ቁጥር", addr: "ሰፈር / ትክክለኛ ቦታ",
@@ -2201,11 +2319,11 @@
         pending: "በሂደት ላይ (72 ሰዓት)", delivered: "ደርሷል ✓",
         markRec: "ተረክቤያለሁ (Mark as Received)", recToast: "እናመሰግናለን! ትዕዛዙ «ደርሷል ✓» ተብሎ ተመዝግቧል።",
         aiFab: "AI ረዳት", aiHead: "የወሎ ማርኬት AI ረዳት", aiPh: "ጥያቄዎን እዚህ ይጻፉ...", aiSend: "ላክ",
-        aiWelcome: "ሰላም! የወሎ ማርኬት AI ረዳት ነኝ። ስለ 72 ሰዓት ዴሊቨሪ፣ ከተሞች (ኮምቦልቻ፣ ደሴ፣ ሀርቡ፣ ኬሚሴ)፣ 200 ብር ቅድሚያ ክፍያ ወይም ዋስትና ይጠይቁኝ!",
+        aiWelcome: "ሰላም! የወሎ ማርኬት AI ረዳት ነኝ። ስለ 72 ሰዓት ዴሊቨሪ፣ ከተሞች (ኮምቦልቻ፣ ደሴ፣ ሀርቡ፣ ኬሚሴ)፣ 200 ብር ቅድሚያ ክፍያ ወይም ሌላ እቃ ይጠይቁኝ!",
         prodDetail: "የእቃው ዝርዝር", orderNow: "አሁን ይዘዙ", addToCart: "ቅርጫት ውስጥ ጨምር", added: "ወደ ቅርጫት ተጨምሯል!",
         watchTikTok: "ቪዲዮ በቲክቶክ ይመልከቱ", watchYT: "በዩቲዩብ ይመልከቱ",
         wishTitle: "የተወደዱ እቃዎች", wishEmpty: "እስካሁን የተወደደ እቃ የለም።",
-        delWarranty: STORE_CONFIG.deliveryTime.am + " • የ24 ሰዓት ዋስትና",
+        delWarranty: STORE_CONFIG.deliveryTime.am,
         profSub: "ኦንላይን ዴሊቨሪ ብቻ • ወደፊት ሱቅ እንከፍታለን ኢንሻአላህ",
         helpPayTitle: "የደንበኛ አገልግሎት እና የክፍያ መረጃ", selLangTitle: "ቋንቋ ይምረጡ / Select Language",
         darkMode: "ዳርክ ሞድ", darkModeSub: "በላይት እና ዳርክ ገጽታ መካከል ይቀያይሩ",
@@ -2216,7 +2334,7 @@
         policiesTitle: "የስቶሩ ህጎች",
         pol1: "• የዴሊቨሪ 200 ብር ብቻ ቅድሚያ ይከፈላል",
         pol2: "• የእቃው ዋጋ እቃው ሲደርስ ብቻ (Cash on Delivery)",
-        pol3: "• " + STORE_CONFIG.deliveryTime.am + " • የ24 ሰዓት ዋስትና",
+        pol3: "• " + STORE_CONFIG.deliveryTime.am,
         pol4: "• ከ2 እቃ በላይ እና በብዛት ለሚገዙ ልዩ ቅናሽ አለ",
         aiCardTitle: "የወሎ ማርኬት AI ረዳት", aiCardSub: "24/7 ዝግጁ • ፈጣን ምላሽ",
         backMenu: "← ወደ ዝርዝሩ ተመለስ", contactTitle: "ያግኙን"
@@ -2226,7 +2344,7 @@
         home: "Fuula Duraa", cart: "Guuboo", orders: "Ajajawwan", profile: "Eenyummaa",
         categories: "Ramaddiiwwan", seeAll: "Hunda Ilaali", specialOffers: "Hir'ina Addaa",
         allProducts: "Mi'a Hunda", reqItem: "+ Mi'a Biraa Ajajaa",
-        catAll: "Hunda", catDeals: "Hir'ina Addaa", catWomen: "Dubartootaaf", catHome: "Manaa fi Kichinii", catTech: "Teekii fi Gaajeetii",
+        catAll: "Hunda", catDeals: "Hir'ina Addaa", catWomen: "Dubartootaaf", catHome: "Manaa fi Kichinii", catTech: "Teekii fi Gaajeetii", catFitness: "Fiitnasii fi Ispoortii",
         emptyCartTitle: "Guuboon keessan duwwaa dha", emptyCartSub: "Gaajeetota addaa keenya ilaalaatii guubootti dabaladhaa", shopNow: "Amma Bitaa",
         checkoutTitle: "Odeeffannoo Geessii fi Kaffaltii",
         city: "Magaalaa / Bakka", name: "Maqaa Guutuu", phone: "Lakkoofsa Bilbilaa", addr: "Naannoo / Teessoo",
@@ -2240,11 +2358,11 @@
         pending: "Adeemsa Irra (Sa'aatii 72)", delivered: "Gaheera ✓",
         markRec: "Fudhadheera (Mark as Received)", recToast: "Galatoomaa! Ajajni «Gaheera ✓» jedhamee galmaa'eera.",
         aiFab: "Gargaaraa AI", aiHead: "Gargaaraa AI Gabaa Walloo", aiPh: "Gaaffii keessan barreessaa...", aiSend: "Ergi",
-        aiWelcome: "Akkam! Ani Gargaaraa AI Gabaa Walloo ti. Waa'ee geessii (72h), magaalotaa, kaffaltii ykn wabii na gaafadhaa!",
+        aiWelcome: "Akkam! Ani Gargaaraa AI Gabaa Walloo ti. Waa'ee geessii (72h), magaalotaa, kaffaltii ykn mi'a biroo na gaafadhaa!",
         prodDetail: "Bal'ina Mi'aa", orderNow: "Amma Ajaji", addToCart: "Kuusaa itti dabali", added: "Guubootti dabalameera!",
         watchTikTok: "Viidiyoo TikTok irratti Ilaali", watchYT: "YouTube irratti Ilaali",
         wishTitle: "Mi'a Jaallataman", wishEmpty: "Hanga ammaatti mi'i jaallatame hin jiru.",
-        delWarranty: STORE_CONFIG.deliveryTime.om + " • Wabii 24h",
+        delWarranty: STORE_CONFIG.deliveryTime.om,
         profSub: "Onlaayinii qofa • Suuqii qaamaa ni banna InshaAllah",
         helpPayTitle: "Tajaajila Maamiltootaa fi Kaffaltii", selLangTitle: "Afaan Filadhaa / Select Language",
         darkMode: "Dark Mode", darkModeSub: "Light fi Dark gidduutti jijjiiraa",
@@ -2255,7 +2373,7 @@
         policiesTitle: "Seera Suuqii",
         pol1: "• Kaffaltii geessii Br 200 qofa dursaa",
         pol2: "• Gatii mi'aa yeroo harka keessan gahu qofa",
-        pol3: "• " + STORE_CONFIG.deliveryTime.om + " • Wabii 24h",
+        pol3: "• " + STORE_CONFIG.deliveryTime.om,
         pol4: "• Mi'a 2 ol ykn baay'inaan bituuf hir'inni jira",
         aiCardTitle: "Gargaaraa AI Gabaa Walloo", aiCardSub: "24/7 Qophii • Deebii Saffisaa",
         backMenu: "← Gara Tarreetti Deebi'i", contactTitle: "Nu Quunnamaa"
@@ -2283,7 +2401,31 @@
         scrubber: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="6"></circle><path d="M12 2v6"></path><path d="M9 14h6"></path><path d="M12 11v6"></path></svg>`,
         printer: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>`,
         light: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="6" rx="3"></rect><line x1="8" y1="4" x2="8" y2="6"></line><line x1="12" y1="3" x2="12" y2="6"></line><line x1="16" y1="4" x2="16" y2="6"></line></svg>`,
-        vacuum: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l8-8 6 6-8 8H4v-6z"></path><path d="M14 6l4-4 2 2-4 4"></path></svg>`
+        vacuum: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16l8-8 6 6-8 8H4v-6z"></path><path d="M14 6l4-4 2 2-4 4"></path></svg>`,
+        cup: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h11v9a4 4 0 0 1-4 4h-3a4 4 0 0 1-4-4V7z"></path><path d="M17 9h2a2 2 0 0 1 0 4h-2"></path><line x1="6" y1="4" x2="17" y2="4"></line></svg>`,
+        shoe: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16l2-8 4 2 3-2 4 4h4a2 2 0 0 1 2 2v2H3z"></path><line x1="3" y1="19" x2="22" y2="19"></line></svg>`,
+        charcoal: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c2 3 4 5 4 8a4 4 0 1 1-8 0c0-3 2-5 4-8z"></path><rect x="5" y="16" width="14" height="5" rx="2"></rect></svg>`,
+        scale: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"></rect><circle cx="12" cy="11" r="3"></circle><line x1="9" y1="17" x2="15" y2="17"></line></svg>`,
+        glass: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="5" rx="1"></rect><line x1="12" y1="8" x2="12" y2="21"></line><line x1="9" y1="21" x2="15" y2="21"></line></svg>`,
+        rack: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="4" y2="20"></line><line x1="20" y1="4" x2="20" y2="20"></line><line x1="4" y1="8" x2="20" y2="8"></line><line x1="4" y1="13" x2="20" y2="13"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>`,
+        earbuds: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"></circle><path d="M8 11v8"></path><circle cx="16" cy="8" r="3"></circle><path d="M16 11v8"></path></svg>`,
+        watch: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="6" width="10" height="12" rx="3"></rect><path d="M9 6V2h6v4"></path><path d="M9 18v4h6v-4"></path><polyline points="12 9 12 12 14 13"></polyline></svg>`,
+        mic: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="11" rx="3"></rect><path d="M5 10a7 7 0 0 0 14 0"></path><line x1="12" y1="17" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line></svg>`,
+        powerbank: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="2"></rect><polygon points="13 7 9 13 12 13 11 17 15 11 12 11 13 7"></polygon></svg>`,
+        coolingpad: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="8" cy="12" r="3"></circle><circle cx="16" cy="12" r="3"></circle></svg>`,
+        stand: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="10" rx="2"></rect><path d="M12 13l-4 7h8l-4-7z"></path></svg>`,
+        cable: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v5a2 2 0 0 0 2 2h6a2 2 0 0 1 2 2v7"></path><rect x="5" y="2" width="4" height="3"></rect><rect x="15" y="19" width="4" height="3"></rect></svg>`,
+        phonecase: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"></rect><circle cx="10" cy="6" r="1"></circle><circle cx="13" cy="6" r="1"></circle><circle cx="10" cy="9" r="1"></circle></svg>`,
+        projector: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="10" rx="2"></rect><circle cx="16" cy="12" r="3"></circle><line x1="6" y1="12" x2="10" y2="12"></line></svg>`,
+        ringlight: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"></circle><circle cx="12" cy="9" r="3"></circle><line x1="12" y1="15" x2="12" y2="22"></line><line x1="8" y1="22" x2="16" y2="22"></line></svg>`,
+        router: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="18" height="7" rx="2"></rect><line x1="7" y1="13" x2="7" y2="5"></line><line x1="17" y1="13" x2="17" y2="5"></line><circle cx="8" cy="16.5" r="0.8"></circle><circle cx="12" cy="16.5" r="0.8"></circle></svg>`,
+        led: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c3-5 6 5 9 0s6 5 9 0"></path><circle cx="6" cy="10" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="18" cy="10" r="1"></circle></svg>`,
+        speaker: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="12" rx="4"></rect><circle cx="9" cy="12" r="2.5"></circle><circle cx="15" cy="12" r="2.5"></circle></svg>`,
+        diffuser: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11h10l2 9H5l2-9z"></path><path d="M10 8c0-2 1-3 1-5"></path><path d="M14 8c0-2 1-3 1-5"></path></svg>`,
+        bottle: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6v3l2 3v12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V8l2-3V2z"></path><line x1="7" y1="12" x2="17" y2="12"></line></svg>`,
+        wrist: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="7" width="14" height="10" rx="4"></rect><line x1="9" y1="7" x2="9" y2="17"></line><line x1="15" y1="7" x2="15" y2="17"></line></svg>`,
+        socks: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v10l3 3a3 3 0 0 1-4.2 4.2L9 16V3z"></path></svg>`,
+        fitnesspack: `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7v10"></path><path d="M18 7v10"></path><path d="M3 9v6"></path><path d="M21 9v6"></path><line x1="6" y1="12" x2="18" y2="12"></line></svg>`
       };
       return map[name] || map.belt;
     }
@@ -2542,7 +2684,8 @@
         { id: "deals", lbl: t("catDeals") },
         { id: "women", lbl: t("catWomen") },
         { id: "home", lbl: t("catHome") },
-        { id: "tech", lbl: t("catTech") }
+        { id: "tech", lbl: t("catTech") },
+        { id: "fitness", lbl: t("catFitness") }
       ];
       document.getElementById("cat-row").innerHTML = cats.map(function (c) {
         return `<button type="button" class="cat-chip ${state.cat === c.id ? "active" : ""}" data-cat="${c.id}">${c.lbl}</button>`;
@@ -3209,9 +3352,9 @@
 
     /* OFFLINE SMART AI ASSISTANT */
     const CHIPS = {
-      en: ["Locations?", "Delivery time?", "Payment?", "Warranty?", "Discounts?", "Special order?"],
-      am: ["ከተሞች?", "በስንት ሰዓት?", "ክፍያ እንዴት?", "ዋስትና?", "ቅናሽ አለ?", "ሌላ እቃ?"],
-      om: ["Magaalota?", "Yeroo?", "Kaffaltii?", "Wabii?", "Hir'ina?", "Mi'a biroo?"]
+      en: ["Locations?", "Delivery time?", "Payment?", "Discounts?", "Special order?"],
+      am: ["ከተሞች?", "በስንት ሰዓት?", "ክፍያ እንዴት?", "ቅናሽ አለ?", "ሌላ እቃ?"],
+      om: ["Magaalota?", "Yeroo?", "Kaffaltii?", "Hir'ina?", "Mi'a biroo?"]
     };
 
     function aiReply(q) {
@@ -3231,11 +3374,6 @@
         return l === "am" ? "የዴሊቨሪ " + STORE_CONFIG.deliveryFee + " ብር ብቻ ቅድሚያ በቴሌብር/CBE ከፍለው ስክሪንሹት ይልካሉ፤ የእቃውን ዋጋ ሲደርስ ብቻ ይከፍላሉ!"
           : l === "om" ? "Kaffaltii geessii Br " + STORE_CONFIG.deliveryFee + " qofa Telebirr/CBE tiin dursitanii kaffaltu; gatii mi'aa yeroo gahu qofa!"
           : "Pay only " + STORE_CONFIG.deliveryFee + " Br delivery fee upfront via Telebirr/CBE and send the screenshot on Telegram. Product price is paid Cash on Delivery!";
-      }
-      if (s.includes("warrant") || s.includes("return") || s.includes("broken") || s.includes("ዋስትና") || s.includes("ችግር") || s.includes("wabii")) {
-        return l === "am" ? "አዎ! እቃው ሲደርስ ችግር ቢኖርበት ወይም ባይሰራ የ24 ሰዓት የመመለሻ ዋስትና አለው።"
-          : l === "om" ? "Eeyyee! Mi'i yoo rakkina qabaate wabii deebisuu sa'aatii 24 qaba."
-          : "Yes! All items include a 24-hour check & return warranty if there is any defect.";
       }
       if (s.includes("discount") || s.includes("bulk") || s.includes("more") || s.includes("ቅናሽ") || s.includes("ብዛት") || s.includes("hir'in")) {
         return l === "am" ? "አዎ! ከ2 እቃ በላይ እና በብዛት ለሚገዙ ደንበኞች ልዩ ቅናሽ አለን።"
