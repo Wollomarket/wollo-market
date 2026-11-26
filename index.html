@@ -409,42 +409,37 @@
       align-self: flex-start;
       padding: 4px 10px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.75);
-      border: 1px solid rgba(239, 68, 68, 0.42);
+      background: rgba(17, 19, 24, 0.82);
+      border: 1px solid rgba(220, 38, 38, 0.55);
       font-size: 11px;
       font-weight: 700;
-      color: #EF4444;
-      -webkit-text-stroke: 0.5px #000000;
-      paint-order: stroke fill;
-      text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+      color: #FFFFFF;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
     }
 
     .banner-dot-live {
       width: 7px;
       height: 7px;
       border-radius: 50%;
-      background: #EF4444;
-      box-shadow: 0 0 6px #EF4444;
+      background: #DC2626;
+      box-shadow: 0 0 6px #DC2626;
       flex-shrink: 0;
     }
 
     .banner-title {
       font-size: 17.5px;
-      font-weight: 900;
+      font-weight: 800;
       line-height: 1.25;
       letter-spacing: -0.01em;
-      color: #EF4444;
-      -webkit-text-stroke: 1px #000000;
-      paint-order: stroke fill;
-      text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+      color: #FFFFFF;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
     }
 
     .banner-sub {
       font-size: 12px;
-      color: #EF4444;
-      -webkit-text-stroke: 0.6px #000000;
-      paint-order: stroke fill;
-      text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.9);
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
       line-height: 1.4;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -460,14 +455,12 @@
       margin-top: 2px;
       padding: 6px 14px;
       border-radius: 999px;
-      background: rgba(0, 0, 0, 0.75);
-      border: 1px solid rgba(239, 68, 68, 0.48);
-      color: #EF4444;
-      -webkit-text-stroke: 0.5px #000000;
-      paint-order: stroke fill;
-      text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+      background: #DC2626;
+      border: 1px solid rgba(17, 19, 24, 0.65);
+      color: #FFFFFF;
       font-size: 11.5px;
       font-weight: 800;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
     }
 
     .banner-icon-box {
@@ -4534,21 +4527,6 @@
         return;
       }
 
-      if (directoryState.view === "mall") {
-        const mall = city.malls.find(m => m.id === directoryState.mallId);
-        if (!mall) {
-          directoryState.view = "root";
-          return renderDirectory();
-        }
-        const shops = mall.shops || [];
-        const filtered = shops.filter(sh => directoryState.category === "all" || sh.category === directoryState.category);
-        body.innerHTML = `<button class="btn-outline directory-back" data-directory-back-malls>${ui.backMalls}</button>
-          <div style="font-size:16px;font-weight:900;margin-bottom:12px;">${cityText(mall.name)}</div>
-          <div class="cat-row no-scrollbar" style="margin-bottom:13px;">${DIRECTORY_CATEGORIES.map(c => `<button class="cat-chip ${directoryState.category === c.id ? "active" : ""}" data-directory-category="${c.id}">${c.label[state.lang]}</button>`).join("")}</div>
-          <div class="directory-grid">${filtered.length ? filtered.map(sh => directoryCardHtml(sh, "shop")).join("") : `<div class="directory-empty">${ui.noMallShops}</div>`}</div>`;
-        return;
-      }
-
       const malls = city.malls || [];
       const shops = city.normalShops || [];
       const filtered = shops.filter(sh => directoryState.category === "all" || sh.category === directoryState.category);
@@ -5070,10 +5048,9 @@
           const orderMessage = ("🛍️ Partner Order via Wollo Market #" + oid + "\n🏪 Store: " + store.name.en +
             "\n📦 Item: " + (it.name[state.lang] || it.name.en) + " (" + br(it.price) + ")\n🚚 Delivery: " + br(store.deliveryFee) +
             "\n📍 Location: " + city + " — " + addr + "\n👤 Name: " + name + "\n📞 Phone: " + phone).slice(0, 950);
-          const screenshot = selectedPaymentScreenshot;
           selectedPaymentScreenshot = null;
           closeModal("modal-partner");
-          sendOrderToTelegram(orderMessage, screenshot, store.telegram);
+          openTG(store.telegram, orderMessage);
         });
       }
     }
@@ -5422,39 +5399,34 @@
           return;
         }
 
-        const dirBackMalls = e.target.closest("[data-directory-back-malls]");
-        if (dirBackMalls) {
-          directoryState.view = "root";
-          directoryState.tab = "malls";
-          directoryState.mallId = null;
-          directoryState.category = "all";
-          renderDirectory();
-          return;
-        }
-
         const dirBack = e.target.closest("[data-directory-back]");
         if (dirBack) {
-          if (directoryState.mallId) directoryState.view = "mall";
-          else directoryState.view = "root";
+          directoryState.view = "root";
+          directoryState.tab = directoryState.mallId ? "malls" : "shops";
+          directoryState.mallId = null;
           directoryState.shopRef = null;
+          directoryState.category = "all";
           renderDirectory();
           return;
         }
 
         const dirMall = e.target.closest("[data-directory-mall]");
         if (dirMall) {
-          directoryState.mallId = dirMall.getAttribute("data-directory-mall");
-          directoryState.view = "mall";
-          directoryState.category = "all";
-          renderDirectory();
+          const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
+          const mall = city && (city.malls || []).find(m => m.id === dirMall.getAttribute("data-directory-mall"));
+          if (mall) {
+            directoryState.mallId = mall.id;
+            directoryState.shopRef = mall;
+            directoryState.view = "coming";
+            renderDirectory();
+          }
           return;
         }
 
         const dirShop = e.target.closest("[data-directory-shop]");
         if (dirShop) {
           const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
-          const mall = directoryState.view === "mall" ? city.malls.find(m => m.id === directoryState.mallId) : null;
-          const list = mall ? (mall.shops || []) : (city.normalShops || []);
+          const list = city ? (city.normalShops || []) : [];
           const shop = list.find(sh => sh.id === dirShop.getAttribute("data-directory-shop"));
           if (shop) openDirectoryShop(shop);
           return;
