@@ -414,7 +414,7 @@
       font-size: 11px;
       font-weight: 700;
       color: #EF4444;
-      -webkit-text-stroke: 0.6px #000000;
+      -webkit-text-stroke: 0.5px #000000;
       paint-order: stroke fill;
       text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
     }
@@ -434,7 +434,7 @@
       line-height: 1.25;
       letter-spacing: -0.01em;
       color: #EF4444;
-      -webkit-text-stroke: 1.4px #000000;
+      -webkit-text-stroke: 1px #000000;
       paint-order: stroke fill;
       text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
     }
@@ -442,7 +442,7 @@
     .banner-sub {
       font-size: 12px;
       color: #EF4444;
-      -webkit-text-stroke: 0.8px #000000;
+      -webkit-text-stroke: 0.6px #000000;
       paint-order: stroke fill;
       text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
       line-height: 1.4;
@@ -463,7 +463,7 @@
       background: rgba(0, 0, 0, 0.75);
       border: 1px solid rgba(239, 68, 68, 0.48);
       color: #EF4444;
-      -webkit-text-stroke: 0.6px #000000;
+      -webkit-text-stroke: 0.5px #000000;
       paint-order: stroke fill;
       text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
       font-size: 11.5px;
@@ -2242,6 +2242,8 @@
       defaultLang: "en",                          // Opens in English ("en") by default
       storeName: { en: "Wollo Market", am: "ወሎ ማርኬት", om: "Gabaa Walloo" },
       telegramUsername: "YOUR_TELEGRAM_USERNAME", // Replace with your Telegram (without @)
+      telegramBotToken: "9004383363:AAEopq_6ourWQYt6ftHN8LOpa0sTiiIFMJs",
+      telegramChatId: "7949429911",
       accountName: "STORE OWNER NAME",            // Replace with your full name
       telebirrNumber: "0900000000",               // Replace with your Telebirr number
       cbeAccount: "1000000000000",                // Replace with your CBE account
@@ -3859,7 +3861,9 @@
         paySub: "Pay the product price only on delivery. Send your 200 Br payment screenshot on Telegram.",
         copy: "Copy", copied: "Copied!",
         subtotal: "Items Subtotal", delFee: "Upfront Delivery Fee", payOnDel: "Total on Delivery",
-        orderBtn: "Confirm Order on Telegram", fillReq: "Please fill in Name, Phone, and Address!",
+        orderBtn: "Order", fillReq: "Please fill in Name, Phone, and Address!",
+        attachScreenshot: "Attach 200 Br Screenshot", removePhoto: "Remove",
+        orderSent: "Order sent automatically! ✓", telegramFallback: "Order saved. Please send it on Telegram to complete your order.",
         activeOrders: "Active Orders", orderHistory: "Order History",
         noActive: "No active orders yet.", noHistory: "Your order history is empty.",
         pending: "In Progress (72h)", delivered: "Delivered ✓",
@@ -3898,7 +3902,9 @@
         paySub: "የእቃውን ዋጋ እቃው ሲደርስ ብቻ ይክፈሉ። የ200 ብር ስክሪንሹት በቴሌግራም ይላኩ።",
         copy: "ኮፒ", copied: "ተቀድቷል!",
         subtotal: "የእቃዎች ድምር", delFee: "የዴሊቨሪ ቅድሚያ ክፍያ", payOnDel: "እቃው ሲደርስ የሚከፈል",
-        orderBtn: "ትዕዛዝን በቴሌግራም ያረጋግጡ", fillReq: "እባክዎ ስም፣ ስልክ እና ሰፈር ይሙሉ!",
+        orderBtn: "ይዘዙ", fillReq: "እባክዎ ስም፣ ስልክ እና ሰፈር ይሙሉ!",
+        attachScreenshot: "የ200 ብር ስክሪንሹት ያያይዙ", removePhoto: "አስወግድ",
+        orderSent: "ትዕዛዝዎ በራስ-ሰር ተልኳል! ✓", telegramFallback: "ትዕዛዙ ተቀምጧል። እባክዎ በቴሌግራም ይላኩ።",
         activeOrders: "ንቁ ትዕዛዞች", orderHistory: "የትዕዛዝ ታሪክ",
         noActive: "ምንም ንቁ ትዕዛዝ የለም።", noHistory: "የትዕዛዝ ታሪክ ባዶ ነው።",
         pending: "በሂደት ላይ (72 ሰዓት)", delivered: "ደርሷል ✓",
@@ -3937,7 +3943,9 @@
         paySub: "Gatii mi'aa yeroo gahu qofa kaffalaa. Suuraa Br 200 Telegramiin ergaa.",
         copy: "Koppii", copied: "Koppii ta'eera!",
         subtotal: "Ida'ama Mi'aa", delFee: "Kaffaltii Geessii Dursaa", payOnDel: "Yeroo Geessii Kaffalamu",
-        orderBtn: "Ajaja Telegramiin Mirkaneessi", fillReq: "Maaloo maqaa, bilbila fi teessoo guutaa!",
+        orderBtn: "Ajajaa", fillReq: "Maaloo maqaa, bilbila fi teessoo guutaa!",
+        attachScreenshot: "Screenshot Br 200 Maxansaa", removePhoto: "Haquu",
+        orderSent: "Ajajni ofumaan ergameera! ✓", telegramFallback: "Ajajni kuufameera. Maaloo Telegram irratti ergaa.",
         activeOrders: "Ajajawwan Hojii Irra Jiran", orderHistory: "Seenaa Ajajaa",
         noActive: "Ajajni hojii irra jiru hin jiru.", noHistory: "Seenaan ajajaa duwwaa dha.",
         pending: "Adeemsa Irra (Sa'aatii 72)", delivered: "Gaheera ✓",
@@ -4100,6 +4108,103 @@
     function openTG(user, text) {
       const u = String(user || STORE_CONFIG.telegramUsername).replace(/^@/, "");
       window.open("https://t.me/" + encodeURIComponent(u) + "?text=" + encodeURIComponent(text), "_blank", "noopener,noreferrer");
+    }
+
+    let selectedPaymentScreenshot = null;
+    let paymentScreenshotPreviewUrl = null;
+
+    function paymentScreenshotMarkup(id) {
+      return `
+        <div class="form-group" style="margin-top:12px;">
+          <input type="file" accept="image/*" id="${id}" style="display:none;" />
+          <label for="${id}" style="min-height:140px;width:100%;border:1.5px dashed var(--border);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:18px;text-align:center;cursor:pointer;background:var(--bg-muted);">
+            <span aria-hidden="true" style="font-size:38px;line-height:1;font-weight:700;color:var(--red);">+</span>
+            <span style="font-size:13px;font-weight:800;color:var(--text-primary);">${t("attachScreenshot")}</span>
+          </label>
+          <div id="${id}-preview-wrap" style="display:none;align-items:center;gap:10px;margin-top:9px;">
+            <img id="${id}-preview" alt="Payment screenshot preview" style="width:min(100%,220px);max-height:220px;object-fit:contain;border-radius:12px;border:1px solid var(--border);" />
+            <button type="button" class="copy-pill" id="${id}-remove">${t("removePhoto")}</button>
+          </div>
+        </div>`;
+    }
+
+    function bindPaymentScreenshot(id) {
+      const input = document.getElementById(id);
+      const wrap = document.getElementById(id + "-preview-wrap");
+      const preview = document.getElementById(id + "-preview");
+      const remove = document.getElementById(id + "-remove");
+      if (!input || !wrap || !preview || !remove) return;
+      function showPreview(file) {
+        if (paymentScreenshotPreviewUrl) {
+          URL.revokeObjectURL(paymentScreenshotPreviewUrl);
+          paymentScreenshotPreviewUrl = null;
+        }
+        if (!file) { wrap.style.display = "none"; preview.removeAttribute("src"); return; }
+        if (!file.type || file.type.indexOf("image/") !== 0) {
+          selectedPaymentScreenshot = null;
+          input.value = "";
+          toast(t("attachScreenshot"));
+          wrap.style.display = "none";
+          return;
+        }
+        paymentScreenshotPreviewUrl = URL.createObjectURL(file);
+        preview.src = paymentScreenshotPreviewUrl;
+        wrap.style.display = "flex";
+      }
+      if (selectedPaymentScreenshot) showPreview(selectedPaymentScreenshot);
+      input.addEventListener("change", function () {
+        selectedPaymentScreenshot = input.files && input.files[0] ? input.files[0] : null;
+        showPreview(selectedPaymentScreenshot);
+      });
+      remove.addEventListener("click", function () {
+        selectedPaymentScreenshot = null;
+        input.value = "";
+        if (paymentScreenshotPreviewUrl) URL.revokeObjectURL(paymentScreenshotPreviewUrl);
+        paymentScreenshotPreviewUrl = null;
+        wrap.style.display = "none";
+        preview.removeAttribute("src");
+      });
+    }
+
+    function sendOrderToTelegram(message, screenshot, fallbackUsername) {
+      const token = String(STORE_CONFIG.telegramBotToken || "").trim();
+      const chatId = String(STORE_CONFIG.telegramChatId || "").trim();
+      const configured = token && chatId &&
+        token !== "YOUR_BOT_TOKEN_HERE" && chatId !== "YOUR_CHAT_ID_HERE";
+      if (!configured) {
+        openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
+        toast(t("telegramFallback"));
+        switchTab("orders");
+        return;
+      }
+      let request;
+      if (screenshot) {
+        const formData = new FormData();
+        formData.append("chat_id", chatId);
+        formData.append("photo", screenshot);
+        formData.append("caption", message.slice(0, 950));
+        request = fetch("https://api.telegram.org/bot" + token + "/sendPhoto", {
+          method: "POST", body: formData
+        });
+      } else {
+        request = fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: chatId, text: message })
+        });
+      }
+      request.then(function (response) {
+        if (!response.ok) throw new Error("Telegram request failed");
+        return response.json();
+      }).then(function (result) {
+        if (!result || !result.ok) throw new Error("Telegram rejected the order");
+        toast(t("orderSent"));
+        switchTab("orders");
+      }).catch(function () {
+        openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
+        toast(t("telegramFallback"));
+        switchTab("orders");
+      });
     }
 
     /* THEME, LANGUAGE & BADGES */
@@ -4599,6 +4704,7 @@
     }
 
     function openDirectOrderModal(p) {
+      selectedPaymentScreenshot = null;
       state.directOrderProd = p;
       state.directOrderQty = 1;
       renderDirectOrderModal();
@@ -4649,6 +4755,7 @@
             <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.cbeAccount}">${t("copy")}</button>
           </div>
         </div>
+        ${paymentScreenshotMarkup("do-payment-screenshot")}
 
         <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:6px;"><span>${t("subtotal")}</span><strong>${br(subtotal)}</strong></div>
         <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:8px;"><span>${t("delFee")}</span><strong style="color:var(--red);">${br(STORE_CONFIG.deliveryFee)}</strong></div>
@@ -4657,6 +4764,7 @@
         <button type="button" class="btn-red full" id="do-submit">${t("orderBtn")}</button>
       `;
 
+      bindPaymentScreenshot("do-payment-screenshot");
       document.getElementById("do-dec").addEventListener("click", function () {
         if (state.directOrderQty > 1) { state.directOrderQty -= 1; renderDirectOrderModal(); }
       });
@@ -4681,14 +4789,13 @@
         writeLS(LS_KEYS.orders, state.orders);
         updateBadges();
 
-        openTG(STORE_CONFIG.telegramUsername,
-          "🛒 Wollo Market Order #" + oid + "\n\n- " + p.name[state.lang] + " x" + qty + " (" + br(subtotal) + ")" +
+        const orderMessage = ("🛒 Wollo Market Order #" + oid + "\n\n- " + p.name[state.lang] + " x" + qty + " (" + br(subtotal) + ")" +
           "\n\n💵 Pay on Delivery: " + br(subtotal) + "\n🚚 Upfront Delivery: " + br(STORE_CONFIG.deliveryFee) +
-          "\n📍 Location: " + city + "\n🏠 Address: " + addr + "\n👤 Name: " + name + "\n📞 Phone: " + phone +
-          "\n\n📸 (Attaching 200 Br payment screenshot)"
-        );
+          "\n📍 Location: " + city + "\n🏠 Address: " + addr + "\n👤 Name: " + name + "\n📞 Phone: " + phone).slice(0, 950);
+        const screenshot = selectedPaymentScreenshot;
+        selectedPaymentScreenshot = null;
         closeModal("modal-direct-order");
-        switchTab("orders");
+        sendOrderToTelegram(orderMessage, screenshot, STORE_CONFIG.telegramUsername);
       });
     }
 
@@ -4814,6 +4921,7 @@
                 <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.cbeAccount}">${t("copy")}</button>
               </div>
             </div>
+            ${paymentScreenshotMarkup("c-payment-screenshot")}
 
             <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:6px;"><span>${t("subtotal")}</span><strong>${br(subtotal)}</strong></div>
             <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:8px;"><span>${t("delFee")}</span><strong style="color:var(--red);">${br(STORE_CONFIG.deliveryFee)}</strong></div>
@@ -4824,6 +4932,7 @@
         </div>
       `;
 
+      bindPaymentScreenshot("c-payment-screenshot");
       document.getElementById("btn-place-order").addEventListener("click", function () {
         const city = document.getElementById("c-city").value;
         const name = document.getElementById("c-name").value.trim();
@@ -4848,16 +4957,17 @@
         updateBadges();
 
         const lines = items.map(function (it) { return "- " + it.name + " x" + it.qty + " (" + br(it.price * it.qty) + ")"; }).join("\n");
-        openTG(STORE_CONFIG.telegramUsername,
-          "🛒 Wollo Market Order #" + oid + "\n\n" + lines + "\n\n💵 Pay on Delivery: " + br(subtotal) +
+        const orderMessage = ("🛒 Wollo Market Order #" + oid + "\n\n" + lines + "\n\n💵 Pay on Delivery: " + br(subtotal) +
           "\n🚚 Upfront Delivery: " + br(STORE_CONFIG.deliveryFee) + "\n📍 Location: " + city + "\n🏠 Address: " + addr +
-          "\n👤 Name: " + name + "\n📞 Phone: " + phone + "\n\n📸 (Attaching 200 Br payment screenshot)"
-        );
-        switchTab("orders");
+          "\n👤 Name: " + name + "\n📞 Phone: " + phone).slice(0, 950);
+        const screenshot = selectedPaymentScreenshot;
+        selectedPaymentScreenshot = null;
+        sendOrderToTelegram(orderMessage, screenshot, STORE_CONFIG.telegramUsername);
       });
     }
 
     function openPartnerModal(pid) {
+      selectedPaymentScreenshot = null;
       const store = PARTNER_STORES[pid];
       if (!store) return;
       state.partnerId = pid;
@@ -4931,9 +5041,11 @@
               <button type="button" class="copy-pill" data-copy="${store.cbe}">${t("copy")}</button>
             </div>
           </div>
+          ${paymentScreenshotMarkup("p-payment-screenshot")}
           <button type="button" class="btn-red full" id="pt-submit">${t("orderBtn")}</button>
         `;
 
+        bindPaymentScreenshot("p-payment-screenshot");
         document.getElementById("pt-back").addEventListener("click", function () {
           state.partnerItem = null;
           renderPartnerBody();
@@ -4955,14 +5067,13 @@
           });
           writeLS(LS_KEYS.orders, state.orders);
           updateBadges();
-          openTG(store.telegram,
-            "🛍️ Partner Order via Wollo Market #" + oid + "\n🏪 Store: " + store.name.en +
+          const orderMessage = ("🛍️ Partner Order via Wollo Market #" + oid + "\n🏪 Store: " + store.name.en +
             "\n📦 Item: " + (it.name[state.lang] || it.name.en) + " (" + br(it.price) + ")\n🚚 Delivery: " + br(store.deliveryFee) +
-            "\n📍 Location: " + city + " — " + addr + "\n👤 Name: " + name + "\n📞 Phone: " + phone +
-            "\n\n📸 (Attaching delivery payment screenshot)"
-          );
+            "\n📍 Location: " + city + " — " + addr + "\n👤 Name: " + name + "\n📞 Phone: " + phone).slice(0, 950);
+          const screenshot = selectedPaymentScreenshot;
+          selectedPaymentScreenshot = null;
           closeModal("modal-partner");
-          switchTab("orders");
+          sendOrderToTelegram(orderMessage, screenshot, store.telegram);
         });
       }
     }
