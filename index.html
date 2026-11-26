@@ -658,7 +658,8 @@
     .p-media img {
       width: 100%;
       height: 100%;
-      object-fit: cover;\n      object-position: center;
+      object-fit: cover;
+      object-position: center;
     }
 
     .p-badge {
@@ -865,7 +866,8 @@
     .cart-thumb img, .partner-thumb img {
       width: 100%;
       height: 100%;
-      object-fit: cover;\n      object-position: center;
+      object-fit: cover;
+      object-position: center;
     }
 
     .image-fallback { width:100%;height:100%;align-items:center;justify-content:center; }\n    .gallery-fallback { position:absolute;inset:0;display:grid;place-items:center; }\n    .partner-thumb {
@@ -1227,8 +1229,10 @@
 
     .gallery-slide {
       flex: 0 0 100%;
+      width: 100%;
       min-width: 100%;
       height: 230px;
+      overflow: hidden;
       scroll-snap-align: start;
       position: relative;
       display: flex;
@@ -1238,9 +1242,13 @@
     }
 
     .gallery-slide img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;\n      object-position: center;
+      max-width: none;
+      object-fit: cover;
+      object-position: center;
     }
 
     .gallery-tag {
@@ -1594,11 +1602,12 @@
     }
 
     .partner-product-image img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      position: absolute;
-      inset: 0;
+      object-position: center;
     }
 
     .partner-product-card-info {
@@ -1664,7 +1673,7 @@
 
     .directory-photo {
       width: 100%;
-      height: clamp(112px, 32vw, 170px);
+      height: 140px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -4950,6 +4959,7 @@
       if (!store) return;
       state.partnerId = pid;
       state.partnerItem = null;
+      state.partnerComingSoon = false;
       document.getElementById("pt-head").textContent = store.name[state.lang] || store.name.en;
       renderPartnerBody();
       openModal("modal-partner");
@@ -4960,7 +4970,23 @@
       if (!store) return;
       const body = document.getElementById("pt-body");
 
-      if (!state.partnerItem) {
+      if (state.partnerComingSoon) {
+        const comingSoonText = state.lang === "am" ? "በቅርቡ ይከፈታል" : state.lang === "om" ? "Yeroo Dhiyootti Banama" : "Coming Soon";
+        const comingSoonSubtitle = state.lang === "am" ? "ለዚህ እቃ ማዘዝ በቅርቡ ይጀምራል።" : state.lang === "om" ? "Ajajni meeshaa kanaa yeroo dhiyootti ni jalqaba." : "Ordering for this item is coming soon.";
+        const backLabel = state.lang === "am" ? "← ተመለስ" : state.lang === "om" ? "← Deebi'i" : "← Back";
+        body.innerHTML = `
+          <div class="directory-coming">
+            <div style="font-size:28px;font-weight:900;color:var(--red);margin-bottom:10px;">${comingSoonText}</div>
+            <div style="font-size:13px;color:var(--text-secondary);margin-bottom:20px;">${comingSoonSubtitle}</div>
+            <button type="button" class="btn-outline" id="pt-coming-back">${backLabel}</button>
+          </div>
+        `;
+        document.getElementById("pt-coming-back").addEventListener("click", function () {
+          state.partnerComingSoon = false;
+          state.partnerItem = null;
+          renderPartnerBody();
+        });
+      } else if (!state.partnerItem) {
         body.innerHTML = `
           <div style="background-image:${store.image ? `url('${store.image}'),` : ""}${store.gradient};background-size:cover;background-position:center;color:#FFFFFF;border-radius:16px;padding:16px;margin-bottom:14px;">
             <span style="display:inline-block;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,0.2);font-size:11px;font-weight:700;margin-bottom:6px;">${store.badge[state.lang] || store.badge.en}</span>
@@ -5469,11 +5495,9 @@
 
         const pi = e.target.closest("[data-pitem]");
         if (pi) {
-          const store = PARTNER_STORES[state.partnerId];
-          if (store) {
-            state.partnerItem = store.products.find(function (x) { return x.id === pi.getAttribute("data-pitem"); }) || null;
-            renderPartnerBody();
-          }
+          state.partnerItem = null;
+          state.partnerComingSoon = true;
+          renderPartnerBody();
           return;
         }
 
