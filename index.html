@@ -1495,6 +1495,38 @@
       transform: translateX(-50%) translateY(0);
     }
 
+    /* CITY DIRECTORY BANNERS AND MODAL */
+    .city-banner { flex:0 0 245px;min-height:142px;position:relative;overflow:hidden;border-radius:17px;padding:17px;color:#fff;display:flex;align-items:flex-end;cursor:pointer;background-size:cover;background-position:center;box-shadow:var(--shadow-sm);scroll-snap-align:start;isolation:isolate;text-align:left; }
+    .city-banner::before { content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(8,8,12,.88),rgba(8,8,12,.32)); }
+    .city-banner-title { display:block;font-size:18px;font-weight:900;line-height:1.2; }
+    .city-banner-sub { display:block;font-size:11px;color:rgba(255,255,255,.82);margin-top:5px; }
+    .city-directory-tabs { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px; }
+    .city-tab { padding:11px 8px;border:1px solid var(--border);border-radius:12px;background:var(--bg-muted);font-size:13px;font-weight:800; }
+    .city-tab.active { background:var(--red);border-color:var(--red);color:#fff; }
+    /* Directory cards: large landscape photo tiles, arranged in a two-column grid. */
+    .directory-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch; }
+    .directory-card { width:100%;min-width:0;min-height:0;border-radius:15px;overflow:hidden;position:relative;display:flex;flex-direction:column;align-items:stretch;padding:0;text-align:left;color:#fff;background:#171923;box-shadow:var(--shadow-sm); }
+    .directory-photo { width:100%;height:clamp(112px,32vw,170px);display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--directory-gradient,linear-gradient(135deg,#334155,#111827)); }
+    .directory-photo img { display:block;width:100%;height:100%;object-fit:contain; }
+    .directory-photo-fallback { width:100%;height:100%;display:grid;place-items:center;font-size:42px;background:var(--directory-gradient,linear-gradient(135deg,#334155,#111827)); }
+    .directory-card-info { display:flex;align-items:center;gap:7px;min-width:0;padding:10px;background:#171923; }
+    .directory-logo { width:30px;height:30px;flex:0 0 30px;border-radius:9px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;font-size:17px;font-weight:900;overflow:hidden; }
+    .directory-logo img { width:100%;height:100%;object-fit:cover; }
+    .directory-meta { min-width:0;flex:1; }
+    .directory-name { display:block;font-size:12px;font-weight:900;line-height:1.3;overflow-wrap:anywhere; }
+    .directory-detail { display:block;font-size:10px;color:rgba(255,255,255,.76);margin-top:3px; }
+    .directory-count { flex:0 0 auto;font-size:10px;font-weight:800;background:rgba(255,255,255,.12);padding:5px 7px;border-radius:999px; }
+    @media (min-width:640px) { .directory-grid { grid-template-columns:repeat(3,minmax(0,1fr));gap:14px; } .directory-photo { height:170px; } }
+    @media (min-width:900px) { .directory-grid { grid-template-columns:repeat(4,minmax(0,1fr)); } }
+    .directory-empty { padding:28px 16px;text-align:center;color:var(--text-secondary);background:var(--bg-muted);border:1px dashed var(--border);border-radius:14px;font-size:13px;line-height:1.6; }
+    .directory-back { margin-bottom:12px; }
+    .directory-coming { text-align:center;padding:42px 18px 48px; }
+    .directory-coming-icon { width:76px;height:76px;margin:0 auto 18px;border-radius:24px;background:var(--red-soft);color:var(--red);display:grid;place-items:center;font-size:34px; }
+    .directory-coming h3 { font-size:23px;font-weight:950;letter-spacing:.04em; }
+    .directory-coming p { margin:10px auto 0;max-width:330px;color:var(--text-secondary);font-size:13px;line-height:1.7; }
+    @media (min-width:640px) { .directory-grid { grid-template-columns:1fr 1fr; } }
+    @media (min-width:900px) { .deals-row { display:grid;grid-template-columns:repeat(4,minmax(0,1fr));overflow:visible;gap:16px; } .city-banner { min-width:0;flex:auto;min-height:165px; } }
+
     /* =========================================================================
        9. RESPONSIVE DESKTOP BREAKPOINTS (>= 900px)
        ========================================================================= */
@@ -1671,9 +1703,9 @@
           <div class="section-head">
             <div class="section-title-row">
               <span class="red-bar"></span>
-              <h2 class="section-title" id="lbl-deals">Special Offers</h2>
+              <h2 class="section-title" id="lbl-deals">Cities &amp; Malls</h2>
             </div>
-            <button type="button" class="see-all-btn" id="btn-deals-all">See All</button>
+            <button type="button" class="see-all-btn" id="btn-deals-all" style="display:none;" aria-hidden="true">See All</button>
           </div>
           <div class="deals-row no-scrollbar" id="deals-row"></div>
         </div>
@@ -1796,6 +1828,17 @@
     <span id="lbl-ai-fab">AI Help</span>
   </button>
 
+  <!-- CITY / MALL / SHOP DIRECTORY MODAL -->
+  <div class="modal-backdrop" id="modal-city">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="city-modal-title">Cities &amp; Malls</strong>
+        <button type="button" class="modal-x" data-close="modal-city">✕</button>
+      </div>
+      <div class="modal-body" id="city-modal-body"></div>
+    </div>
+  </div>
+
   <!-- MODALS -->
   <div class="modal-backdrop" id="modal-product">
     <div class="modal-sheet">
@@ -1877,11 +1920,11 @@
     const STORE_CONFIG = {
       defaultLang: "en",                          // Opens in English ("en") by default
       storeName: { en: "Wollo Market", am: "ወሎ ማርኬት", om: "Gabaa Walloo" },
-      telegramUsername: "Wollomarketzone", // Replace with your Telegram (without @)
-      accountName: "ABDELFETAH SULEYMAN",            // Replace with your full name
-      telebirrNumber: "0990120100",               // Replace with your Telebirr number
-      cbeAccount: "1000668293763",                // Replace with your CBE account
-      phone: "0990120100",                        // Replace with your phone number
+      telegramUsername: "YOUR_TELEGRAM_USERNAME", // Replace with your Telegram (without @)
+      accountName: "STORE OWNER NAME",            // Replace with your full name
+      telebirrNumber: "0900000000",               // Replace with your Telebirr number
+      cbeAccount: "1000000000000",                // Replace with your CBE account
+      phone: "0900000000",                        // Replace with your phone number
       deliveryFee: 200,                           // Upfront delivery fee in Birr
       deliveryTime: {
         en: "Within 72 Hours (3 Days) InshaAllah",
@@ -1894,12 +1937,3273 @@
     const LOCATIONS = [
       { id: "kombolcha", en: "Kombolcha", am: "ኮምቦልቻ", om: "Kombolcha" },
       { id: "dessie",    en: "Dessie",    am: "ደሴ",      om: "Dasee" },
-      { id: "harbu",     en: "Harbu",     am: "ሀርቡ",     om: "Harbuu" },
-      { id: "kemise",    en: "Kemise",    am: "ኬሚሴ",     om: "Kamiisee" }
+      { id: "kemise",    en: "Kemise",    am: "ኬሚሴ",     om: "Kamiisee" },
+      { id: "harbu",     en: "Harbu",     am: "ሀርቡ",     om: "Harbuu" }
       // Example: { id: "addis", en: "Addis Ababa", am: "አዲስ አበባ", om: "Finfinnee" }
     ];
 
-    /* 3. PROMO BANNERS — COPY-PASTE ANY BLOCK TO ADD 10+ BANNERS
+    /*
+      3. CITY DIRECTORY — EDIT THIS DATA TO ADD REAL MALLS AND SHOPS.
+      Add malls to city.malls and standalone shops to city.normalShops.
+      Mall fields: id, name:{en,am,om}, logo, gradient, bgImage:"", shops:[...].
+      Shop fields: id, name:{en,am,om}, logo, category, gradient, bgImage:"".
+      Categories: tech, clothing, food, home. Logos may be emoji/text or image filenames.
+      EASY PHOTO EDIT: upload a photo into the images folder, then change bgImage:"" to bgImage:"images/photo-name.jpg".
+      Do this one line for each mall or shop photo. Set bgImage to "" to keep the gradient.
+      The arrays start empty because verified local shop names were not supplied.
+    */
+    const CITY_DIRECTORY =     [
+      {
+        "id": "kombolcha",
+        "name": {
+          "en": "Kombolcha",
+          "am": "ኮምቦልቻ",
+          "om": "Kombolcha"
+        },
+        "logo": "📍",
+        "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+        "bgImage": "",
+        "malls": [
+          {
+            "id": "kombolcha-sample-mall-1",
+            "name": {
+              "en": "Wollo Sample Mall",
+              "am": "ወሎ ምሳሌ ሞል",
+              "om": "Wollo Sample Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kombolcha-sample-mall-1-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-1-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-1-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-1-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-1-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-1-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-1-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-1-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-1-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-1-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kombolcha-sample-mall-2",
+            "name": {
+              "en": "Highland Sample Center",
+              "am": "ሃይላንድ ምሳሌ ማዕከል",
+              "om": "Highland Sample Center"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kombolcha-sample-mall-2-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-2-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-2-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-2-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-2-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-2-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-2-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-2-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-2-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-2-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kombolcha-sample-mall-3",
+            "name": {
+              "en": "Unity Sample Mall",
+              "am": "ዩኒቲ ምሳሌ ሞል",
+              "om": "Unity Sample Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kombolcha-sample-mall-3-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-3-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-3-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-3-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-3-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-3-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-3-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-3-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-3-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-3-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kombolcha-sample-mall-4",
+            "name": {
+              "en": "Wollo Grand Mall",
+              "am": "ወሎ ግራንድ ሞል",
+              "om": "Wollo Grand Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kombolcha-sample-mall-4-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-4-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-4-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-4-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-4-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-4-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-4-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-4-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-4-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-4-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kombolcha-sample-mall-5",
+            "name": {
+              "en": "Kombolcha City Center",
+              "am": "ኮምቦልቻ ሲቲ ሴንተር",
+              "om": "Kombolcha City Center"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kombolcha-sample-mall-5-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-5-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-5-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-5-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-5-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-5-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-5-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-5-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-5-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-5-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kombolcha-sample-mall-6",
+            "name": {
+              "en": "Mountain View Mall",
+              "am": "ማውንቴን ቪው ሞል",
+              "om": "Mountain View Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kombolcha-sample-mall-6-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-6-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-6-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-6-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-6-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-6-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-6-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-6-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-6-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              },
+              {
+                "id": "kombolcha-sample-mall-6-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#991B1B,#1F2937)",
+                "bgImage": ""
+              }
+            ]
+          }
+        ],
+        "normalShops": []
+      },
+      {
+        "id": "dessie",
+        "name": {
+          "en": "Dessie",
+          "am": "ደሴ",
+          "om": "Dasee"
+        },
+        "logo": "📍",
+        "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+        "bgImage": "",
+        "malls": [
+          {
+            "id": "dessie-sample-mall-1",
+            "name": {
+              "en": "Dessie Sample Plaza",
+              "am": "ደሴ ምሳሌ ፕላዛ",
+              "om": "Dasee Sample Plaza"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "dessie-sample-mall-1-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-1-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-1-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-1-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-1-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-1-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-1-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-1-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-1-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-1-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "dessie-sample-mall-2",
+            "name": {
+              "en": "Mountain View Sample Mall",
+              "am": "ማውንቴን ቪው ምሳሌ ሞል",
+              "om": "Mountain View Sample Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "dessie-sample-mall-2-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-2-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-2-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-2-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-2-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-2-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-2-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-2-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-2-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-2-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "dessie-sample-mall-3",
+            "name": {
+              "en": "Lalibela Sample Center",
+              "am": "ላሊበላ ምሳሌ ማዕከል",
+              "om": "Lalibela Sample Center"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "dessie-sample-mall-3-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-3-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-3-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-3-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-3-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-3-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-3-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-3-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-3-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-3-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "dessie-sample-mall-4",
+            "name": {
+              "en": "Dessie Grand Mall",
+              "am": "ደሴ ግራንድ ሞል",
+              "om": "Dessie Grand Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "dessie-sample-mall-4-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-4-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-4-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-4-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-4-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-4-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-4-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-4-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-4-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-4-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "dessie-sample-mall-5",
+            "name": {
+              "en": "Dessie City Center",
+              "am": "ደሴ ሲቲ ሴንተር",
+              "om": "Dessie City Center"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "dessie-sample-mall-5-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-5-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-5-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-5-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-5-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-5-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-5-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-5-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-5-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-5-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "dessie-sample-mall-6",
+            "name": {
+              "en": "Highland Plaza",
+              "am": "ሃይላንድ ፕላዛ",
+              "om": "Highland Plaza"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "dessie-sample-mall-6-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-6-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-6-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-6-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-6-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-6-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-6-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-6-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-6-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              },
+              {
+                "id": "dessie-sample-mall-6-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#1D4ED8,#172554)",
+                "bgImage": ""
+              }
+            ]
+          }
+        ],
+        "normalShops": []
+      },
+      {
+        "id": "kemise",
+        "name": {
+          "en": "Kemise",
+          "am": "ኬሚሴ",
+          "om": "Kamiisee"
+        },
+        "logo": "📍",
+        "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+        "bgImage": "",
+        "malls": [
+          {
+            "id": "kemise-sample-mall-1",
+            "name": {
+              "en": "Kemise Sample Plaza",
+              "am": "ኬሚሴ ምሳሌ ፕላዛ",
+              "om": "Kamiisee Sample Plaza"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kemise-sample-mall-1-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-1-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-1-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-1-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-1-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-1-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-1-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-1-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-1-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-1-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kemise-sample-mall-2",
+            "name": {
+              "en": "Green Valley Sample Mall",
+              "am": "ግሪን ቫሊ ምሳሌ ሞል",
+              "om": "Green Valley Sample Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kemise-sample-mall-2-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-2-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-2-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-2-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-2-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-2-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-2-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-2-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-2-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-2-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kemise-sample-mall-3",
+            "name": {
+              "en": "Kemise Grand Mall",
+              "am": "ኬሚሴ ግራንድ ሞል",
+              "om": "Kemise Grand Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kemise-sample-mall-3-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-3-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-3-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-3-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-3-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-3-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-3-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-3-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-3-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-3-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kemise-sample-mall-4",
+            "name": {
+              "en": "Kemise City Center",
+              "am": "ኬሚሴ ሲቲ ሴንተር",
+              "om": "Kemise City Center"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kemise-sample-mall-4-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-4-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-4-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-4-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-4-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-4-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-4-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-4-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-4-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-4-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kemise-sample-mall-5",
+            "name": {
+              "en": "Green Valley Plaza",
+              "am": "ግሪን ቫሊ ፕላዛ",
+              "om": "Green Valley Plaza"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kemise-sample-mall-5-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-5-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-5-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-5-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-5-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-5-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-5-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-5-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-5-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-5-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "kemise-sample-mall-6",
+            "name": {
+              "en": "Kemise Shopping Center",
+              "am": "ኬሚሴ ሸopping ሴንተር",
+              "om": "Kemise Shopping Center"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "kemise-sample-mall-6-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-6-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-6-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-6-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-6-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-6-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-6-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-6-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-6-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              },
+              {
+                "id": "kemise-sample-mall-6-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#047857,#052E2B)",
+                "bgImage": ""
+              }
+            ]
+          }
+        ],
+        "normalShops": []
+      },
+      {
+        "id": "harbu",
+        "name": {
+          "en": "Harbu",
+          "am": "ሀርቡ",
+          "om": "Harbuu"
+        },
+        "logo": "📍",
+        "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+        "bgImage": "",
+        "malls": [
+          {
+            "id": "harbu-sample-mall-1",
+            "name": {
+              "en": "Harbu Sample Center",
+              "am": "ሀርቡ ምሳሌ ማዕከል",
+              "om": "Harbuu Sample Center"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "harbu-sample-mall-1-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-1-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-1-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-1-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-1-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-1-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-1-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-1-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-1-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-1-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "harbu-sample-mall-2",
+            "name": {
+              "en": "Sunrise Sample Mall",
+              "am": "ሰንራይዝ ምሳሌ ሞል",
+              "om": "Sunrise Sample Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "harbu-sample-mall-2-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-2-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-2-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-2-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-2-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-2-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-2-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-2-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-2-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-2-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "harbu-sample-mall-3",
+            "name": {
+              "en": "Harbu Grand Mall",
+              "am": "ሀርቡ ግራንድ ሞል",
+              "om": "Harbu Grand Mall"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "harbu-sample-mall-3-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-3-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-3-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-3-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-3-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-3-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-3-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-3-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-3-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-3-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "harbu-sample-mall-4",
+            "name": {
+              "en": "Harbu City Center",
+              "am": "ሀርቡ ሲቲ ሴንተር",
+              "om": "Harbu City Center"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "harbu-sample-mall-4-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-4-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-4-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-4-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-4-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-4-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-4-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-4-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-4-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-4-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "harbu-sample-mall-5",
+            "name": {
+              "en": "Harbu Shopping Plaza",
+              "am": "ሀርቡ ሸopping ፕላዛ",
+              "om": "Harbu Shopping Plaza"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "harbu-sample-mall-5-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-5-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-5-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-5-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-5-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-5-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-5-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-5-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-5-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-5-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              }
+            ]
+          },
+          {
+            "id": "harbu-sample-mall-6",
+            "name": {
+              "en": "Sunrise Shopping Center",
+              "am": "ሰንራይዝ ሸopping ሴንተር",
+              "om": "Sunrise Shopping Center"
+            },
+            "logo": "🏬",
+            "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+            "bgImage": "",
+            "shops": [
+              {
+                "id": "harbu-sample-mall-6-shop-1",
+                "name": {
+                  "en": "Tech Zone 01",
+                  "am": "ቴክ ዞን 01",
+                  "om": "Tech Zone 01"
+                },
+                "logo": "📱",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-6-shop-2",
+                "name": {
+                  "en": "Mobile World 02",
+                  "am": "ሞባይል ወርልድ 02",
+                  "om": "Mobile World 02"
+                },
+                "logo": "📲",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-6-shop-3",
+                "name": {
+                  "en": "Fashion House 03",
+                  "am": "ፋሽን ሃውስ 03",
+                  "om": "Fashion House 03"
+                },
+                "logo": "👕",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-6-shop-4",
+                "name": {
+                  "en": "Modern Boutique 04",
+                  "am": "ሞደርን ቡቲክ 04",
+                  "om": "Modern Boutique 04"
+                },
+                "logo": "👗",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-6-shop-5",
+                "name": {
+                  "en": "Coffee Corner 05",
+                  "am": "ቡና ኮርነር 05",
+                  "om": "Coffee Corner 05"
+                },
+                "logo": "☕",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-6-shop-6",
+                "name": {
+                  "en": "Taste Cafe 06",
+                  "am": "ቴስት ካፌ 06",
+                  "om": "Taste Cafe 06"
+                },
+                "logo": "🍽️",
+                "category": "food",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-6-shop-7",
+                "name": {
+                  "en": "Home Essentials 07",
+                  "am": "የቤት እቃዎች 07",
+                  "om": "Home Essentials 07"
+                },
+                "logo": "🏠",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-6-shop-8",
+                "name": {
+                  "en": "Furniture Gallery 08",
+                  "am": "ፈርኒቸር ጋለሪ 08",
+                  "om": "Furniture Gallery 08"
+                },
+                "logo": "🛋️",
+                "category": "home",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-6-shop-9",
+                "name": {
+                  "en": "Gadget Store 09",
+                  "am": "ጋጅት ስቶር 09",
+                  "om": "Gadget Store 09"
+                },
+                "logo": "🎧",
+                "category": "tech",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              },
+              {
+                "id": "harbu-sample-mall-6-shop-10",
+                "name": {
+                  "en": "Shoes & Style 10",
+                  "am": "ጫማ እና ስታይል 10",
+                  "om": "Shoes & Style 10"
+                },
+                "logo": "👟",
+                "category": "clothing",
+                "gradient": "linear-gradient(135deg,#B45309,#451A03)",
+                "bgImage": ""
+              }
+            ]
+          }
+        ],
+        "normalShops": []
+      }
+    ];
+
+    /* 4. PROMO BANNERS — COPY-PASTE ANY BLOCK TO ADD 10+ BANNERS
           Actions: "scroll" | "partner" | "info" | "link" */
     const PROMO_BANNERS = [
       {
@@ -2054,20 +5358,14 @@
         desc: { en: "USB-C rechargeable cordless heating pad with 3 heat levels & massage modes. Discreet under clothes for fast relief.", am: "ያለ ገመድ በቻርጅ የሚሰራ፣ 3 የሙቀት እና የማሳጅ ደረጃዎች ያሉት። በልብስ ስር ሳይታይ ህመምን በሰከንዶች ያስታግሳል።", om: "USB-C tiin chaarjii ta'u, sadarkaa ho'aa 3 fi masaajii qaba." }
       },
       {
-        id: 2, category: "women", isDeal: false, badge: "", price: 750, oldPrice: 0,
+        id: 2, category: "women", isDeal: false, badge: "", price: 1450, oldPrice: 0,
         gradient: "linear-gradient(135deg, #BE123C 0%, #4C0519 100%)", icon: "fan",
-        images: [
-         "minifan.jpg", 
-         "minifan1.jpg",
-         "minifan2.jpg"
-
-
-        ], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Portable Mini Fan", am: "ሚኒ ተንቀሳቃሽ ፋን (Mini Fan)", om: "Faanii Miinii Chaarjiin Hojjetu" },
         desc: { en: "Compact USB rechargeable handheld & desk mini fan — easy to carry in any bag for Kombolcha, Harbu & Kemise heat.", am: "በቦርሳ የሚያዝ በቻርጅ የሚሰራ ሚኒ ፋን — ለኮምቦልቻ፣ ሀርቡ እና ኬሚሴ ሙቀት ምርጥ መፍትሄ።", om: "Boorsaa keessatti qabamu, chaarjiin hojjeta — ho'aaf furmaata gaarii." }
       },
       {
-        id: 3, category: "women", isDeal: true, badge: "", price: 750, oldPrice: 0,
+        id: 3, category: "women", isDeal: true, badge: "", price: 2800, oldPrice: 0,
         gradient: "linear-gradient(135deg, #9F1239 0%, #1F1216 100%)", icon: "hair",
         images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Hair Straightener Comb Brush", am: "የሚያበጥር የፀጉር መተኮሻ", om: "Burushii Rifeensa Qajeelchu" },
@@ -2076,12 +5374,7 @@
       {
         id: 4, category: "women", isDeal: false, badge: "", price: 1650, oldPrice: 0,
         gradient: "linear-gradient(135deg, #E11D48 0%, #4C0519 100%)", icon: "cup",
-        images: [
-          "Travelcup.jpg", 
-"Travelcup1.jpg",
- "Travelcup2.jpg"
-
-        ], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
+        images: [], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Insulated Travel Cups", am: "የጉዞ መጠጫ ኩባያዎች (Travel Cups)", om: "Kubbaayyaa Imalaa (Travel Cups)" },
         desc: { en: "Leak-proof thermal travel mugs & tumblers that keep coffee, tea, or cold drinks at the perfect temperature.", am: "የማያፈስ እና ቡና፣ ሻይ ወይም ቀዝቃዛ መጠጥ ሙቀቱን/ቅዝቃዜውን ጠብቆ የሚያቆይ ዘመናዊ የጉዞ ኩባያ።", om: "Buna, shaayii ykn dhugaatii qabbanaa'aa osoo hin dhangalaasin tursiisu." }
       },
@@ -2275,7 +5568,7 @@
       en: {
         langCode: "EN", searchPh: "Search products...",
         home: "Home", cart: "Cart", orders: "Orders", profile: "Profile",
-        categories: "Categories", seeAll: "See All", specialOffers: "Special Offers",
+        categories: "Categories", seeAll: "See All", specialOffers: "Cities & Malls",
         allProducts: "All Products", reqItem: "+ Request Item",
         catAll: "All", catDeals: "Special Offers", catWomen: "For Women", catHome: "Home & Kitchen", catTech: "Tech & Gadgets", catFitness: "Fitness & Sports",
         emptyCartTitle: "Your cart is empty", emptyCartSub: "Browse our unique gadgets and add items to your cart", shopNow: "Shop Now",
@@ -2314,7 +5607,7 @@
       am: {
         langCode: "አማ", searchPh: "እቃዎችን ይፈልጉ...",
         home: "መነሻ", cart: "ቅርጫት", orders: "ትዕዛዞች", profile: "መገለጫ",
-        categories: "ምድቦች", seeAll: "ሁሉንም እይ", specialOffers: "ልዩ ቅናሾች",
+        categories: "ምድቦች", seeAll: "ሁሉንም እይ", specialOffers: "ከተሞች እና ሞሎች",
         allProducts: "ሁሉም እቃዎች", reqItem: "+ ሌላ እቃ ይዘዙ",
         catAll: "ሁሉም", catDeals: "ልዩ ቅናሽ", catWomen: "ለሴቶች", catHome: "ቤትና ማዕድ ቤት", catTech: "ቴክና ጋጄት", catFitness: "ፊትነስና ስፖርት",
         emptyCartTitle: "ቅርጫትዎ ባዶ ነው", emptyCartSub: "ለየት ያሉ ጋጄቶቻችንን ይመልከቱና ወደ ቅርጫትዎ ይጨምሩ", shopNow: "አሁን ይሸምቱ",
@@ -2725,6 +6018,92 @@
       `;
     }
 
+    function cityText(value) {
+      if (!value) return "";
+      return typeof value === "string" ? value : (value[state.lang] || value.en || "");
+    }
+    function renderCityBanners() {
+      const row=document.getElementById("deals-row"), title=document.getElementById("lbl-deals");
+      if (!row) return;
+      const titles={en:"Cities & Malls",am:"ከተሞች እና ሞሎች",om:"Magaalotaa fi Moolii"};
+      if (title) title.textContent=titles[state.lang]||titles.en;
+      row.innerHTML=CITY_DIRECTORY.map(function(city) {
+        const bg=city.bgImage ? `background-image:url('${city.bgImage}');` : `background:${city.gradient};`;
+        const mallWord=state.lang==="am"?"ሞሎች":state.lang==="om"?"moolii":"malls";
+        const shopWord=state.lang==="am"?"ሱቆች":state.lang==="om"?"suuqii":"shops";
+        return `<button type="button" class="city-banner" data-city="${city.id}" style="${bg}">
+          <span><span class="city-banner-title">${cityText(city.name)}</span><span class="city-banner-sub">${city.malls.length} ${mallWord} · ${city.normalShops.length} ${shopWord}</span></span>
+        </button>`;
+      }).join("");
+    }
+    const DIRECTORY_CATEGORIES=[
+      {id:"all",label:{en:"All",am:"ሁሉም",om:"Hunda"}},
+      {id:"tech",label:{en:"Tech",am:"ቴክኖሎጂ",om:"Teeknooloojii"}},
+      {id:"clothing",label:{en:"Clothing",am:"ልብስ",om:"Uffata"}},
+      {id:"food",label:{en:"Food & Cafe",am:"ምግብ እና ካፌ",om:"Nyaata fi Cafe"}},
+      {id:"home",label:{en:"Home",am:"ቤት",om:"Mana"}}
+    ];
+    const CITY_UI={
+      en:{malls:"Malls & Centers",shops:"Normal Shops",backMalls:"← Back to Malls",back:"← Back",shopCount:"shops",noMalls:"No malls have been added for this city yet.",noShops:"No standalone shops have been added for this city yet.",noMallShops:"No shops have been added to this mall yet.",coming:"COMING SOON",soon:"This shop is being prepared and will launch soon. Please check back later.",category:"Category"},
+      am:{malls:"ሞሎች እና ማዕከላት",shops:"መደበኛ ሱቆች",backMalls:"← ወደ ሞሎች ተመለስ",back:"← ተመለስ",shopCount:"ሱቆች",noMalls:"ለዚህ ከተማ ገና ሞል አልተጨመረም።",noShops:"ለዚህ ከተማ ገና መደበኛ ሱቅ አልተጨመረም።",noMallShops:"በዚህ ሞል ውስጥ ገና ሱቆች አልተጨመሩም።",coming:"በቅርቡ ይመጣል",soon:"ይህ ሱቅ እየተዘጋጀ ነው፤ በቅርቡ ይከፈታል። እባክዎ ቆይተው ይመለሱ።",category:"ምድብ"},
+      om:{malls:"Moolii fi Giddugalawwan",shops:"Suuqii Idilee",backMalls:"← Gara Moolii Deebi'i",back:"← Deebi'i",shopCount:"suuqii",noMalls:"Mooliin magaalaa kanaaf ammaaf hin galmoofne.",noShops:"Suuqiin idilee magaalaa kanaaf ammaaf hin galmoofne.",noMallShops:"Suuqiin moolii kana keessa jiru ammaaf hin galmoofne.",coming:"YEROO DHİYOOTTI",soon:"Suuqiin kun qophaa'aa jira; yeroo dhiyootti ni banama. Maaloo booda deebi'aa.",category:"Ramaddii"}
+    };
+    const directoryState={cityId:null,view:"root",tab:"malls",mallId:null,shopRef:null,category:"all"};
+    function directoryCategoryLabel(cat) {
+      const labels={tech:{en:"Tech",am:"ቴክኖሎጂ",om:"Teeknooloojii"},clothing:{en:"Clothing",am:"ልብስ",om:"Uffata"},food:{en:"Food & Cafe",am:"ምግብ እና ካፌ",om:"Nyaata fi Cafe"},home:{en:"Home",am:"ቤት",om:"Mana"}};
+      return labels[cat] ? labels[cat][state.lang] : (cat||"");
+    }
+    function directoryCardHtml(item,type) {
+      const gradient=item.gradient||"linear-gradient(135deg,#334155,#111827)";
+      const photo=item.bgImage
+        ? `<img src="${item.bgImage}" alt="${cityText(item.name)}" loading="lazy">`
+        : `<span class="directory-photo-fallback">${item.logo|| (type==="mall"?"🏬":"🏪")}</span>`;
+      const logo=item.logo|| (type==="mall"?"🏬":"🏪");
+      const logoHtml=/^https?:|\.(png|jpe?g|webp|svg)$/i.test(String(logo))?`<img src="${logo}" alt="">`:logo;
+      const count=(item.shops||[]).length;
+      const detail=type==="mall"?`${count} ${CITY_UI[state.lang].shopCount}`:`${CITY_UI[state.lang].category}: ${directoryCategoryLabel(item.category)}`;
+      return `<button type="button" class="directory-card" data-directory-${type}="${item.id}">
+        <span class="directory-photo" style="--directory-gradient:${gradient}">${photo}</span>
+        <span class="directory-card-info"><span class="directory-logo">${logoHtml}</span><span class="directory-meta"><span class="directory-name">${cityText(item.name)}</span><span class="directory-detail">${detail}</span></span>
+        ${type==="mall"?`<span class="directory-count">${count}</span>`:""}</span>
+      </button>`;
+    }
+    function renderDirectory() {
+      const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId);
+      if(!city)return;
+      const ui=CITY_UI[state.lang],body=document.getElementById("city-modal-body");
+      document.getElementById("city-modal-title").textContent=cityText(city.name);
+      if(directoryState.view==="coming") {
+        const shop=directoryState.shopRef||{};
+        body.innerHTML=`<button class="btn-outline directory-back" data-directory-back>${ui.back}</button>
+          <div class="directory-coming"><div class="directory-coming-icon">🏪</div><h3>${ui.coming}</h3>
+          <div style="font-size:17px;font-weight:800;margin-top:10px;">${cityText(shop.name)}</div><p>${ui.soon}</p></div>`;
+        return;
+      }
+      if(directoryState.view==="mall") {
+        const mall=city.malls.find(m=>m.id===directoryState.mallId);
+        if(!mall){directoryState.view="root";return renderDirectory();}
+        const shops=mall.shops||[],filtered=shops.filter(sh=>directoryState.category==="all"||sh.category===directoryState.category);
+        body.innerHTML=`<button class="btn-outline directory-back" data-directory-back-malls>${ui.backMalls}</button>
+          <div style="font-size:16px;font-weight:900;margin-bottom:12px;">${cityText(mall.name)}</div>
+          <div class="cat-row no-scrollbar" style="margin-bottom:13px;">${DIRECTORY_CATEGORIES.map(c=>`<button class="cat-chip ${directoryState.category===c.id?"active":""}" data-directory-category="${c.id}">${c.label[state.lang]}</button>`).join("")}</div>
+          <div class="directory-grid">${filtered.length?filtered.map(sh=>directoryCardHtml(sh,"shop")).join(""):`<div class="directory-empty">${ui.noMallShops}</div>`}</div>`;
+        return;
+      }
+      const malls=city.malls||[],shops=city.normalShops||[],filtered=shops.filter(sh=>directoryState.category==="all"||sh.category===directoryState.category);
+      body.innerHTML=`<div class="city-directory-tabs">
+        <button class="city-tab ${directoryState.tab==="malls"?"active":""}" data-directory-tab="malls">${ui.malls} (${malls.length})</button>
+        <button class="city-tab ${directoryState.tab==="shops"?"active":""}" data-directory-tab="shops">${ui.shops} (${shops.length})</button></div>
+        ${directoryState.tab==="malls"?`<div class="directory-grid">${malls.length?malls.map(m=>directoryCardHtml(m,"mall")).join(""):`<div class="directory-empty">${ui.noMalls}</div>`}</div>`:
+        `<div class="cat-row no-scrollbar" style="margin-bottom:13px;">${DIRECTORY_CATEGORIES.map(c=>`<button class="cat-chip ${directoryState.category===c.id?"active":""}" data-directory-category="${c.id}">${c.label[state.lang]}</button>`).join("")}</div>
+        <div class="directory-grid">${filtered.length?filtered.map(sh=>directoryCardHtml(sh,"shop")).join(""):`<div class="directory-empty">${ui.noShops}</div>`}</div>`}`;
+    }
+    function openCityDirectory(id) {
+      directoryState.cityId=id;directoryState.view="root";directoryState.tab="malls";directoryState.mallId=null;directoryState.shopRef=null;directoryState.category="all";
+      renderDirectory();openModal("modal-city");
+    }
+    function openDirectoryShop(shop) { directoryState.shopRef=shop;directoryState.view="coming";renderDirectory(); }
+
     function renderHomeProducts() {
       const q = state.search.trim().toLowerCase();
       const dealsSec = document.getElementById("sec-deals");
@@ -2732,7 +6111,7 @@
         dealsSec.style.display = "none";
       } else {
         dealsSec.style.display = "block";
-        document.getElementById("deals-row").innerHTML = PRODUCTS.filter(function (p) { return p.isDeal; }).map(function (p) { return cardHtml(p, true); }).join("");
+        renderCityBanners();
       }
 
       const list = PRODUCTS.filter(function (p) {
@@ -3441,6 +6820,7 @@
       updateBadges();
       renderCarousel();
       renderCategories();
+      renderCityBanners();
       renderHomeProducts();
       if (state.tab === "cart") renderCart();
       if (state.tab === "orders") renderOrders();
@@ -3543,6 +6923,27 @@
       });
 
       document.addEventListener("click", function (e) {
+        const cityBtn=e.target.closest("[data-city]");
+        if(cityBtn){openCityDirectory(cityBtn.getAttribute("data-city"));return;}
+        const dirTab=e.target.closest("[data-directory-tab]");
+        if(dirTab){directoryState.tab=dirTab.getAttribute("data-directory-tab");directoryState.category="all";renderDirectory();return;}
+        const dirCat=e.target.closest("[data-directory-category]");
+        if(dirCat){directoryState.category=dirCat.getAttribute("data-directory-category");renderDirectory();return;}
+        const dirBackMalls=e.target.closest("[data-directory-back-malls]");
+        if(dirBackMalls){directoryState.view="root";directoryState.tab="malls";directoryState.mallId=null;directoryState.category="all";renderDirectory();return;}
+        const dirBack=e.target.closest("[data-directory-back]");
+        if(dirBack){if(directoryState.mallId)directoryState.view="mall";else directoryState.view="root";directoryState.shopRef=null;renderDirectory();return;}
+        const dirMall=e.target.closest("[data-directory-mall]");
+        if(dirMall){directoryState.mallId=dirMall.getAttribute("data-directory-mall");directoryState.view="mall";directoryState.category="all";renderDirectory();return;}
+        const dirShop=e.target.closest("[data-directory-shop]");
+        if(dirShop){
+          const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId);
+          const mall=directoryState.view==="mall"?city.malls.find(m=>m.id===directoryState.mallId):null;
+          const list=mall?(mall.shops||[]):(city.normalShops||[]);
+          const shop=list.find(sh=>sh.id===dirShop.getAttribute("data-directory-shop"));
+          if(shop)openDirectoryShop(shop);
+          return;
+        }
         const cl = e.target.closest("[data-close]");
         if (cl) { closeModal(cl.getAttribute("data-close")); return; }
         if (e.target.classList.contains("modal-backdrop")) { closeModal(e.target.id); return; }
