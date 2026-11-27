@@ -105,6 +105,19 @@
       padding: 0 20px;
     }
 
+    .download-app-bar {
+      display:block;width:100%;height:34px;min-height:34px;
+      background:#111115;color:#fff;text-align:center;
+      font-size:12px;font-weight:800;letter-spacing:.02em;
+      border:0;border-radius:0;padding:0 12px;
+    }
+    .download-app-bar:active { opacity:.82; }
+    .powered-by {
+      padding:9px 0 2px;text-align:center;color:var(--text-muted);
+      font-size:10px;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
     /* =========================================================================
        3. STICKY CURVED HEADER & PINNED SEARCH BAR (16px 20px MOBILE)
        ========================================================================= */
@@ -1918,10 +1931,34 @@
         display: block;
       }
     }
+
+    .wm-mall-hero{display:flex;align-items:center;gap:14px;padding:18px;margin:4px 0 14px;border:1px solid var(--border);border-radius:18px;background:var(--bg-card);box-shadow:var(--shadow-sm)}
+    .wm-mall-hero-icon{width:54px;height:54px;flex:0 0 54px;display:grid;place-items:center;border-radius:15px;background:var(--red-soft);font-size:27px}
+    .wm-mall-hero h3{font-size:18px;font-weight:900;color:var(--text-primary)}
+    .wm-mall-create{margin:0 0 14px}
+    .wm-mall-shop{padding:15px;margin:12px 0;background:var(--bg-card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-sm)}
+    .wm-mall-shop-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .wm-mall-logo{width:58px;height:58px;flex:0 0 58px;border-radius:14px;object-fit:cover;border:1px solid var(--border);background:var(--bg-muted)}
+    .wm-mall-logo-fallback{display:grid;place-items:center;font-size:25px}
+    .wm-mall-shop-meta{min-width:0;flex:1}
+    .wm-mall-shop-meta h4{font-size:15px;font-weight:900;overflow-wrap:anywhere}
+    .wm-mall-shop-meta p{font-size:12px;color:var(--text-secondary);margin-top:3px}
+    .wm-mall-links{display:flex;gap:14px;flex-wrap:wrap;margin:4px 0 12px;font-size:12px;font-weight:800;color:var(--red)}
+    .wm-mall-products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+    .wm-mall-product{min-width:0;padding:10px;border:1px solid var(--border);border-radius:13px;background:var(--bg-page)}
+    .wm-mall-product img{width:100%;height:125px;object-fit:contain;border-radius:9px;margin-top:7px;background:var(--bg-muted)}
+    .wm-mall-product p{font-size:12px;color:var(--text-secondary);margin-top:7px;overflow-wrap:anywhere}
+    .wm-mall-empty{padding:20px 14px;text-align:center;color:var(--text-secondary);font-size:13px;background:var(--bg-muted);border:1px dashed var(--border);border-radius:14px}
+    .wm-mall-form{padding:17px;background:var(--bg-card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-sm)}
+    .wm-mall-form h3{font-size:18px;font-weight:900;margin-bottom:16px}
+    .wm-mall-error{min-height:18px;color:var(--red);font-size:12px;margin:4px 0 10px}
+    .wm-mall-hint{font-size:11px;color:var(--text-secondary);margin-top:5px}
+    @media(max-width:380px){.wm-mall-products{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 
+  <button type="button" class="download-app-bar" id="download-app-btn">Download App</button>
   <!-- STICKY CURVED HEADER & PINNED SEARCH BAR -->
   <header class="site-header" id="site-header">
     <div class="header-inner">
@@ -2002,6 +2039,7 @@
   <!-- MAIN TABS -->
   <main>
     <section class="tab-panel active" id="tab-home">
+      <div class="container"><div class="powered-by">Powered by Abdelfetah Suleyman</div></div>
       <div class="carousel-wrap" id="carousel-wrap">
         <div class="carousel-track no-scrollbar" id="carousel-track"></div>
         <div class="carousel-dots" id="carousel-dots"></div>
@@ -2090,7 +2128,7 @@
           <p id="wm-sell-message" role="status" style="margin-top:9px;font-size:12px"></p>
         </form>
       </div>
-      <div class="section"><div class="section-head"><h2 class="section-title">Listed by Sellers</h2><button type="button" class="req-pill-btn" id="wm-admin-unlock">Admin</button></div><div id="wm-listings-root" class="products-grid"></div></div>
+      <div class="section"><div class="section-head"><h2 class="section-title" id="wm-listed-title">Listed by Sellers</h2></div><div id="wm-listings-root" class="products-grid"></div></div>
     </div>
   </section>
 
@@ -2154,7 +2192,7 @@
     </button>
     <button type="button" class="bnav-btn" data-nav="sell" aria-label="Sell Your Product">
       <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
-      <span id="bnav-sell">Sell / ሽጥ</span>
+      <span id="bnav-sell">Sell</span>
     </button>
   </nav>
 
@@ -2270,9 +2308,9 @@
     const STORE_CONFIG = {
       defaultLang: "en",                          // Opens in English ("en") by default
       storeName: { en: "Wollo Market", am: "ወሎ ማርኬት", om: "Gabaa Walloo" },
-      telegramUsername: "YOUR_TELEGRAM_USERNAME", // Replace with your Telegram (without @)
-      telegramBotToken: "",
-      telegramChatId: "",
+      appDownloadUrl: "",                    // Optional direct APK/app download URL
+      telegramBotToken: "",                  // Telegram BotFather token (keep private)
+      telegramChatId: "",                    // Destination chat/group ID
       adminPin: "2026",
       partnerPins: { "abudi-perfume": "1111", "abudi-menswear": "2222", "abudi-pc": "3333" },
       accountName: "STORE OWNER NAME",            // Replace with your full name
@@ -4027,46 +4065,68 @@
       });
     }
 
-    function sendOrderToTelegram(message, screenshot, fallbackUsername) {
-      const token = String(STORE_CONFIG.telegramBotToken || "").trim();
-      const chatId = String(STORE_CONFIG.telegramChatId || "").trim();
-      const configured = token && chatId &&
-        token !== "YOUR_BOT_TOKEN_HERE" && chatId !== "YOUR_CHAT_ID_HERE";
-      if (!configured) {
-        openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
-        toast(t("telegramFallback"));
-        switchTab("orders");
-        return;
-      }
-      let request;
-      if (screenshot) {
-        const formData = new FormData();
-        formData.append("chat_id", chatId);
-        formData.append("photo", screenshot);
-        formData.append("caption", message.slice(0, 950));
-        request = fetch("https://api.telegram.org/bot" + token + "/sendPhoto", {
-          method: "POST", body: formData
-        });
-      } else {
-        request = fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
+    async function sendOrderToTelegram(message, screenshot, fallbackUsername) {
+      try {
+        const token = String(STORE_CONFIG.telegramBotToken || "").trim();
+        const chatId = String(STORE_CONFIG.telegramChatId || "").trim();
+        if (!token || !chatId) {
+          toast("Order saved on this device, but Telegram is not configured. Add telegramBotToken and telegramChatId in STORE_CONFIG.");
+          switchTab("orders");
+          return false;
+        }
+        const orderMessage = String(message || "").trim();
+        if (!orderMessage) throw new Error("Order summary is empty.");
+        const response = await fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chat_id: chatId, text: message })
+          body: JSON.stringify({ chat_id: chatId, text: orderMessage })
         });
+        const result = await response.json();
+        if (!response.ok || !result || !result.ok) {
+          throw new Error((result && result.description) || "Telegram could not accept the order.");
+        }
+        toast("Order sent successfully!");
+        switchTab("orders");
+        return true;
+      } catch (error) {
+        console.error("Telegram order submission failed:", error);
+        toast("Order saved, but sending failed. Check your connection and Telegram bot settings.");
+        switchTab("orders");
+        return false;
       }
-      request.then(function (response) {
-        if (!response.ok) throw new Error("Telegram request failed");
-        return response.json();
-      }).then(function (result) {
-        if (!result || !result.ok) throw new Error("Telegram rejected the order");
-        toast(t("orderSent"));
-        switchTab("orders");
-      }).catch(function () {
-        openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
-        toast(t("telegramFallback"));
-        switchTab("orders");
-      });
     }
+
+    let deferredInstallPrompt = null;
+    window.addEventListener("beforeinstallprompt", function (event) {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+    });
+    async function handleAppDownload() {
+      try {
+        const target = String(STORE_CONFIG.appDownloadUrl || "").trim();
+        if (target) {
+          window.open(target, "_blank", "noopener,noreferrer");
+          return;
+        }
+        const isInstalled = window.matchMedia("(display-mode: standalone)").matches ||
+          window.navigator.standalone === true;
+        if (isInstalled) {
+          toast("Wollo Market is already installed on this device.");
+          return;
+        }
+        if (deferredInstallPrompt) {
+          deferredInstallPrompt.prompt();
+          await deferredInstallPrompt.userChoice;
+          deferredInstallPrompt = null;
+          return;
+        }
+        toast("App installation is not available here yet. Use your browser menu and choose Install app or Add to Home Screen.");
+      } catch (error) {
+        console.error("App install prompt unavailable:", error);
+        toast("App installation is unavailable in this browser. Try Add to Home Screen from the browser menu.");
+      }
+    }
+    document.getElementById("download-app-btn").addEventListener("click", handleAppDownload);
 
     /* THEME, LANGUAGE & BADGES */
     function applyTheme() {
@@ -4086,6 +4146,8 @@
     function updateTexts() {
       const locStr = locationsLine();
       document.documentElement.lang = state.lang;
+      const downloadLabels = { en: "Download App", am: "አፕ አውርድ", om: "App Buufadhu" };
+      document.getElementById("download-app-btn").textContent = downloadLabels[state.lang] || downloadLabels.en;
       document.getElementById("hdr-brand").textContent = STORE_CONFIG.storeName[state.lang];
       document.getElementById("hdr-cities").textContent = locStr;
       document.getElementById("btn-lang").textContent = t("langCode");
@@ -4100,6 +4162,11 @@
       document.getElementById("bnav-cart").textContent = t("cart");
       document.getElementById("bnav-orders").textContent = t("orders");
       document.getElementById("bnav-profile").textContent = t("profile");
+      const sellLabels = { en: "Sell", am: "ሽጥ", om: "Gurguri" };
+      const sellTitles = { en: "Sell Your Product", am: "ምርትዎን ይሽጡ", om: "Oomisha Kee Gurguri" };
+      document.getElementById("bnav-sell").textContent = sellLabels[state.lang] || sellLabels.en;
+      document.getElementById("wm-sell-page-title").textContent = sellTitles[state.lang] || sellTitles.en;
+      document.getElementById("wm-listed-title").textContent = ({en:"Listed by Sellers",am:"በሻጮች የተዘረዘሩ",om:"Kan Gurgurtootaan Tarreeffaman"})[state.lang] || "Listed by Sellers";
 
       document.getElementById("lbl-cat").textContent = t("categories");
       document.getElementById("btn-cat-all").textContent = t("seeAll");
@@ -4834,6 +4901,7 @@
             <div style="font-size:28px;font-weight:900;color:var(--red);margin-bottom:10px;">${comingSoonText}</div>
             <div style="font-size:13px;color:var(--text-secondary);margin-bottom:20px;">${comingSoonSubtitle}</div>
             <button type="button" class="btn-outline" id="pt-coming-back">${backLabel}</button>
+            <div style="text-align:right;margin-top:18px"><button type="button" id="wm-partner-key" aria-label="Partner owner access" style="font-size:12px;color:var(--text-muted);opacity:.38;padding:6px">🔒</button></div>
           </div>
         `;
         document.getElementById("pt-coming-back").addEventListener("click", function () {
@@ -4860,11 +4928,11 @@
                   <div style="font-size:12px;color:var(--text-secondary);">${it.desc[state.lang] || it.desc.en}</div>
                   <div style="font-size:15px;font-weight:900;color:var(--red);">${br(it.price)}</div>
                   <button type="button" class="btn-red" style="padding:8px 10px;font-size:12px;" data-pitem="${it.id}">${t("orderNow")}</button>
-                  ${wmPartnerUnlocked[store.id] ? `<div style="display:flex;gap:5px;margin-top:6px"><button type="button" class="btn-outline" style="flex:1;padding:5px;font-size:10px" data-wm-partner-edit="${it.id}">Edit</button><button type="button" class="btn-outline" style="flex:1;padding:5px;font-size:10px;color:var(--red)" data-wm-partner-delete="${it.id}">Delete</button></div>` : ""}
+                  ${(wmPartnerUnlocked[store.id] || wmAdminUnlocked) ? `<div style="display:flex;gap:5px;margin-top:6px"><button type="button" class="btn-outline" style="flex:1;padding:5px;font-size:10px" data-wm-partner-edit="${it.id}">Edit</button><button type="button" class="btn-outline" style="flex:1;padding:5px;font-size:10px;color:var(--red)" data-wm-partner-delete="${it.id}">Delete</button></div>` : ""}
                 </div>
               </div>`;
           }).join("")}</div>
-          ${wmPartnerUnlocked[store.id] ? `<button type="button" class="btn-red full" id="wm-partner-add" style="margin-top:10px">+ Add Product</button>` : ""}
+          ${(wmPartnerUnlocked[store.id] || wmAdminUnlocked) ? `<button type="button" class="btn-red full" id="wm-partner-add" style="margin-top:10px">+ Add Product</button>` : ""}
           <div style="text-align:right;margin-top:14px;padding-top:8px;border-top:1px solid var(--border)"><button type="button" id="wm-partner-key" aria-label="Partner owner access" style="font-size:12px;color:var(--text-muted);opacity:.42;padding:6px">🔒</button></div>
         `;
       } else {
@@ -4905,6 +4973,7 @@
           </div>
           ${paymentScreenshotMarkup("p-payment-screenshot")}
           <button type="button" class="btn-red full" id="pt-submit">${t("orderBtn")}</button>
+          <div style="text-align:right;margin-top:16px;padding-top:8px;border-top:1px solid var(--border)"><button type="button" id="wm-partner-key" aria-label="Partner owner access" style="font-size:12px;color:var(--text-muted);opacity:.38;padding:6px">🔒</button></div>
         `;
 
         bindPaymentScreenshot("p-payment-screenshot");
@@ -4934,7 +5003,7 @@
             "\n📍 Location: " + city + " — " + addr + "\n👤 Name: " + name + "\n📞 Phone: " + phone).slice(0, 950);
           selectedPaymentScreenshot = null;
           closeModal("modal-partner");
-          openTG(store.telegram, orderMessage);
+          sendOrderToTelegram(orderMessage, null, null);
         });
       }
     }
@@ -5175,7 +5244,7 @@
     const WM_PHOTO_ERROR = {
       en: "Not allowed over 70 KB! Compress the photo, reduce its size below 70 KB, and try again.",
       am: "ከ70 KB በላይ አይቻልም! ፎቶን ኮምፕረስ አድርግና ሳይዙን ከ70 KB በታች ቀንስና አስገባ።",
-      om: "Suuraan 70 KB ol ta'uu hin danda'u. Suuraa xiqqeessi/compress godhi, 70 KB gadi taasisi, irra deebi'i."
+      om: "70 KB ol hin eeyyamamu! Suuraa xiqqeessi (70 KB gadi) gochuun irra deebi'ii galchi."
     };
     let wmMallShops = readLS("wm_mall_shops", []);
     let wmListings = readLS("wm_seller_listings", []);
@@ -5231,7 +5300,7 @@
     }
     async function wmConvertFiles(input,limit=2){
       const files=Array.from(input.files||[]);if(files.length>limit)throw new Error("Please select no more than " + limit + " photos.");
-      const out=[];for(const f of files){const data=await wmImageToJpeg(f);if(!data||Math.ceil((data.length-"data:image/jpeg;base64,".length)*0.75)>WM_MAX_PHOTO_BYTES)throw new Error(wmLangMessage());out.push(data);}return out;
+      const out=[];for(const f of files){const data=await wmImageToJpeg(f);if(!data||!data.startsWith("data:image/jpeg;base64,"))throw new Error(wmLangMessage());out.push(data);}return out;
     }
     function wmPhotoInputStatus(elId,photos){const el=document.getElementById(elId);if(el)el.textContent=photos.length?photos.length+" JPEG photo(s) ready (max 70 KB each).":"";}
     function wmEscape(v){return String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
@@ -5239,39 +5308,55 @@
     async function wmLoadFirebase(){
       try{const cloud=await wmFirebaseFetch("/mallShops.json");if(Array.isArray(cloud)){wmMallShops=cloud.filter(Boolean);}else if(cloud&&typeof cloud==="object"){wmMallShops=Object.values(cloud).filter(Boolean);}writeLS("wm_mall_shops",wmMallShops);}
       catch(e){wmMallShops=readLS("wm_mall_shops",wmMallShops);}
-      try{const cloud=await wmFirebaseFetch("/listings.json");if(Array.isArray(cloud)){wmListings=cloud.filter(Boolean);}else if(cloud&&typeof cloud==="object"){wmListings=Object.values(cloud).filter(Boolean);}writeLS("wm_seller_listings",wmListings);}
+      try{const cloud=await wmFirebaseFetch("/listings.json");if(Array.isArray(cloud)){wmListings=cloud.filter(Boolean);}else if(cloud&&typeof cloud==="object"){wmListings=Object.entries(cloud).filter(([,v])=>v).map(([key,v])=>({...v,id:v.id||key}));}writeLS("wm_seller_listings",wmListings);}
       catch(e){wmListings=readLS("wm_seller_listings",wmListings);}
       wmRenderListings();
     }
     function wmSaveMallShops(){writeLS("wm_mall_shops",wmMallShops);return wmFirebaseFetch("/mallShops.json",{method:"PUT",body:JSON.stringify(wmMallShops)});}
+
+    const WM_MALL_TEXT = {
+      en:{create:"Create Your Shop",publish:"Publish Your Product",save:"Save",back:"← Back",shopName:"Shop Name",category:"Category / Floor or Short Description",contact:"Phone / Telegram",logo:"Optional Logo / Profile Photo (JPEG, max 70 KB)",tiktok:"TikTok link (optional)",telegram:"Telegram link (optional)",productName:"Product Name",price:"Price (Br)",photos:"Photo 1 + Photo 2 (optional; JPEG, max 70 KB each)",description:"Description",noShops:"No shops yet. Create the first shop in this mall.",noProducts:"No products published yet.",photoLimit:"Select up to 2 photos only.",shopSaved:"Shop saved.",productSaved:"Product published.",saveError:"Could not save. Please try again.",productError:"Could not publish product. Please try again.",backMall:"← Back to Mall"},
+      am:{create:"ሱቅዎን ይክፈቱ",publish:"ምርትዎን ይልቀቁ",save:"አስቀምጥ",back:"← ተመለስ",shopName:"የሱቅ ስም",category:"ምድብ / ወለል ወይም አጭር መግለጫ",contact:"ስልክ / ቴሌግራም",logo:"አማራጭ ሎጎ / የመገለጫ ፎቶ (JPEG፣ ከ70 KB አይበልጥ)",tiktok:"TikTok ሊንክ (አማራጭ)",telegram:"Telegram ሊንክ (አማራጭ)",productName:"የምርት ስም",price:"ዋጋ (Br)",photos:"ፎቶ 1 + ፎቶ 2 (አማራጭ፤ JPEG፣ እያንዳንዱ ከ70 KB አይበልጥ)",description:"መግለጫ",noShops:"ገና ሱቅ የለም። በዚህ ሞል ውስጥ የመጀመሪያውን ሱቅ ይክፈቱ።",noProducts:"ገና ምርት አልታተመም።",photoLimit:"እስከ 2 ፎቶዎች ብቻ ይምረጡ።",shopSaved:"ሱቁ ተቀምጧል።",productSaved:"ምርቱ ታትሟል።",saveError:"ማስቀመጥ አልተቻለም። እንደገና ይሞክሩ።",productError:"ምርቱን ማተም አልተቻለም። እንደገና ይሞክሩ።",backMall:"← ወደ ሞሉ ተመለስ"},
+      om:{create:"Suuqii Kee Uumi",publish:"Oomisha Kee Maxxansi",save:"Ol Kaa'i",back:"← Deebi'i",shopName:"Maqaa Suuqii",category:"Ramaddii / Dabaqa ykn Ibsa Gabaabaa",contact:"Bilbila / Telegram",logo:"Asxaa / Suuraa Profil Filannoo (JPEG, KB 70 ol hin taane)",tiktok:"Geessituu TikTok (filannoo)",telegram:"Geessituu Telegram (filannoo)",productName:"Maqaa Oomishaa",price:"Gatii (Br)",photos:"Suuraa 1 + Suuraa 2 (filannoo; JPEG, tokkoon tokkoon KB 70 ol hin taane)",description:"Ibsa",noShops:"Ammaaf suuqiin hin jiru. Suuqii jalqabaa moolii kana keessatti uumi.",noProducts:"Ammaaf oomishni hin maxxanfamne.",photoLimit:"Suuraa 2 qofa filadhu.",shopSaved:"Suuqiin ol kaa'ameera.",productSaved:"Oomishni maxxanfameera.",saveError:"Ol kaa'uun hin danda'amne. Irra deebi'ii yaali.",productError:"Oomisha maxxansuun hin danda'amne. Irra deebi'ii yaali.",backMall:"← Gara Moolii Deebi'i"}
+    };
+    function wmMallT(k){const p=WM_MALL_TEXT[state.lang]||WM_MALL_TEXT.en;return p[k]||WM_MALL_TEXT.en[k]||k;}
+    function wmSafeUrl(value){try{const u=new URL(String(value||"").trim());return /^https?:$/.test(u.protocol)?u.href:"";}catch(e){return "";}}
     function wmRenderMallPage(mall){
-      const custom=wmMallShops.filter(s=>s.mallId===mall.id), body=document.getElementById("city-modal-body"), ui=CITY_UI[state.lang];
-      const shopCards=custom.map(shop=>`<article class="white-card" style="margin:12px 0"><div style="display:flex;align-items:center;gap:10px">${shop.logo?`<img src="${shop.logo}" alt="" style="width:54px;height:54px;object-fit:cover;border-radius:12px">`:''}<div><b>${wmEscape(shop.name)}</b><div style="font-size:12px;color:var(--text-secondary)">${wmEscape(shop.category||shop.description||"")}</div></div></div>${shop.tiktok?`<a href="${wmEscape(shop.tiktok)}" target="_blank" rel="noopener">TikTok</a>`:''}${shop.telegramLink?` <a href="${wmEscape(shop.telegramLink)}" target="_blank" rel="noopener">Telegram</a>`:''}<button type="button" class="btn-outline full" style="margin-top:9px" data-wm-post-shop="${wmEscape(shop.id)}">Post / Publish Your Product</button><div class="products-grid" style="margin-top:10px">${(shop.products||[]).map(prod=>`<div class="white-card"><b>${wmEscape(prod.name)}</b><div class="p-price">${Number(prod.price||0).toLocaleString()} Br</div>${wmProductPhotos(prod).map(src=>`<img src="${src}" alt="" style="width:100%;max-height:140px;object-fit:contain;margin-top:6px">`).join('')}<p style="font-size:12px">${wmEscape(prod.description)}</p></div>`).join('')}</div></article>`).join("");
-      body.innerHTML=`<button class="btn-outline directory-back" data-directory-back>${ui.back}</button><div class="directory-coming"><div style="font-size:28px">${mall.logo||"🏬"}</div><h3>${cityText(mall.name)}</h3></div><button type="button" class="btn-red full" data-wm-create-shop="${wmEscape(mall.id)}">Create Your Shop / ሱቅዎን ይክፈቱ / Suuqii Kee Uumi</button>${shopCards}<button type="button" class="btn-outline full" style="margin-top:10px" data-wm-create-shop="${wmEscape(mall.id)}">+ Create Your Shop</button>`;
+      const shops=wmMallShops.filter(s=>s.mallId===mall.id),body=document.getElementById("city-modal-body");
+      const builtIn=(mall.shops||[]).map(item=>`<article class="wm-mall-shop"><div class="wm-mall-shop-head">${item.logoImage?`<img class="wm-mall-logo" src="${item.logoImage}" alt="" loading="lazy">`:`<div class="wm-mall-logo wm-mall-logo-fallback">${wmEscape(item.logo||"🏪")}</div>`}<div class="wm-mall-shop-meta"><h4>${cityText(item.name)}</h4><p>${wmEscape(directoryCategoryLabel(item.category))}</p></div></div><button type="button" class="btn-outline full" data-wm-post-shop="${wmEscape(item.id)}">${wmMallT("publish")}</button></article>`).join("");
+      const cards=shops.map(shop=>{
+        const tk=wmSafeUrl(shop.tiktok),tg=wmSafeUrl(shop.telegramLink);
+        const products=(shop.products||[]).map(prod=>`<article class="wm-mall-product"><b>${wmEscape(prod.name)}</b><div class="p-price">${Number(prod.price||0).toLocaleString()} Br</div>${wmProductPhotos(prod).map(src=>`<img src="${src}" alt="${wmEscape(prod.name)}" loading="lazy">`).join("")}<p>${wmEscape(prod.description)}</p>${wmAdminUnlocked?`<button type="button" class="btn-outline" data-wm-delete-mall-product="${wmEscape(shop.id)}|${wmEscape(prod.id)}" style="margin-top:8px;color:var(--red)">Delete</button>`:""}</article>`).join("");
+        return `<article class="wm-mall-shop"><div class="wm-mall-shop-head">${shop.logo?`<img class="wm-mall-logo" src="${shop.logo}" alt="${wmEscape(shop.name)}" loading="lazy">`:`<div class="wm-mall-logo wm-mall-logo-fallback">🏪</div>`}<div class="wm-mall-shop-meta"><h4>${wmEscape(typeof shop.name==="object"?(shop.name[state.lang]||shop.name.en):shop.name)}</h4><p>${wmEscape(shop.category||"")}</p><p>${wmEscape(shop.contact||"")}</p></div></div><div class="wm-mall-links">${tk?`<a href="${wmEscape(tk)}" target="_blank" rel="noopener noreferrer">TikTok</a>`:""}${tg?`<a href="${wmEscape(tg)}" target="_blank" rel="noopener noreferrer">Telegram</a>`:""}</div><button type="button" class="btn-outline full" data-wm-post-shop="${wmEscape(shop.id)}">${wmMallT("publish")}</button>${wmAdminUnlocked?`<button type="button" class="btn-outline full" data-wm-delete-mall-shop="${wmEscape(shop.id)}" style="margin-top:6px;color:var(--red)">Delete Shop</button>`:""}<div class="wm-mall-products">${products||`<p class="wm-mall-empty">${wmMallT("noProducts")}</p>`}</div></article>`;
+      }).join("");
+      body.innerHTML=`<button class="btn-outline directory-back" data-directory-back>${wmMallT("back")}</button><section class="wm-mall-hero"><div class="wm-mall-hero-icon">${wmEscape(mall.logo||"🏬")}</div><h3>${cityText(mall.name)}</h3></section><button type="button" class="btn-red full wm-mall-create" data-wm-create-shop="${wmEscape(mall.id)}">＋ ${wmMallT("create")}</button>${builtIn}${cards||(!builtIn?`<div class="wm-mall-empty">${wmMallT("noShops")}</div>`:"")}`;
     }
     function wmCreateShopForm(mallId){
-      const modal=document.getElementById("city-modal-body");modal.innerHTML=`<button class="btn-outline directory-back" data-directory-back>← Back</button><form id="wm-create-shop-form" class="white-card"><h3>Create Your Shop</h3><input type="hidden" id="wm-shop-mall" value="${wmEscape(mallId)}"><div class="form-group"><label class="form-label">Shop Name</label><input class="form-input" id="wm-shop-name" required maxlength="100"></div><div class="form-group"><label class="form-label">Category / Floor or Short Description</label><input class="form-input" id="wm-shop-category" maxlength="160"></div><div class="form-group"><label class="form-label">Phone / Telegram</label><input class="form-input" id="wm-shop-contact" maxlength="80"></div><div class="form-group"><label class="form-label">Optional Logo/Profile Photo (JPEG max 70 KB)</label><input class="form-input" id="wm-shop-logo" type="file" accept="image/*"></div><div class="form-group"><label class="form-label">TikTok link (optional)</label><input class="form-input" id="wm-shop-tiktok" type="url"></div><div class="form-group"><label class="form-label">Telegram link (optional)</label><input class="form-input" id="wm-shop-telegram" type="url"></div><p id="wm-shop-error" style="font-size:12px;color:var(--red)"></p><button class="btn-red full" type="submit">Save</button></form>`;
-      document.getElementById("wm-shop-logo").addEventListener("change",async e=>{const err=document.getElementById("wm-shop-error");try{e.target.dataset.jpeg=e.target.files.length?await wmImageToJpeg(e.target.files[0]):"";err.textContent="";}catch(x){e.target.value="";delete e.target.dataset.jpeg;err.textContent=x.message;}});
-      document.getElementById("wm-create-shop-form").addEventListener("submit",async e=>{e.preventDefault();const logoInput=document.getElementById("wm-shop-logo");try{const logo=logoInput.files.length?await wmImageToJpeg(logoInput.files[0]):"";const shop={id:"wmshop-"+Date.now(),mallId,name:document.getElementById("wm-shop-name").value.trim(),category:document.getElementById("wm-shop-category").value.trim(),contact:document.getElementById("wm-shop-contact").value.trim(),logo,tiktok:document.getElementById("wm-shop-tiktok").value.trim(),telegramLink:document.getElementById("wm-shop-telegram").value.trim(),products:[]};wmMallShops.push(shop);await wmSaveMallShops();wmSelectedMall=mallId;const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&city.malls.find(m=>m.id===mallId);if(mall)wmRenderMallPage(mall);wmToastMsg("Shop saved.");}catch(err){document.getElementById("wm-shop-error").textContent=err.message||"Could not save shop.";}});
+      const body=document.getElementById("city-modal-body");
+      body.innerHTML=`<button class="btn-outline directory-back" data-wm-return-mall="${wmEscape(mallId)}">${wmMallT("backMall")}</button><form id="wm-create-shop-form" class="wm-mall-form"><h3>${wmMallT("create")}</h3><div class="form-group"><label class="form-label" for="wm-shop-name">${wmMallT("shopName")}</label><input class="form-input" id="wm-shop-name" required maxlength="100"></div><div class="form-group"><label class="form-label" for="wm-shop-category">${wmMallT("category")}</label><input class="form-input" id="wm-shop-category" maxlength="160"></div><div class="form-group"><label class="form-label" for="wm-shop-contact">${wmMallT("contact")}</label><input class="form-input" id="wm-shop-contact" maxlength="80"></div><div class="form-group"><label class="form-label" for="wm-shop-logo">${wmMallT("logo")}</label><input class="form-input" id="wm-shop-logo" type="file" accept="image/*"></div><div class="form-group"><label class="form-label" for="wm-shop-tiktok">${wmMallT("tiktok")}</label><input class="form-input" id="wm-shop-tiktok" type="url"></div><div class="form-group"><label class="form-label" for="wm-shop-telegram">${wmMallT("telegram")}</label><input class="form-input" id="wm-shop-telegram" type="url"></div><p id="wm-shop-error" class="wm-mall-error" role="alert"></p><button class="btn-red full" type="submit">${wmMallT("save")}</button></form>`;
+      const logo=document.getElementById("wm-shop-logo");
+      logo.addEventListener("change",async e=>{try{e.target.dataset.jpeg=e.target.files.length?await wmImageToJpeg(e.target.files[0]):"";document.getElementById("wm-shop-error").textContent="";}catch(x){e.target.value="";delete e.target.dataset.jpeg;document.getElementById("wm-shop-error").textContent=x.message;}});
+      document.getElementById("wm-create-shop-form").addEventListener("submit",async e=>{e.preventDefault();try{const shop={id:"wmshop-"+Date.now(),mallId,name:document.getElementById("wm-shop-name").value.trim(),category:document.getElementById("wm-shop-category").value.trim(),contact:document.getElementById("wm-shop-contact").value.trim(),logo:logo.files.length?(logo.dataset.jpeg||await wmImageToJpeg(logo.files[0])):"",tiktok:wmSafeUrl(document.getElementById("wm-shop-tiktok").value),telegramLink:wmSafeUrl(document.getElementById("wm-shop-telegram").value),products:[]};wmMallShops.push(shop);try{await wmSaveMallShops();}catch(syncError){/* saved locally; Firebase can sync on next load */}const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),m=city&&city.malls.find(x=>x.id===mallId);if(m)wmRenderMallPage(m);wmToastMsg(wmMallT("shopSaved"));}catch(err){document.getElementById("wm-shop-error").textContent=err.message||wmMallT("saveError");}});
     }
-    function wmPostShopProduct(shopId){const shop=wmMallShops.find(s=>s.id===shopId);if(!shop)return;const body=document.getElementById("city-modal-body");body.innerHTML=`<button class="btn-outline directory-back" data-directory-back>← Back</button><form id="wm-shop-product-form" class="white-card"><h3>Post / Publish Your Product</h3><div class="form-group"><label class="form-label">Name</label><input class="form-input" id="wm-sp-name" required></div><div class="form-group"><label class="form-label">Price (Br)</label><input class="form-input" id="wm-sp-price" type="number" min="0" step="0.01" required></div><div class="form-group"><label class="form-label">Photos (up to 2, JPEG max 70 KB each)</label><input class="form-input" id="wm-sp-photos" type="file" accept="image/*" multiple></div><div class="form-group"><label class="form-label">Description</label><textarea class="form-input" id="wm-sp-desc" rows="3" style="height:auto;padding:10px"></textarea></div><p id="wm-sp-error" style="font-size:12px;color:var(--red"></p><button class="btn-red full" type="submit">Post / Publish</button></form>`;
-      const wmShopPhotoInput=document.getElementById("wm-sp-photos");wmShopPhotoInput.addEventListener("change",async e=>{const err=document.getElementById("wm-sp-error");try{e.target.dataset.jpegPhotos=JSON.stringify(await wmConvertFiles(e.target));err.textContent="";}catch(x){e.target.value="";delete e.target.dataset.jpegPhotos;err.textContent=x.message||wmLangMessage();}});
-      document.getElementById("wm-shop-product-form").addEventListener("submit",async e=>{e.preventDefault();try{const photoInput=document.getElementById("wm-sp-photos"),photos=photoInput.files.length?(photoInput.dataset.jpegPhotos?JSON.parse(photoInput.dataset.jpegPhotos):await wmConvertFiles(photoInput)):[];shop.products=shop.products||[];shop.products.push({id:"wmp-"+Date.now(),name:document.getElementById("wm-sp-name").value.trim(),price:Number(document.getElementById("wm-sp-price").value),photos,description:document.getElementById("wm-sp-desc").value.trim()});await wmSaveMallShops();const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&city.malls.find(m=>m.id===directoryState.mallId);if(mall)wmRenderMallPage(mall);wmToastMsg("Product posted.");}catch(err){document.getElementById("wm-sp-error").textContent=err.message||"Could not publish product.";}});
+    async function wmDeleteMallShop(shopId){if(!wmAdminUnlocked)return;const shop=wmMallShops.find(x=>String(x.id)===String(shopId));if(!shop||!confirm("Delete this mall shop and all its products?"))return;wmMallShops=wmMallShops.filter(x=>String(x.id)!==String(shopId));try{await wmSaveMallShops();}catch(e){wmToastMsg("Deleted locally; mall cloud sync failed.");}const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&(city.malls||[]).find(m=>m.id===directoryState.mallId);if(mall)wmRenderMallPage(mall);}
+    async function wmDeleteMallProduct(shopId,productId){if(!wmAdminUnlocked)return;const shop=wmMallShops.find(x=>String(x.id)===String(shopId));if(!shop||!confirm("Delete this mall product?"))return;shop.products=(shop.products||[]).filter(x=>String(x.id)!==String(productId));try{await wmSaveMallShops();}catch(e){wmToastMsg("Deleted locally; mall cloud sync failed.");}const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&(city.malls||[]).find(m=>m.id===directoryState.mallId);if(mall)wmRenderMallPage(mall);}
+    function wmPostShopProduct(shopId){
+      let shop=wmMallShops.find(s=>s.id===shopId);
+      if(!shop){const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&(city.malls||[]).find(m=>m.id===directoryState.mallId),item=mall&&(mall.shops||[]).find(x=>x.id===shopId);if(!item)return;shop={id:item.id,mallId:mall.id,name:item.name,category:item.category||"",contact:"",logo:"",tiktok:"",telegramLink:"",products:[]};wmMallShops.push(shop);writeLS("wm_mall_shops",wmMallShops);}
+      const body=document.getElementById("city-modal-body");
+      body.innerHTML=`<button class="btn-outline directory-back" data-wm-return-mall="${wmEscape(shop.mallId)}">${wmMallT("backMall")}</button><form id="wm-shop-product-form" class="wm-mall-form"><h3>${wmMallT("publish")}</h3><div class="form-group"><label class="form-label" for="wm-sp-name">${wmMallT("productName")}</label><input class="form-input" id="wm-sp-name" required maxlength="120"></div><div class="form-group"><label class="form-label" for="wm-sp-price">${wmMallT("price")}</label><input class="form-input" id="wm-sp-price" type="number" min="0" step="0.01" required></div><div class="form-group"><label class="form-label" for="wm-sp-photos">${wmMallT("photos")}</label><input class="form-input" id="wm-sp-photos" type="file" accept="image/*" multiple><p id="wm-sp-photo-status" class="wm-mall-hint"></p></div><div class="form-group"><label class="form-label" for="wm-sp-desc">${wmMallT("description")}</label><textarea class="form-input" id="wm-sp-desc" rows="3" style="height:auto;padding:10px"></textarea></div><p id="wm-sp-error" class="wm-mall-error" role="alert"></p><button class="btn-red full" type="submit">${wmMallT("post")}</button></form>`;
+      const input=document.getElementById("wm-sp-photos");
+      input.addEventListener("change",async e=>{try{const photos=await wmConvertFiles(e.target,2);e.target.dataset.jpegPhotos=JSON.stringify(photos);wmPhotoInputStatus("wm-sp-photo-status",photos);document.getElementById("wm-sp-error").textContent="";}catch(x){e.target.value="";delete e.target.dataset.jpegPhotos;document.getElementById("wm-sp-photo-status").textContent="";document.getElementById("wm-sp-error").textContent=x.message||wmLangMessage();}});
+      document.getElementById("wm-shop-product-form").addEventListener("submit",async e=>{e.preventDefault();try{const photos=input.files.length?(input.dataset.jpegPhotos?JSON.parse(input.dataset.jpegPhotos):await wmConvertFiles(input,2)):[];shop.products=shop.products||[];shop.products.push({id:"wmp-"+Date.now(),name:document.getElementById("wm-sp-name").value.trim(),price:Number(document.getElementById("wm-sp-price").value),photos,description:document.getElementById("wm-sp-desc").value.trim(),createdAt:Date.now()});try{await wmSaveMallShops();}catch(syncError){/* local copy retained */}const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),m=city&&city.malls.find(x=>x.id===shop.mallId);if(m)wmRenderMallPage(m);wmToastMsg(wmMallT("productSaved"));}catch(err){document.getElementById("wm-sp-error").textContent=err.message||wmMallT("productError");}});
     }
-    function wmRenderListings(){const root=document.getElementById("wm-listings-root");if(!root)return;root.innerHTML=wmListings.length?wmListings.map(item=>`<article class="product-card"><div class="p-media" style="background:var(--bg-muted)">${wmProductPhotos(item).map(src=>`<img src="${src}" alt="${wmEscape(item.name)}" loading="lazy">`).join("")}</div><div class="p-title">${wmEscape(item.name)}</div><div class="p-price">${Number(item.price||0).toLocaleString()} Br</div><p style="font-size:12px;margin:6px 0">${wmEscape(item.city||"")} • ${wmEscape(item.seller||"")} • ${wmEscape(item.contact||"")}</p><p style="font-size:12px">${wmEscape(item.description||"")}</p>${wmAdminUnlocked?`<button type="button" class="btn-outline full" data-wm-delete-listing="${wmEscape(item.id)}">Delete</button>`:""}</article>`).join(""):`<div class="directory-empty" style="grid-column:1/-1">No seller listings yet.</div>`;}
-    async function wmSaveListing(listing){wmListings.unshift(listing);writeLS("wm_seller_listings",wmListings);try{await wmFirebaseFetch("/listings/"+encodeURIComponent(listing.id)+".json",{method:"PUT",body:JSON.stringify(listing)});}catch(e){wmToastMsg("Saved on this device; cloud sync failed.");}wmRenderListings();}
+    document.addEventListener("click",e=>{const ds=e.target.closest("[data-wm-delete-mall-shop]");if(ds){wmDeleteMallShop(ds.getAttribute("data-wm-delete-mall-shop"));return;}const dp=e.target.closest("[data-wm-delete-mall-product]");if(dp){const pair=dp.getAttribute("data-wm-delete-mall-product").split("|");wmDeleteMallProduct(pair[0],pair[1]);return;}const c=e.target.closest("[data-wm-create-shop]");if(c){wmCreateShopForm(c.getAttribute("data-wm-create-shop"));return;}const p=e.target.closest("[data-wm-post-shop]");if(p){wmPostShopProduct(p.getAttribute("data-wm-post-shop"));return;}const b=e.target.closest("[data-wm-return-mall]");if(b){const city=CITY_DIRECTORY.find(x=>x.id===directoryState.cityId),m=city&&city.malls.find(x=>x.id===b.getAttribute("data-wm-return-mall"));if(m)wmRenderMallPage(m);return;}const d=e.target.closest("[data-wm-delete-listing]");if(d){wmDeleteListing(d.getAttribute("data-wm-delete-listing"));return;}});
+        function wmRenderListings(){const root=document.getElementById("wm-listings-root");if(!root)return;root.innerHTML=wmListings.length?wmListings.map(item=>`<article class="product-card"><div class="p-media" style="background:var(--bg-muted)">${wmProductPhotos(item).map(src=>`<img src="${src}" alt="${wmEscape(item.name)}" loading="lazy">`).join("")}</div><div class="p-title">${wmEscape(item.name)}</div><div class="p-price">${Number(item.price||0).toLocaleString()} Br</div><p style="font-size:12px;margin:6px 0">${wmEscape(item.city||"")} • ${wmEscape(item.seller||"")} • ${wmEscape(item.contact||"")}</p><p style="font-size:12px">${wmEscape(item.description||"")}</p>${wmAdminUnlocked?`<button type="button" class="btn-outline full" data-wm-delete-listing="${wmEscape(item.id)}">Delete</button>`:""}</article>`).join(""):`<div class="directory-empty" style="grid-column:1/-1">No seller listings yet.</div>`;}
+    async function wmSaveListing(listing){try{const result=await wmFirebaseFetch("/listings.json",{method:"POST",body:JSON.stringify(listing)});if(result&&result.name)listing.id=result.name;}catch(e){wmToastMsg("Saved on this device; cloud sync failed.");}wmListings.unshift(listing);writeLS("wm_seller_listings",wmListings);wmRenderListings();}
     document.getElementById("wm-sell-photos").addEventListener("change",async e=>{const status=document.getElementById("wm-sell-photo-status");try{wmPendingSellPhotos=await wmConvertFiles(e.target);e.target.dataset.jpegPhotos=JSON.stringify(wmPendingSellPhotos);wmPhotoInputStatus("wm-sell-photo-status",wmPendingSellPhotos);status.style.color="var(--text-secondary)";}catch(err){wmPendingSellPhotos=[];e.target.value="";delete e.target.dataset.jpegPhotos;status.textContent=err.message||wmLangMessage();status.style.color="var(--red)";}});
     document.getElementById("wm-sell-form").addEventListener("submit",async e=>{e.preventDefault();const photosInput=document.getElementById("wm-sell-photos"),msg=document.getElementById("wm-sell-message");try{const photos=photosInput.files.length?(photosInput.dataset.jpegPhotos?JSON.parse(photosInput.dataset.jpegPhotos):await wmConvertFiles(photosInput)):wmPendingSellPhotos;const listing={id:"listing-"+Date.now(),name:document.getElementById("wm-sell-name").value.trim(),price:Number(document.getElementById("wm-sell-price").value),seller:document.getElementById("wm-sell-seller").value.trim(),contact:document.getElementById("wm-sell-contact").value.trim(),city:document.getElementById("wm-sell-city").value,photos,description:document.getElementById("wm-sell-desc").value.trim(),createdAt:Date.now()};await wmSaveListing(listing);e.target.reset();wmPendingSellPhotos=[];wmPhotoInputStatus("wm-sell-photo-status",[]);msg.textContent="Listing posted.";}catch(err){msg.textContent=err.message||"Listing failed.";msg.style.color="var(--red)";}});
     async function wmDeleteListing(id){const item=wmListings.find(x=>x.id===id);if(!item||!wmAdminUnlocked)return;const confirmDelete=confirm("Delete this listing?");if(!confirmDelete)return;wmListings=wmListings.filter(x=>x.id!==id);writeLS("wm_seller_listings",wmListings);wmRenderListings();try{await wmFirebaseFetch("/listings/"+encodeURIComponent(id)+".json",{method:"DELETE"});}catch(e){wmToastMsg("Deleted locally, cloud delete failed.");}}
-    function wmUnlockAdmin(){const pin=prompt("Enter admin PIN");if(pin===STORE_CONFIG.adminPin){wmAdminUnlocked=true;writeLS("wm_admin_unlocked",true);wmRenderListings();const add=document.getElementById("wm-main-add");if(add)add.style.display="inline-flex";renderHomeProducts();}else if(pin!==null)alert("Incorrect PIN.");}
-    document.addEventListener("click",e=>{const create=e.target.closest("[data-wm-create-shop]");if(create){wmCreateShopForm(create.getAttribute("data-wm-create-shop"));return;}const post=e.target.closest("[data-wm-post-shop]");if(post){wmPostShopProduct(post.getAttribute("data-wm-post-shop"));return;}const del=e.target.closest("[data-wm-delete-listing]");if(del){wmDeleteListing(del.getAttribute("data-wm-delete-listing"));return;}const unlock=e.target.closest("#wm-sell-page-title");if(unlock){wmUnlockAdmin();return;}});
-    const wmAdminButton = document.getElementById("wm-admin-unlock");
-    if (wmAdminButton) wmAdminButton.addEventListener("click", wmUnlockAdmin);
-    const wmAdminTrigger = document.getElementById("wm-sell-page-title");
-    if (wmAdminTrigger) {
-      wmAdminTrigger.addEventListener("dblclick", wmUnlockAdmin);
-      wmAdminTrigger.title = "Double-tap title to unlock admin deletion";
-    }
+    function wmUnlockAdmin(){wmUnlockOwner();}
+    document.addEventListener("click",e=>{const create=e.target.closest("[data-wm-create-shop]");if(create){wmCreateShopForm(create.getAttribute("data-wm-create-shop"));return;}const post=e.target.closest("[data-wm-post-shop]");if(post){wmPostShopProduct(post.getAttribute("data-wm-post-shop"));return;}const del=e.target.closest("[data-wm-delete-listing]");if(del){wmDeleteListing(del.getAttribute("data-wm-delete-listing"));return;}});
 
     /* PART 2: owner and partner live product management */
     const WM_PARTNER_PIN_KEYS = { kimi:"abudi-perfume", boutique:"abudi-menswear", abudipc:"abudi-pc" };
@@ -5289,18 +5374,18 @@
       const descriptionAm=prompt("Description (Amharic)",base.desc.am||"");if(descriptionAm===null)return null;
       const descriptionOm=prompt("Description (Oromo)",base.desc.om||"");if(descriptionOm===null)return null;
       return {...base,id:base.id,category:cat.trim()||base.category,price:Number(price),name:{en:en.trim(),am:am.trim(),om:om.trim()},desc:{en:descriptionEn,am:descriptionAm,om:descriptionOm},images:imageNames.split(",").map(x=>x.trim()).filter(Boolean)};}
-    function wmUnlockOwner(){const pin=prompt("Enter owner PIN");if(pin===STORE_CONFIG.adminPin){wmAdminUnlocked=true;writeLS("wm_admin_unlocked",true);const add=document.getElementById("wm-main-add");if(add)add.style.display="inline-flex";renderHomeProducts();wmToastMsg("Owner access unlocked.");}else if(pin!==null)alert("Incorrect PIN.");}
+    function wmUnlockOwner(){const pin=prompt("Enter owner PIN");if(pin===STORE_CONFIG.adminPin){wmAdminUnlocked=true;writeLS("wm_admin_unlocked",true);const add=document.getElementById("wm-main-add");if(add)add.style.display="inline-flex";renderHomeProducts();wmRenderListings();if(state.partnerId&&document.getElementById("modal-partner").classList.contains("open"))renderPartnerBody();const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&(city.malls||[]).find(m=>m.id===directoryState.mallId);if(mall&&document.getElementById("modal-city").classList.contains("open"))wmRenderMallPage(mall);wmToastMsg("Owner access unlocked.");}else if(pin!==null)alert("Incorrect PIN.");}
     async function wmLoadProducts(){try{const cloud=await wmFirebaseFetch("/products.json");if(cloud){PRODUCTS=Array.isArray(cloud)?cloud.filter(Boolean):Object.values(cloud).filter(Boolean);writeLS("wm_live_products",PRODUCTS);}else{const local=readLS("wm_live_products",null);if(local&&Array.isArray(local))PRODUCTS=local;}}catch(e){const local=readLS("wm_live_products",null);if(local&&Array.isArray(local))PRODUCTS=local;}wmCloudProductsLoaded=true;renderHomeProducts();}
-    async function wmLoadPartnerProducts(){const local=readLS("wm_partner_products",{});try{const cloud=await wmFirebaseFetch("/partners.json");Object.keys(WM_PARTNER_PIN_KEYS).forEach(k=>{const store=PARTNER_STORES[k],key=WM_PARTNER_PIN_KEYS[k],data=cloud&&(cloud[key]||cloud[k]);if(data&&Array.isArray(data.products))store.products=data.products;else if(Array.isArray(data))store.products=data;else if(local&&Array.isArray(local[k]))store.products=local[k];});writeLS("wm_partner_products",Object.fromEntries(Object.keys(WM_PARTNER_PIN_KEYS).map(k=>[k,PARTNER_STORES[k].products])));}catch(e){Object.keys(local||{}).forEach(k=>{if(PARTNER_STORES[k]&&Array.isArray(local[k]))PARTNER_STORES[k].products=local[k];});}}
-    async function wmSavePartnerProducts(storeKey){const store=PARTNER_STORES[storeKey],firebaseId=WM_PARTNER_PIN_KEYS[storeKey];if(!store||!firebaseId)return;writeLS("wm_partner_products",Object.fromEntries(Object.keys(WM_PARTNER_PIN_KEYS).map(k=>[k,PARTNER_STORES[k].products])));try{await wmFirebaseFetch("/partners/"+encodeURIComponent(firebaseId)+".json",{method:"PUT",body:JSON.stringify(store.products)});}catch(e){wmToastMsg("Saved locally; partner products cloud sync failed.");}renderPartnerBody();}
+    async function wmLoadPartnerProducts(){const local=readLS("wm_partner_products",{});try{const cloud=await wmFirebaseFetch("/partners.json");Object.keys(WM_PARTNER_PIN_KEYS).forEach(k=>{const store=PARTNER_STORES[k],key=WM_PARTNER_PIN_KEYS[k],data=cloud&&(cloud[store.id]||cloud[key]||cloud[k]);if(data&&Array.isArray(data.products))store.products=data.products;else if(Array.isArray(data))store.products=data;else if(local&&Array.isArray(local[k]))store.products=local[k];});writeLS("wm_partner_products",Object.fromEntries(Object.keys(WM_PARTNER_PIN_KEYS).map(k=>[k,PARTNER_STORES[k].products])));}catch(e){Object.keys(local||{}).forEach(k=>{if(PARTNER_STORES[k]&&Array.isArray(local[k]))PARTNER_STORES[k].products=local[k];});}}
+    async function wmSavePartnerProducts(storeKey){const store=PARTNER_STORES[storeKey],firebaseId=WM_PARTNER_PIN_KEYS[storeKey];if(!store||!firebaseId)return;writeLS("wm_partner_products",Object.fromEntries(Object.keys(WM_PARTNER_PIN_KEYS).map(k=>[k,PARTNER_STORES[k].products])));try{await wmFirebaseFetch("/partners/"+encodeURIComponent(store.id)+".json",{method:"PUT",body:JSON.stringify({products:store.products})});}catch(e){wmToastMsg("Saved locally; partner products cloud sync failed.");}renderPartnerBody();}
     function wmPartnerUnlock(){const store=PARTNER_STORES[state.partnerId],pinKey=WM_PARTNER_PIN_KEYS[state.partnerId];if(!store||!pinKey)return;const pin=prompt("Enter partner store PIN");if(pin===STORE_CONFIG.partnerPins[pinKey]){wmPartnerUnlocked[store.id]=true;writeLS("wm_partner_unlocked",wmPartnerUnlocked);renderPartnerBody();wmToastMsg("Store owner access unlocked.");}else if(pin!==null)alert("Incorrect PIN.");}
     function wmEditMainProduct(id){const p=PRODUCTS.find(x=>String(x.id)===String(id));if(!p||!wmAdminUnlocked)return;const edited=wmProductAdminPrompt(p);if(edited){PRODUCTS=PRODUCTS.map(x=>String(x.id)===String(id)?edited:x);wmSaveMainProducts();}}
     function wmAddMainProduct(){if(!wmAdminUnlocked)return;const p=wmProductAdminPrompt(null);if(p){p.id="wmprod-"+Date.now();PRODUCTS.push(p);wmSaveMainProducts();}}
     function wmDeleteMainProduct(id){if(!wmAdminUnlocked)return;const p=PRODUCTS.find(x=>String(x.id)===String(id));if(!p||!confirm("Delete this product?"))return;PRODUCTS=PRODUCTS.filter(x=>String(x.id)!==String(id));wmSaveMainProducts();}
     function wmPartnerProductPrompt(existing){const base=existing||{id:"",name:{en:"",am:"",om:""},desc:{en:"",am:"",om:""},price:0,image:"",icon:"package",gradient:""};const en=prompt("Product name (English)",base.name.en||"");if(en===null)return null;const am=prompt("Product name (Amharic)",base.name.am||"");if(am===null)return null;const om=prompt("Product name (Oromo)",base.name.om||"");if(om===null)return null;const price=prompt("Price (Birr)",String(base.price||0));if(price===null||!Number.isFinite(Number(price))||Number(price)<0)return null;const image=prompt("Product image filename",base.image||"");if(image===null)return null;const enDesc=prompt("Description (English)",base.desc.en||"");if(enDesc===null)return null;const amDesc=prompt("Description (Amharic)",base.desc.am||"");if(amDesc===null)return null;const omDesc=prompt("Description (Oromo)",base.desc.om||"");if(omDesc===null)return null;return {...base,id:base.id||"partner-"+Date.now(),price:Number(price),image:image.trim(),name:{en:en.trim(),am:am.trim(),om:om.trim()},desc:{en:enDesc,am:amDesc,om:omDesc}};}
-    function wmPartnerEdit(id){const store=PARTNER_STORES[state.partnerId];if(!store||!wmPartnerUnlocked[store.id])return;const it=store.products.find(x=>String(x.id)===String(id));if(!it)return;const updated=wmPartnerProductPrompt(it);if(updated)store.products=store.products.map(x=>String(x.id)===String(id)?updated:x),wmSavePartnerProducts(state.partnerId);}
-    function wmPartnerAdd(){const store=PARTNER_STORES[state.partnerId];if(!store||!wmPartnerUnlocked[store.id])return;const item=wmPartnerProductPrompt(null);if(item)store.products.push(item),wmSavePartnerProducts(state.partnerId);}
-    function wmPartnerDelete(id){const store=PARTNER_STORES[state.partnerId];if(!store||!wmPartnerUnlocked[store.id]||!confirm("Delete this partner product?"))return;store.products=store.products.filter(x=>String(x.id)!==String(id));wmSavePartnerProducts(state.partnerId);}
+    function wmPartnerEdit(id){const store=PARTNER_STORES[state.partnerId];if(!store||(!wmPartnerUnlocked[store.id]&&!wmAdminUnlocked))return;const it=store.products.find(x=>String(x.id)===String(id));if(!it)return;const updated=wmPartnerProductPrompt(it);if(updated)store.products=store.products.map(x=>String(x.id)===String(id)?updated:x),wmSavePartnerProducts(state.partnerId);}
+    function wmPartnerAdd(){const store=PARTNER_STORES[state.partnerId];if(!store||(!wmPartnerUnlocked[store.id]&&!wmAdminUnlocked))return;const item=wmPartnerProductPrompt(null);if(item)store.products.push(item),wmSavePartnerProducts(state.partnerId);}
+    function wmPartnerDelete(id){const store=PARTNER_STORES[state.partnerId];if(!store||(!wmPartnerUnlocked[store.id]&&!wmAdminUnlocked)||!confirm("Delete this partner product?"))return;store.products=store.products.filter(x=>String(x.id)!==String(id));wmSavePartnerProducts(state.partnerId);}
     document.addEventListener("click",e=>{const a=e.target.closest("#wm-main-add");if(a){wmAddMainProduct();return;}const edit=e.target.closest("[data-wm-main-edit]");if(edit){wmEditMainProduct(edit.dataset.wmMainEdit);return;}const del=e.target.closest("[data-wm-main-delete]");if(del){wmDeleteMainProduct(del.dataset.wmMainDelete);return;}const pk=e.target.closest("[data-wm-partner-edit]");if(pk){wmPartnerEdit(pk.dataset.wmPartnerEdit);return;}const pd=e.target.closest("[data-wm-partner-delete]");if(pd){wmPartnerDelete(pd.dataset.wmPartnerDelete);return;}if(e.target.closest("#wm-partner-add")){wmPartnerAdd();return;}if(e.target.closest("#wm-partner-key")){wmPartnerUnlock();return;}});
 
     document.addEventListener("DOMContentLoaded", function () {
