@@ -1,0 +1,13 @@
+{
+  "background_color": "#dc2626",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "wollo market",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "wollo market",
+  "start_url": "/",
+  "theme_color": "#dc2626",
+  "id": "/wollo-market/",
+  "description": "Online shopping and delivery platform"
+}
