@@ -1594,7 +1594,9 @@
     }
 
     .partner-product-image {
-      height: 120px;
+      aspect-ratio: 4 / 5;
+      height: auto;
+      width: 100%;
       position: relative;
       overflow: hidden;
       display: grid;
@@ -2233,10 +2235,10 @@
     // EASY EDIT SECTION (SEARCH THESE TAGS IN SPCK EDITOR TO JUMP FAST):
     //   1. STORE_CONFIG   -> Telegram, Phone, Telebirr, CBE, Delivery Fee
     //   2. LOCATIONS      -> City Dropdown List
-    //   3. CITY_DIRECTORY -> Cities, Malls & Local Shops (Kombolcha/Dessie/Kemise/Harbu)
+    //   3. CITY_DIRECTORY -> Cities & Malls (Kombolcha/Dessie/Kemise/Harbu)
     //   4. PROMO_BANNERS  -> Top Sliding Banners
-    //   5. PARTNER_STORES -> Partner Shops (Kimi Nesmi, Wollo Boutique)
-    //   6. PRODUCTS       -> All 29 Main Products
+    //   5. PARTNER_STORES -> Partner Stores (Abudi Perfume, Abudi Menswear, Abudi PC & Mobile)
+    //   6. PRODUCTS       -> 12 Main Products
     // =========================================================================
 
     /* 1. STORE CONFIGURATION — UPDATE YOUR ACCOUNTS & DELIVERY INFO HERE */
@@ -2246,7 +2248,7 @@
       telegramUsername: "YOUR_TELEGRAM_USERNAME", // Replace with your Telegram (without @)
       telegramBotToken: "9004383363:AAEopq_6ourWQYt6ftHN8LOpa0sTiiIFMJs",
       telegramChatId: "7949429911",
-      accountName: "ABDELFETAH SULEYMAN",            // Replace with your full name
+      accountName: "STORE OWNER NAME",            // Replace with your full name
       telebirrNumber: "0900000000",               // Replace with your Telebirr number
       cbeAccount: "1000000000000",                // Replace with your CBE account
       phone: "0900000000",                        // Replace with your phone number
@@ -2269,7 +2271,7 @@
 
     /*
       3. CITY DIRECTORY — EDIT THIS DATA TO ADD REAL MALLS AND SHOPS.
-      Add malls to city.malls and standalone shops to city.normalShops.
+      Add malls to city.malls.
       Mall fields: id, name:{en,am,om}, logo, gradient, bgImage:"", shops:[...].
       Shop fields: id, name:{en,am,om}, logo, category, gradient, bgImage:"".
       Categories: tech, clothing, food, home. Logos may be emoji/text or image filenames.
@@ -2279,7 +2281,7 @@
       { id: "new-city", name:{en:"New City",am:"አዲስ ከተማ",om:"Magaalaa Haaraa"}, logo:"📍", gradient:"linear-gradient(135deg,#C62323,#374962)",
         bgImage:"new-city.jpg", malls:[{id:"new-city-mall",name:{en:"Mall Name",am:"የሞል ስም",om:"Mall Name"},logo:"🏬",gradient:"linear-gradient(135deg,#C62323,#374962)",
         bgImage:"new-city-mall.jpg",logoImage:"new-city-mall-logo.jpg",shops:[10 shop objects with bgImage and logoImage]}],
-        normalShops:[tech, clothing, food, home shop objects with bgImage and logoImage] }
+        }
       Add the same city to LOCATIONS with matching id and EN/AM/OM names.
     */
     const CITY_DIRECTORY = [
@@ -2713,33 +2715,7 @@
           }
         ],
         // --- Kombolcha Local Shops ---
-        normalShops: [
-          {
-            id: "kombolcha-local-tech", category: "tech", logo: "📱",
-            name: { en: "Kombolcha City Tech", am: "ኮምቦልቻ የከተማ ቴክ", om: "Kombolcha City Tech" },
-            bgImage: "kombolcha-local-tech.jpg", logoImage: "kombolcha-local-tech-logo.jpg",
-            gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-          },
-          {
-            id: "kombolcha-local-clothing", category: "clothing", logo: "👕",
-            name: { en: "Kombolcha City Fashion", am: "ኮምቦልቻ የከተማ ፋሽን", om: "Kombolcha City Fashion" },
-            bgImage: "kombolcha-local-clothing.jpg", logoImage: "kombolcha-local-clothing-logo.jpg",
-            gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-          },
-          {
-            id: "kombolcha-local-food", category: "food", logo: "☕",
-            name: { en: "Kombolcha City Cafe", am: "ኮምቦልቻ የከተማ ካፌ", om: "Kombolcha City Cafe" },
-            bgImage: "kombolcha-local-food.jpg", logoImage: "kombolcha-local-food-logo.jpg",
-            gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-          },
-          {
-            id: "kombolcha-local-home", category: "home", logo: "🏠",
-            name: { en: "Kombolcha City Home", am: "ኮምቦልቻ የከተማ ቤት", om: "Kombolcha City Home" },
-            bgImage: "kombolcha-local-home.jpg", logoImage: "kombolcha-local-home-logo.jpg",
-            gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-          }
-        ]
-      },
+        },
 
       // ========================================================
       // CITY 2: DESSIE (ደሴ)
@@ -3171,33 +3147,7 @@
           }
         ],
         // --- Dessie Local Shops ---
-        normalShops: [
-          {
-            id: "dessie-local-tech", category: "tech", logo: "📱",
-            name: { en: "Dessie City Tech", am: "ደሴ የከተማ ቴክ", om: "Dasee City Tech" },
-            bgImage: "dessie-local-tech.jpg", logoImage: "dessie-local-tech-logo.jpg",
-            gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-          },
-          {
-            id: "dessie-local-clothing", category: "clothing", logo: "👕",
-            name: { en: "Dessie City Fashion", am: "ደሴ የከተማ ፋሽን", om: "Dasee City Fashion" },
-            bgImage: "dessie-local-clothing.jpg", logoImage: "dessie-local-clothing-logo.jpg",
-            gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-          },
-          {
-            id: "dessie-local-food", category: "food", logo: "☕",
-            name: { en: "Dessie City Cafe", am: "ደሴ የከተማ ካፌ", om: "Dasee City Cafe" },
-            bgImage: "dessie-local-food.jpg", logoImage: "dessie-local-food-logo.jpg",
-            gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-          },
-          {
-            id: "dessie-local-home", category: "home", logo: "🏠",
-            name: { en: "Dessie City Home", am: "ደሴ የከተማ ቤት", om: "Dasee City Home" },
-            bgImage: "dessie-local-home.jpg", logoImage: "dessie-local-home-logo.jpg",
-            gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-          }
-        ]
-      },
+        },
 
       // ========================================================
       // CITY 3: KEMISE (ኬሚሴ)
@@ -3349,33 +3299,7 @@
           }
         ],
         // --- Kemise Local Shops ---
-        normalShops: [
-          {
-            id: "kemise-local-tech", category: "tech", logo: "📱",
-            name: { en: "Kemise City Tech", am: "ኬሚሴ የከተማ ቴክ", om: "Kamiisee City Tech" },
-            bgImage: "kemise-local-tech.jpg", logoImage: "kemise-local-tech-logo.jpg",
-            gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-          },
-          {
-            id: "kemise-local-clothing", category: "clothing", logo: "👕",
-            name: { en: "Kemise City Fashion", am: "ኬሚሴ የከተማ ፋሽን", om: "Kamiisee City Fashion" },
-            bgImage: "kemise-local-clothing.jpg", logoImage: "kemise-local-clothing-logo.jpg",
-            gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-          },
-          {
-            id: "kemise-local-food", category: "food", logo: "☕",
-            name: { en: "Kemise City Cafe", am: "ኬሚሴ የከተማ ካፌ", om: "Kamiisee City Cafe" },
-            bgImage: "kemise-local-food.jpg", logoImage: "kemise-local-food-logo.jpg",
-            gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-          },
-          {
-            id: "kemise-local-home", category: "home", logo: "🏠",
-            name: { en: "Kemise City Home", am: "ኬሚሴ የከተማ ቤት", om: "Kamiisee City Home" },
-            bgImage: "kemise-local-home.jpg", logoImage: "kemise-local-home-logo.jpg",
-            gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-          }
-        ]
-      },
+        },
 
       // ========================================================
       // CITY 4: HARBU (ሀርቡ)
@@ -3457,33 +3381,7 @@
           }
         ],
         // --- Harbu Local Shops ---
-        normalShops: [
-          {
-            id: "harbu-local-tech", category: "tech", logo: "📱",
-            name: { en: "Harbu City Tech", am: "ሀርቡ የከተማ ቴክ", om: "Harbuu City Tech" },
-            bgImage: "harbu-local-tech.jpg", logoImage: "harbu-local-tech-logo.jpg",
-            gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-          },
-          {
-            id: "harbu-local-clothing", category: "clothing", logo: "👕",
-            name: { en: "Harbu City Fashion", am: "ሀርቡ የከተማ ፋሽን", om: "Harbuu City Fashion" },
-            bgImage: "harbu-local-clothing.jpg", logoImage: "harbu-local-clothing-logo.jpg",
-            gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-          },
-          {
-            id: "harbu-local-food", category: "food", logo: "☕",
-            name: { en: "Harbu City Cafe", am: "ሀርቡ የከተማ ካፌ", om: "Harbuu City Cafe" },
-            bgImage: "harbu-local-food.jpg", logoImage: "harbu-local-food-logo.jpg",
-            gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-          },
-          {
-            id: "harbu-local-home", category: "home", logo: "🏠",
-            name: { en: "Harbu City Home", am: "ሀርቡ የከተማ ቤት", om: "Harbuu City Home" },
-            bgImage: "harbu-local-home.jpg", logoImage: "harbu-local-home-logo.jpg",
-            gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-          }
-        ]
-      }
+        }
     ];
 
     /* 4. PROMO BANNERS — COPY-PASTE ANY BLOCK TO ADD 10+ BANNERS
@@ -3506,11 +3404,11 @@
         partnerId: "kimi",
         bgImage: "kimibanner.jpg",
         gradient: "linear-gradient(135deg, #047857 0%, #064E3B 58%, #071A15 100%)",
-        icon: "cake",
-        pill: { en: "Partner Shop • Cakes & Sweets", am: "አጋር ሱቅ • ጣፋጮችና ኬክ", om: "Suuqii Michuu • Mi'aawwan" },
-        title: { en: "Kimi Nesmi Dessert", am: "ኪሚ ነስሚ ዴዘርት", om: "Kimi Nesmi Dessert" },
-        sub: { en: "Fresh cakes, chocolates & custom desserts — order right here!", am: "ትኩስ ኬኮች፣ ቸኮሌቶች እና ልዩ ጣፋጮች — እዚህ ገብተው ይዘዙ!", om: "Keekii haaraa, chokoleetii fi mi'aawwan addaa — asitti ajajaa!" },
-        cta: { en: "Open Menu", am: "ዝርዝሩን ይክፈቱ", om: "Tarree Bani" }
+        icon: "sparkles", iconEmoji: "🧴",
+        pill: { en: "Partner Shop • Perfume & Fragrance", am: "አጋር ሱቅ • ሽቶና መዓዛ", om: "Suuqii Michuu • Urgooftuu" },
+        title: { en: "Abudi Perfume", am: "አቡዲ ፐርፊዩም", om: "Abudi Perfume" },
+        sub: { en: "Discover beautiful perfumes and long-lasting fragrances!", am: "ውብና ዘላቂ መዓዛ ያላቸውን ሽቶዎች ያግኙ!", om: "Urgooftuu bareedaa fi yeroo dheeraaf turu argadhaa!" },
+        cta: { en: "Visit Shop", am: "ሱቁን ይጎብኙ", om: "Suuqii Daawwadhu" }
       },
       {
         id: "boutique-banner",
@@ -3518,29 +3416,23 @@
         partnerId: "boutique",
         bgImage: "boutiquebanner.jpg",
         gradient: "linear-gradient(135deg, #4338CA 0%, #312E81 58%, #0F1029 100%)",
-        icon: "shirt",
-        pill: { en: "Partner Shop • Fashion", am: "አጋር ሱቅ • ፋሽን እና አልባሳት", om: "Suuqii Michuu • Faashinii" },
-        title: { en: "Wollo Boutique & Fashion", am: "ወሎ ቡቲክ እና ፋሽን", om: "Wollo Boutique & Fashion" },
-        sub: { en: "Modern outfits, sneakers & original perfumes!", am: "ዘመናዊ አልባሳት፣ ስኒከር ጫማዎች እና ኦሪጅናል ሽቶዎች!", om: "Uffata ammayyaa, kophee fi urgooftuu orijinaala!" },
+        icon: "shirt", iconEmoji: "👔",
+        pill: { en: "Partner Shop • Men's Fashion", am: "አጋር ሱቅ • የወንዶች ፋሽን", om: "Suuqii Michuu • Faashinii Dhiiraa" },
+        title: { en: "Abudi Menswear", am: "አቡዲ የወንዶች አልባሳት", om: "Abudi Menswear" },
+        sub: { en: "Modern men's clothing, smart outfits and everyday essentials!", am: "ዘመናዊ የወንዶች አልባሳትና ቆንጆ አለባበሶች!", om: "Uffata dhiiraa ammayyaa fi uffata guyyaa guyyaa!" },
         cta: { en: "Visit Shop", am: "ሱቁን ይጎብኙ", om: "Suuqii Daawwadhu" }
       },
       {
         id: "realestate-info",
-        action: "info",
+        action: "partner",
+        partnerId: "abudipc",
         bgImage: "realestateinfo.jpg",
-        gradient: "linear-gradient(135deg, #B45309 0%, #78350F 58%, #1C1917 100%)",
-        icon: "building",
-        pill: { en: "Featured Ad • Real Estate", am: "ልዩ ማስታወቂያ • ሪል እስቴት", om: "Beeksisa Addaa • Manaa fi Lafa" },
-        title: { en: "Wollo Homes & Real Estate", am: "ወሎ ሆምስ ሪል እስቴት", om: "Wollo Homes Real Estate" },
-        sub: { en: "Modern apartments & commercial shops in Kombolcha & Dessie.", am: "ዘመናዊ አፓርትመንቶች እና የንግድ ሱቆች በኮምቦልቻ እና ደሴ።", om: "Appaartimaantii fi suuqii daldalaa Kombolcha fi Dasee keessatti." },
-        cta: { en: "View Details", am: "ዝርዝር ይመልከቱ", om: "Bal'ina Ilaali" },
-        infoDetails: {
-          en: "Explore modern 2 & 3 bedroom apartments and prime commercial spaces in Kombolcha and Dessie with flexible payment plans.\n\n• 20% Down Payment\n• Prime Main Road Locations\n• Full Legal Title Deed",
-          am: "በኮምቦልቻ እና ደሴ ዘመናዊ ባለ 2 እና 3 መኝታ አፓርትመንቶች እንዲሁም የንግድ ሱቆች በተመጣጣኝ የክፍያ አማራጭ!\n\n• 20% ቅድመ ክፍያ\n• ዋና መንገድ ዳር\n• ሙሉ ህጋዊ ካርታ ያለው",
-          om: "Kombolcha fi Dasee keessatti appaartimaantii ammayyaa kutaa ciisichaa 2 fi 3 akkasumas suuqii daldalaa.\n\n• Kaffaltii dursaa 20%\n• Daandii guddaa irra\n• Kaartaa seera qabeessa"
-        },
-        contactLink: "https://t.me/YOUR_TELEGRAM_USERNAME",
-        contactLabel: { en: "Contact Advertiser on Telegram", am: "አስተዋዋቂውን በቴሌግራም ያናግሩ", om: "Beeksisa Baasaa Telegramiin Quunnamaa" }
+        gradient: "linear-gradient(135deg, #0F766E 0%, #164E63 58%, #0F172A 100%)",
+        icon: "monitor", iconEmoji: "💻",
+        pill: { en: "Partner Shop • PCs & Mobile", am: "አጋር ሱቅ • ፒሲና ሞባይል", om: "Suuqii Michuu • PC fi Mobaayila" },
+        title: { en: "Abudi PC & Mobile", am: "አቡዲ ፒሲ እና ሞባይል", om: "Abudi PC & Mobile" },
+        sub: { en: "Laptops, desktop PCs and smartphones for every need!", am: "ላፕቶፖች፣ ዴስክቶፕ ፒሲዎችና ስማርትፎኖች!", om: "Laptop, desktop PC fi smartphone fedhii hundaaf!" },
+        cta: { en: "Visit Shop", am: "ሱቁን ይጎብኙ", om: "Suuqii Daawwadhu" }
       },
       {
         id: "advertise-here",
@@ -3559,290 +3451,230 @@
     /* 4. PARTNER STORES — COPY-PASTE A SHOP TO ADD MORE PARTNER MINI-STORES */
     const PARTNER_STORES = {
       kimi: {
-        id: "kimi",
-        image: "kimi.jpg",
-        name: { en: "Kimi Nesmi Dessert", am: "ኪሚ ነስሚ ዴዘርት", om: "Kimi Nesmi Dessert" },
-        badge: { en: "Verified Partner Shop", am: "አጋር ሱቅ • ጣፋጮች", om: "Suuqii Michuu" },
-        desc: { en: "Fresh cakes, chocolate boxes & cupcakes ordered directly from Kimi Nesmi.", am: "ትኩስ ኬኮች፣ ቸኮሌት ቦክሶች እና ካፕኬኮች በቀጥታ ከኪሚ ነስሚ ይዘዙ።", om: "Keekii haaraa fi chokoleetii kallattiin Kimi Nesmi irraa ajajaa." },
+        id: "kimi", image: "kimi.jpg",
+        name: { en: "Abudi Perfume", am: "አቡዲ ፐርፊዩም", om: "Abudi Perfume" },
+        badge: { en: "Verified Partner Shop • Fragrance", am: "የተረጋገጠ አጋር ሱቅ • ሽቶ", om: "Suuqii Michuu • Urgooftuu" },
+        desc: { en: "Discover refined perfumes and lasting fragrances for every occasion.", am: "ለሁሉም አጋጣሚ የሚሆኑ ውብና ዘላቂ ሽቶዎችን ያግኙ።", om: "Urgooftuu bareedaa yeroo dheeraaf turu argadhaa." },
         gradient: "linear-gradient(135deg, #047857 0%, #064E3B 58%, #071A15 100%)",
-        telegram: "KIMI_NESMI_TELEGRAM",
-        accountName: "KIMI NESMI DESSERT",
-        telebirr: "0900000001",
-        cbe: "1000000000001",
-        deliveryFee: 100,
+        telegram: "ABUDI_PERFUME", accountName: "ABUDI PERFUME", telebirr: "0900000001", cbe: "1000000000001", deliveryFee: 100,
         products: [
           {
-            id: "kn1", price: 1450, image: "kn1.jpg", icon: "cake",
-            gradient: "linear-gradient(135deg, #047857 0%, #064E3B 58%, #071A15 100%)",
-            name: { en: "Special Chocolate Fudge Cake", am: "ልዩ የቸኮሌት ኬክ", om: "Keekii Chokoleetii Addaa" },
-            desc: { en: "Freshly baked rich chocolate cake for birthdays & gifts.", am: "በትኩሱ የተጋገረ ለልደትና ለስጦታ ተመራጭ።", om: "Haaraa tolfame, guyyaa dhalootaaf mijataa." }
+            id: "abudip1", price: 1800, image: "abudip1.jpg", icon: "sparkles",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Classic Oud Eau de Parfum", am: "ክላሲክ ዑድ ፐርፊዩም", om: "Urgaa Oud Klassikaa" },
+            desc: { en: "Rich oud notes with a warm, refined finish.", am: "ሞቅ ያለ እና የተለየ የዑድ መዓዛ።", om: "Urgaa Oudii bareedaa fi ho'aa." }
           },
           {
-            id: "kn2", price: 950, image: "kn2.jpg", icon: "cake",
-            gradient: "linear-gradient(135deg, #AF4019 0%, #82270E 100%)",
-            name: { en: "Luxury Chocolate Box (12 pcs)", am: "የቸኮሌት ስጦታ ቦክስ (12 ፍሬ)", om: "Saanduqa Chokoleetii (12)" },
-            desc: { en: "12 handmade assorted chocolate truffles.", am: "12 ፍሬ የተለያዩ ጣዕም ያላቸው ፕሪሚየም ቸኮሌቶች።", om: "Chokoleetii gosa adda addaa 12." }
+            id: "abudip2", price: 1500, image: "abudip2.jpg", icon: "sparkles",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Fresh Citrus Fragrance", am: "ትኩስ የሲትረስ መዓዛ", om: "Urgaa Citrus Haaraa" },
+            desc: { en: "A bright, clean scent for everyday wear.", am: "ለዕለት ተዕለት ንጹህ እና ትኩስ መዓዛ።", om: "Urgaa qulqulluu fi haaraa guyyaa guyyaaf." }
           },
           {
-            id: "kn3", price: 650, image: "kn3.jpg", icon: "cake",
-            gradient: "linear-gradient(135deg, #E32272 0%, #B3215C 100%)",
-            name: { en: "Creamy Cupcakes Pack (6 pcs)", am: "ሚኒ ካፕኬክ ፓክ (6 ፍሬ)", om: "Kaapkeekii (6 pcs)" },
-            desc: { en: "6 soft vanilla & chocolate buttercream cupcakes.", am: "በቫኒላና በቸኮሌት ክሬም የተዋቡ 6 ካፕኬኮች።", om: "Kaapkeekii vaanilaa fi chokoleetii 6." }
+            id: "abudip3", price: 2100, image: "abudip3.jpg", icon: "sparkles",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Luxury Floral Perfume", am: "የቅንጦት የአበባ ሽቶ", om: "Urgooftuu Abaaboo" },
+            desc: { en: "A graceful floral fragrance for special moments.", am: "ለልዩ ጊዜያት የሚሆን የአበባ ሽቶ።", om: "Urgooftuu abaaboo yeroo addaa." }
           },
           {
-            id: "kn4", price: 420, image: "kn4.jpg", icon: "cake",
-            gradient: "linear-gradient(135deg, #C55613 0%, #883306 100%)",
-            name: { en: "Creamy Tiramisu Cup", am: "ትራሚሱ ካፕ (Tiramisu)", om: "Tiraamisuu Mi'aawaa" },
-            desc: { en: "Chilled espresso-soaked creamy tiramisu dessert.", am: "ቀዝቃዛና ጣፋጭ የቡና ክሬም ዴዘርት።", om: "Mi'aawaa bunaafi kiriimiin qophaa'e." }
+            id: "abudip4", price: 1900, image: "abudip4.jpg", icon: "sparkles",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Long-Lasting Men's Scent", am: "ዘላቂ የወንዶች ሽቶ", om: "Urgaa Dhiiraa Turtii Dheeraa" },
+            desc: { en: "A confident fragrance made to last.", am: "ረጅም ጊዜ የሚቆይ የወንዶች መዓዛ።", om: "Urgaa dhiiraa yeroo dheeraa turu." }
+          },
+          {
+            id: "abudip5", price: 2000, image: "abudip5.jpg", icon: "sparkles",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Elegant Women's Perfume", am: "ውብ የሴቶች ሽቶ", om: "Urgooftuu Dubartootaa" },
+            desc: { en: "A soft, elegant fragrance for every day.", am: "ለዕለት ተዕለት የሚሆን ለስላሳ ሽቶ።", om: "Urgooftuu dubartootaa laafaa fi bareedaa." }
+          },
+          {
+            id: "abudip6", price: 3200, image: "abudip6.jpg", icon: "sparkles",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Premium Gift Fragrance Set", am: "ፕሪሚየም የስጦታ ሽቶ ስብስብ", om: "Kuusaa Kennaa Urgooftuu" },
+            desc: { en: "A premium fragrance set, ready for gifting.", am: "ለስጦታ የሚሆን ፕሪሚየም የሽቶ ስብስብ።", om: "Kuusaa urgooftuu kennaaf mijatu." }
           }
         ]
       },
       boutique: {
-        id: "boutique",
-        image: "boutique.jpg",
-        name: { en: "Wollo Boutique & Fashion", am: "ወሎ ቡቲክ እና ፋሽን", om: "Wollo Boutique & Fashion" },
-        badge: { en: "Verified Partner Shop", am: "አጋር ሱቅ • ፋሽን", om: "Suuqii Michuu" },
-        desc: { en: "Trendy hoodies, everyday sneakers & long-lasting perfumes.", am: "ዘመናዊ ሁዲዎች፣ ስኒከር ጫማዎች እና ኦሪጅናል ሽቶዎች።", om: "Huudii ammayyaa, kophee fi urgooftuu orijinaala." },
+        id: "boutique", image: "boutique.jpg",
+        name: { en: "Abudi Menswear", am: "አቡዲ የወንዶች አልባሳት", om: "Abudi Menswear" },
+        badge: { en: "Verified Partner Shop • Menswear", am: "የተረጋገጠ አጋር ሱቅ • የወንዶች ፋሽን", om: "Suuqii Michuu • Uffata Dhiiraa" },
+        desc: { en: "Modern men's clothing, smart outfits and everyday essentials.", am: "ዘመናዊ የወንዶች አልባሳት፣ ቆንጆ አለባበሶችና የዕለት ተዕለት እቃዎች።", om: "Uffata dhiiraa ammayyaa fi wantoota guyyaa guyyaa." },
         gradient: "linear-gradient(135deg, #4338CA 0%, #312E81 58%, #0F1029 100%)",
-        telegram: "WOLLO_BOUTIQUE_TELEGRAM",
-        accountName: "WOLLO BOUTIQUE",
-        telebirr: "0900000002",
-        cbe: "1000000000002",
-        deliveryFee: 150,
+        telegram: "ABUDI_MENSWEAR", accountName: "ABUDI MENSWEAR", telebirr: "0900000002", cbe: "1000000000002", deliveryFee: 150,
         products: [
           {
-            id: "wb1", price: 2200, image: "wb1.jpg", icon: "shirt",
-            gradient: "linear-gradient(135deg, #4338CA 0%, #312E81 58%, #0F1029 100%)",
-            name: { en: "Premium Oversized Hoodie", am: "ኦቨርሳይዝ ፕሪሚየም ሁዲ", om: "Huudii Qulqullina Olaanaa" },
-            desc: { en: "Heavyweight soft cotton hoodie, perfect for Dessie.", am: "ለደሴ ብርድ ተመራጭ ወፍራም ጥጥ ሁዲ።", om: "Qorra Daseetiif mijataa huudii furdaa." }
+            id: "abudim1", price: 1600, image: "abudim1.jpg", icon: "shirt",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Classic Men's Shirt", am: "ክላሲክ የወንዶች ሸሚዝ", om: "Shartii Dhiiraa Klassikaa" },
+            desc: { en: "A versatile shirt for work and occasions.", am: "ለስራና ለልዩ ዝግጅት የሚሆን ሸሚዝ።", om: "Shartii hojii fi ayyaanaaf mijatu." }
           },
           {
-            id: "wb2", price: 1850, image: "wb2.jpg", icon: "shirt",
-            gradient: "linear-gradient(135deg, #354868 0%, #22345F 100%)",
-            name: { en: "Men's Original Perfume (100ml)", am: "የወንዶች ኦሪጅናል ሽቶ (100ml)", om: "Urgooftuu Dhiiraa (100ml)" },
-            desc: { en: "Fresh woody EDP scent lasting up to 24 hours.", am: "እስከ 24 ሰዓት የሚቆይ ድንቅ መዓዛ።", om: "Urgaa sa'aatii 24 turu." }
+            id: "abudim2", price: 2200, image: "abudim2.jpg", icon: "shirt",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Premium Casual Hoodie", am: "ፕሪሚየም ካዥዋል ሁዲ", om: "Huudii Casual Qulqullina Olaanaa" },
+            desc: { en: "Comfortable soft fabric for casual days.", am: "ምቹ እና ለስላሳ ጨርቅ ለዕለት ተዕለት።", om: "Huudii laafaa fi mijataa guyyaa guyyaaf." }
           },
           {
-            id: "wb3", price: 3200, image: "wb3.jpg", icon: "shirt",
-            gradient: "linear-gradient(135deg, #844ADF 0%, #5F0BA0 100%)",
-            name: { en: "Classic Everyday Sneakers", am: "ዘመናዊ ስኒከር ጫማ", om: "Kophee Isniikarii Ammayyaa" },
-            desc: { en: "Lightweight comfort sneakers (sizes 39–44).", am: "ቀላል እና ምቹ ከቁጥር 39 እስከ 44።", om: "Salphaa fi mijataa lakkoofsa 39-44." }
+            id: "abudim3", price: 1900, image: "abudim3.jpg", icon: "shirt",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Smart Formal Trousers", am: "ዘመናዊ ፎርማል ሱሪ", om: "Surree Formal Ammayyaa" },
+            desc: { en: "A smart fit for office and formal wear.", am: "ለቢሮና ለመደበኛ ዝግጅት የሚሆን።", om: "Surree waajjiraa fi uffata sirnaaf mijatu." }
+          },
+          {
+            id: "abudim4", price: 1300, image: "abudim4.jpg", icon: "shirt",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Everyday Polo Shirt", am: "የዕለት ተዕለት ፖሎ ሸሚዝ", om: "Shartii Polo Guyyaa Guyyaa" },
+            desc: { en: "A breathable polo for everyday comfort.", am: "ለዕለት ተዕለት ምቹ የፖሎ ሸሚዝ።", om: "Shartii Polo mijataa fi qilleensa darbu." }
+          },
+          {
+            id: "abudim5", price: 2800, image: "abudim5.jpg", icon: "shirt",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Modern Men's Jacket", am: "ዘመናዊ የወንዶች ጃኬት", om: "Jaakkeettii Dhiiraa Ammayyaa" },
+            desc: { en: "A stylish outer layer for cooler days.", am: "ለቀዝቃዛ ቀናት ዘመናዊ ጃኬት።", om: "Jaakkeettii yeroo qabbanaaf bareedaa." }
+          },
+          {
+            id: "abudim6", price: 3900, image: "abudim6.jpg", icon: "shirt",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Complete Men's Outfit", am: "ሙሉ የወንዶች አለባበስ", om: "Uffata Dhiiraa Guutuu" },
+            desc: { en: "A coordinated look for a sharp appearance.", am: "የተጣጣመ ሙሉ የወንዶች አለባበስ።", om: "Uffata dhiiraa wal-simu guutuu." }
+          }
+        ]
+      },
+      abudipc: {
+        id: "abudipc", image: "abudipc.jpg",
+        name: { en: "Abudi PC & Mobile", am: "አቡዲ ፒሲ እና ሞባይል", om: "Abudi PC & Mobile" },
+        badge: { en: "Verified Partner Shop • Technology", am: "የተረጋገጠ አጋር ሱቅ • ቴክኖሎጂ", om: "Suuqii Michuu • Teeknooloojii" },
+        desc: { en: "Laptops, desktop PCs and smartphones for work, study and everyday life.", am: "ላፕቶፖች፣ ዴስክቶፕ ፒሲዎችና ስማርትፎኖች ለስራና ለዕለት ተዕለት አጠቃቀም።", om: "Laptop, desktop PC fi smartphone hojii fi jireenya guyyaa guyyaaf." },
+        gradient: "linear-gradient(135deg, #0F766E 0%, #164E63 58%, #0F172A 100%)",
+        telegram: "ABUDI_PC_MOBILE", accountName: "ABUDI PC & MOBILE", telebirr: "0900000003", cbe: "1000000000003", deliveryFee: 150,
+        products: [
+          {
+            id: "abudipc1", price: 28000, image: "abudipc1.jpg", icon: "monitor",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Business Laptop", am: "ለስራ የሚሆን ላፕቶፕ", om: "Laptop Hojii" },
+            desc: { en: "Reliable laptop for work, study and browsing.", am: "ለስራ፣ ለትምህርትና ለኢንተርኔት የሚሆን።", om: "Laptop hojii, barnootaa fi interneetiif." }
+          },
+          {
+            id: "abudipc2", price: 24000, image: "abudipc2.jpg", icon: "monitor",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Desktop PC Set", am: "ዴስክቶፕ ፒሲ ስብስብ", om: "Desktop PC Guutuu" },
+            desc: { en: "Desktop computer package for home or office.", am: "ለቤትና ለቢሮ የዴስክቶፕ ኮምፒውተር ስብስብ።", om: "Kuusaa kompiitaraa manaafi waajjiraaf." }
+          },
+          {
+            id: "abudipc3", price: 12500, image: "abudipc3.jpg", icon: "monitor",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Android Smartphone", am: "አንድሮይድ ስማርትፎን", om: "Smartphone Android" },
+            desc: { en: "Smartphone for apps, photos and daily use.", am: "ለመተግበሪያዎችና ለፎቶ የሚሆን።", om: "Smartphone appii fi suuraaf mijatu." }
+          },
+          {
+            id: "abudipc4", price: 42000, image: "abudipc4.jpg", icon: "monitor",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Performance Laptop", am: "ከፍተኛ አፈጻጸም ላፕቶፕ", om: "Laptop Humna Olaanaa" },
+            desc: { en: "Powerful laptop for demanding everyday tasks.", am: "ለከባድ ዕለታዊ ስራዎች ኃይለኛ ላፕቶፕ።", om: "Laptop hojii ulfaataaf humna qabu." }
+          },
+          {
+            id: "abudipc5", price: 15500, image: "abudipc5.jpg", icon: "monitor",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "Wireless Smartphone", am: "ዘመናዊ ስማርትፎን", om: "Smartphone Wireless" },
+            desc: { en: "A practical smartphone with modern features.", am: "ዘመናዊ ባህሪያት ያሉት ስማርትፎን።", om: "Smartphone amaloota ammayyaa qabu." }
+          },
+          {
+            id: "abudipc6", price: 1800, image: "abudipc6.jpg", icon: "monitor",
+            gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)",
+            name: { en: "PC Accessories Bundle", am: "የፒሲ መለዋወጫዎች ስብስብ", om: "Kuusaa Meeshaalee PC" },
+            desc: { en: "Useful essentials for your computer setup.", am: "ለኮምፒውተርዎ የሚያስፈልጉ መለዋወጫዎች።", om: "Meeshaalee barbaachisoo kompiitaraaf." }
           }
         ]
       }
-    };
+    };;
 
     /* 5. PRODUCTS (29 CURATED ITEMS) — COPY-PASTE TO ADD OR EDIT ITEMS */
     const PRODUCTS = [
-      // --- FOR WOMEN (5) ---
-      {
+{
         id: 1, category: "women", isDeal: true, badge: "", price: 2400, oldPrice: 0,
         gradient: "linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)", icon: "belt",
         images: ["cordlessperiodheatingpad.jpg", "cordlessperiodheatingpad1.jpg", "cordlessperiodheatingpad2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Cordless Period Heating Pad", am: "የወር አበባ ህመም ማስታገሻ (Period Heating Pad)", om: "Qabattoo Dhukkubbii Lagoo Hir'isu" },
         desc: { en: "USB-C rechargeable cordless heating pad with 3 heat levels & massage modes. Discreet under clothes for fast relief.", am: "ያለ ገመድ በቻርጅ የሚሰራ፣ 3 የሙቀት እና የማሳጅ ደረጃዎች ያሉት። በልብስ ስር ሳይታይ ህመምን በሰከንዶች ያስታግሳል።", om: "USB-C tiin chaarjii ta'u, sadarkaa ho'aa 3 fi masaajii qaba." }
       },
-      {
+{
         id: 2, category: "women", isDeal: false, badge: "", price: 1450, oldPrice: 0,
         gradient: "linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)", icon: "fan",
         images: ["minifan.jpg", "minifan1.jpg", "minifan2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Portable Mini Fan", am: "ሚኒ ተንቀሳቃሽ ፋን (Mini Fan)", om: "Faanii Miinii Chaarjiin Hojjetu" },
         desc: { en: "Compact USB rechargeable handheld & desk mini fan — easy to carry in any bag for Kombolcha, Harbu & Kemise heat.", am: "በቦርሳ የሚያዝ በቻርጅ የሚሰራ ሚኒ ፋን — ለኮምቦልቻ፣ ሀርቡ እና ኬሚሴ ሙቀት ምርጥ መፍትሄ።", om: "Boorsaa keessatti qabamu, chaarjiin hojjeta — ho'aaf furmaata gaarii." }
       },
-      {
+{
         id: 3, category: "women", isDeal: true, badge: "", price: 2800, oldPrice: 0,
         gradient: "linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)", icon: "hair",
         images: ["hairstraightenercombbrush.jpg", "hairstraightenercombbrush1.jpg", "hairstraightenercombbrush2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Hair Straightener Comb Brush", am: "የሚያበጥር የፀጉር መተኮሻ", om: "Burushii Rifeensa Qajeelchu" },
         desc: { en: "Fast-heating straightening comb brush that detangles and smooths hair safely in minutes.", am: "ፀጉርን እያበጠረ በፍጥነት እና ሳያቃጥል የሚተኩስ ዘመናዊ የፀጉር መተኮሻ ብሩሽ።", om: "Rifeensa osoo hin gubin saffisaan qajeelchee filu." }
       },
-      {
+{
         id: 4, category: "women", isDeal: false, badge: "", price: 1650, oldPrice: 0,
         gradient: "linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)", icon: "cup",
         images: ["travelcup.jpg", "travelcup1.jpg", "travelcup2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Insulated Travel Cups", am: "የጉዞ መጠጫ ኩባያዎች (Travel Cups)", om: "Kubbaayyaa Imalaa (Travel Cups)" },
         desc: { en: "Leak-proof thermal travel mugs & tumblers that keep coffee, tea, or cold drinks at the perfect temperature.", am: "የማያፈስ እና ቡና፣ ሻይ ወይም ቀዝቃዛ መጠጥ ሙቀቱን/ቅዝቃዜውን ጠብቆ የሚያቆይ ዘመናዊ የጉዞ ኩባያ።", om: "Buna, shaayii ykn dhugaatii qabbanaa'aa osoo hin dhangalaasin tursiisu." }
       },
-      {
+{
         id: 5, category: "women", isDeal: false, badge: "", price: 950, oldPrice: 0,
         gradient: "linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)", icon: "shoe",
         images: ["waterproofshoecoverssize3645.jpg", "waterproofshoecoverssize36451.jpg", "waterproofshoecoverssize36452.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Waterproof Shoe Covers (Size 36–45)", am: "የጫማ ገበር / ከቨር (ለወንድና ለሴት — ቁጥር 36–45)", om: "Uwwisa Kophee Bishaan Hin Seensifne (36–45)" },
         desc: { en: "Reusable non-slip silicone shoe covers for men & women. Protects shoes from rain and mud (fits sizes 36 to 45).", am: "ለወንድም ለሴትም የሚሆን የማያንሸራትት የዝናብና የጭቃ ጫማ መሸፈኛ — ከቁጥር 36 እስከ 45 ብቻ።", om: "Dhiiraa fi dubaraaf ta'a, roobaa fi dhoqqee irraa kophee eega (lakkoofsa 36–45)." }
       },
-
-      // --- HOME & KITCHEN (5) ---
-      {
+{
         id: 6, category: "home", isDeal: true, badge: "", price: 2100, oldPrice: 0,
         gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)", icon: "blender",
         images: ["portableminijuiceblender.jpg", "portableminijuiceblender1.jpg", "portableminijuiceblender2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Portable Mini Juice Blender", am: "ሚኒ ጁስ መፍጫ (Mini Blender)", om: "Miinii Juusii Daaku USB" },
         desc: { en: "6-blade USB rechargeable mini juicer cup — blends fresh smoothies & juice anywhere even during power cuts.", am: "መብራት ቢጠፋም በቻርጅ የሚሰራ ባለ 6 ምላጭ ሚኒ ጁስ መፍጫ። ለቤት፣ ለተማሪዎችና ለጂም ምርጥ።", om: "Ibsaan yoo badees chaarjiin hojjeta. Manaa fi barattootaaf baay'ee gaarii." }
       },
-      {
+{
         id: 7, category: "home", isDeal: false, badge: "", price: 1850, oldPrice: 0,
         gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)", icon: "charcoal",
         images: ["electriccharcoaligniter.jpg", "electriccharcoaligniter1.jpg", "electriccharcoaligniter2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Electric Charcoal Igniter", am: "የኤሌክትሪክ ከሰል ማንደጃ", om: "Cilee Qabsiistuu Elektirikii" },
         desc: { en: "Fast electric charcoal starter — lights coffee & cooking charcoal cleanly in minutes without smoke or hassle.", am: "ያለ ጭስ እና ያለ ድካም ለቡና እና ለምግብ ማብሰያ ከሰልን በደቂቃዎች ውስጥ የሚያነድ ኤሌክትሪክ ማንደጃ።", om: "Aara malee daqiiqaa muraasa keessatti cilee qabsiisa." }
       },
-      {
+{
         id: 8, category: "home", isDeal: false, badge: "", price: 1150, oldPrice: 0,
         gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)", icon: "scale",
         images: ["minidigitalhomescale.jpg", "minidigitalhomescale1.jpg", "minidigitalhomescale2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Mini Digital Home Scale", am: "ሚኒ የቤት ሚዛን (Digital Scale)", om: "Madaallii Manaa Miinii Dijitaalaa" },
         desc: { en: "High-precision compact digital scale for kitchen ingredients, coffee, baking & daily home use.", am: "ለኩሽና፣ ለቡና፣ ለዳቦ መጋገሪያ እና ለዕለታዊ የቤት አገልግሎት የሚሆን ትክክለኛ ሚኒ ዲጂታል ሚዛን።", om: "Kichinii, buna fi itti fayyadama manaa guyyaa guyyaaf madaallii sirrii." }
       },
-      {
+{
         id: 9, category: "home", isDeal: false, badge: "", price: 1200, oldPrice: 0,
         gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)", icon: "glass",
         images: ["glassmirrorcleanertool.jpg", "glassmirrorcleanertool1.jpg", "glassmirrorcleanertool2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Glass & Mirror Cleaner Tool", am: "የመስተዋት ማጽጃ (Glass Cleaner)", om: "Qulqulleessaa Daawitii fi Foddaa" },
         desc: { en: "Streak-free ergonomic glass & window squeegee cleaner for spotless mirrors, windows, and tables.", am: "መስታወት፣ መስኮት እና ጠረጴዛዎችን ያለ ምንም ምልክት በፍጥነት የሚያጸዳ ዘመናዊ የመስተዋት ማጽጃ።", om: "Daawitii fi foddaa osoo mallattoo hin hambisin qulqulleessa." }
       },
-      {
+{
         id: 10, category: "home", isDeal: false, badge: "", price: 2450, oldPrice: 0,
         gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)", icon: "rack",
         images: ["multilayershoerack.jpg", "multilayershoerack1.jpg", "multilayershoerack2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Multi-Layer Shoe Rack", am: "የጫማ መደርደሪያ (Shoe Rack)", om: "Sheelfii Kophee" },
         desc: { en: "Space-saving, sturdy multi-tier shoe organizer that keeps your entryway neat and tidy.", am: "ቦታ የሚቆጥብ፣ ጠንካራ እና ቤትዎን በስርዓት የሚያስቀምጥ ባለ ብዙ ደረጃ የጫማ መደርደሪያ።", om: "Bakka qusata, jabaa fi kophee keessan sirnaan qaba." }
       },
-
-      // --- TECH & GADGETS (14) ---
-      {
+{
         id: 11, category: "tech", isDeal: true, badge: "", price: 1800, oldPrice: 0,
         gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "earbuds",
         images: ["wirelessairpodsearbuds.jpg", "wirelessairpodsearbuds1.jpg", "wirelessairpodsearbuds2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Wireless AirPods / Earbuds", am: "ሽቦ አልባ ኤርፖድ (AirPods)", om: "AirPods / Earbuds Biluutuuzii" },
         desc: { en: "Clear stereo sound, touch controls, and compact charging case compatible with Android & iPhone.", am: "ጥርት ያለ ድምጽ፣ ታች ኮንትሮል እና የቻርጅ ሳጥን ያለው ለአንድሮይድ እና አይፎን የሚሰራ ኤርፖድ።", om: "Sagalee qulqulluu fi chaarjii dheeraa kan Android fi iPhone irratti hojjetu." }
       },
-      {
+{
         id: 12, category: "tech", isDeal: true, badge: "", price: 2600, oldPrice: 0,
         gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "watch",
         images: ["smartwatch.jpg", "smartwatch1.jpg", "smartwatch2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
         name: { en: "Smartwatch", am: "ስማርት ሰዓት (Smartwatch)", om: "Sa'aatii Ismaartii (Smartwatch)" },
         desc: { en: "HD display smartwatch with Bluetooth calling, notifications, step tracking & interchangeable straps.", am: "ጥሪ የሚያነሳ፣ ኖቲፊኬሽን የሚያሳይ እና የስፖርት እንቅስቃሴ የሚቆጥር ዘመናዊ ስማርት ሰዓት።", om: "Bilbila kaasu, ergaa agarsiisuu fi sochii qaamaa lakkaa'a." }
-      },
-      {
-        id: 13, category: "tech", isDeal: false, badge: "", price: 1600, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "mic",
-        images: ["wirelessmicrophones.jpg", "wirelessmicrophones1.jpg", "wirelessmicrophones2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Wireless Microphones", am: "ሽቦ አልባ ማይክራፎኖች (Microphones)", om: "Maayikiroofoonii Biluutuuzii" },
-        desc: { en: "Plug-and-play noise-cancelling clip-on wireless microphone — ideal for TikTok, YouTube & interviews.", am: "ድምጽን ጥርት አድርጎ የሚቀዳ ሽቦ አልባ ማይክራፎን — ለቲክቶክ፣ ዩቲዩብ እና ቃለ መጠይቅ ምርጥ።", om: "Sagalee qulqulluu waraabuuf TikTok fi YouTube irratti baay'ee gaarii." }
-      },
-      {
-        id: 14, category: "tech", isDeal: false, badge: "", price: 2900, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "powerbank",
-        images: ["fastchargingpowerbank.jpg", "fastchargingpowerbank1.jpg", "fastchargingpowerbank2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Fast-Charging Power Bank", am: "ፓወር ባንክ (Power Bank)", om: "Paawar Baankii Saffisaa" },
-        desc: { en: "High-capacity fast-charging power bank with dual outputs to keep your phone powered during blackouts.", am: "መብራት ሲጠፋ ስልክዎን በፍጥነት ደጋግሞ የሚሞላ ከፍተኛ አቅም ያለው ፓወር ባንክ።", om: "Yeroo ibsaan badu bilbila keessan saffisaan guutu." }
-      },
-      {
-        id: 15, category: "tech", isDeal: false, badge: "", price: 2400, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "coolingpad",
-        images: ["laptopcoolingpadwithfans.jpg", "laptopcoolingpadwithfans1.jpg", "laptopcoolingpadwithfans2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Laptop Cooling Pad with Fans", am: "ባለ ፋን የላፕቶፕ ማቀዝቀዣ (Laptop Cooling Pad)", om: "Qabbaneessaa Laaptooppii Faanii Qabu" },
-        desc: { en: "Quiet multi-fan USB cooling pad with adjustable stand angle to prevent laptop overheating.", am: "ላፕቶፕ እንዳይሞቅ የሚከላከል ከታች ፋን ያለው እና ከፍታው የሚስተካከል የላፕቶፕ ማቀዝቀዣ።", om: "Laaptooppiin akka hin ho'ine eega, faanii fi dhaabbata qaba." }
-      },
-      {
-        id: 16, category: "tech", isDeal: false, badge: "", price: 1350, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "stand",
-        images: ["foldablephonelaptopstand.jpg", "foldablephonelaptopstand1.jpg", "foldablephonelaptopstand2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Foldable Phone & Laptop Stand", am: "የሚታጠፍ የስልክና ላፕቶፕ ማስደገፊያ", om: "Dhaabbata Bilbilaa fi Laaptooppii" },
-        desc: { en: "Lightweight, foldable ergonomic stand for comfortable typing, studying, and hands-free viewing.", am: "ቀላል እና የሚታጠፍ ለጥናት፣ ለስራ እና ቪዲዮ ለማየት ምቹ የሆነ የስልክና ላፕቶፕ ማስደገፊያ።", om: "Salphaa fi dacha'aa, barnootaa fi hojiif mijataa." }
-      },
-      {
-        id: 17, category: "tech", isDeal: false, badge: "", price: 650, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "cable",
-        images: ["fastchargingcablesshortlong.jpg", "fastchargingcablesshortlong1.jpg", "fastchargingcablesshortlong2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Fast Charging Cables (Short & Long)", am: "የቻርጅ ኬብሎች (አጭር እና ረጅም በተለያየ ሜትር)", om: "Keebilii Chaarjii (Gabaabaa fi Dheeraa)" },
-        desc: { en: "Durable braided fast-charging cables available in multiple lengths (short & long meters) for Type-C & iPhone.", am: "በተለያዩ ሜትሮች (አጭር እና ረጅም) የሚገኙ ጠንካራ እና ፈጣን የቻርጅ ኬብሎች።", om: "Dheerina adda addaan (gabaabaa fi dheeraa) keebilii chaarjii jabaa." }
-      },
-      {
-        id: 18, category: "tech", isDeal: true, badge: "", price: 1250, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "phonecase",
-        images: ["phonecasesupgradecovers.jpg", "phonecasesupgradecovers1.jpg", "phonecasesupgradecovers2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Phone Cases & Upgrade Covers", am: "የስልክ ከቨሮች እና የሞዴል መቀየሪያ ስቲከር (iPhone 13 Pro Max → 17/18 Look)", om: "Uwwisa Bilbilaa fi Istiikarii Haaraa" },
-        desc: { en: "Stylish protective cases & back upgrade covers/stickers that transform models like iPhone 13 Pro Max into a sleek 17/18 Pro Max look.", am: "ስልክዎን የሚጠብቁ ዘመናዊ ከቨሮች እና እንደ iPhone 13 Pro Max ያሉ ስልኮችን ወደ 17/18 Pro Max መልክ የሚቀይሩ የጀርባ ከቨርና ስቲከሮች።", om: "Uwwisa bilbilaa fi istiikarii bifa iPhone 13 Pro Max gara 17/18 Pro Max jijjiiru." }
-      },
-      {
-        id: 19, category: "tech", isDeal: false, badge: "", price: 4900, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "projector",
-        images: ["portableminiprojector.jpg", "portableminiprojector1.jpg", "portableminiprojector2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Portable Mini Projector", am: "ፖርቴብል ሚኒ ፕሮጀክተር (Mini Projector)", om: "Piroojektarii Miinii" },
-        desc: { en: "Compact HD mini projector for movies, football matches & presentations right on your wall.", am: "ፊልም፣ ኳስ እና ፕረዘንቴሽን በግድግዳዎ ላይ በትልቁ ለማየት የሚያስችል አነስተኛ ፖርቴብል ሚኒ ፕሮጀክተር።", om: "Fiilmii fi kubbaa miilaa girgiddaa irratti guddisanii ilaaluuf piroojektarii miinii." }
-      },
-      {
-        id: 20, category: "tech", isDeal: false, badge: "", price: 2200, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "ringlight",
-        images: ["ledringlightwithstand.jpg", "ledringlightwithstand1.jpg", "ledringlightwithstand2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "LED Ring Light with Stand", am: "ሪንግ ላይት (Ring Light — ለስትሪም እና ቪዲዮ)", om: "Ibsaa Ring Light Viidiyoo fi Istiriimiif" },
-        desc: { en: "Adjustable brightness & color-tone LED ring light with phone holder for live streaming, TikTok & makeup.", am: "ለላይቭ ስትሪም፣ ለቲክቶክ ቪዲዮ እና ለፎቶ ብርሃኑ የሚስተካከል ሪንግ ላይት ከስልክ ማቆሚያ ጋር።", om: "TikTok, live stream fi suuraaf ibsaa qulqulluu dhaabbata bilbilaa waliin." }
-      },
-      {
-        id: 21, category: "tech", isDeal: false, badge: "", price: 3200, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "router",
-        images: ["wifirouter.jpg", "wifirouter1.jpg", "wifirouter2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Wi-Fi Router", am: "ዋይፋይ ራውተር (Wi-Fi Router)", om: "Raawutarii Wi-Fi" },
-        desc: { en: "Fast, reliable Wi-Fi router for strong home, dorm, or office internet coverage.", am: "ለቤት፣ ለቢሮ ወይም ለዶርም ጠንካራ እና ፈጣን ኢንተርኔት የሚያሰራጭ ዋይፋይ ራውተር።", om: "Manaa fi biiroof interneetii saffisaa fi cimaa raabsu." }
-      },
-      {
-        id: 22, category: "tech", isDeal: false, badge: "", price: 1100, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "led",
-        images: ["rgbledstriplights.jpg", "rgbledstriplights1.jpg", "rgbledstriplights2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "RGB LED Strip Lights", am: "ኤልኢዲ መብራቶች (LED Lights)", om: "Ibsaa LED Halluu Adda Addaa" },
-        desc: { en: "Remote-controlled multi-color LED strip lights to upgrade your bedroom, desk, or studio setup.", am: "በሪሞት ቀለም የሚቀያይር ለመኝታ ቤት፣ ለጠረጴዛ እና ለስቱዲዮ ዲኮር የሚሆን ኤልኢዲ መብራት።", om: "Halluu jijjiiramuun kutaa ciisichaa fi istuudiyoo miidhagsa." }
-      },
-      {
-        id: 23, category: "tech", isDeal: false, badge: "", price: 1950, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "speaker",
-        images: ["minijblbluetoothspeaker.jpg", "minijblbluetoothspeaker1.jpg", "minijblbluetoothspeaker2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Mini JBL Bluetooth Speaker", am: "ሚኒ ጄቢኤል ስፒከር (Mini JBL Speaker)", om: "Ispikarii Miinii JBL Biluutuuzii" },
-        desc: { en: "Pocket-sized JBL Bluetooth speaker delivering punchy bass, clear audio & long battery life.", am: "በእጅ የሚያዝ ነገር ግን ጠንካራ ቤዝ እና ጥርት ያለ ድምጽ ያለው ሚኒ ጄቢኤል ብሉቱዝ ስፒከር።", om: "Sagalee cimaa fi qulqulluu baasii gaarii waliin kennu." }
-      },
-      {
-        id: 24, category: "tech", isDeal: false, badge: "", price: 1750, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #27272A 0%, #111827 100%)", icon: "diffuser",
-        images: ["electricwateraromadiffuser.jpg", "electricwateraromadiffuser1.jpg", "electricwateraromadiffuser2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Electric Water Aroma Diffuser", am: "በውሃ የሚሰራ የቤት መዓዛ ማሰራጫ (Aroma Diffuser)", om: "Urgeessaa Manaa Bishaanii fi Elektirikiin Hojjetu" },
-        desc: { en: "Electric ultrasonic humidifier & aroma diffuser — add water and fragrance drops for a fresh, soothing mist.", am: "ውሃ እና የመዓዛ ጠብታ ሲጨመርበት በኤሌክትሪክ እየሰራ ንጹህ ጭስ/እንፋሎት በማውጣት ቤትዎን ጥሩ መዓዛ የሚያደርግ።", om: "Bishaan itti naqamee elektirikiin hurka urgaa'aa baasuun mana qulqulleessa." }
-      },
-
-      // --- FITNESS & SPORTS (5) ---
-      {
-        id: 25, category: "fitness", isDeal: true, badge: "", price: 1900, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)", icon: "posture",
-        images: ["advancedposturecorrector.jpg", "advancedposturecorrector1.jpg", "advancedposturecorrector2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Advanced Posture Corrector", am: "አድቫንስድ የጀርባ አቀማመጥ ማስተካከያ (Advanced Posture Corrector)", om: "Sirreessaa Dugdaa Olaanaa (Advanced Posture)" },
-        desc: { en: "Upgraded ergonomic back & shoulder posture corrector for straight posture and back-pain relief.", am: "ጀርባን እና ትከሻን ቀጥ የሚያደርግ፣ ለተማሪዎች፣ ለቢሮ ሰራተኞች እና ለስፖርተኞች የሚሆን አድቫንስድ ፖስቸር ኮሬክተር።", om: "Dugdaa fi gateettii qajeelchee dhukkubbii dugdaa hir'isa." }
-      },
-      {
-        id: 26, category: "fitness", isDeal: false, badge: "", price: 1100, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)", icon: "bottle",
-        images: ["sportswaterbottles.jpg", "sportswaterbottles1.jpg", "sportswaterbottles2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Sports Water Bottles", am: "የስፖርት ውሃ ኮዳዎች (Sports Bottle)", om: "Qaruuraa Bishaanii Ispoortii" },
-        desc: { en: "Leak-proof BPA-free sports water bottles & gym shakers designed for workouts and daily hydration.", am: "ለጂም፣ ለኳስ እና ለዕለታዊ ስፖርት የሚሆኑ የማያፈሱ ጠንካራ የስፖርት ውሃ መጠጫ ኮዳዎች።", om: "Jiimii fi ispoortiif qaruuraa bishaanii jabaa fi hin dhangalaane." }
-      },
-      {
-        id: 27, category: "fitness", isDeal: false, badge: "", price: 750, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)", icon: "wrist",
-        images: ["handwristsupporter.jpg", "handwristsupporter1.jpg", "handwristsupporter2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Hand & Wrist Supporter", am: "የእጅ መደገፊያ (Hand Supporter)", om: "Deeggartuu Harkaa (Hand Supporter)" },
-        desc: { en: "Breathable elastic hand & wrist support wrap that protects joints during gym, lifting, and sports.", am: "በስፖርት እና ክብደት ማንሳት ወቅት የእጅ አንጓን ከጉዳት የሚጠብቅ እና የሚደግፍ ሃንድ ሰፖርተር።", om: "Yeroo ispoortii fi ulfaatina kaasan harka miidhaa irraa eega." }
-      },
-      {
-        id: 28, category: "fitness", isDeal: false, badge: "", price: 650, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)", icon: "socks",
-        images: ["nonslipgripsocks.jpg", "nonslipgripsocks1.jpg", "nonslipgripsocks2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "Non-Slip Grip Socks", am: "ግሪፕ ሶክስ (Grip Socks)", om: "Kaalsii Ispoortii Hin Mucucaachifne (Grip Socks)" },
-        desc: { en: "Anti-slip rubber-grip athletic socks for football, running, and gym stability inside any shoe.", am: "ጫማ ውስጥ እግር እንዳይንሸራተት የሚያደርግ ጠንካራ የኳስ እና የስፖርት ግሪፕ ሶክስ።", om: "Kophee keessatti miilli akka hin mucucaanne godhu kaalsii kubbaa miilaa." }
-      },
-      {
-        id: 29, category: "fitness", isDeal: true, badge: "", price: 2400, oldPrice: 0,
-        gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)", icon: "fitnesspack",
-        images: ["4in1fitnesspackage.jpg", "4in1fitnesspackage1.jpg", "4in1fitnesspackage2.jpg"], tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "",
-        name: { en: "4-in-1 Fitness Package", am: "4-በ1 የፊትነስ ፓኬጅ (መዝለያ፣ የእጅ ማጠንከሪያ እና ሌሎችም)", om: "Paakeejii Fiitnasii 4-in-1" },
-        desc: { en: "Complete 4-piece home workout kit including jump rope, adjustable hand grip strengthener & fitness accessories.", am: "የዝላይ ገመድ፣ የእጅና ክንድ ጡንቻ ማጠንከሪያ እና ተጨማሪ የስፖርት ዕቃዎችን በአንድ የያዘ ባለ 4 አይነት ሙሉ ፓኬጅ።", om: "Funyoo utaalchaa, cimsuu harkaa fi meeshaalee fiitnasii 4 bakka tokkotti." }
       }
     ];
 
@@ -3854,13 +3686,13 @@
         langCode: "EN", searchPh: "Search products...", noSearchResults: "No item found — tap '+ Request Item' above!",
         home: "Home", cart: "Cart", orders: "Orders", profile: "Profile",
         categories: "Categories", seeAll: "See All", specialOffers: "Shop by City",
-        allProducts: "All Products", reqItem: "+ Request Item",
+        allProducts: "All Products", moreProductsSoon: "Many More Products Coming Soon", reqItem: "+ Request Item",
         catAll: "All", catDeals: "Special Offers", catWomen: "For Women", catHome: "Home & Kitchen", catTech: "Tech & Gadgets", catFitness: "Fitness & Sports",
         emptyCartTitle: "Your cart is empty", emptyCartSub: "Browse our unique gadgets and add items to your cart", shopNow: "Shop Now",
         checkoutTitle: "Delivery Details & Payment",
         city: "City / Location", name: "Full Name", phone: "Phone Number", addr: "Neighborhood / Address",
         payTitle: "Pay Only 200 Br Delivery Upfront",
-        paySub: "Pay the product price only on delivery. Send your 200 Br payment screenshot on Telegram.",
+        paySub: "Pay 200 Br delivery upfront and attach your payment screenshot below.",
         copy: "Copy", copied: "Copied!",
         subtotal: "Items Subtotal", delFee: "Upfront Delivery Fee", payOnDel: "Total on Delivery",
         orderBtn: "Order", fillReq: "Please fill in Name, Phone, and Address!",
@@ -3895,13 +3727,13 @@
         langCode: "አማ", searchPh: "እቃዎችን ይፈልጉ...", noSearchResults: "የፈለጉት እቃ አልተገኘም — ከላይ '+ ሌላ እቃ ይዘዙ' ይንኩ!",
         home: "መነሻ", cart: "ቅርጫት", orders: "ትዕዛዞች", profile: "መገለጫ",
         categories: "ምድቦች", seeAll: "ሁሉንም እይ", specialOffers: "በከተማ ይሸምቱ",
-        allProducts: "ሁሉም እቃዎች", reqItem: "+ ሌላ እቃ ይዘዙ",
+        allProducts: "ሁሉም እቃዎች", moreProductsSoon: "ብዙ ተጨማሪ ምርቶች በቅርቡ ይመጣሉ", reqItem: "+ ሌላ እቃ ይዘዙ",
         catAll: "ሁሉም", catDeals: "ልዩ ቅናሽ", catWomen: "ለሴቶች", catHome: "ቤትና ማዕድ ቤት", catTech: "ቴክና ጋጄት", catFitness: "ፊትነስና ስፖርት",
         emptyCartTitle: "ቅርጫትዎ ባዶ ነው", emptyCartSub: "ለየት ያሉ ጋጄቶቻችንን ይመልከቱና ወደ ቅርጫትዎ ይጨምሩ", shopNow: "አሁን ይሸምቱ",
         checkoutTitle: "የማድረሻ መረጃ እና ክፍያ",
         city: "ከተማ / ቦታ", name: "ሙሉ ስም", phone: "ስልክ ቁጥር", addr: "ሰፈር / ትክክለኛ ቦታ",
         payTitle: "የዴሊቨሪ 200 ብር ብቻ ቅድሚያ ይክፈሉ",
-        paySub: "የእቃውን ዋጋ እቃው ሲደርስ ብቻ ይክፈሉ። የ200 ብር ስክሪንሹት በቴሌግራም ይላኩ።",
+        paySub: "የ200 ብር የዴሊቨሪ ክፍያ ከፍለው የክፍያ ስክሪንሹት ከታች ያያይዙ።",
         copy: "ኮፒ", copied: "ተቀድቷል!",
         subtotal: "የእቃዎች ድምር", delFee: "የዴሊቨሪ ቅድሚያ ክፍያ", payOnDel: "እቃው ሲደርስ የሚከፈል",
         orderBtn: "ይዘዙ", fillReq: "እባክዎ ስም፣ ስልክ እና ሰፈር ይሙሉ!",
@@ -3936,13 +3768,13 @@
         langCode: "OM", searchPh: "Mi'a barbaadaa...", noSearchResults: "Mi'i barbaaddan hin argamne — gubbaa '+ Mi'a Biraa Ajajaa' tuqaatii ajajaa!",
         home: "Fuula Duraa", cart: "Guuboo", orders: "Ajajawwan", profile: "Eenyummaa",
         categories: "Ramaddiiwwan", seeAll: "Hunda Ilaali", specialOffers: "Magaalaadhaan Bitaa",
-        allProducts: "Mi'a Hunda", reqItem: "+ Mi'a Biraa Ajajaa",
+        allProducts: "Mi'a Hunda", moreProductsSoon: "Oomishaaleen Dabalataa Hedduun Yeroo Dhiyootti Dhufu", reqItem: "+ Mi'a Biraa Ajajaa",
         catAll: "Hunda", catDeals: "Hir'ina Addaa", catWomen: "Dubartootaaf", catHome: "Manaa fi Kichinii", catTech: "Teekii fi Gaajeetii", catFitness: "Fiitnasii fi Ispoortii",
         emptyCartTitle: "Guuboon keessan duwwaa dha", emptyCartSub: "Gaajeetota addaa keenya ilaalaatii guubootti dabaladhaa", shopNow: "Amma Bitaa",
         checkoutTitle: "Odeeffannoo Geessii fi Kaffaltii",
         city: "Magaalaa / Bakka", name: "Maqaa Guutuu", phone: "Lakkoofsa Bilbilaa", addr: "Naannoo / Teessoo",
         payTitle: "Kaffaltii Geessii Br 200 Qofa Dursaa",
-        paySub: "Gatii mi'aa yeroo gahu qofa kaffalaa. Suuraa Br 200 Telegramiin ergaa.",
+        paySub: "Kaffaltii geejjibaa Br 200 kaffaluun screenshot kaffaltii armaan gaditti maxansaa.",
         copy: "Koppii", copied: "Koppii ta'eera!",
         subtotal: "Ida'ama Mi'aa", delFee: "Kaffaltii Geessii Dursaa", payOnDel: "Yeroo Geessii Kaffalamu",
         orderBtn: "Ajajaa", fillReq: "Maaloo maqaa, bilbila fi teessoo guutaa!",
@@ -4120,7 +3952,7 @@
         <div class="form-group" style="margin-top:12px;">
           <input type="file" accept="image/*" id="${id}" style="display:none;" />
           <label for="${id}" style="min-height:140px;width:100%;border:1.5px dashed var(--border);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:18px;text-align:center;cursor:pointer;background:var(--bg-muted);">
-            <span aria-hidden="true" style="font-size:38px;line-height:1;font-weight:700;color:var(--red);">+</span>
+            <span aria-hidden="true" style="display:flex;align-items:center;justify-content:center;color:var(--red);"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
             <span style="font-size:13px;font-weight:800;color:var(--text-primary);">${t("attachScreenshot")}</span>
           </label>
           <div id="${id}-preview-wrap" style="display:none;align-items:center;gap:10px;margin-top:9px;">
@@ -4313,7 +4145,7 @@
               <div class="banner-sub">${b.sub[state.lang] || b.sub.en}</div>
               <span class="banner-cta">${b.cta[state.lang] || b.cta.en} &rsaquo;</span>
             </div>
-            <div class="banner-icon-box">${svgIcon(b.icon, 28)}</div>
+            <div class="banner-icon-box">${b.iconEmoji ? `<span style="font-size:30px;line-height:1;">${b.iconEmoji}</span>` : svgIcon(b.icon, 28)}</div>
           </div>
         `;
       }).join("");
@@ -4537,15 +4369,7 @@
       }
 
       const malls = city.malls || [];
-      const shops = city.normalShops || [];
-      const filtered = shops.filter(sh => directoryState.category === "all" || sh.category === directoryState.category);
-      body.innerHTML = `<div class="city-directory-tabs">
-        <button class="city-tab ${directoryState.tab === "malls" ? "active" : ""}" data-directory-tab="malls">${ui.malls}${malls.length > 0 ? ` (${malls.length})` : ""}</button>
-        <button class="city-tab ${directoryState.tab === "shops" ? "active" : ""}" data-directory-tab="shops">${ui.shops}${shops.length > 0 ? ` (${shops.length})` : ""}</button></div>
-        ${directoryState.tab === "malls"
-          ? `<div class="directory-grid">${malls.length ? malls.map(m => directoryCardHtml(m, "mall")).join("") : `<div class="directory-empty">${ui.noMalls}</div>`}</div>`
-          : `<div class="cat-row no-scrollbar" style="margin-bottom:13px;">${DIRECTORY_CATEGORIES.map(c => `<button class="cat-chip ${directoryState.category === c.id ? "active" : ""}" data-directory-category="${c.id}">${c.label[state.lang]}</button>`).join("")}</div>
-        <div class="directory-grid">${filtered.length ? filtered.map(sh => directoryCardHtml(sh, "shop")).join("") : `<div class="directory-empty">${ui.noShops}</div>`}</div>`}`;
+      body.innerHTML = `<div class="directory-grid">${malls.length ? malls.map(m => directoryCardHtml(m, "mall")).join("") : `<div class="directory-empty">${ui.noMalls}</div>`}</div>`;
     }
 
     function openCityDirectory(id) {
@@ -4583,9 +4407,10 @@
       });
 
       document.getElementById("prod-count").textContent = list.length;
-      document.getElementById("products-grid").innerHTML = list.length
+      document.getElementById("products-grid").innerHTML = (list.length
         ? list.map(function (p) { return cardHtml(p, false); }).join("")
-        : `<div class="white-card" style="grid-column:1/-1;text-align:center;padding:36px;color:var(--text-secondary);">${t("noSearchResults")}</div>`;
+        : `<div class="white-card" style="grid-column:1/-1;text-align:center;padding:36px;color:var(--text-secondary);">${t("noSearchResults")}</div>`) +
+        `<div style="grid-column:1/-1;text-align:center;padding:20px 16px;margin-top:4px;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;color:var(--text-secondary);font-size:14px;font-weight:800;">${t("moreProductsSoon")}</div>`;
     }
 
     /* PRODUCT DETAIL MODAL + DIRECT ORDER MODAL */
@@ -5452,9 +5277,6 @@
         const dirShop = e.target.closest("[data-directory-shop]");
         if (dirShop) {
           const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
-          const list = city ? (city.normalShops || []) : [];
-          const shop = list.find(sh => sh.id === dirShop.getAttribute("data-directory-shop"));
-          if (shop) openDirectoryShop(shop);
           return;
         }
 
