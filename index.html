@@ -1918,7 +1918,11 @@
         display: block;
       }
     }
-  </style>
+  
+    .wm-admin-actions{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap}
+    .wm-admin-actions button{font-size:11px;padding:6px 9px;border-radius:8px;background:var(--bg-muted);border:1px solid var(--border);font-weight:800}
+    .wm-seller-photo{width:100%;height:132px;object-fit:cover;border-radius:12px;margin-bottom:8px;background:var(--bg-muted)}
+</style>
 </head>
 <body>
 
@@ -1960,6 +1964,7 @@
         </nav>
 
         <div class="header-actions">
+          <button type="button" class="hdr-btn" id="btn-owner-admin" aria-label="Owner Admin">🔒</button>
           <button type="button" class="hdr-btn" id="btn-lang">EN</button>
           <button type="button" class="hdr-btn circle" id="btn-theme" aria-label="Dark Mode">
             <svg id="ico-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
@@ -2033,9 +2038,17 @@
               <h2 class="section-title" id="lbl-all-prod">All Products</h2>
               <span class="count-pill" id="prod-count">29</span>
             </div>
-            <button type="button" class="req-pill-btn" id="btn-req-item">+ Request Item</button>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;">
+              <button type="button" class="req-pill-btn" id="btn-req-item">+ Request Item</button>
+              <button type="button" class="btn-red" id="btn-sell-product" style="padding:8px 11px;font-size:11px;">Sell Your Product</button>
+              <button type="button" class="btn-outline" id="btn-main-add" data-owner-only="1" style="display:none;padding:8px 11px;font-size:11px;">+ Add Product</button>
+            </div>
           </div>
           <div class="products-grid" id="products-grid"></div>
+        </div>
+        <div class="section" id="sec-seller-listings">
+          <div class="section-head"><div class="section-title-row"><span class="red-bar"></span><h2 class="section-title">Listed by Sellers</h2></div><span class="count-pill" id="seller-list-count">0</span></div>
+          <div class="products-grid" id="seller-listings-grid"></div>
         </div>
       </div>
     </section>
@@ -2246,7 +2259,16 @@
       defaultLang: "en",                          // Opens in English ("en") by default
       storeName: { en: "Wollo Market", am: "ወሎ ማርኬት", om: "Gabaa Walloo" },
       telegramUsername: "YOUR_TELEGRAM_USERNAME", // Replace with your Telegram (without @)
-      telegramBotToken: "9004383363:AAEopq_6ourWQYt6ftHN8LOpa0sTiiIFMJs",
+      adminPin: "2026",
+      partnerPins: { "abudi-perfume": "1111", "abudi-menswear": "2222", "abudi-pc": "3333" },
+      communityApiUrl: "https://wollo-market-83eb1-default-rtdb.firebaseio.com/listings.json",
+      githubOwner: "Wollomarket",
+      githubRepo: "wollo-market",
+      githubBranch: "main",
+      githubFilePath: "index.html",
+      // Configure these HTTPS server endpoints. Never put bot tokens or GitHub PATs in public HTML.
+      githubProxyUrl: "",
+      telegramProxyUrl: "",
       telegramChatId: "7949429911",
       accountName: "STORE OWNER NAME",            // Replace with your full name
       telebirrNumber: "0900000000",               // Replace with your Telebirr number
@@ -3590,8 +3612,15 @@
       }
     };;
 
+    /* Restore advertiser-managed products cached on this device. */
+    Object.keys(PARTNER_STORES).forEach(function(pid) {
+      const store=PARTNER_STORES[pid];
+      const key=store.id==="kimi"?"abudi-perfume":store.id==="boutique"?"abudi-menswear":store.id==="abudipc"?"abudi-pc":store.id;
+      try { const saved=JSON.parse(localStorage.getItem("wm_partner_products_"+key)||"null"); if(Array.isArray(saved))store.products=saved; } catch(e) {}
+    });
+
     /* 5. PRODUCTS (29 CURATED ITEMS) — COPY-PASTE TO ADD OR EDIT ITEMS */
-    const PRODUCTS = [
+    let PRODUCTS = [
 {
         id: 1, category: "women", isDeal: true, badge: "", price: 2400, oldPrice: 0,
         gradient: "linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)", icon: "belt",
@@ -3677,6 +3706,16 @@
         desc: { en: "HD display smartwatch with Bluetooth calling, notifications, step tracking & interchangeable straps.", am: "ጥሪ የሚያነሳ፣ ኖቲፊኬሽን የሚያሳይ እና የስፖርት እንቅስቃሴ የሚቆጥር ዘመናዊ ስማርት ሰዓት።", om: "Bilbila kaasu, ergaa agarsiisuu fi sochii qaamaa lakkaa'a." }
       }
     ];
+    const WM_CUSTOM_PRODUCTS_KEY = "wm_custom_main_products_v1";
+    try {
+      const savedMainProducts = JSON.parse(localStorage.getItem(WM_CUSTOM_PRODUCTS_KEY) || "[]");
+      if (Array.isArray(savedMainProducts)) savedMainProducts.forEach(function(saved) {
+        const existingIndex = PRODUCTS.findIndex(function(p) { return String(p.id) === String(saved.id); });
+        if (existingIndex >= 0) PRODUCTS[existingIndex] = saved;
+        else PRODUCTS.push(saved);
+      });
+    } catch (e) {}
+
 
     // ====== END OF EASY EDIT SECTION ======
 
@@ -4001,47 +4040,23 @@
     }
 
     function sendOrderToTelegram(message, screenshot, fallbackUsername) {
-      const token = String(STORE_CONFIG.telegramBotToken || "").trim();
-      const chatId = String(STORE_CONFIG.telegramChatId || "").trim();
-      const configured = token && chatId &&
-        token !== "YOUR_BOT_TOKEN_HERE" && chatId !== "YOUR_CHAT_ID_HERE";
-      if (!configured) {
+      const endpoint = String(STORE_CONFIG.telegramProxyUrl || "").trim();
+      if (!endpoint) {
         openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
-        toast(t("telegramFallback"));
+        toast("Telegram notification needs a secure server endpoint.");
         switchTab("orders");
         return;
       }
-      let request;
-      if (screenshot) {
-        const formData = new FormData();
-        formData.append("chat_id", chatId);
-        formData.append("photo", screenshot);
-        formData.append("caption", message.slice(0, 950));
-        request = fetch("https://api.telegram.org/bot" + token + "/sendPhoto", {
-          method: "POST", body: formData
-        });
-      } else {
-        request = fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chat_id: chatId, text: message })
-        });
-      }
-      request.then(function (response) {
-        if (!response.ok) throw new Error("Telegram request failed");
-        return response.json();
-      }).then(function (result) {
-        if (!result || !result.ok) throw new Error("Telegram rejected the order");
-        toast(t("orderSent"));
-        switchTab("orders");
-      }).catch(function () {
-        openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
-        toast(t("telegramFallback"));
-        switchTab("orders");
-      });
+      const formData = new FormData();
+      formData.append("chat_id", STORE_CONFIG.telegramChatId);
+      formData.append("text", message.slice(0, 3500));
+      if (screenshot) formData.append("photo", screenshot);
+      fetch(endpoint, { method: "POST", body: formData })
+        .then(function (r) { if (!r.ok) throw new Error("Notification failed"); return r.json(); })
+        .then(function () { toast(t("orderSent")); switchTab("orders"); })
+        .catch(function () { openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message); toast(t("telegramFallback")); switchTab("orders"); });
     }
 
-    /* THEME, LANGUAGE & BADGES */
     function applyTheme() {
       document.documentElement.setAttribute("data-theme", state.theme);
       document.getElementById("ico-moon").style.display = state.theme === "dark" ? "none" : "block";
@@ -4234,6 +4249,7 @@
             </div>
             <button type="button" class="p-add" data-add="${p.id}" aria-label="Add to Cart">${BAG_ICO}</button>
           </div>
+          ${(!isDeal && wmOwnerUnlocked) ? `<div class="wm-admin-actions"><button data-main-edit="${p.id}">Edit</button><button data-main-delete="${p.id}">Delete</button></div>` : ""}
         </article>
       `;
     }
@@ -4391,6 +4407,7 @@
 
     function renderHomeProducts() {
       const q = state.search.trim().toLowerCase();
+      const ownerAdd = document.getElementById("btn-main-add"); if(ownerAdd) ownerAdd.style.display = wmOwnerUnlocked ? "inline-flex" : "none";
       const dealsSec = document.getElementById("sec-deals");
       if (q) {
         dealsSec.style.display = "none";
@@ -4782,6 +4799,7 @@
       selectedPaymentScreenshot = null;
       const store = PARTNER_STORES[pid];
       if (!store) return;
+      try { const savedPartner=JSON.parse(localStorage.getItem("wm_partner_products_"+wmStorePinKey(store))||"null"); if(Array.isArray(savedPartner))store.products=savedPartner; } catch(e) {}
       state.partnerId = pid;
       state.partnerItem = null;
       state.partnerComingSoon = false;
@@ -4812,7 +4830,11 @@
           renderPartnerBody();
         });
       } else if (!state.partnerItem) {
+        const advertiserKey = wmStorePinKey(store);
+        const advertiserUnlocked = !!wmPartnerUnlocked[advertiserKey];
         body.innerHTML = `
+          <div style="display:flex;justify-content:flex-end;margin-bottom:8px;"><button type="button" class="btn-outline" id="pt-advertiser-lock" style="padding:7px 11px;font-size:11px;">${advertiserUnlocked ? "Advertiser Unlocked" : "Advertiser PIN 🔒"}</button></div>
+          ${advertiserUnlocked ? `<button type="button" class="btn-red" id="pt-add-product" style="margin-bottom:10px;">+ Add Product</button>` : ""}
           <div style="background-image:${store.image ? `url('${store.image}'),` : ""}${store.gradient};background-size:cover;background-position:center;color:#FFFFFF;border-radius:16px;padding:16px;margin-bottom:14px;">
             <span style="display:inline-block;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,0.2);font-size:11px;font-weight:700;margin-bottom:6px;">${store.badge[state.lang] || store.badge.en}</span>
             <div style="font-size:18px;font-weight:900;">${store.name[state.lang] || store.name.en}</div>
@@ -4830,6 +4852,7 @@
                   <div style="font-size:12px;color:var(--text-secondary);">${it.desc[state.lang] || it.desc.en}</div>
                   <div style="font-size:15px;font-weight:900;color:var(--red);">${br(it.price)}</div>
                   <button type="button" class="btn-red" style="padding:8px 10px;font-size:12px;" data-pitem="${it.id}">${t("orderNow")}</button>
+                  ${advertiserUnlocked ? `<div class="wm-admin-actions"><button data-pt-edit="${it.id}">Edit</button><button data-pt-delete="${it.id}">Delete</button></div>` : ""}
                 </div>
               </div>`;
           }).join("")}</div>
@@ -5133,9 +5156,108 @@
       if (state.tab === "profile") renderProfile();
     }
 
+
+    /* WOLLO MARKET OWNER / ADVERTISER / COMMUNITY LISTING TOOLS */
+    let wmOwnerUnlocked = false;
+    const wmPartnerUnlocked = {};
+    const WM_LISTINGS_CACHE = "wm_public_seller_listings_v1";
+    const WM_MAIN_PROXY = () => String(STORE_CONFIG.githubProxyUrl || "").trim();
+    const WM_TG_PROXY = () => String(STORE_CONFIG.telegramProxyUrl || "").trim();
+    function wmEsc(v) { return String(v == null ? "" : v).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+    function wmStorePinKey(store) {
+      if (store.id === "kimi") return "abudi-perfume";
+      if (store.id === "boutique") return "abudi-menswear";
+      if (store.id === "abudipc") return "abudi-pc";
+      return store.id;
+    }
+    function wmSaveMainProducts() {
+      const baseIds = new Set([].concat(PRODUCTS.filter(p => !p._wmCustom).map(p => p.id)));
+      const custom = PRODUCTS.filter(p => p._wmCustom);
+      try { localStorage.setItem(WM_CUSTOM_PRODUCTS_KEY, JSON.stringify(custom)); } catch(e) {}
+      if (!WM_MAIN_PROXY()) { toast("Saved on this phone. Configure secure GitHub proxy to publish site updates."); return; }
+      fetch(WM_MAIN_PROXY(), {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+        owner:STORE_CONFIG.githubOwner,repo:STORE_CONFIG.githubRepo,branch:STORE_CONFIG.githubBranch,path:STORE_CONFIG.githubFilePath,
+        commitMessage:"Update products via Wollo Market admin",products:PRODUCTS
+      })}).then(r=>{if(!r.ok)throw new Error();return r.json();}).then(()=>toast("Products published to GitHub")).catch(()=>toast("Saved locally; GitHub publish failed."));
+    }
+    function wmProductEditor(product) {
+      const p = product || {id:Date.now(),category:"all",isDeal:false,badge:"",price:0,oldPrice:0,gradient:"linear-gradient(135deg,#7F1D1D,#18181B)",icon:"package",images:["minifan.jpg"],tiktokUrl:"",youtubeUrl:"",name:{en:"",am:"",om:""},desc:{en:"",am:"",om:""},_wmCustom:true};
+      const name = prompt("Product name (English):",p.name.en || ""); if(name===null)return;
+      const price = Number(prompt("Price (Br):",String(p.price||0))); if(!Number.isFinite(price)||price<=0){toast("Enter a valid price.");return;}
+      const image = prompt("Image filename or URL:",(p.images&&p.images[0])||"minifan.jpg"); if(image===null)return;
+      p.name.en=name.trim(); p.name.am=p.name.am||name.trim(); p.name.om=p.name.om||name.trim(); p.price=price;p.images=[image.trim()||"minifan.jpg"];p._wmCustom=true;
+      if(product){const i=PRODUCTS.findIndex(x=>x.id===product.id);if(i>=0)PRODUCTS[i]=p;}else{p.id=Date.now();PRODUCTS.unshift(p);}
+      renderHomeProducts();wmSaveMainProducts();
+    }
+    function wmRenderSellerListings(items) {
+      const grid=document.getElementById("seller-listings-grid"); if(!grid)return;
+      document.getElementById("seller-list-count").textContent=items.length;
+      grid.innerHTML=items.length?items.map(x=>`<article class="product-card" style="cursor:default"><img class="wm-seller-photo" src="${wmEsc(x.photo||"minifan.jpg")}" alt="" onerror="this.style.display='none'"><h3 class="p-title">${wmEsc(x.name)}</h3><div style="font-size:12px;color:var(--text-secondary);">${wmEsc(x.city)} · ${wmEsc(x.seller)} · ${wmEsc(x.contact)}</div><div class="p-price">${Number(x.price||0).toLocaleString()} Br</div><p style="font-size:12px;margin-top:5px;">${wmEsc(x.description||"")}</p>${wmOwnerUnlocked?`<div class="wm-admin-actions"><button data-list-delete="${wmEsc(x.id)}">Delete</button></div>`:""}</article>`).join(""):`<div class="white-card" style="grid-column:1/-1;text-align:center;color:var(--text-secondary);">No customer listings yet.</div>`;
+    }
+    let wmSellerListings=[];
+    function wmLoadListings() {
+      try { const c=JSON.parse(localStorage.getItem(WM_LISTINGS_CACHE)||"[]"); if(Array.isArray(c))wmSellerListings=c; }catch(e){}
+      wmRenderSellerListings(wmSellerListings);
+      fetch(STORE_CONFIG.communityApiUrl).then(r=>{if(!r.ok)throw new Error();return r.json();}).then(data=>{
+        wmSellerListings=data&&typeof data==="object"?Object.keys(data).map(k=>Object.assign({id:k},data[k])):[];
+        localStorage.setItem(WM_LISTINGS_CACHE,JSON.stringify(wmSellerListings));wmRenderSellerListings(wmSellerListings);
+      }).catch(()=>{});
+    }
+    function wmOpenSellForm() {
+      const am=state.lang==="am",om=state.lang==="om";
+      document.getElementById("sell-modal-title").textContent=am?"ምርትዎን ይሽጡ":om?"Oomisha Kee Gurguri":"Sell Your Product";
+      document.getElementById("sell-form-body").innerHTML=`
+        <form id="wm-sell-form">
+          <div class="form-group"><label class="form-label">Product Name</label><input class="form-input" name="name" required maxlength="100"></div>
+          <div class="form-group"><label class="form-label">Price (Br)</label><input class="form-input" name="price" type="number" min="1" required></div>
+          <div class="form-group"><label class="form-label">Seller Name</label><input class="form-input" name="seller" required></div>
+          <div class="form-group"><label class="form-label">Phone / Telegram</label><input class="form-input" name="contact" required></div>
+          <div class="form-group"><label class="form-label">City</label><select class="form-input" name="city"><option>Kombolcha</option><option>Dessie</option><option>Kemise</option><option>Harbu</option></select></div>
+          <div class="form-group"><label class="form-label">Photo (image file or .jpg name/URL)</label><input class="form-input" name="photo" type="file" accept="image/*"><input class="form-input" name="photoUrl" placeholder="Or image URL / filename"></div>
+          <div class="form-group"><label class="form-label">Description</label><textarea class="form-input" name="description" rows="3" style="height:auto;padding:10px;"></textarea></div>
+          <button class="btn-red full" type="submit">Sell</button>
+        </form>`;
+      document.getElementById("wm-sell-form").addEventListener("submit",async function(e){
+        e.preventDefault();const f=e.currentTarget;const fd=new FormData(f);let photo=String(fd.get("photoUrl")||"").trim();
+        const file=f.elements.photo.files[0];
+        if(file){try{photo=await wmCompressImage(file);}catch(err){toast("Could not process image.");return;}}
+        const listing={name:String(fd.get("name")).trim(),price:Number(fd.get("price")),seller:String(fd.get("seller")).trim(),contact:String(fd.get("contact")).trim(),city:String(fd.get("city")),photo:photo||"minifan.jpg",description:String(fd.get("description")||"").trim(),createdAt:Date.now()};
+        if(!listing.name||!listing.seller||!listing.contact||!Number.isFinite(listing.price)||listing.price<=0){toast("Please complete required fields.");return;}
+        try{
+          const r=await fetch(STORE_CONFIG.communityApiUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(listing)});
+          if(!r.ok)throw new Error("Firebase write failed");const result=await r.json();listing.id=result.name;
+          wmSellerListings.unshift(listing);localStorage.setItem(WM_LISTINGS_CACHE,JSON.stringify(wmSellerListings));wmRenderSellerListings(wmSellerListings);closeModal("modal-sell");toast("Your product is listed!");
+          if(WM_TG_PROXY())fetch(WM_TG_PROXY(),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:STORE_CONFIG.telegramChatId,text:"New Wollo Market listing\\n"+listing.name+" — "+listing.price+" Br\\n"+listing.seller+" · "+listing.contact+" · "+listing.city})}).catch(()=>{});
+        }catch(err){toast("Could not publish listing. Check Firebase access.");}
+      });
+      openModal("modal-sell");
+    }
+    function wmCompressImage(file) {
+      return new Promise((resolve,reject)=>{
+        if(!file.type.startsWith("image/")){reject(new Error("Not an image"));return;}
+        const img=new Image(),url=URL.createObjectURL(file);
+        img.onload=()=>{let w=img.width,h=img.height;const max=900; if(w>max||h>max){const scale=max/Math.max(w,h);w=Math.round(w*scale);h=Math.round(h*scale);}
+          const c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);URL.revokeObjectURL(url);
+          let q=.78;const attempt=()=>{const data=c.toDataURL("image/jpeg",q);if(data.length<195000||q<=.35){if(data.length>=195000){reject(new Error("Image too large"));return;}resolve(data);}else{q-=.1;attempt();}};attempt();
+        };img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("Invalid image"));};img.src=url;
+      });
+    }
+    function wmAdminUnlock() {
+      if(wmOwnerUnlocked){wmOwnerUnlocked=false;document.querySelectorAll("[data-owner-only]").forEach(x=>x.style.display="none");toast("Owner mode locked.");renderHomeProducts();wmRenderSellerListings(wmSellerListings);return;}
+      const pin=prompt("Owner Admin PIN");if(pin===null)return;
+      if(pin!==String(STORE_CONFIG.adminPin)){toast("Incorrect PIN.");return;}
+      wmOwnerUnlocked=true;document.querySelectorAll("[data-owner-only]").forEach(x=>x.style.display="inline-flex");toast("Owner mode unlocked.");renderHomeProducts();wmRenderSellerListings(wmSellerListings);
+    }
+    function wmPartnerUnlock(store) {
+      const key=wmStorePinKey(store),pin=prompt("Advertiser PIN");if(pin===null)return;
+      if(pin!==String((STORE_CONFIG.partnerPins||{})[key]||"")){toast("Incorrect advertiser PIN.");return;}
+      wmPartnerUnlocked[key]=true;toast("Advertiser controls unlocked.");renderPartnerBody();
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
       applyTheme();
       renderAll();
+      wmLoadListings();
       startAutoSlide();
 
       document.getElementById("btn-brand-home").addEventListener("click", function () { switchTab("home"); });
@@ -5229,6 +5351,16 @@
       });
 
       document.addEventListener("click", function (e) {
+        if(e.target.closest("#btn-owner-admin")){wmAdminUnlock();return;}
+        if(e.target.closest("#btn-sell-product")){wmOpenSellForm();return;}
+        if(e.target.closest("#btn-main-add")){wmProductEditor(null);return;}
+        const mainEdit=e.target.closest("[data-main-edit]");if(mainEdit){const p=PRODUCTS.find(x=>String(x.id)===mainEdit.dataset.mainEdit);if(p)wmProductEditor(p);return;}
+        const mainDel=e.target.closest("[data-main-delete]");if(mainDel){if(confirm("Delete this product?")){PRODUCTS=PRODUCTS.filter(x=>String(x.id)!==mainDel.dataset.mainDelete);renderHomeProducts();wmSaveMainProducts();}return;}
+        if(e.target.closest("#pt-advertiser-lock")){const st=PARTNER_STORES[state.partnerId];if(st)wmPartnerUnlock(st);return;}
+        if(e.target.closest("#pt-add-product")){const st=PARTNER_STORES[state.partnerId];const nm=prompt("Product name");if(nm){const price=Number(prompt("Price (Br)","0"));if(price>0){st.products.push({id:"custom-"+Date.now(),name:{en:nm,am:nm,om:nm},desc:{en:"",am:"",om:""},price:price,image:"minifan.jpg",icon:"package"});renderPartnerBody();const k=wmStorePinKey(st);writeLS("wm_partner_products_"+k,st.products);if(WM_TG_PROXY())fetch(WM_TG_PROXY(),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:STORE_CONFIG.telegramChatId,text:"Partner product added: "+nm+" — "+price+" Br"})}).catch(()=>{});}}return;}
+        const ptEdit=e.target.closest("[data-pt-edit]");if(ptEdit){const st=PARTNER_STORES[state.partnerId],it=st&&st.products.find(x=>String(x.id)===ptEdit.dataset.ptEdit);if(it){const nm=prompt("Product name",it.name.en);if(nm!==null){const pr=Number(prompt("Price (Br)",String(it.price)));if(pr>0){it.name={en:nm,am:nm,om:nm};it.price=pr;writeLS("wm_partner_products_"+wmStorePinKey(st),st.products);renderPartnerBody();}}}return;}
+        const ptDel=e.target.closest("[data-pt-delete]");if(ptDel){const st=PARTNER_STORES[state.partnerId];if(st&&confirm("Delete this partner product?")){st.products=st.products.filter(x=>String(x.id)!==ptDel.dataset.ptDelete);writeLS("wm_partner_products_"+wmStorePinKey(st),st.products);renderPartnerBody();}return;}
+        const sellerDel=e.target.closest("[data-list-delete]");if(sellerDel&&wmOwnerUnlocked){const id=sellerDel.dataset.listDelete;fetch(STORE_CONFIG.communityApiUrl.replace(/\.json$/,"/"+encodeURIComponent(id)+".json"),{method:"DELETE"}).then(r=>{if(!r.ok)throw new Error();wmSellerListings=wmSellerListings.filter(x=>String(x.id)!==id);localStorage.setItem(WM_LISTINGS_CACHE,JSON.stringify(wmSellerListings));wmRenderSellerListings(wmSellerListings);toast("Listing deleted.");}).catch(()=>toast("Could not delete listing."));return;}
         const cityBtn = e.target.closest("[data-city]");
         if (cityBtn) {
           openCityDirectory(cityBtn.getAttribute("data-city"));
@@ -5342,5 +5474,12 @@
       });
     });
   </script>
+
+
+  <div class="modal-backdrop" id="modal-sell">
+    <div class="modal-sheet"><div class="modal-head"><strong id="sell-modal-title">Sell Your Product</strong><button type="button" class="modal-x" data-close="modal-sell">✕</button></div>
+      <div class="modal-body" id="sell-form-body"></div>
+    </div>
+  </div>
 </body>
 </html>
