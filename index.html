@@ -1430,7 +1430,7 @@
       background: var(--nav-bg);
       border-top: 1px solid var(--border);
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       padding: 6px 4px;
     }
 
@@ -2076,6 +2076,11 @@
       </div>
     </section>
 
+    <section class="tab-panel" id="tab-sell">
+      <div class="container"><div class="page-head"><h2 class="page-title">Sell Your Product</h2></div>
+        <button type="button" class="btn-red full" id="btn-sell-tab" style="margin-bottom:14px;">Sell Your Product</button>
+        <div class="section"><div class="section-head"><div class="section-title-row"><span class="red-bar"></span><h2 class="section-title">Listed by Sellers</h2></div><span class="count-pill" id="seller-list-count-tab">0</span></div><div class="products-grid" id="seller-listings-grid-tab"></div></div></div>
+    </section>
     <section class="tab-panel" id="tab-profile">
       <div class="container">
         <div class="page-head">
@@ -2137,6 +2142,7 @@
       <span class="bnav-badge" id="bnav-orders-badge">0</span>
       <span id="bnav-orders">Orders</span>
     </button>
+    <button type="button" class="bnav-btn" data-nav="sell"><span style="font-size:20px;">＋</span><span id="bnav-sell">Sell</span></button>
     <button type="button" class="bnav-btn" data-nav="profile">
       <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -2260,6 +2266,12 @@
       storeName: { en: "Wollo Market", am: "ወሎ ማርኬት", om: "Gabaa Walloo" },
       telegramUsername: "YOUR_TELEGRAM_USERNAME", // Replace with your Telegram (without @)
       adminPin: "2026",
+      firebaseBaseUrl: "https://wollo-market-83eb1-default-rtdb.firebaseio.com",
+      productsApiUrl: "https://wollo-market-83eb1-default-rtdb.firebaseio.com/products.json",
+      partnersApiUrl: "https://wollo-market-83eb1-default-rtdb.firebaseio.com/partners.json",
+      mallShopsApiUrl: "https://wollo-market-83eb1-default-rtdb.firebaseio.com/mallShops.json",
+      maxImageBytes: 71680,
+      maxProductPhotos: 2,
       partnerPins: { "abudi-perfume": "1111", "abudi-menswear": "2222", "abudi-pc": "3333" },
       communityApiUrl: "https://wollo-market-83eb1-default-rtdb.firebaseio.com/listings.json",
       githubOwner: "Wollomarket",
@@ -4833,7 +4845,7 @@
         const advertiserKey = wmStorePinKey(store);
         const advertiserUnlocked = !!wmPartnerUnlocked[advertiserKey];
         body.innerHTML = `
-          <div style="display:flex;justify-content:flex-end;margin-bottom:8px;"><button type="button" class="btn-outline" id="pt-advertiser-lock" style="padding:7px 11px;font-size:11px;">${advertiserUnlocked ? "Advertiser Unlocked" : "Advertiser PIN 🔒"}</button></div>
+          
           ${advertiserUnlocked ? `<button type="button" class="btn-red" id="pt-add-product" style="margin-bottom:10px;">+ Add Product</button>` : ""}
           <div style="background-image:${store.image ? `url('${store.image}'),` : ""}${store.gradient};background-size:cover;background-position:center;color:#FFFFFF;border-radius:16px;padding:16px;margin-bottom:14px;">
             <span style="display:inline-block;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,0.2);font-size:11px;font-weight:700;margin-bottom:6px;">${store.badge[state.lang] || store.badge.en}</span>
@@ -4855,7 +4867,7 @@
                   ${advertiserUnlocked ? `<div class="wm-admin-actions"><button data-pt-edit="${it.id}">Edit</button><button data-pt-delete="${it.id}">Delete</button></div>` : ""}
                 </div>
               </div>`;
-          }).join("")}</div>
+          }).join("")}</div><div style="text-align:right;margin-top:12px;"><button type="button" id="pt-advertiser-lock" style="opacity:.35;font-size:12px;padding:6px;">🔒</button></div>
         `;
       } else {
         const it = state.partnerItem;
@@ -5138,6 +5150,7 @@
       if (name === "cart") renderCart();
       if (name === "orders") renderOrders();
       if (name === "profile") renderProfile();
+      if (name === "sell") wmRenderSellerListings(wmSellerListings);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -5171,14 +5184,9 @@
       return store.id;
     }
     function wmSaveMainProducts() {
-      const baseIds = new Set([].concat(PRODUCTS.filter(p => !p._wmCustom).map(p => p.id)));
-      const custom = PRODUCTS.filter(p => p._wmCustom);
-      try { localStorage.setItem(WM_CUSTOM_PRODUCTS_KEY, JSON.stringify(custom)); } catch(e) {}
-      if (!WM_MAIN_PROXY()) { toast("Saved on this phone. Configure secure GitHub proxy to publish site updates."); return; }
-      fetch(WM_MAIN_PROXY(), {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
-        owner:STORE_CONFIG.githubOwner,repo:STORE_CONFIG.githubRepo,branch:STORE_CONFIG.githubBranch,path:STORE_CONFIG.githubFilePath,
-        commitMessage:"Update products via Wollo Market admin",products:PRODUCTS
-      })}).then(r=>{if(!r.ok)throw new Error();return r.json();}).then(()=>toast("Products published to GitHub")).catch(()=>toast("Saved locally; GitHub publish failed."));
+      const custom=PRODUCTS.filter(p=>p._wmCustom);
+      try{localStorage.setItem(WM_CUSTOM_PRODUCTS_KEY,JSON.stringify(custom));localStorage.setItem("wm_products_cache",JSON.stringify(PRODUCTS));}catch(e){}
+      fetch(STORE_CONFIG.productsApiUrl,{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(PRODUCTS)}).then(r=>{if(!r.ok)throw new Error();toast("Products synced live.");}).catch(()=>toast("Saved locally; Firebase sync failed."));
     }
     function wmProductEditor(product) {
       const p = product || {id:Date.now(),category:"all",isDeal:false,badge:"",price:0,oldPrice:0,gradient:"linear-gradient(135deg,#7F1D1D,#18181B)",icon:"package",images:["minifan.jpg"],tiktokUrl:"",youtubeUrl:"",name:{en:"",am:"",om:""},desc:{en:"",am:"",om:""},_wmCustom:true};
@@ -5190,9 +5198,9 @@
       renderHomeProducts();wmSaveMainProducts();
     }
     function wmRenderSellerListings(items) {
-      const grid=document.getElementById("seller-listings-grid"); if(!grid)return;
-      document.getElementById("seller-list-count").textContent=items.length;
-      grid.innerHTML=items.length?items.map(x=>`<article class="product-card" style="cursor:default"><img class="wm-seller-photo" src="${wmEsc(x.photo||"minifan.jpg")}" alt="" onerror="this.style.display='none'"><h3 class="p-title">${wmEsc(x.name)}</h3><div style="font-size:12px;color:var(--text-secondary);">${wmEsc(x.city)} · ${wmEsc(x.seller)} · ${wmEsc(x.contact)}</div><div class="p-price">${Number(x.price||0).toLocaleString()} Br</div><p style="font-size:12px;margin-top:5px;">${wmEsc(x.description||"")}</p>${wmOwnerUnlocked?`<div class="wm-admin-actions"><button data-list-delete="${wmEsc(x.id)}">Delete</button></div>`:""}</article>`).join(""):`<div class="white-card" style="grid-column:1/-1;text-align:center;color:var(--text-secondary);">No customer listings yet.</div>`;
+      const grid=document.getElementById("seller-listings-grid"),gridTab=document.getElementById("seller-listings-grid-tab"); if(!grid&&!gridTab)return;
+      const countEl=document.getElementById("seller-list-count"),countTab=document.getElementById("seller-list-count-tab");if(countEl)countEl.textContent=items.length;if(countTab)countTab.textContent=items.length;
+      const listingHTML=items.length?items.map(x=>`<article class="product-card" style="cursor:default"><img class="wm-seller-photo" src="${wmEsc(x.photo||"minifan.jpg")}" alt="" onerror="this.style.display='none'"><h3 class="p-title">${wmEsc(x.name)}</h3><div style="font-size:12px;color:var(--text-secondary);">${wmEsc(x.city)} · ${wmEsc(x.seller)} · ${wmEsc(x.contact)}</div><div class="p-price">${Number(x.price||0).toLocaleString()} Br</div><p style="font-size:12px;margin-top:5px;">${wmEsc(x.description||"")}</p>${wmOwnerUnlocked?`<div class="wm-admin-actions"><button data-list-delete="${wmEsc(x.id)}">Delete</button></div>`:""}</article>`).join(""):`<div class="white-card" style="grid-column:1/-1;text-align:center;color:var(--text-secondary);">No customer listings yet.</div>`;if(grid)grid.innerHTML=listingHTML;if(gridTab)gridTab.innerHTML=listingHTML;
     }
     let wmSellerListings=[];
     function wmLoadListings() {
@@ -5220,7 +5228,7 @@
       document.getElementById("wm-sell-form").addEventListener("submit",async function(e){
         e.preventDefault();const f=e.currentTarget;const fd=new FormData(f);let photo=String(fd.get("photoUrl")||"").trim();
         const file=f.elements.photo.files[0];
-        if(file){try{photo=await wmCompressImage(file);}catch(err){toast("Could not process image.");return;}}
+        if(file){try{photo=await wmCompressImage(file);}catch(err){toast(err&&err.message==="Image exceeds 70 KB"?"Not allowed over 70 KB! Compress the photo, reduce its size below 70 KB, and try again.":"Could not process image.");return;}}
         const listing={name:String(fd.get("name")).trim(),price:Number(fd.get("price")),seller:String(fd.get("seller")).trim(),contact:String(fd.get("contact")).trim(),city:String(fd.get("city")),photo:photo||"minifan.jpg",description:String(fd.get("description")||"").trim(),createdAt:Date.now()};
         if(!listing.name||!listing.seller||!listing.contact||!Number.isFinite(listing.price)||listing.price<=0){toast("Please complete required fields.");return;}
         try{
@@ -5233,14 +5241,7 @@
       openModal("modal-sell");
     }
     function wmCompressImage(file) {
-      return new Promise((resolve,reject)=>{
-        if(!file.type.startsWith("image/")){reject(new Error("Not an image"));return;}
-        const img=new Image(),url=URL.createObjectURL(file);
-        img.onload=()=>{let w=img.width,h=img.height;const max=900; if(w>max||h>max){const scale=max/Math.max(w,h);w=Math.round(w*scale);h=Math.round(h*scale);}
-          const c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);URL.revokeObjectURL(url);
-          let q=.78;const attempt=()=>{const data=c.toDataURL("image/jpeg",q);if(data.length<195000||q<=.35){if(data.length>=195000){reject(new Error("Image too large"));return;}resolve(data);}else{q-=.1;attempt();}};attempt();
-        };img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("Invalid image"));};img.src=url;
-      });
+      return new Promise((resolve,reject)=>{if(!file.type.startsWith("image/")){reject(new Error("Not an image"));return;}const img=new Image(),url=URL.createObjectURL(file);img.onload=()=>{let w=img.width,h=img.height,max=900;if(w>max||h>max){const sc=max/Math.max(w,h);w=Math.round(w*sc);h=Math.round(h*sc);}const c=document.createElement("canvas");c.width=w;c.height=h;c.getContext("2d").drawImage(img,0,0,w,h);URL.revokeObjectURL(url);let q=.82;function attempt(){c.toBlob(blob=>{if(!blob){reject(new Error("Compression failed"));return;}if(blob.size<=STORE_CONFIG.maxImageBytes){const fr=new FileReader();fr.onload=()=>resolve(fr.result);fr.onerror=()=>reject(new Error("Read failed"));fr.readAsDataURL(blob);return;}if(q>.4){q-=.08;attempt();}else reject(new Error("Image exceeds 70 KB"));},"image/jpeg",q);}attempt();};img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("Invalid image"));};img.src=url;});
     }
     function wmAdminUnlock() {
       if(wmOwnerUnlocked){wmOwnerUnlocked=false;document.querySelectorAll("[data-owner-only]").forEach(x=>x.style.display="none");toast("Owner mode locked.");renderHomeProducts();wmRenderSellerListings(wmSellerListings);return;}
@@ -5258,6 +5259,8 @@
       applyTheme();
       renderAll();
       wmLoadListings();
+      try{const cached=JSON.parse(localStorage.getItem("wm_products_cache")||"null");if(Array.isArray(cached))PRODUCTS=cached;}catch(e){}
+      fetch(STORE_CONFIG.productsApiUrl).then(r=>r.ok?r.json():null).then(data=>{if(Array.isArray(data)){PRODUCTS=data;localStorage.setItem("wm_products_cache",JSON.stringify(data));renderHomeProducts();}}).catch(()=>{});
       startAutoSlide();
 
       document.getElementById("btn-brand-home").addEventListener("click", function () { switchTab("home"); });
@@ -5352,14 +5355,14 @@
 
       document.addEventListener("click", function (e) {
         if(e.target.closest("#btn-owner-admin")){wmAdminUnlock();return;}
-        if(e.target.closest("#btn-sell-product")){wmOpenSellForm();return;}
+        if(e.target.closest("#btn-sell-product")||e.target.closest("#btn-sell-tab")){wmOpenSellForm();return;}
         if(e.target.closest("#btn-main-add")){wmProductEditor(null);return;}
         const mainEdit=e.target.closest("[data-main-edit]");if(mainEdit){const p=PRODUCTS.find(x=>String(x.id)===mainEdit.dataset.mainEdit);if(p)wmProductEditor(p);return;}
         const mainDel=e.target.closest("[data-main-delete]");if(mainDel){if(confirm("Delete this product?")){PRODUCTS=PRODUCTS.filter(x=>String(x.id)!==mainDel.dataset.mainDelete);renderHomeProducts();wmSaveMainProducts();}return;}
         if(e.target.closest("#pt-advertiser-lock")){const st=PARTNER_STORES[state.partnerId];if(st)wmPartnerUnlock(st);return;}
-        if(e.target.closest("#pt-add-product")){const st=PARTNER_STORES[state.partnerId];const nm=prompt("Product name");if(nm){const price=Number(prompt("Price (Br)","0"));if(price>0){st.products.push({id:"custom-"+Date.now(),name:{en:nm,am:nm,om:nm},desc:{en:"",am:"",om:""},price:price,image:"minifan.jpg",icon:"package"});renderPartnerBody();const k=wmStorePinKey(st);writeLS("wm_partner_products_"+k,st.products);if(WM_TG_PROXY())fetch(WM_TG_PROXY(),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:STORE_CONFIG.telegramChatId,text:"Partner product added: "+nm+" — "+price+" Br"})}).catch(()=>{});}}return;}
-        const ptEdit=e.target.closest("[data-pt-edit]");if(ptEdit){const st=PARTNER_STORES[state.partnerId],it=st&&st.products.find(x=>String(x.id)===ptEdit.dataset.ptEdit);if(it){const nm=prompt("Product name",it.name.en);if(nm!==null){const pr=Number(prompt("Price (Br)",String(it.price)));if(pr>0){it.name={en:nm,am:nm,om:nm};it.price=pr;writeLS("wm_partner_products_"+wmStorePinKey(st),st.products);renderPartnerBody();}}}return;}
-        const ptDel=e.target.closest("[data-pt-delete]");if(ptDel){const st=PARTNER_STORES[state.partnerId];if(st&&confirm("Delete this partner product?")){st.products=st.products.filter(x=>String(x.id)!==ptDel.dataset.ptDelete);writeLS("wm_partner_products_"+wmStorePinKey(st),st.products);renderPartnerBody();}return;}
+        if(e.target.closest("#pt-add-product")){const st=PARTNER_STORES[state.partnerId];const nm=prompt("Product name");if(nm){const price=Number(prompt("Price (Br)","0"));if(price>0){st.products.push({id:"custom-"+Date.now(),name:{en:nm,am:nm,om:nm},desc:{en:"",am:"",om:""},price:price,image:"minifan.jpg",icon:"package"});renderPartnerBody();const k=wmStorePinKey(st);writeLS("wm_partner_products_"+k,st.products);fetch(STORE_CONFIG.firebaseBaseUrl+"/partners/"+encodeURIComponent(st.id)+".json",{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(st.products)}).catch(()=>{});if(WM_TG_PROXY())fetch(WM_TG_PROXY(),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({chat_id:STORE_CONFIG.telegramChatId,text:"Partner product added: "+nm+" — "+price+" Br"})}).catch(()=>{});}}return;}
+        const ptEdit=e.target.closest("[data-pt-edit]");if(ptEdit){const st=PARTNER_STORES[state.partnerId],it=st&&st.products.find(x=>String(x.id)===ptEdit.dataset.ptEdit);if(it){const nm=prompt("Product name",it.name.en);if(nm!==null){const pr=Number(prompt("Price (Br)",String(it.price)));if(pr>0){it.name={en:nm,am:nm,om:nm};it.price=pr;writeLS("wm_partner_products_"+wmStorePinKey(st),st.products);fetch(STORE_CONFIG.firebaseBaseUrl+"/partners/"+encodeURIComponent(st.id)+".json",{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(st.products)}).catch(()=>{});renderPartnerBody();}}}return;}
+        const ptDel=e.target.closest("[data-pt-delete]");if(ptDel){const st=PARTNER_STORES[state.partnerId];if(st&&confirm("Delete this partner product?")){st.products=st.products.filter(x=>String(x.id)!==ptDel.dataset.ptDelete);writeLS("wm_partner_products_"+wmStorePinKey(st),st.products);fetch(STORE_CONFIG.firebaseBaseUrl+"/partners/"+encodeURIComponent(st.id)+".json",{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify(st.products)}).catch(()=>{});renderPartnerBody();}return;}
         const sellerDel=e.target.closest("[data-list-delete]");if(sellerDel&&wmOwnerUnlocked){const id=sellerDel.dataset.listDelete;fetch(STORE_CONFIG.communityApiUrl.replace(/\.json$/,"/"+encodeURIComponent(id)+".json"),{method:"DELETE"}).then(r=>{if(!r.ok)throw new Error();wmSellerListings=wmSellerListings.filter(x=>String(x.id)!==id);localStorage.setItem(WM_LISTINGS_CACHE,JSON.stringify(wmSellerListings));wmRenderSellerListings(wmSellerListings);toast("Listing deleted.");}).catch(()=>toast("Could not delete listing."));return;}
         const cityBtn = e.target.closest("[data-city]");
         if (cityBtn) {
