@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wollo Market | ወሎ ማርኬት — Kombolcha • Dessie • Harbu • Kemise</title>
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#DC2626" />
   <link rel="icon" type="image/png" href="Icon-512.png" />
   <link rel="apple-touch-icon" href="Icon-512.png" />
-  <title>Wollo Market | ወሎ ማርኬት — Kombolcha • Dessie • Harbu • Kemise</title>
   <style>
     /* =========================================================================
        1. DESIGN TOKENS (LIGHT & DARK THEME) — ICONIC BLACK & RED
@@ -1937,19 +1937,9 @@
     }
 
     .wm-mall-hero{display:flex;align-items:center;gap:14px;padding:18px;margin:4px 0 14px;border:1px solid var(--border);border-radius:18px;background:var(--bg-card);box-shadow:var(--shadow-sm)}
-    .wm-mall-hero-icon{display:none!important}
+    .wm-mall-hero-icon{width:54px;height:54px;flex:0 0 54px;display:grid;place-items:center;border-radius:15px;background:var(--red-soft);font-size:27px}
     .wm-mall-hero h3{font-size:18px;font-weight:900;color:var(--text-primary)}
     .wm-mall-create{margin:0 0 14px}
-    .wm-mall-hero{justify-content:space-between;min-height:72px}
-    .wm-mall-plus{width:44px;height:44px;flex:0 0 44px;border-radius:15px;background:var(--red);color:#fff;font-size:28px;line-height:1;display:grid;place-items:center;box-shadow:0 5px 14px rgba(220,38,38,.28)}
-    .wm-shop-card{width:100%;text-align:left;display:flex;align-items:center;gap:12px;padding:14px;margin:10px 0;background:var(--bg-card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow-sm);color:var(--text-primary)}
-    .wm-shop-card img,.wm-shop-card .wm-shop-avatar{width:54px;height:54px;flex:0 0 54px;border-radius:13px;object-fit:cover;background:var(--bg-muted);display:grid;place-items:center;font-size:23px}
-    .wm-shop-card-info{min-width:0;flex:1}.wm-shop-card-info b{display:block;font-size:14px;font-weight:900}.wm-shop-card-info small{display:block;color:var(--text-secondary);font-size:11px;margin-top:4px}
-    .wm-shop-admin{display:flex;gap:6px;margin:0 0 10px}.wm-shop-admin button{flex:1}
-    .wm-mall-admin{display:flex;gap:6px;position:absolute;right:7px;top:7px;z-index:4}.wm-mall-admin button{background:rgba(0,0,0,.75);color:#fff;padding:5px 7px;border-radius:7px;font-size:10px;font-weight:800}
-    .directory-card{position:relative}
-    .wm-mall-confirm{text-align:center;padding:24px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-md);margin:12px 0}
-    .wm-mall-confirm .ok{width:54px;height:54px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;background:#DCFCE7;color:#15803D;font-size:27px}
     .wm-mall-shop{padding:15px;margin:12px 0;background:var(--bg-card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-sm)}
     .wm-mall-shop-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
     .wm-mall-logo{width:58px;height:58px;flex:0 0 58px;border-radius:14px;object-fit:cover;border:1px solid var(--border);background:var(--bg-muted)}
@@ -1968,64 +1958,135 @@
     .wm-mall-error{min-height:18px;color:var(--red);font-size:12px;margin:4px 0 10px}
     .wm-mall-hint{font-size:11px;color:var(--text-secondary);margin-top:5px}
     @media(max-width:380px){.wm-mall-products{grid-template-columns:1fr}}
-    .download-app-only-web { display: block; }
-    @media (display-mode: standalone) { .download-app-only-web { display: none !important; } }
 
-    /* Part 3: discreet partner controls and owner-only banner controls */
-    #wm-add-ad { display:none; }
-    body.wm-admin-unlocked #wm-add-ad { display:inline-flex !important; }
-    .wm-partner-lock { position:absolute;right:8px;bottom:7px;font-size:11px;opacity:.25;padding:4px;z-index:5; }
-    .wm-banner-admin { position:absolute;right:10px;top:10px;z-index:8;display:flex;gap:5px; }
-    .wm-banner-admin button { background:rgba(0,0,0,.72);color:#fff;border-radius:8px;padding:5px 8px;font-size:10px;font-weight:800; }
-    .wm-partner-products-wrap { position:relative;padding-bottom:24px; }
-    /* Part 2: reusable main-product editor */
-    #modal-product-editor .modal-sheet { max-width: 680px; max-height: 94vh; }
-    .wm-editor-section { padding: 12px; margin: 0 0 12px; border: 1px solid var(--border); border-radius: 14px; background: var(--bg-card); }
-    .wm-editor-section h3 { font-size: 13px; margin-bottom: 10px; color: var(--text-primary); }
-    .wm-editor-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
-    .wm-editor-grid .form-group { margin: 0; min-width: 0; }
-    .wm-editor-grid .form-group.wide { grid-column: 1 / -1; }
-    .wm-editor-textarea { width:100%; min-height:76px; resize:vertical; padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:var(--bg-muted); color:var(--text-primary); font:inherit; }
-    .wm-editor-previews { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:10px; }
-    .wm-editor-preview { min-height:84px; border:1px dashed var(--border); border-radius:10px; overflow:hidden; display:grid; place-items:center; background:var(--bg-muted); color:var(--text-muted); font-size:11px; text-align:center; }
-    .wm-editor-preview img { width:100%; height:100px; object-fit:cover; }
-    .wm-editor-photo-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
-    .wm-editor-photo-row input { min-width:0; flex:1; }
-    .wm-editor-switch { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 12px; border:1px solid var(--border); border-radius:12px; }
-    .wm-admin-actions { display:flex; gap:8px; margin-top:10px; }
-    .wm-admin-actions button { flex:1; }
-    #wm-main-add, [data-wm-main-edit], [data-wm-main-delete] { display:none !important; }
-    body.wm-admin-unlocked #wm-main-add { display:inline-flex !important; }
-    body.wm-admin-unlocked [data-wm-main-edit], body.wm-admin-unlocked [data-wm-main-delete] { display:inline-flex !important; }
-    @media(max-width:480px) { .wm-editor-grid { grid-template-columns:1fr; } }
+    /* === UPDATED WOLLO MARKET STYLES === */
+    @media (display-mode: standalone) {
+      .download-app-only-web { display: none !important; }
+    }
+    body.is-standalone .download-app-only-web { display: none !important; }
 
-  
-    /* PART 5: Seller listing cards, add-product action, and seller modals */
-    .wm-sell-add-btn{width:42px;height:42px;flex:0 0 42px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:var(--red);color:#fff;font-size:30px;font-weight:400;line-height:1;box-shadow:0 6px 16px rgba(220,38,38,.28);transition:transform .15s ease,box-shadow .15s ease}
-    .wm-sell-add-btn:hover{transform:translateY(-2px);box-shadow:0 9px 20px rgba(220,38,38,.34)}
-    .wm-sell-add-btn:active{transform:scale(.95)}
-    #wm-listings-root .wm-seller-card{min-width:0;overflow:hidden;gap:0;padding:0;text-align:left}
-    #wm-listings-root .wm-seller-card .wm-seller-card-open{display:flex;flex:1;min-width:0;flex-direction:column;padding:0;text-align:left}
-    #wm-listings-root .wm-seller-card .wm-seller-image{width:100%;height:auto;aspect-ratio:4/3;min-height:0;margin:0;border-radius:0;overflow:hidden;background:var(--bg-muted)}
-    #wm-listings-root .wm-seller-card .wm-seller-image img{width:100%;height:100%;object-fit:cover;object-position:center}
-    #wm-listings-root .wm-seller-card .wm-seller-info{display:flex;flex:1;flex-direction:column;gap:5px;padding:11px}
-    #wm-listings-root .wm-seller-card .wm-seller-name{font-size:13.5px;font-weight:800;line-height:1.35;color:var(--text-primary);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px}
-    #wm-listings-root .wm-seller-card .wm-seller-price{font-size:15px;font-weight:900;color:var(--red);margin-top:auto}
-    #wm-listings-root .wm-seller-admin{display:flex;gap:7px;padding:0 10px 10px}
-    #wm-listings-root .wm-seller-admin .btn-outline{flex:1;padding:8px 10px;font-size:12px}
-    .wm-seller-form-sheet{max-width:560px}
-    .wm-seller-form-card{margin:0;padding:0;border:0;box-shadow:none}
-    .wm-seller-detail-gallery{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:14px}
-    .wm-seller-detail-gallery img{width:100%;height:230px;object-fit:cover;border-radius:14px;background:var(--bg-muted)}
-    .wm-seller-detail-gallery img+img{height:130px}
-    .wm-seller-detail-description{white-space:pre-wrap;overflow-wrap:anywhere;color:var(--text-secondary);font-size:13px;line-height:1.6;margin:12px 0}
-    .wm-seller-detail-meta{display:grid;gap:8px;padding:12px;border-radius:14px;background:var(--bg-muted);font-size:13px}
-    .wm-seller-contact-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
-    .wm-seller-contact-actions a{min-width:0;padding:11px 7px;border-radius:11px;background:var(--red);color:#fff;text-align:center;font-size:12px;font-weight:800}
-    .wm-seller-contact-actions a:nth-child(2){background:#16A34A}.wm-seller-contact-actions a:nth-child(3){background:#229ED9}
-    @media(max-width:360px){.wm-seller-contact-actions{grid-template-columns:1fr}}
+    .wm-hidden-owner-box {
+      min-height: 44px !important;
+      background: transparent !important;
+      border: 1px solid var(--border) !important;
+      opacity: 0.16 !important;
+      box-shadow: none !important;
+      color: transparent !important;
+      font-size: 0 !important;
+      justify-content: center !important;
+    }
+    .wm-tiny-lock {
+      font-size: 10px !important;
+      color: var(--text-muted) !important;
+      opacity: 0.22 !important;
+      padding: 4px 6px !important;
+      line-height: 1 !important;
+    }
+    .wm-plus-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--red);
+      color: #FFFFFF;
+      font-size: 24px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
+      flex-shrink: 0;
+      transition: transform 0.14s ease;
+    }
+    .wm-plus-btn:active { transform: scale(0.93); }
+    .wm-sell-card-media {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg-muted);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .wm-sell-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .wm-mall-shop-card {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.14s ease, box-shadow 0.14s ease;
+    }
+    .wm-mall-shop-card:active { transform: scale(0.98); }
+    .wm-editor-thumbs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .wm-editor-thumbs img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+    .wm-ad-admin-bar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 20px 8px;
+    }
+    .wm-ad-card-tools {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      z-index: 6;
+      display: flex;
+      gap: 5px;
+    }
+    .wm-ad-tool-btn {
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: rgba(17, 19, 24, 0.82);
+      color: #FFFFFF;
+      font-size: 10.5px;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .wm-ad-tool-btn.danger { background: rgba(220, 38, 38, 0.9); }
+    .wm-mall-admin-tools {
+      display: flex;
+      gap: 6px;
+      padding: 8px 10px;
+      background: #111318;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .wm-mall-admin-tools button {
+      flex: 1;
+      padding: 5px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      background: rgba(255,255,255,0.12);
+      color: #FFFFFF;
+    }
+    .wm-mall-admin-tools button.danger { background: rgba(220, 38, 38, 0.85); }
 
-</style>
+  </style>
 </head>
 <body>
 
@@ -2110,7 +2171,7 @@
   <main>
     <section class="tab-panel active" id="tab-home">
       <div class="carousel-wrap" id="carousel-wrap">
-        <div class="container" style="display:flex;justify-content:flex-end;padding-bottom:6px"><button type="button" class="btn-outline" id="wm-add-ad" style="display:none;padding:6px 12px;font-size:11px">＋ Add Ad</button></div>
+        <div class="wm-ad-admin-bar" id="wm-ad-admin-bar" style="display:none;"><button type="button" class="btn-red" id="wm-add-ad-btn" style="padding:7px 14px;font-size:12px;">+ Add Ad</button></div>
         <div class="carousel-track no-scrollbar" id="carousel-track"></div>
         <div class="carousel-dots" id="carousel-dots"></div>
       </div>
@@ -2144,6 +2205,9 @@
             <div style="display:flex;gap:6px;align-items:center"><button type="button" class="btn-red" id="wm-main-add" style="display:none;padding:7px 10px;font-size:11px">+ Add Product</button><button type="button" class="req-pill-btn" id="btn-req-item">+ Request Item</button></div>
           </div>
           <div class="products-grid" id="products-grid"></div>
+        </div>
+        <div class="section download-app-only-web" style="padding-bottom:14px;">
+          <button type="button" class="btn-outline full download-app-trigger" id="home-download-app-btn">Download Wollo Market App</button>
         </div>
       </div>
     </section>
@@ -2181,47 +2245,19 @@
     </section>
   </main>
 
-  <!-- PART 1: SELL YOUR PRODUCT -->
+  <!-- PART 1: SELL YOUR PRODUCT (MODERN + ICON & EQUAL CARDS) -->
   <section class="tab-panel" id="tab-sell">
     <div class="container">
-      <div class="page-head"><h2 class="page-title" id="wm-sell-page-title">Sell Your Product</h2></div>
-      <div class="section">
-        <div class="section-head">
-          <h2 class="section-title" id="wm-listed-title">Listed by Sellers</h2>
-          <button type="button" class="wm-sell-add-btn" id="wm-open-sell-form" aria-label="Add a product" title="Add a product"><span aria-hidden="true">+</span></button>
-        </div>
+      <div class="page-head" style="justify-content:space-between;">
+        <h2 class="page-title" id="wm-sell-page-title">Sell Your Product</h2>
+        <button type="button" class="wm-plus-btn" id="btn-open-sell-form" aria-label="Add product to sell">＋</button>
+      </div>
+      <div class="section" style="padding-top:4px;">
+        <div class="section-head"><h2 class="section-title" id="wm-listed-title">Listed by Sellers</h2></div>
         <div id="wm-listings-root" class="products-grid"></div>
       </div>
     </div>
   </section>
-
-  <div class="modal-backdrop" id="wm-sell-form-modal" role="dialog" aria-modal="true" aria-labelledby="wm-sell-modal-title">
-    <div class="modal-sheet wm-seller-form-sheet">
-      <div class="modal-head"><h3 id="wm-sell-modal-title" class="section-title">Sell Your Product</h3><button type="button" class="modal-x" data-wm-close-sell-modal aria-label="Close">✕</button></div>
-      <div class="modal-body">
-        <div class="white-card wm-seller-form-card">
-        <form id="wm-sell-form">
-          <div class="form-group"><label class="form-label" for="wm-sell-name">Product Name</label><input class="form-input" id="wm-sell-name" required maxlength="120"></div>
-          <div class="form-group"><label class="form-label" for="wm-sell-price">Price (Br)</label><input class="form-input" id="wm-sell-price" type="number" min="0" step="0.01" required></div>
-          <div class="form-group"><label class="form-label" for="wm-sell-seller">Seller Name</label><input class="form-input" id="wm-sell-seller" required maxlength="80"></div>
-          <div class="form-group"><label class="form-label" for="wm-sell-contact">Seller Phone / Telegram</label><input class="form-input" id="wm-sell-contact" required maxlength="80"></div>
-          <div class="form-group"><label class="form-label" for="wm-sell-city">City</label><select class="form-input" id="wm-sell-city" required><option>Kombolcha</option><option>Dessie</option><option>Kemise</option><option>Harbu</option></select></div>
-          <div class="form-group"><label class="form-label" for="wm-sell-photos">Photos (up to 2; JPEG, max 70 KB each)</label><input class="form-input" id="wm-sell-photos" type="file" accept="image/*" multiple><div id="wm-sell-photo-status" style="font-size:12px;color:var(--text-secondary);margin-top:5px"></div></div>
-          <div class="form-group"><label class="form-label" for="wm-sell-desc">Description</label><textarea class="form-input" id="wm-sell-desc" rows="3" style="height:auto;padding:10px" maxlength="1000"></textarea></div>
-          <button class="btn-red full" type="submit">Sell</button>
-          <p id="wm-sell-message" role="status" style="margin-top:9px;font-size:12px"></p>
-        </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-backdrop" id="wm-seller-detail-modal" role="dialog" aria-modal="true" aria-labelledby="wm-seller-detail-title">
-    <div class="modal-sheet">
-      <div class="modal-head"><h3 id="wm-seller-detail-title" class="section-title">Product details</h3><button type="button" class="modal-x" data-wm-close-detail aria-label="Close">✕</button></div>
-      <div class="modal-body" id="wm-seller-detail-body"></div>
-    </div>
-  </div>
 
   <!-- DESKTOP FOOTER -->
   <footer class="site-footer">
@@ -2382,72 +2418,84 @@
     </div>
   </div>
 
-
-  <div class="modal-backdrop" id="modal-product-editor" aria-hidden="true">
-    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="wm-product-editor-title">
+  <!-- SELL YOUR PRODUCT FORM MODAL -->
+  <div class="modal-backdrop" id="modal-sell-form">
+    <div class="modal-sheet">
       <div class="modal-head">
-        <strong id="wm-product-editor-title">Add Product</strong>
-        <button type="button" class="modal-x" data-close="modal-product-editor" aria-label="Close">✕</button>
+        <strong id="sell-modal-head">Sell Your Product</strong>
+        <button type="button" class="modal-x" data-close="modal-sell-form">✕</button>
       </div>
-      <form class="modal-body" id="wm-product-editor-form">
-        <div class="wm-editor-section">
-          <h3>Product Name</h3>
-          <div class="wm-editor-grid">
-            <div class="form-group"><label class="form-label" for="wm-pe-name-en">English</label><input class="form-input" id="wm-pe-name-en" required maxlength="140"></div>
-            <div class="form-group"><label class="form-label" for="wm-pe-name-am">Amharic (አማርኛ)</label><input class="form-input" id="wm-pe-name-am" maxlength="140"></div>
-            <div class="form-group wide"><label class="form-label" for="wm-pe-name-om">Afaan Oromoo</label><input class="form-input" id="wm-pe-name-om" maxlength="140"></div>
-          </div>
-        </div>
-        <div class="wm-editor-section">
-          <h3>Pricing & Category</h3>
-          <div class="wm-editor-grid">
-            <div class="form-group"><label class="form-label" for="wm-pe-price">Price (Birr)</label><input class="form-input" id="wm-pe-price" type="number" min="0" step="0.01" required></div>
-            <div class="form-group"><label class="form-label" for="wm-pe-old-price">Old Price (optional)</label><input class="form-input" id="wm-pe-old-price" type="number" min="0" step="0.01"></div>
-            <div class="form-group wide"><label class="form-label" for="wm-pe-category">Category</label><select class="form-input" id="wm-pe-category"><option value="women">Women</option><option value="home">Home</option><option value="tech">Tech</option><option value="fitness">Fitness</option></select></div>
-          </div>
-          <label class="wm-editor-switch" style="margin-top:10px"><span><strong>Special Deal</strong><small style="display:block;color:var(--text-muted)">Show this product in Special Offers</small></span><input id="wm-pe-is-deal" type="checkbox" style="width:20px;height:20px;accent-color:var(--red)"></label>
-        </div>
-        <div class="wm-editor-section">
-          <h3>Description</h3>
-          <div class="wm-editor-grid">
-            <div class="form-group wide"><label class="form-label" for="wm-pe-desc-en">English</label><textarea class="wm-editor-textarea" id="wm-pe-desc-en"></textarea></div>
-            <div class="form-group wide"><label class="form-label" for="wm-pe-desc-am">Amharic (አማርኛ)</label><textarea class="wm-editor-textarea" id="wm-pe-desc-am"></textarea></div>
-            <div class="form-group wide"><label class="form-label" for="wm-pe-desc-om">Afaan Oromoo</label><textarea class="wm-editor-textarea" id="wm-pe-desc-om"></textarea></div>
-          </div>
-        </div>
-        <div class="wm-editor-section">
-          <h3>Update Image / Photo Upload</h3>
-          <p style="font-size:12px;color:var(--text-secondary);margin-bottom:9px">Upload up to 3 photos. Each photo is automatically compressed to JPEG (70 KB max). You can also keep or edit the image filenames below.</p>
-          <div class="form-group"><label class="form-label" for="wm-pe-image-names">Existing image filenames / URLs (comma-separated)</label><input class="form-input" id="wm-pe-image-names" placeholder="image-1.jpg, image-2.jpg"></div>
-          <div class="wm-editor-photo-row"><input class="form-input" id="wm-pe-photos" type="file" accept="image/*" multiple><span id="wm-pe-photo-status" style="font-size:11px;color:var(--text-secondary)">Up to 3 photos</span></div>
-          <div class="wm-editor-previews" id="wm-pe-previews"></div>
-          <p id="wm-pe-error" role="alert" style="color:var(--red);font-size:12px;margin-top:8px"></p>
-        </div>
-        <div style="display:flex;gap:8px">
-          <button type="button" class="btn-outline full" data-close="modal-product-editor">Cancel</button>
-          <button type="submit" class="btn-red full" id="wm-pe-save">Save Product</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div class="modal-backdrop" id="wm-ad-editor-modal" aria-hidden="true">
-    <div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="wm-ad-editor-title">
-      <div class="modal-head"><strong id="wm-ad-editor-title">Add Ad</strong><button type="button" class="modal-x" data-close="wm-ad-editor-modal">✕</button></div>
-      <form class="modal-body" id="wm-ad-editor-form">
-        <div class="form-group"><label class="form-label">Banner Image (JPEG ≤ 70 KB)</label><input class="form-input" id="wm-ad-image" type="file" accept="image/*"><div id="wm-ad-image-status" style="font-size:11px;color:var(--text-secondary)"></div><input class="form-input" id="wm-ad-image-url" placeholder="Or image filename / URL" style="margin-top:7px"></div>
-        <div class="form-group"><label class="form-label">Action Type</label><select class="form-input" id="wm-ad-action"><option value="partner">Partner shop</option><option value="scroll">Scroll to products</option><option value="info">Info</option><option value="link">External link</option></select></div>
-        <div class="form-group" id="wm-ad-partner-fields"><label class="form-label">Partner Shop</label><select class="form-input" id="wm-ad-partner"></select><input class="form-input" id="wm-ad-new-partner" placeholder="New partner shop name (optional)" style="margin-top:7px"><input class="form-input" id="wm-ad-partner-pin" type="password" placeholder="New partner shop PIN (optional)" style="margin-top:7px"></div>
-        <div class="form-group"><label class="form-label">External URL (link action)</label><input class="form-input" id="wm-ad-url" type="url" placeholder="https://..."></div>
-        <div class="form-group"><label class="form-label">Ad Title (EN / AM / OM)</label><input class="form-input" id="wm-ad-title-en" placeholder="English" required><input class="form-input" id="wm-ad-title-am" placeholder="አማርኛ" style="margin-top:6px"><input class="form-input" id="wm-ad-title-om" placeholder="Afaan Oromoo" style="margin-top:6px"></div>
-        <div class="form-group"><label class="form-label">Pill Badge (EN / AM / OM)</label><input class="form-input" id="wm-ad-pill-en" placeholder="English"><input class="form-input" id="wm-ad-pill-am" placeholder="አማርኛ" style="margin-top:6px"><input class="form-input" id="wm-ad-pill-om" placeholder="Afaan Oromoo" style="margin-top:6px"></div>
-        <div class="form-group"><label class="form-label">Subtitle (EN / AM / OM)</label><textarea class="wm-editor-textarea" id="wm-ad-sub-en" placeholder="English"></textarea><textarea class="wm-editor-textarea" id="wm-ad-sub-am" placeholder="አማርኛ" style="margin-top:6px"></textarea><textarea class="wm-editor-textarea" id="wm-ad-sub-om" placeholder="Afaan Oromoo" style="margin-top:6px"></textarea></div>
-        <div class="form-group"><label class="form-label">CTA text (EN / AM / OM)</label><input class="form-input" id="wm-ad-cta-en" placeholder="English"><input class="form-input" id="wm-ad-cta-am" placeholder="አማርኛ" style="margin-top:6px"><input class="form-input" id="wm-ad-cta-om" placeholder="Afaan Oromoo" style="margin-top:6px"></div>
-        <p id="wm-ad-error" role="alert" style="color:var(--red);font-size:12px"></p>
-        <div style="display:flex;gap:8px"><button type="button" class="btn-outline full" data-close="wm-ad-editor-modal">Cancel</button><button type="submit" class="btn-red full">Save Ad</button></div>
-      </form>
+      <div class="modal-body">
+        <form id="wm-sell-form">
+          <input type="hidden" id="wm-sell-edit-id" value="" />
+          <div class="form-group"><label class="form-label" for="wm-sell-name">Product Name</label><input class="form-input" id="wm-sell-name" required maxlength="120"></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-price">Price (Br)</label><input class="form-input" id="wm-sell-price" type="number" min="0" step="0.01" required></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-seller">Seller Name</label><input class="form-input" id="wm-sell-seller" required maxlength="80"></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-contact">Seller Phone / Telegram</label><input class="form-input" id="wm-sell-contact" required maxlength="80"></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-city">City</label><select class="form-input" id="wm-sell-city" required><option>Kombolcha</option><option>Dessie</option><option>Kemise</option><option>Harbu</option></select></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-photos">Photos (up to 2; JPEG, max 70 KB each)</label><input class="form-input" id="wm-sell-photos" type="file" accept="image/*" multiple><div id="wm-sell-photo-status" style="font-size:12px;color:var(--text-secondary);margin-top:5px"></div></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-desc">Description</label><textarea class="form-input" id="wm-sell-desc" rows="3" style="height:auto;padding:10px" maxlength="1000"></textarea></div>
+          <button class="btn-red full" type="submit" id="wm-sell-submit-btn">Sell</button>
+          <p id="wm-sell-message" role="status" style="margin-top:9px;font-size:12px"></p>
+        </form>
+      </div>
     </div>
   </div>
 
+  <!-- SELLER PRODUCT DETAIL MODAL -->
+  <div class="modal-backdrop" id="modal-seller-detail">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="seller-detail-head">Product Details</strong>
+        <button type="button" class="modal-x" data-close="modal-seller-detail">✕</button>
+      </div>
+      <div class="modal-body" id="seller-detail-body"></div>
+    </div>
+  </div>
+
+  <!-- MULTI-LANGUAGE PRODUCT EDITOR MODAL (MAIN + PARTNER) -->
+  <div class="modal-backdrop" id="modal-product-editor">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="pe-head">Edit Product</strong>
+        <button type="button" class="modal-x" data-close="modal-product-editor">✕</button>
+      </div>
+      <div class="modal-body" id="pe-body"></div>
+    </div>
+  </div>
+
+  <!-- OWNER AD / BANNER EDITOR MODAL -->
+  <div class="modal-backdrop" id="modal-ad-editor">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="ae-head">Ad Banner</strong>
+        <button type="button" class="modal-x" data-close="modal-ad-editor">✕</button>
+      </div>
+      <div class="modal-body" id="ae-body"></div>
+    </div>
+  </div>
+
+  <!-- OWNER MALL EDITOR MODAL -->
+  <div class="modal-backdrop" id="modal-mall-editor">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="me-head">Manage Mall</strong>
+        <button type="button" class="modal-x" data-close="modal-mall-editor">✕</button>
+      </div>
+      <div class="modal-body" id="me-body"></div>
+    </div>
+  </div>
+
+  <!-- POPUP CONFIRMATION NOTICE MODAL -->
+  <div class="modal-backdrop" id="modal-popup-notice">
+    <div class="modal-sheet" style="max-width:420px;">
+      <div class="modal-head">
+        <strong id="pn-head">Success</strong>
+        <button type="button" class="modal-x" data-close="modal-popup-notice">✕</button>
+      </div>
+      <div class="modal-body" id="pn-body"></div>
+    </div>
+  </div>
 
   <div class="toast" id="toast"></div>
 
@@ -2466,15 +2514,15 @@
     const STORE_CONFIG = {
       defaultLang: "en",                          // Opens in English ("en") by default
       storeName: { en: "Wollo Market", am: "ወሎ ማርኬት", om: "Gabaa Walloo" },
-      appDownloadUrl: "Wollo Market.apk",    // Direct APK download
-      telegramUsername: "WolloMarketZone",
-      telegramBotToken: "",                  // PASTE YOUR TELEGRAM BOT TOKEN HERE (from @BotFather)
-      telegramChatId: "",                    // PASTE YOUR TELEGRAM CHAT/GROUP ID HERE (bot must be added to the chat)
+      appDownloadUrl: "Wollo Market.apk",         // Direct APK download file on website
+      telegramUsername: "WolloMarketZone",        // Store & Developer Telegram username
+      telegramBotToken: "",                       // Paste your Telegram BotFather token here
+      telegramChatId: "",                         // Paste your Telegram chat/channel ID here
       adminPin: "2026",
       partnerPins: { "abudi-perfume": "1111", "abudi-menswear": "2222", "abudi-pc": "3333" },
-      accountName: "STORE OWNER NAME",            // Replace with your full name
+      accountName: "Wollo Market",
       telebirrNumber: "0990120100",
-      cbeAccount: "1000668293763",
+      cbeAccount: "1000 66 82 93 763",
       phone: "0990120100",
       deliveryFee: 200,                           // Upfront delivery fee in Birr
       deliveryTime: {
@@ -3661,7 +3709,7 @@
       {
         id: "advertise-here",
         action: "link",
-        url: "https://t.me/YOUR_TELEGRAM_USERNAME?text=Hello%20Wollo%20Market!%20I%20would%20like%20to%20advertise%20my%20shop%20on%20your%20banner.",
+        url: "https://t.me/WolloMarketZone?text=Hello%20Wollo%20Market!%20I%20would%20like%20to%20advertise%20my%20shop%20on%20your%20banner.",
         bgImage: "advertisehere.jpg",
         gradient: "linear-gradient(135deg, #1F2937 0%, #111827 55%, #991B1B 100%)",
         icon: "megaphone",
@@ -3915,8 +3963,8 @@
         emptyCartTitle: "Your cart is empty", emptyCartSub: "Browse our unique gadgets and add items to your cart", shopNow: "Shop Now",
         checkoutTitle: "Delivery Details & Payment",
         city: "City / Location", name: "Full Name", phone: "Phone Number", addr: "Neighborhood / Address",
-        payTitle: "Pay Only 200 Br Delivery Upfront",
-        paySub: "Pay 200 Br delivery upfront and attach your payment screenshot below.",
+        payTitle: "200 Br Delivery Upfront",
+        paySub: "Pay 200 Br & attach screenshot.",
         copy: "Copy", copied: "Copied!",
         subtotal: "Items Subtotal", delFee: "Upfront Delivery Fee", payOnDel: "Total on Delivery",
         orderBtn: "Order", fillReq: "Please fill in Name, Phone, and Address!",
@@ -3956,8 +4004,8 @@
         emptyCartTitle: "ቅርጫትዎ ባዶ ነው", emptyCartSub: "ለየት ያሉ ጋጄቶቻችንን ይመልከቱና ወደ ቅርጫትዎ ይጨምሩ", shopNow: "አሁን ይሸምቱ",
         checkoutTitle: "የማድረሻ መረጃ እና ክፍያ",
         city: "ከተማ / ቦታ", name: "ሙሉ ስም", phone: "ስልክ ቁጥር", addr: "ሰፈር / ትክክለኛ ቦታ",
-        payTitle: "የዴሊቨሪ 200 ብር ብቻ ቅድሚያ ይክፈሉ",
-        paySub: "የ200 ብር የዴሊቨሪ ክፍያ ከፍለው የክፍያ ስክሪንሹት ከታች ያያይዙ።",
+        payTitle: "200 ብር የዴሊቨሪ ቅድሚያ",
+        paySub: "200 ብር ከፍለው ስክሪንሹት ያያይዙ።",
         copy: "ኮፒ", copied: "ተቀድቷል!",
         subtotal: "የእቃዎች ድምር", delFee: "የዴሊቨሪ ቅድሚያ ክፍያ", payOnDel: "እቃው ሲደርስ የሚከፈል",
         orderBtn: "ይዘዙ", fillReq: "እባክዎ ስም፣ ስልክ እና ሰፈር ይሙሉ!",
@@ -3997,8 +4045,8 @@
         emptyCartTitle: "Guuboon keessan duwwaa dha", emptyCartSub: "Gaajeetota addaa keenya ilaalaatii guubootti dabaladhaa", shopNow: "Amma Bitaa",
         checkoutTitle: "Odeeffannoo Geessii fi Kaffaltii",
         city: "Magaalaa / Bakka", name: "Maqaa Guutuu", phone: "Lakkoofsa Bilbilaa", addr: "Naannoo / Teessoo",
-        payTitle: "Kaffaltii Geessii Br 200 Qofa Dursaa",
-        paySub: "Kaffaltii geejjibaa Br 200 kaffaluun screenshot kaffaltii armaan gaditti maxansaa.",
+        payTitle: "Geessii Br 200 Dursaa",
+        paySub: "Br 200 kaffalaatii screenshot maxansaa.",
         copy: "Koppii", copied: "Koppii ta'eera!",
         subtotal: "Ida'ama Mi'aa", delFee: "Kaffaltii Geessii Dursaa", payOnDel: "Yeroo Geessii Kaffalamu",
         orderBtn: "Ajajaa", fillReq: "Maaloo maqaa, bilbila fi teessoo guutaa!",
@@ -4120,21 +4168,7 @@
       search: "",
       cart: readLS(LS_KEYS.cart, []),
       wishlist: readLS(LS_KEYS.wishlist, []),
-      orders: readLS(LS_KEYS.orders, []).filter(function (o) {
-        return !!(o && typeof o === "object" && !Array.isArray(o) &&
-          typeof o.id === "string" && o.id.trim() &&
-          typeof o.store === "string" && o.store.trim() &&
-          Array.isArray(o.items) && o.items.length > 0 &&
-          o.items.every(function (it) {
-            return !!(it && typeof it.name === "string" && it.name.trim() &&
-              Number.isFinite(Number(it.qty)) && Number(it.qty) > 0 &&
-              Number.isFinite(Number(it.price)) && Number(it.price) >= 0);
-          }) && Number.isFinite(Number(o.subtotal)) && Number(o.subtotal) >= 0 &&
-          typeof o.customer === "string" && o.customer.trim() &&
-          typeof o.phone === "string" && o.phone.trim() &&
-          typeof o.address === "string" && o.address.trim() && o.submitted === true &&
-          (o.status === "pending" || o.status === "delivered"));
-      }),
+      orders: readLS(LS_KEYS.orders, []).filter(function (o) { return o && o.id && Array.isArray(o.items) && o.items.length > 0 && o.customer && o.phone; }),
       orderView: "active",
       cIdx: 0,
       cTimer: null,
@@ -4145,9 +4179,6 @@
       partnerItem: null,
       aiMsgs: []
     };
-
-    // Persist the validated order list so legacy/demo/malformed entries are removed.
-    writeLS(LS_KEYS.orders, state.orders);
 
     function t(k) { return (I18N[state.lang] && I18N[state.lang][k]) || I18N.en[k] || k; }
     function br(n) { return Number(n).toLocaleString("en-US") + " Br"; }
@@ -4242,59 +4273,47 @@
     }
 
     async function sendOrderToTelegram(message, screenshot, fallbackUsername) {
-      const buttons = [document.getElementById("do-submit"), document.getElementById("btn-place-order")].filter(Boolean);
-      const originalLabels = buttons.map(function (button) { return button.textContent; });
-      buttons.forEach(function (button) {
-        button.disabled = true;
-        button.textContent = "Sending…";
-        button.setAttribute("aria-busy", "true");
-        button.style.opacity = "0.7";
-      });
       try {
         const token = String(STORE_CONFIG.telegramBotToken || "").trim();
         const chatId = String(STORE_CONFIG.telegramChatId || "").trim();
-        if (!token || !chatId) throw new Error("Telegram bot is not configured. Add telegramBotToken and telegramChatId in STORE_CONFIG.");
+        if (!token || !chatId) {
+          toast(t("telegramFallback"));
+          openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
+          switchTab("orders");
+          return false;
+        }
         const orderMessage = String(message || "").trim();
         if (!orderMessage) throw new Error("Order summary is empty.");
-
-        let endpoint, options;
-        if (screenshot instanceof Blob) {
-          endpoint = "https://api.telegram.org/bot" + token + "/sendPhoto";
-          const form = new FormData();
-          form.append("chat_id", chatId);
-          form.append("photo", screenshot, screenshot.name || "payment-screenshot.jpg");
-          form.append("caption", orderMessage.slice(0, 1024));
-          options = { method: "POST", body: form };
+        let response;
+        if (screenshot && typeof FormData !== "undefined") {
+          const fd = new FormData();
+          fd.append("chat_id", chatId);
+          fd.append("photo", screenshot);
+          fd.append("caption", orderMessage.slice(0, 1000));
+          response = await fetch("https://api.telegram.org/bot" + token + "/sendPhoto", {
+            method: "POST",
+            body: fd
+          });
         } else {
-          endpoint = "https://api.telegram.org/bot" + token + "/sendMessage";
-          options = {
+          response = await fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ chat_id: chatId, text: orderMessage })
-          };
+          });
         }
-        const response = await fetch(endpoint, options);
         const result = await response.json();
         if (!response.ok || !result || !result.ok) {
           throw new Error((result && result.description) || "Telegram could not accept the order.");
         }
-        toast("Order sent successfully! ✓");
+        toast(t("orderSent"));
         switchTab("orders");
         return true;
       } catch (error) {
         console.error("Telegram order submission failed:", error);
-        toast(error && error.message && error.message.indexOf("not configured") !== -1
-          ? "Order saved. Add Telegram bot details in STORE_CONFIG."
-          : "Order saved, but sending failed. Please try again.");
+        toast(t("telegramFallback"));
+        openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
         switchTab("orders");
         return false;
-      } finally {
-        buttons.forEach(function (button, index) {
-          button.disabled = false;
-          button.textContent = originalLabels[index] || t("orderBtn");
-          button.removeAttribute("aria-busy");
-          button.style.opacity = "";
-        });
       }
     }
 
@@ -4307,12 +4326,13 @@
       try {
         const target = String(STORE_CONFIG.appDownloadUrl || "").trim();
         if (target) {
-          const link = document.createElement("a");
-          link.href = target;
-          link.setAttribute("download", "Wollo Market.apk");
-          document.body.appendChild(link);
-          link.click();
-          link.remove();
+          window.open(target, "_blank", "noopener,noreferrer");
+          return;
+        }
+        const isInstalled = window.matchMedia("(display-mode: standalone)").matches ||
+          window.navigator.standalone === true;
+        if (isInstalled) {
+          toast("Wollo Market is already installed on this device.");
           return;
         }
         if (deferredInstallPrompt) {
@@ -4323,23 +4343,11 @@
         }
         toast("App installation is not available here yet. Use your browser menu and choose Install app or Add to Home Screen.");
       } catch (error) {
-        console.error("App download unavailable:", error);
-        toast("App download is unavailable. Please try again.");
+        console.error("App install prompt unavailable:", error);
+        toast("App installation is unavailable in this browser. Try Add to Home Screen from the browser menu.");
       }
     }
-
-    function updateWebOnlyDownloadVisibility() {
-      const installed = window.matchMedia("(display-mode: standalone)").matches ||
-        window.navigator.standalone === true;
-      document.querySelectorAll(".download-app-only-web").forEach(function (element) {
-        element.style.display = installed ? "none" : "";
-      });
-    }
-    window.addEventListener("DOMContentLoaded", updateWebOnlyDownloadVisibility);
-    if (window.matchMedia) {
-      const standaloneQuery = window.matchMedia("(display-mode: standalone)");
-      standaloneQuery.addEventListener?.("change", updateWebOnlyDownloadVisibility);
-    }
+    document.addEventListener("click", function (e) { if (e.target.closest(".download-app-trigger")) handleAppDownload(); });
 
     /* THEME, LANGUAGE & BADGES */
     function applyTheme() {
@@ -4359,6 +4367,9 @@
     function updateTexts() {
       const locStr = locationsLine();
       document.documentElement.lang = state.lang;
+      const downloadLabels = { en: "Download App", am: "አፕ አውርድ", om: "App Buufadhu" };
+      document.querySelectorAll(".download-app-trigger-label").forEach(function (el) { el.textContent = downloadLabels[state.lang] || downloadLabels.en; });
+      const homeDl = document.getElementById("home-download-app-btn"); if (homeDl) homeDl.textContent = downloadLabels[state.lang] || downloadLabels.en;
       document.getElementById("hdr-brand").textContent = STORE_CONFIG.storeName[state.lang];
       document.getElementById("hdr-cities").textContent = locStr;
       document.getElementById("btn-lang").textContent = t("langCode");
@@ -4405,7 +4416,7 @@
       document.getElementById("ft-pol-h").textContent = t("policiesTitle");
       document.getElementById("ft-pol-b").innerHTML = t("pol1") + "<br>" + t("pol2") + "<br>" + t("pol3");
       document.getElementById("ft-cnt-h").textContent = t("contactTitle");
-      document.getElementById("ft-cnt-b").innerHTML = "Telegram: @" + STORE_CONFIG.telegramUsername + "<br>Phone: " + STORE_CONFIG.phone + "<br>Telebirr: " + STORE_CONFIG.telebirrNumber + "<br>CBE: " + STORE_CONFIG.cbeAccount + "<br>" + locStr;
+      document.getElementById("ft-cnt-b").innerHTML = "Telegram: @" + STORE_CONFIG.telegramUsername + "<br>Phone: " + STORE_CONFIG.phone + "<br>" + locStr;
       document.getElementById("ft-copy").textContent = "© 2026 " + STORE_CONFIG.storeName[state.lang] + " • " + locStr;
     }
 
@@ -4437,19 +4448,22 @@
     function renderCarousel() {
       const track = document.getElementById("carousel-track");
       const dots = document.getElementById("carousel-dots");
+      const adminBar = document.getElementById("wm-ad-admin-bar");
+      if (adminBar) adminBar.style.display = wmAdminUnlocked ? "flex" : "none";
 
       track.innerHTML = PROMO_BANNERS.map(function (b, i) {
-        const bg = `background:${b.gradient};`;
+        const bg = `background:${b.gradient || "linear-gradient(135deg,#DC2626,#0F0F12)"};`;
         const overlay = b.bgImage ? `<img src="${b.bgImage}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" onload="if(this.nextElementSibling && this.nextElementSibling.classList.contains('banner-scrim')) this.nextElementSibling.style.display='block';" onerror="this.style.display='none'; if(this.nextElementSibling && this.nextElementSibling.classList.contains('banner-scrim')) this.nextElementSibling.style.display='none';"><div class="banner-scrim" style="z-index:1;background:rgba(12, 12, 16, 0.14);"></div>` : "";
+        const adminTools = wmAdminUnlocked ? `<div class="wm-ad-card-tools"><button type="button" class="wm-ad-tool-btn" data-wm-ad-edit="${i}">Edit</button><button type="button" class="wm-ad-tool-btn danger" data-wm-ad-delete="${i}">Delete</button></div>` : "";
         return `
           <div class="banner-card" data-bidx="${i}" style="${bg}">
             ${overlay}
-            ${wmAdminUnlocked ? `<div class="wm-banner-admin"><button type="button" data-wm-edit-ad="${i}">Edit</button><button type="button" data-wm-delete-ad="${i}">Delete</button></div>` : ""}
+            ${adminTools}
             <div class="banner-content">
-              <div class="banner-pill"><span class="banner-dot-live"></span><span>${b.pill[state.lang] || b.pill.en}</span></div>
-              <div class="banner-title">${b.title[state.lang] || b.title.en}</div>
-              <div class="banner-sub">${b.sub[state.lang] || b.sub.en}</div>
-              <span class="banner-cta">${b.cta[state.lang] || b.cta.en} &rsaquo;</span>
+              <div class="banner-pill"><span class="banner-dot-live"></span><span>${(b.pill && (b.pill[state.lang] || b.pill.en)) || ""}</span></div>
+              <div class="banner-title">${(b.title && (b.title[state.lang] || b.title.en)) || ""}</div>
+              <div class="banner-sub">${(b.sub && (b.sub[state.lang] || b.sub.en)) || ""}</div>
+              <span class="banner-cta">${(b.cta && (b.cta[state.lang] || b.cta.en)) || "Open"} &rsaquo;</span>
             </div>
             <div class="banner-icon-box">${b.iconEmoji ? `<span style="font-size:30px;line-height:1;">${b.iconEmoji}</span>` : svgIcon(b.icon, 28)}</div>
           </div>
@@ -4643,22 +4657,25 @@
 
     function directoryCardHtml(item, type) {
       const gradient = item.gradient || "linear-gradient(135deg,#334155,#111827)";
-      const logo = item.logo || (type === "mall" ? "🏬" : "🏪");
+      const fallbackIcon = type === "mall" ? "🏬" : "🏪";
       const photo = item.bgImage
-        ? `<img src="${item.bgImage}" alt="${cityText(item.name)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="directory-photo-fallback" style="display:none">${logo}</span>`
-        : `<span class="directory-photo-fallback">${logo}</span>`;
-      const logoHtml = type === "mall" ? "" : `<span>${logo}</span>${item.logoImage ? `<img src="${item.logoImage}" alt="" loading="lazy" onerror="this.style.display='none'">` : ""}`;
-      const count = (item.shops || []).length;
+        ? `<img src="${item.bgImage}" alt="${cityText(item.name)}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'"><span class="directory-photo-fallback" style="display:none">${fallbackIcon}</span>`
+        : `<span class="directory-photo-fallback">${fallbackIcon}</span>`;
+      const userShopsCount = wmMallShops.filter(s => s.mallId === item.id).length;
+      const count = (item.shops || []).length + userShopsCount;
       const detail = type === "mall"
         ? (state.lang === "am" ? `${count} ሱቆችን ይመልከቱ ›` : state.lang === "om" ? `Suuqii ${count} Ilaali ›` : `View ${count} Shops ›`)
         : directoryCategoryLabel(item.category);
+      const mallTools = (type === "mall" && wmAdminUnlocked)
+        ? `<div class="wm-mall-admin-tools"><button type="button" data-wm-mall-edit="${item.id}">Edit</button><button type="button" class="danger" data-wm-mall-delete="${item.id}">Delete</button></div>`
+        : "";
 
       return `<div class="directory-card">
-        <button type="button" class="directory-card-main" data-directory-${type}="${item.id}" style="width:100%;border-radius:0;overflow:hidden;text-align:left;color:#fff;background:#171923;display:flex;flex-direction:column">
+        <button type="button" style="width:100%;text-align:left;color:inherit;display:flex;flex-direction:column;flex:1;" data-directory-${type}="${item.id}">
           <span class="directory-photo" style="--directory-gradient:${gradient}">${photo}</span>
-          <span class="directory-card-info">${type === "mall" ? "" : `<span class="directory-logo">${logoHtml}</span>`}<span class="directory-meta"><span class="directory-name">${cityText(item.name)}</span><span class="directory-detail">${detail}</span></span></span>
+          <span class="directory-card-info"><span class="directory-meta"><span class="directory-name">${cityText(item.name)}</span><span class="directory-detail">${detail}</span></span></span>
         </button>
-        ${type === "mall" && wmAdminUnlocked ? `<span class="wm-mall-admin"><button type="button" data-wm-edit-mall="${wmEscape(item.id)}">Edit</button><button type="button" data-wm-delete-mall="${wmEscape(item.id)}">Delete</button></span>` : ""}
+        ${mallTools}
       </div>`;
     }
 
@@ -4670,9 +4687,14 @@
       const body = document.getElementById("city-modal-body");
       document.getElementById("city-modal-title").textContent = cityText(city.name);
 
+      if (directoryState.view === "shop" && directoryState.mallId && directoryState.activeShopId) {
+        wmRenderShopDetail(directoryState.mallId, directoryState.activeShopId);
+        return;
+      }
+
       if (directoryState.view === "coming") {
         const shop = directoryState.shopRef || {};
-        if (directoryState.mallId && shop && shop.shops) { wmRenderMallPage(shop); return; }
+        if (directoryState.mallId && shop && shop.shops !== undefined) { wmRenderMallPage(shop); return; }
         body.innerHTML = `<button class="btn-outline directory-back" data-directory-back>${ui.back}</button>
           <div class="directory-coming"><div class="directory-coming-icon">🏪</div><h3>${ui.coming}</h3>
           <div style="font-size:17px;font-weight:800;margin-top:10px;">${cityText(shop.name)}</div><p>${ui.soon}</p></div>`;
@@ -4680,7 +4702,10 @@
       }
 
       const malls = city.malls || [];
-      body.innerHTML = `${wmAdminUnlocked ? `<button type="button" class="btn-red full" data-wm-add-mall="${wmEscape(city.id)}" style="margin-bottom:12px">＋ Add a Mall</button>` : ""}<div class="directory-grid">${malls.length ? malls.map(m => directoryCardHtml(m, "mall")).join("") : `<div class="directory-empty">${ui.noMalls}</div>`}</div>`;
+      const addMallBtn = wmAdminUnlocked
+        ? `<div style="display:flex;justify-content:flex-end;margin-bottom:12px;"><button type="button" class="btn-red" style="padding:8px 14px;font-size:12px;" data-wm-mall-add="${city.id}">+ Add Mall</button></div>`
+        : "";
+      body.innerHTML = `${addMallBtn}<div class="directory-grid">${malls.length ? malls.map(m => directoryCardHtml(m, "mall")).join("") : `<div class="directory-empty">${ui.noMalls}</div>`}</div>`;
     }
 
     function openCityDirectory(id) {
@@ -4867,21 +4892,22 @@
         <div class="form-group"><label class="form-label">${t("addr")}</label><input type="text" class="form-input" id="do-addr" /></div>
 
         <div class="pay-box">
-          <div style="font-size:13px;font-weight:800;color:var(--red);">200 Br Delivery Upfront</div>
+          <div style="font-size:13px;font-weight:800;color:var(--red);">${t("payTitle")}</div>
+          <p style="font-size:12px;color:var(--text-secondary);margin-top:3px;">${t("paySub")}</p>
           <div class="pay-item">
-            <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">Telebirr</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.telebirrNumber}</div></div>
+            <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">Telebirr (${STORE_CONFIG.accountName})</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.telebirrNumber}</div></div>
             <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.telebirrNumber}">${t("copy")}</button>
           </div>
           <div class="pay-item">
-            <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">CBE</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.cbeAccount}</div></div>
+            <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">CBE (${STORE_CONFIG.accountName})</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.cbeAccount}</div></div>
             <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.cbeAccount}">${t("copy")}</button>
           </div>
         </div>
         ${paymentScreenshotMarkup("do-payment-screenshot")}
 
-        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:6px;"><span>Items</span><strong>${br(subtotal)}</strong></div>
-        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:8px;"><span>Delivery upfront</span><strong style="color:var(--red);">${br(STORE_CONFIG.deliveryFee)}</strong></div>
-        <div style="display:flex;justify-content:space-between;font-size:15.5px;font-weight:900;padding-top:8px;border-top:1px solid var(--border);margin-bottom:14px;"><span>Pay on delivery</span><span>${br(subtotal)}</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:6px;"><span>${t("subtotal")}</span><strong>${br(subtotal)}</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:8px;"><span>${t("delFee")}</span><strong style="color:var(--red);">${br(STORE_CONFIG.deliveryFee)}</strong></div>
+        <div style="display:flex;justify-content:space-between;font-size:15.5px;font-weight:900;padding-top:8px;border-top:1px solid var(--border);margin-bottom:14px;"><span>${t("payOnDel")}</span><span>${br(subtotal)}</span></div>
 
         <button type="button" class="btn-red full" id="do-submit">${t("orderBtn")}</button>
       `;
@@ -4906,7 +4932,7 @@
           items: [{ name: p.name[state.lang], qty: qty, price: p.price }],
           subtotal: subtotal, deliveryFee: STORE_CONFIG.deliveryFee,
           city: city, customer: name, phone: phone, address: addr,
-          status: "pending", submitted: true, date: new Date().toLocaleDateString()
+          status: "pending", date: new Date().toLocaleDateString()
         });
         writeLS(LS_KEYS.orders, state.orders);
         updateBadges();
@@ -4916,9 +4942,8 @@
           "\n📍 Location: " + city + "\n🏠 Address: " + addr + "\n👤 Name: " + name + "\n📞 Phone: " + phone).slice(0, 950);
         const screenshot = selectedPaymentScreenshot;
         selectedPaymentScreenshot = null;
-        sendOrderToTelegram(orderMessage, screenshot, STORE_CONFIG.telegramUsername).then(function () {
-          closeModal("modal-direct-order");
-        });
+        closeModal("modal-direct-order");
+        sendOrderToTelegram(orderMessage, screenshot, STORE_CONFIG.telegramUsername);
       });
     }
 
@@ -5034,21 +5059,22 @@
             <div class="form-group"><label class="form-label">${t("addr")}</label><input type="text" class="form-input" id="c-addr" /></div>
 
             <div class="pay-box">
-              <div style="font-size:13px;font-weight:800;color:var(--red);">200 Br Delivery Upfront</div>
+              <div style="font-size:13px;font-weight:800;color:var(--red);">${t("payTitle")}</div>
+              <p style="font-size:12px;color:var(--text-secondary);margin-top:3px;">${t("paySub")}</p>
               <div class="pay-item">
-                <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">Telebirr</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.telebirrNumber}</div></div>
+                <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">Telebirr (${STORE_CONFIG.accountName})</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.telebirrNumber}</div></div>
                 <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.telebirrNumber}">${t("copy")}</button>
               </div>
               <div class="pay-item">
-                <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">CBE</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.cbeAccount}</div></div>
+                <div><div style="font-size:11px;color:var(--text-muted);font-weight:700;">CBE (${STORE_CONFIG.accountName})</div><div style="font-size:13.5px;font-weight:800;">${STORE_CONFIG.cbeAccount}</div></div>
                 <button type="button" class="copy-pill" data-copy="${STORE_CONFIG.cbeAccount}">${t("copy")}</button>
               </div>
             </div>
             ${paymentScreenshotMarkup("c-payment-screenshot")}
 
-            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:6px;"><span>Items</span><strong>${br(subtotal)}</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:8px;"><span>Delivery upfront</span><strong style="color:var(--red);">${br(STORE_CONFIG.deliveryFee)}</strong></div>
-            <div style="display:flex;justify-content:space-between;font-size:15.5px;font-weight:900;padding-top:8px;border-top:1px solid var(--border);margin-bottom:14px;"><span>Pay on delivery</span><span>${br(subtotal)}</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:6px;"><span>${t("subtotal")}</span><strong>${br(subtotal)}</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;color:var(--text-secondary);margin-bottom:8px;"><span>${t("delFee")}</span><strong style="color:var(--red);">${br(STORE_CONFIG.deliveryFee)}</strong></div>
+            <div style="display:flex;justify-content:space-between;font-size:15.5px;font-weight:900;padding-top:8px;border-top:1px solid var(--border);margin-bottom:14px;"><span>${t("payOnDel")}</span><span>${br(subtotal)}</span></div>
 
             <button type="button" class="btn-red full" id="btn-place-order">${t("orderBtn")}</button>
           </div>
@@ -5072,7 +5098,7 @@
           id: oid, store: STORE_CONFIG.storeName[state.lang], items: items,
           subtotal: subtotal, deliveryFee: STORE_CONFIG.deliveryFee,
           city: city, customer: name, phone: phone, address: addr,
-          status: "pending", submitted: true, date: new Date().toLocaleDateString()
+          status: "pending", date: new Date().toLocaleDateString()
         });
         state.cart = [];
         writeLS(LS_KEYS.orders, state.orders);
@@ -5115,7 +5141,7 @@
             <div style="font-size:28px;font-weight:900;color:var(--red);margin-bottom:10px;">${comingSoonText}</div>
             <div style="font-size:13px;color:var(--text-secondary);margin-bottom:20px;">${comingSoonSubtitle}</div>
             <button type="button" class="btn-outline" id="pt-coming-back">${backLabel}</button>
-            <div style="text-align:right;margin-top:18px"><button type="button" id="wm-partner-key" aria-label="Partner owner access" style="font-size:12px;color:var(--text-muted);opacity:.38;padding:6px">🔒</button></div>
+            <div style="text-align:right;margin-top:18px"><button type="button" id="wm-partner-key" aria-label="Partner owner access" class="wm-tiny-lock">🔒</button></div>
           </div>
         `;
         document.getElementById("pt-coming-back").addEventListener("click", function () {
@@ -5130,7 +5156,7 @@
             <div style="font-size:18px;font-weight:900;">${store.name[state.lang] || store.name.en}</div>
             <div style="font-size:12.5px;opacity:0.9;margin-top:4px;">${store.desc[state.lang] || store.desc.en}</div>
           </div>
-          <div class="wm-partner-products-wrap"><div class="partner-products-grid">${store.products.map(function (it) {
+          <div class="partner-products-grid">${store.products.map(function (it) {
             const hasImg = Boolean(it.image && it.image.trim());
             const thumbBg = it.gradient || store.gradient;
             return `
@@ -5147,7 +5173,7 @@
               </div>`;
           }).join("")}</div>
           ${(wmPartnerUnlocked[store.id] || wmAdminUnlocked) ? `<button type="button" class="btn-red full" id="wm-partner-add" style="margin-top:10px">+ Add Product</button>` : ""}
-          <button type="button" class="wm-partner-lock" id="wm-partner-key" aria-label="Partner owner access" title="Owner access">🔒</button></div>
+          <div style="text-align:right;margin-top:14px;padding-top:8px;border-top:1px solid var(--border)"><button type="button" id="wm-partner-key" aria-label="Partner owner access" class="wm-tiny-lock">🔒</button></div>
         `;
       } else {
         const it = state.partnerItem;
@@ -5187,7 +5213,7 @@
           </div>
           ${paymentScreenshotMarkup("p-payment-screenshot")}
           <button type="button" class="btn-red full" id="pt-submit">${t("orderBtn")}</button>
-          <div style="text-align:right;margin-top:16px;padding-top:8px;border-top:1px solid var(--border)"><button type="button" id="wm-partner-key" aria-label="Partner owner access" style="font-size:12px;color:var(--text-muted);opacity:.38;padding:6px">🔒</button></div>
+          <div style="text-align:right;margin-top:16px;padding-top:8px;border-top:1px solid var(--border)"><button type="button" id="wm-partner-key" aria-label="Partner owner access" class="wm-tiny-lock">🔒</button></div>
         `;
 
         bindPaymentScreenshot("p-payment-screenshot");
@@ -5208,7 +5234,7 @@
             items: [{ name: it.name[state.lang] || it.name.en, qty: 1, price: it.price }],
             subtotal: it.price, deliveryFee: store.deliveryFee,
             city: city, customer: name, phone: phone, address: addr,
-            status: "pending", submitted: true, date: new Date().toLocaleDateString()
+            status: "pending", date: new Date().toLocaleDateString()
           });
           writeLS(LS_KEYS.orders, state.orders);
           updateBadges();
@@ -5227,13 +5253,7 @@
       document.getElementById("seg-active").classList.toggle("active", state.orderView === "active");
       document.getElementById("seg-history").classList.toggle("active", state.orderView === "history");
       const list = state.orders.filter(function (o) {
-        const validOrder = !!(o && typeof o.id === "string" && o.id.trim() &&
-          typeof o.store === "string" && o.store.trim() && Array.isArray(o.items) && o.items.length &&
-          o.items.every(function (it) { return it && typeof it.name === "string" && it.name.trim() && Number(it.qty) > 0 && Number.isFinite(Number(it.price)); }) &&
-          Number.isFinite(Number(o.subtotal)) && typeof o.customer === "string" && o.customer.trim() &&
-          typeof o.phone === "string" && o.phone.trim() && typeof o.address === "string" && o.address.trim() && o.submitted === true &&
-          (o.status === "pending" || o.status === "delivered"));
-        return validOrder && (state.orderView === "active" ? o.status === "pending" : o.status === "delivered");
+        return state.orderView === "active" ? o.status === "pending" : o.status === "delivered";
       });
       const root = document.getElementById("orders-root");
       if (!list.length) {
@@ -5280,23 +5300,10 @@
           </div>
         </div>
 
-        <div class="white-card download-app-only-web" style="display:block;">
-          <div style="font-size:14.5px;font-weight:800;margin-bottom:6px;">${({en:"Get the Wollo Market App",am:"የወሎ ማርኬት አፕን ያውርዱ",om:"Appii Gabaa Walloo buufadhaa"})[state.lang]}</div>
-          <div style="font-size:12px;color:var(--text-secondary);margin-bottom:12px;">${({en:"Install the app for quick access.",am:"ለፈጣን አጠቃቀም አፑን ይጫኑ።",om:"Daftee fayyadamuuf appicha fe'adhaa."})[state.lang]}</div>
-          <button type="button" class="btn-red full" id="download-app-btn">${({en:"Download App",am:"አፕ አውርድ",om:"App Buufadhu"})[state.lang]}</button>
-        </div>
-
-        <div class="white-card">
-          <div style="font-size:14.5px;font-weight:800;margin-bottom:6px;">${({en:"About Developers",am:"ስለ ገንቢዎች",om:"Waa'ee Developers"})[state.lang]}</div>
-          <div style="font-size:14px;font-weight:800;margin-bottom:12px;">Abud Tech Plc.</div>
-          <button type="button" class="btn-outline full" id="contact-developer-btn">${({en:"Contact Developer",am:"ገንቢውን ያግኙ",om:"Developer Quunnamaa"})[state.lang]}</button>
-        </div>
-
         <div class="white-card">
           <div style="font-size:14.5px;font-weight:800;margin-bottom:6px;">${t("helpPayTitle")}</div>
           <div class="info-row"><span style="color:var(--text-secondary);">Telegram</span><strong style="color:var(--red);">@${STORE_CONFIG.telegramUsername}</strong></div>
-          <div class="info-row"><span style="color:var(--text-secondary);">Phone</span><strong>${STORE_CONFIG.phone}</strong></div>
-          <div class="info-row"><span style="color:var(--text-secondary);">Telebirr</span><strong>${STORE_CONFIG.telebirrNumber}</strong></div>
+          <div class="info-row"><span style="color:var(--text-secondary);">Phone / Telebirr</span><strong>${STORE_CONFIG.telebirrNumber}</strong></div>
           <div class="info-row"><span style="color:var(--text-secondary);">CBE Account</span><strong>${STORE_CONFIG.cbeAccount}</strong></div>
           <div class="info-row"><span style="color:var(--text-secondary);">Account Holder</span><strong>${STORE_CONFIG.accountName}</strong></div>
         </div>
@@ -5354,6 +5361,20 @@
           </div>
         </div>
 
+        <button type="button" class="prof-click-card download-app-only-web download-app-trigger" id="prof-download-app-btn">
+          <div>
+            <div style="font-size:14.5px;font-weight:800;" class="download-app-trigger-label">${state.lang === "am" ? "አፕ አውርድ" : state.lang === "om" ? "App Buufadhu" : "Download App"}</div>
+            <div style="font-size:12px;color:var(--text-secondary);margin-top:2px;">${state.lang === "am" ? "የWollo Market አንድሮይድ አፕ ይጫኑ" : state.lang === "om" ? "Appii Android Wollo Market buufadhaa" : "Install Wollo Market Android APK"}</div>
+          </div>
+          <span style="color:var(--red);font-size:18px;font-weight:800;">&darr;</span>
+        </button>
+
+        <div class="white-card">
+          <div style="font-size:14.5px;font-weight:800;margin-bottom:6px;">${state.lang === "am" ? "ስለ አበልጻጊዎች (About Developers)" : state.lang === "om" ? "Waa'ee Hojjettootaa (About Developers)" : "About Developers"}</div>
+          <div style="font-size:13.5px;font-weight:900;color:var(--text-primary);margin-bottom:10px;">Abud Tech Plc.</div>
+          <button type="button" class="btn-outline full" id="prof-contact-dev-btn">${state.lang === "am" ? "አበልጻጊውን ያግኙ (Contact Developer)" : state.lang === "om" ? "Hojjetaa Quunnamaa (Contact Developer)" : "Contact Developer"}</button>
+        </div>
+
         <button type="button" class="ai-dark-card" id="prof-ai-btn">
           <div>
             <div style="font-size:14.5px;font-weight:800;">${t("aiCardTitle")}</div>
@@ -5361,18 +5382,14 @@
           </div>
           <span style="color:var(--red);font-size:18px;font-weight:800;">&rsaquo;</span>
         </button>
-        <button type="button" id="wm-owner-key" aria-label=" " style="display:block;width:100%;min-height:44px;margin-top:10px;background:transparent;border:1px solid var(--border);border-radius:12px;opacity:0.25;"></button>
+
+        <button type="button" class="prof-click-card wm-hidden-owner-box" id="wm-owner-key" aria-label="Hidden"></button>
       `;
 
       document.getElementById("wm-owner-key").addEventListener("click", wmUnlockOwner);
-      document.getElementById("download-app-btn")?.addEventListener("click", handleAppDownload);
-      document.getElementById("contact-developer-btn").addEventListener("click", function () {
-        const messages = {
-          en: "Hello Abud Tech Plc., I would like to inquire about the development and support of Wollo Market.",
-          am: "ሰላም አቡድ ቴክ ኃ.የተ.የግ.ማ፣ ስለ ወሎ ማርኬት ልማት እና ድጋፍ መጠየቅ እፈልጋለሁ።",
-          om: "Akkam Abud Tech Plc., waa’ee misoomaa fi deeggarsa Gabaa Walloo gaafachuu nan barbaada."
-        };
-        openTG(STORE_CONFIG.telegramUsername, messages[state.lang] || messages.en);
+      const devBtn = document.getElementById("prof-contact-dev-btn");
+      if (devBtn) devBtn.addEventListener("click", function () {
+        openTG(STORE_CONFIG.telegramUsername, "Hello Abud Tech Plc., I would like to contact the developer of Wollo Market.");
       });
       document.getElementById("prof-dark-btn").addEventListener("click", function () {
         state.theme = state.theme === "dark" ? "light" : "dark";
@@ -5413,9 +5430,9 @@
           : "Orders arrive " + STORE_CONFIG.deliveryTime.en + "! You can place an order 24/7.";
       }
       if (s.includes("pay") || s.includes("200") || s.includes("birr") || s.includes("telebirr") || s.includes("cbe") || s.includes("ክፍያ") || s.includes("ብር") || s.includes("kaffal")) {
-        return l === "am" ? "የዴሊቨሪ " + STORE_CONFIG.deliveryFee + " ብር ብቻ ቅድሚያ በቴሌብር/CBE ይክፈሉ። Telebirr: " + STORE_CONFIG.telebirrNumber + "፣ CBE: " + STORE_CONFIG.cbeAccount + "። ስክሪንሹት ይላኩ፤ የእቃውን ዋጋ ሲደርስ ብቻ ይከፍላሉ። ስልክ: " + STORE_CONFIG.phone + "።"
-          : l === "om" ? "Kaffaltii geessii Br " + STORE_CONFIG.deliveryFee + " qofa Telebirr/CBE tiin dursitanii kaffalaa. Telebirr: " + STORE_CONFIG.telebirrNumber + ", CBE: " + STORE_CONFIG.cbeAccount + ". Ragaa ergaa; gatii mi'aa yeroo gahu kaffaltu. Bilbila: " + STORE_CONFIG.phone + "."
-          : "Pay only " + STORE_CONFIG.deliveryFee + " Br delivery fee upfront. Telebirr: " + STORE_CONFIG.telebirrNumber + "; CBE: " + STORE_CONFIG.cbeAccount + ". Send the screenshot on Telegram. Product price is paid Cash on Delivery. Phone: " + STORE_CONFIG.phone + ".";
+        return l === "am" ? "የዴሊቨሪ " + STORE_CONFIG.deliveryFee + " ብር ብቻ ቅድሚያ በቴሌብር/CBE ከፍለው ስክሪንሹት ይልካሉ፤ የእቃውን ዋጋ ሲደርስ ብቻ ይከፍላሉ!"
+          : l === "om" ? "Kaffaltii geessii Br " + STORE_CONFIG.deliveryFee + " qofa Telebirr/CBE tiin dursitanii kaffaltu; gatii mi'aa yeroo gahu qofa!"
+          : "Pay only " + STORE_CONFIG.deliveryFee + " Br delivery fee upfront via Telebirr/CBE and send the screenshot on Telegram. Product price is paid Cash on Delivery!";
       }
       if (s.includes("discount") || s.includes("bulk") || s.includes("more") || s.includes("ቅናሽ") || s.includes("ብዛት") || s.includes("hir'in")) {
         return l === "am" ? "አዎ! ከ2 እቃ በላይ እና በብዛት ለሚገዙ ደንበኞች ልዩ ቅናሽ አለን።"
@@ -5480,7 +5497,7 @@
       if (state.tab === "profile") renderProfile();
     }
 
-    /* PART 1: Firebase-backed seller listings, mall shops/products, and strict JPEG validation. */
+    /* PART 1 & 2: Firebase-backed Mall/Shop flow, Seller Listings, Multi-language Editors & Strict Owner/Partner Access */
     const WM_DB = "https://wollo-market-83eb1-default-rtdb.firebaseio.com";
     const WM_MAX_PHOTO_BYTES = 71680;
     const WM_PHOTO_ERROR = {
@@ -5488,256 +5505,1075 @@
       am: "ከ70 KB በላይ አይቻልም! ፎቶን ኮምፕረስ አድርግና ሳይዙን ከ70 KB በታች ቀንስና አስገባ።",
       om: "70 KB ol hin eeyyamamu! Suuraa xiqqeessi (70 KB gadi) gochuun irra deebi'ii galchi."
     };
+
     let wmMallShops = readLS("wm_mall_shops", []);
     let wmListings = readLS("wm_seller_listings", []);
-    let wmSelectedMall = null;
     let wmPendingSellPhotos = [];
-    let wmEditingListingId = null;
-    let wmAdminUnlocked = readLS("wm_admin_unlocked", false) === true;
-    const wmFirebaseFetch = async (path, options={}) => {
-      try {
-        if (typeof fetch !== "function") throw new Error("Firebase is unavailable in this browser.");
-        const response = await fetch(WM_DB + path, {
-          headers: { "Content-Type": "application/json" },
-          ...options
-        });
-        if (!response || !response.ok) {
-          throw new Error("Firebase request failed" + (response ? " (" + response.status + ")" : "."));
-        }
-        if (response.status === 204) return null;
-        const body = await response.text();
-        if (!body || !body.trim()) return null;
-        return JSON.parse(body);
-      } catch (error) {
-        // Cloud errors must never prevent the locally-rendered storefront from working.
-        throw error;
+    // STRICT DEFAULT LOCK: NEVER persist admin/partner unlock across reloads
+    let wmAdminUnlocked = false;
+    let wmPartnerUnlocked = {};
+    try {
+      localStorage.removeItem("wm_admin_unlocked");
+      localStorage.removeItem("wm_partner_unlocked");
+    } catch (e) {}
+
+    const WM_PARTNER_PIN_KEYS = { kimi: "abudi-perfume", boutique: "abudi-menswear", abudipc: "abudi-pc" };
+    let wmCloudProductsLoaded = false;
+
+    const wmFirebaseFetch = async (path, options = {}) => {
+      if (typeof fetch !== "function") throw new Error("Firebase is unavailable.");
+      const response = await fetch(WM_DB + path, {
+        headers: { "Content-Type": "application/json" },
+        ...options
+      });
+      if (!response || !response.ok) {
+        throw new Error("Firebase request failed" + (response ? " (" + response.status + ")" : "."));
       }
+      if (response.status === 204) return null;
+      const body = await response.text();
+      if (!body || !body.trim()) return null;
+      return JSON.parse(body);
     };
-    async function wmLoadCityDirectory(){
-      try{const cloud=await wmFirebaseFetch("/cityDirectory.json");if(Array.isArray(cloud)&&cloud.length)CITY_DIRECTORY=cloud.filter(Boolean);else if(cloud&&typeof cloud==="object")CITY_DIRECTORY=Object.values(cloud).filter(Boolean);writeLS("wm_city_directory",CITY_DIRECTORY);}
-      catch(e){const local=readLS("wm_city_directory",null);if(Array.isArray(local)&&local.length)CITY_DIRECTORY=local;}
-      renderCityBanners();
-    }
-    async function wmSaveCityDirectory(){writeLS("wm_city_directory",CITY_DIRECTORY);return wmFirebaseFetch("/cityDirectory.json",{method:"PUT",body:JSON.stringify(CITY_DIRECTORY)});}
-    function wmLangMessage(){ return WM_PHOTO_ERROR[state.lang] || WM_PHOTO_ERROR.en; }
-    function wmToastMsg(msg){ if (typeof toast === "function") toast(msg); else alert(msg); }
-    function wmImageToJpeg(file){
-      return new Promise((resolve,reject)=>{
-        if(!file || !file.type || !file.type.startsWith("image/")){reject(new Error("Please select an image file."));return;}
-        const img=new Image(), url=URL.createObjectURL(file);
-        img.onload=()=>{
+
+    function wmLangMessage() { return WM_PHOTO_ERROR[state.lang] || WM_PHOTO_ERROR.en; }
+    function wmToastMsg(msg) { if (typeof toast === "function") toast(msg); else alert(msg); }
+    function wmEscape(v) { return String(v || "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+    function wmProductPhotos(product) { return product.photos && product.photos.length ? product.photos : product.photo ? [product.photo] : []; }
+    function wmSafeUrl(value) { try { const u = new URL(String(value || "").trim()); return /^https?:$/.test(u.protocol) ? u.href : ""; } catch (e) { return ""; } }
+
+    function wmImageToJpeg(file) {
+      return new Promise((resolve, reject) => {
+        if (!file || !file.type || !file.type.startsWith("image/")) { reject(new Error("Please select an image file.")); return; }
+        const img = new Image(), url = URL.createObjectURL(file);
+        img.onload = () => {
           URL.revokeObjectURL(url);
-          const canvas=document.createElement("canvas"), ctx=canvas.getContext("2d");
-          let w=img.naturalWidth||img.width, h=img.naturalHeight||img.height;
-          const maxSide=1800;
-          if(w>maxSide||h>maxSide){const scale=maxSide/Math.max(w,h);w=Math.round(w*scale);h=Math.round(h*scale);}
-          canvas.width=w;canvas.height=h;ctx.drawImage(img,0,0,w,h);
-          let quality=0.82, attempt=0;
-          const encode=()=>{
-            canvas.toBlob(blob=>{
-              if(!blob){reject(new Error("Photo conversion failed."));return;}
-              if(blob.size<=WM_MAX_PHOTO_BYTES){
-                const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(new Error("Photo reading failed."));reader.readAsDataURL(blob);return;
+          const canvas = document.createElement("canvas"), ctx = canvas.getContext("2d");
+          let w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+          const maxSide = 1400;
+          if (w > maxSide || h > maxSide) { const scale = maxSide / Math.max(w, h); w = Math.round(w * scale); h = Math.round(h * scale); }
+          canvas.width = w; canvas.height = h; ctx.drawImage(img, 0, 0, w, h);
+          let quality = 0.80, attempt = 0;
+          const encode = () => {
+            canvas.toBlob(blob => {
+              if (!blob) { reject(new Error("Photo conversion failed.")); return; }
+              if (blob.size <= WM_MAX_PHOTO_BYTES) {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = () => reject(new Error("Photo reading failed."));
+                reader.readAsDataURL(blob);
+                return;
               }
-              if(attempt<5){attempt++;quality=Math.max(0.38,quality-0.10);if(attempt===3||attempt===5){canvas.width=Math.max(1,Math.round(canvas.width*0.82));canvas.height=Math.max(1,Math.round(canvas.height*0.82));ctx.drawImage(img,0,0,canvas.width,canvas.height);}encode();
-              }else reject(new Error(wmLangMessage()));
-            },"image/jpeg",quality);
-          }; encode();
+              if (attempt < 6) {
+                attempt++;
+                quality = Math.max(0.32, quality - 0.10);
+                if (attempt % 2 === 0) {
+                  canvas.width = Math.max(1, Math.round(canvas.width * 0.8));
+                  canvas.height = Math.max(1, Math.round(canvas.height * 0.8));
+                  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                }
+                encode();
+              } else reject(new Error(wmLangMessage()));
+            }, "image/jpeg", quality);
+          };
+          encode();
         };
-        img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("Could not read selected photo."));};img.src=url;
+        img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("Could not read selected photo.")); };
+        img.src = url;
       });
     }
-    async function wmConvertFiles(input,limit=2){
-      const files=Array.from(input.files||[]);if(files.length>limit)throw new Error("Please select no more than " + limit + " photos.");
-      const out=[];for(const f of files){const data=await wmImageToJpeg(f);if(!data||!data.startsWith("data:image/jpeg;base64,"))throw new Error(wmLangMessage());out.push(data);}return out;
+
+    async function wmConvertFiles(input, limit = 2) {
+      const files = Array.from(input.files || []);
+      if (files.length > limit) throw new Error("Please select no more than " + limit + " photos.");
+      const out = [];
+      for (const f of files) {
+        const data = await wmImageToJpeg(f);
+        if (!data || !data.startsWith("data:image/jpeg;base64,")) throw new Error(wmLangMessage());
+        out.push(data);
+      }
+      return out;
     }
-    function wmPhotoInputStatus(elId,photos){const el=document.getElementById(elId);if(el)el.textContent=photos.length?photos.length+" JPEG photo(s) ready (max 70 KB each).":"";}
-    function wmEscape(v){return String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-    function wmProductPhotos(product){return product.photos&&product.photos.length?product.photos:product.photo?[product.photo]:[];}
-    async function wmLoadFirebase(){
-      try{const cloud=await wmFirebaseFetch("/mallShops.json");if(Array.isArray(cloud)){wmMallShops=cloud.filter(Boolean);}else if(cloud&&typeof cloud==="object"){wmMallShops=Object.values(cloud).filter(Boolean);}writeLS("wm_mall_shops",wmMallShops);}
-      catch(e){wmMallShops=readLS("wm_mall_shops",wmMallShops);}
-      try{const cloud=await wmFirebaseFetch("/listings.json");if(Array.isArray(cloud)){wmListings=cloud.filter(Boolean);}else if(cloud&&typeof cloud==="object"){wmListings=Object.entries(cloud).filter(([,v])=>v).map(([key,v])=>({...v,id:v.id||key}));}writeLS("wm_seller_listings",wmListings);}
-      catch(e){wmListings=readLS("wm_seller_listings",wmListings);}
+
+    function wmPhotoInputStatus(elId, photos) {
+      const el = document.getElementById(elId);
+      if (el) el.textContent = photos.length ? photos.length + " JPEG photo(s) ready (<= 70 KB each)." : "";
+    }
+
+    function wmShowPopupNotice(title, message) {
+      document.getElementById("pn-head").textContent = title;
+      document.getElementById("pn-body").innerHTML = `
+        <div style="text-align:center;padding:12px 6px;">
+          <div style="width:54px;height:54px;margin:0 auto 14px;border-radius:50%;background:rgba(16,185,129,0.16);color:#10B981;display:grid;place-items:center;font-size:26px;font-weight:900;">✓</div>
+          <p style="font-size:14px;color:var(--text-primary);line-height:1.6;margin-bottom:18px;">${wmEscape(message)}</p>
+          <button type="button" class="btn-red full" data-close="modal-popup-notice">OK</button>
+        </div>`;
+      openModal("modal-popup-notice");
+    }
+
+    /* CLOUD SYNC LOADERS */
+    async function wmLoadFirebase() {
+      try {
+        const cloud = await wmFirebaseFetch("/mallShops.json");
+        if (Array.isArray(cloud)) wmMallShops = cloud.filter(Boolean);
+        else if (cloud && typeof cloud === "object") wmMallShops = Object.values(cloud).filter(Boolean);
+        writeLS("wm_mall_shops", wmMallShops);
+      } catch (e) { wmMallShops = readLS("wm_mall_shops", wmMallShops); }
+
+      try {
+        const cloud = await wmFirebaseFetch("/listings.json");
+        if (Array.isArray(cloud)) wmListings = cloud.filter(Boolean);
+        else if (cloud && typeof cloud === "object") wmListings = Object.entries(cloud).filter(([, v]) => v).map(([key, v]) => ({ ...v, id: v.id || key }));
+        writeLS("wm_seller_listings", wmListings);
+      } catch (e) { wmListings = readLS("wm_seller_listings", wmListings); }
+
+      try {
+        const cloudBanners = await wmFirebaseFetch("/banners.json");
+        if (Array.isArray(cloudBanners) && cloudBanners.length) {
+          PROMO_BANNERS = cloudBanners.filter(Boolean);
+          writeLS("wm_banners", PROMO_BANNERS);
+          renderCarousel();
+        }
+      } catch (e) {
+        const lb = readLS("wm_banners", null);
+        if (Array.isArray(lb) && lb.length) { PROMO_BANNERS = lb; renderCarousel(); }
+      }
+
+      try {
+        const cloudMeta = await wmFirebaseFetch("/partnerStoresMeta.json");
+        if (cloudMeta && typeof cloudMeta === "object") {
+          Object.keys(cloudMeta).forEach(k => {
+            if (!PARTNER_STORES[k]) PARTNER_STORES[k] = cloudMeta[k];
+            else PARTNER_STORES[k] = { ...PARTNER_STORES[k], ...cloudMeta[k], products: PARTNER_STORES[k].products || cloudMeta[k].products || [] };
+            if (cloudMeta[k].pin) {
+              WM_PARTNER_PIN_KEYS[k] = k;
+              STORE_CONFIG.partnerPins[k] = cloudMeta[k].pin;
+            }
+          });
+        }
+      } catch (e) {}
+
+      try {
+        const cloudCities = await wmFirebaseFetch("/cityDirectory.json");
+        if (Array.isArray(cloudCities) && cloudCities.length) {
+          CITY_DIRECTORY = cloudCities.filter(Boolean);
+          writeLS("wm_city_directory", CITY_DIRECTORY);
+          renderCityBanners();
+        }
+      } catch (e) {
+        const lc = readLS("wm_city_directory", null);
+        if (Array.isArray(lc) && lc.length) { CITY_DIRECTORY = lc; renderCityBanners(); }
+      }
+
       wmRenderListings();
     }
-    function wmSaveMallShops(){writeLS("wm_mall_shops",wmMallShops);return wmFirebaseFetch("/mallShops.json",{method:"PUT",body:JSON.stringify(wmMallShops)});}
 
+    function wmSaveMallShops() {
+      writeLS("wm_mall_shops", wmMallShops);
+      return wmFirebaseFetch("/mallShops.json", { method: "PUT", body: JSON.stringify(wmMallShops) });
+    }
+    function wmSaveCityDirectory() {
+      writeLS("wm_city_directory", CITY_DIRECTORY);
+      return wmFirebaseFetch("/cityDirectory.json", { method: "PUT", body: JSON.stringify(CITY_DIRECTORY) });
+    }
+    function wmSaveBanners() {
+      writeLS("wm_banners", PROMO_BANNERS);
+      return wmFirebaseFetch("/banners.json", { method: "PUT", body: JSON.stringify(PROMO_BANNERS) });
+    }
+
+    /* MALL -> SHOP -> PRODUCT MODERN FLOW (Points #5 & #6) */
     const WM_MALL_TEXT = {
-      en:{create:"Create Your Shop",publish:"Publish Your Product",post:"Publish Product",save:"Save",back:"← Back",shopName:"Shop Name",category:"Category / Floor or Short Description",contact:"Phone / Telegram",logo:"Optional Logo / Profile Photo (JPEG, max 70 KB)",tiktok:"TikTok link (optional)",telegram:"Telegram link (optional)",productName:"Product Name",price:"Price (Br)",photos:"Photo 1 + Photo 2 (optional; JPEG, max 70 KB each)",description:"Description",noShops:"No shops yet. Create the first shop in this mall.",noProducts:"No products published yet.",photoLimit:"Select up to 2 photos only.",shopSaved:"Shop saved.",productSaved:"Product published.",saveError:"Could not save. Please try again.",productError:"Could not publish product. Please try again.",backMall:"← Back to Mall"},
-      am:{create:"ሱቅዎን ይክፈቱ",publish:"ምርትዎን ይልቀቁ",post:"ምርት አትም",save:"አስቀምጥ",back:"← ተመለስ",shopName:"የሱቅ ስም",category:"ምድብ / ወለል ወይም አጭር መግለጫ",contact:"ስልክ / ቴሌግራም",logo:"አማራጭ ሎጎ / የመገለጫ ፎቶ (JPEG፣ ከ70 KB አይበልጥ)",tiktok:"TikTok ሊንክ (አማራጭ)",telegram:"Telegram ሊንክ (አማራጭ)",productName:"የምርት ስም",price:"ዋጋ (Br)",photos:"ፎቶ 1 + ፎቶ 2 (አማራጭ፤ JPEG፣ እያንዳንዱ ከ70 KB አይበልጥ)",description:"መግለጫ",noShops:"ገና ሱቅ የለም። በዚህ ሞል ውስጥ የመጀመሪያውን ሱቅ ይክፈቱ።",noProducts:"ገና ምርት አልታተመም።",photoLimit:"እስከ 2 ፎቶዎች ብቻ ይምረጡ።",shopSaved:"ሱቁ ተቀምጧል።",productSaved:"ምርቱ ታትሟል።",saveError:"ማስቀመጥ አልተቻለም። እንደገና ይሞክሩ።",productError:"ምርቱን ማተም አልተቻለም። እንደገና ይሞክሩ።",backMall:"← ወደ ሞሉ ተመለስ"},
-      om:{create:"Suuqii Kee Uumi",publish:"Oomisha Kee Maxxansi",post:"Oomisha Maxxansi",save:"Ol Kaa'i",back:"← Deebi'i",shopName:"Maqaa Suuqii",category:"Ramaddii / Dabaqa ykn Ibsa Gabaabaa",contact:"Bilbila / Telegram",logo:"Asxaa / Suuraa Profil Filannoo (JPEG, KB 70 ol hin taane)",tiktok:"Geessituu TikTok (filannoo)",telegram:"Geessituu Telegram (filannoo)",productName:"Maqaa Oomishaa",price:"Gatii (Br)",photos:"Suuraa 1 + Suuraa 2 (filannoo; JPEG, tokkoon tokkoon KB 70 ol hin taane)",description:"Ibsa",noShops:"Ammaaf suuqiin hin jiru. Suuqii jalqabaa moolii kana keessatti uumi.",noProducts:"Ammaaf oomishni hin maxxanfamne.",photoLimit:"Suuraa 2 qofa filadhu.",shopSaved:"Suuqiin ol kaa'ameera.",productSaved:"Oomishni maxxanfameera.",saveError:"Ol kaa'uun hin danda'amne. Irra deebi'ii yaali.",productError:"Oomisha maxxansuun hin danda'amne. Irra deebi'ii yaali.",backMall:"← Gara Moolii Deebi'i"}
+      en: { create: "Create Your Shop", publish: "Publish Product", post: "Publish", save: "Save", back: "← Back", shopName: "Shop Name", category: "Category / Floor or Short Description", contact: "Phone / Telegram", logo: "Optional Logo / Profile Photo (JPEG, max 70 KB)", tiktok: "TikTok link (optional)", telegram: "Telegram link (optional)", productName: "Product Name", price: "Price (Br)", photos: "Photos (up to 2; JPEG, max 70 KB each)", description: "Description", noShops: "No shops yet. Tap + to create the first shop in this mall.", noProducts: "No products published in this shop yet. Tap + to add one.", shopSavedTitle: "Shop Created!", shopSavedMsg: "Your shop has been created successfully! Tap your shop card anytime to view or publish products.", productSaved: "Product published!", saveError: "Could not save. Please try again.", productError: "Could not publish product.", backMall: "← Back to Mall", viewShop: "Tap to view products ›" },
+      am: { create: "ሱቅዎን ይክፈቱ", publish: "ምርት ይልቀቁ", post: "ልቀቅ", save: "አስቀምጥ", back: "← ተመለስ", shopName: "የሱቅ ስም", category: "ምድብ / ወለል ወይም አጭር መግለጫ", contact: "ስልክ / ቴሌግራም", logo: "አማራጭ ሎጎ (JPEG፣ ከ70 KB አይበልጥ)", tiktok: "TikTok ሊንክ (አማራጭ)", telegram: "Telegram ሊንክ (አማራጭ)", productName: "የምርት ስም", price: "ዋጋ (Br)", photos: "ፎቶዎች (እስከ 2፤ JPEG፣ እያንዳንዱ ከ70 KB አይበልጥ)", description: "መግለጫ", noShops: "ገና ሱቅ የለም። የመጀመሪያውን ሱቅ ለመክፈት + ይንኩ።", noProducts: "በዚህ ሱቅ ውስጥ ገና ምርት አልተለቀቀም። ለመጨመር + ይንኩ።", shopSavedTitle: "ሱቅዎ ተከፍቷል!", shopSavedMsg: "ሱቅዎ በተሳካ ሁኔታ ተመዝግቧል! ምርቶችን ለመጨመር እና ለማየት የሱቅዎን ካርድ ይንኩ።", productSaved: "ምርቱ ታትሟል!", saveError: "ማስቀመጥ አልተቻለም። እንደገና ይሞክሩ።", productError: "ምርቱን ማተም አልተቻለም።", backMall: "← ወደ ሞሉ ተመለስ", viewShop: "ምርቶችን ለማየት ይንኩ ›" },
+      om: { create: "Suuqii Kee Uumi", publish: "Oomisha Maxxansi", post: "Maxxansi", save: "Ol Kaa'i", back: "← Deebi'i", shopName: "Maqaa Suuqii", category: "Ramaddii / Dabaqa ykn Ibsa", contact: "Bilbila / Telegram", logo: "Asxaa / Suuraa Filannoo (JPEG, <= 70 KB)", tiktok: "TikTok (filannoo)", telegram: "Telegram (filannoo)", productName: "Maqaa Oomishaa", price: "Gatii (Br)", photos: "Suuraa (hanga 2; JPEG, <= 70 KB)", description: "Ibsa", noShops: "Ammaaf suuqiin hin jiru. Suuqii uumuuf + tuqi.", noProducts: "Ammaaf oomishni hin maxxanfamne. Dabaluuf + tuqi.", shopSavedTitle: "Suuqiin Uumameera!", shopSavedMsg: "Suuqiin keessan milkaa'inaan uumameera! Oomishaalee maxxansuuf kaardii suuqii keessanii tuqaa.", productSaved: "Oomishni maxxanfameera!", saveError: "Ol kaa'uun hin danda'amne.", productError: "Oomisha maxxansuun hin danda'amne.", backMall: "← Gara Moolii Deebi'i", viewShop: "Oomishaalee ilaaluuf tuqi ›" }
     };
-    function wmMallT(k){const p=WM_MALL_TEXT[state.lang]||WM_MALL_TEXT.en;return p[k]||WM_MALL_TEXT.en[k]||k;}
-    function wmSafeUrl(value){try{const u=new URL(String(value||"").trim());return /^https?:$/.test(u.protocol)?u.href:"";}catch(e){return "";}}
-    function wmGetMallShopRecords(mall){
-      const saved=wmMallShops.filter(s=>String(s.mallId)===String(mall.id));
-      (mall.shops||[]).forEach(item=>{if(!wmMallShops.some(s=>String(s.id)===String(item.id))){const normalized={id:item.id,mallId:mall.id,name:cityText(item.name),category:item.category||"",contact:"",logo:item.logoImage||"",tiktok:"",telegramLink:"",products:[],builtIn:true};wmMallShops.push(normalized);saved.push(normalized);}else if(!saved.some(s=>String(s.id)===String(item.id))){saved.push(wmMallShops.find(s=>String(s.id)===String(item.id)));}});
-      return saved;
-    }
-    function wmRenderMallPage(mall){
-      directoryState.mallId=mall.id;directoryState.view="mall";directoryState.shopRef=mall;
-      const shops=wmGetMallShopRecords(mall),body=document.getElementById("city-modal-body");writeLS("wm_mall_shops",wmMallShops);
-      const cards=shops.map(shop=>`<div><button type="button" class="wm-shop-card" data-wm-open-shop="${wmEscape(shop.id)}"><span class="wm-shop-avatar">${shop.logo?`<img src="${wmEscape(shop.logo)}" alt="" onerror="this.style.display='none'">`:'🏪'}</span><span class="wm-shop-card-info"><b>${wmEscape(typeof shop.name==="object"?(shop.name[state.lang]||shop.name.en):shop.name)}</b><small>${wmEscape(shop.category||"")}${shop.contact?` · ${wmEscape(shop.contact)}`:""}</small><small>${(shop.products||[]).length} ${state.lang==="am"?"ምርቶች":state.lang==="om"?"oomisha":"products"} · Open shop ›</small></span></button>${wmAdminUnlocked?`<div class="wm-shop-admin"><button type="button" class="btn-outline" data-wm-edit-shop="${wmEscape(shop.id)}">Edit</button><button type="button" class="btn-outline" data-wm-delete-mall-shop="${wmEscape(shop.id)}" style="color:var(--red)">Delete</button></div>`:""}</div>`).join("");
-      body.innerHTML=`<button class="btn-outline directory-back" data-directory-back>${wmMallT("back")}</button><section class="wm-mall-hero"><h3>${cityText(mall.name)}</h3><button type="button" class="wm-mall-plus" aria-label="Create Your Shop" title="Create Your Shop" data-wm-create-shop="${wmEscape(mall.id)}">+</button></section>${cards||`<div class="wm-mall-empty">${wmMallT("noShops")}</div>`}`;
-    }
-    function wmRenderMallShop(shop){
-      const mall=(CITY_DIRECTORY.find(c=>c.id===directoryState.cityId)?.malls||[]).find(m=>m.id===shop.mallId);if(!mall)return;
-      directoryState.view="shop";directoryState.mallId=mall.id;directoryState.shopRef=shop;
-      const body=document.getElementById("city-modal-body"),products=(shop.products||[]).map(prod=>`<article class="wm-mall-product"><b>${wmEscape(prod.name)}</b><div class="p-price">${Number(prod.price||0).toLocaleString()} Br</div>${wmProductPhotos(prod).map(src=>`<img src="${src}" alt="${wmEscape(prod.name)}" loading="lazy">`).join("")}<p>${wmEscape(prod.description||"")}</p>${wmAdminUnlocked?`<div style="display:flex;gap:6px;margin-top:8px"><button type="button" class="btn-outline" data-wm-edit-mall-product="${wmEscape(shop.id)}|${wmEscape(prod.id)}">Edit</button><button type="button" class="btn-outline" data-wm-delete-mall-product="${wmEscape(shop.id)}|${wmEscape(prod.id)}" style="color:var(--red)">Delete</button></div>`:""}</article>`).join("");
-      const tk=wmSafeUrl(shop.tiktok),tg=wmSafeUrl(shop.telegramLink);
-      body.innerHTML=`<button type="button" class="btn-outline directory-back" data-wm-return-mall="${wmEscape(mall.id)}">${wmMallT("backMall")}</button><section class="wm-mall-hero"><div style="min-width:0;flex:1"><h3>${wmEscape(typeof shop.name==="object"?(shop.name[state.lang]||shop.name.en):shop.name)}</h3><p style="font-size:12px;color:var(--text-secondary);margin-top:5px">${wmEscape(shop.category||"")}</p><p style="font-size:12px;color:var(--text-secondary);margin-top:3px">${wmEscape(shop.contact||"")}</p><div class="wm-mall-links">${tk?`<a href="${wmEscape(tk)}" target="_blank" rel="noopener noreferrer">TikTok</a>`:""}${tg?`<a href="${wmEscape(tg)}" target="_blank" rel="noopener noreferrer">Telegram</a>`:""}</div></div>${shop.logo?`<img class="wm-mall-logo" src="${wmEscape(shop.logo)}" alt="">`:""}</section><div class="section-head"><div class="section-title-row"><span class="red-bar"></span><h3 class="section-title">${state.lang==="am"?"ምርቶች":state.lang==="om"?"Oomisha":"Products"}</h3></div><button type="button" class="wm-mall-plus" data-wm-post-shop="${wmEscape(shop.id)}" aria-label="Publish product">+</button></div>${products?`<div class="wm-mall-products">${products}</div>`:`<div class="wm-mall-empty">${wmMallT("noProducts")}</div>`}`;
-    }
-    function wmCreateShopForm(mallId){
-      const body=document.getElementById("city-modal-body");
-      body.innerHTML=`<button class="btn-outline directory-back" data-wm-return-mall="${wmEscape(mallId)}">${wmMallT("backMall")}</button><form id="wm-create-shop-form" class="wm-mall-form"><h3>${wmMallT("create")}</h3><div class="form-group"><label class="form-label" for="wm-shop-name">${wmMallT("shopName")}</label><input class="form-input" id="wm-shop-name" required maxlength="100"></div><div class="form-group"><label class="form-label" for="wm-shop-category">${wmMallT("category")}</label><input class="form-input" id="wm-shop-category" required maxlength="160"></div><div class="form-group"><label class="form-label" for="wm-shop-contact">${wmMallT("contact")}</label><input class="form-input" id="wm-shop-contact" required maxlength="80"></div><div class="form-group"><label class="form-label" for="wm-shop-logo">${wmMallT("logo")}</label><input class="form-input" id="wm-shop-logo" type="file" accept="image/jpeg,image/png,image/webp"></div><div class="form-group"><label class="form-label" for="wm-shop-tiktok">${wmMallT("tiktok")}</label><input class="form-input" id="wm-shop-tiktok" type="url"></div><div class="form-group"><label class="form-label" for="wm-shop-telegram">${wmMallT("telegram")}</label><input class="form-input" id="wm-shop-telegram" type="url"></div><p id="wm-shop-error" class="wm-mall-error" role="alert"></p><button class="btn-red full" type="submit">${wmMallT("save")}</button></form>`;
-      const logo=document.getElementById("wm-shop-logo");
-      logo.addEventListener("change",async e=>{try{e.target.dataset.jpeg=e.target.files.length?await wmImageToJpeg(e.target.files[0]):"";document.getElementById("wm-shop-error").textContent="";}catch(x){e.target.value="";delete e.target.dataset.jpeg;document.getElementById("wm-shop-error").textContent=x.message;}});
-      document.getElementById("wm-create-shop-form").addEventListener("submit",async e=>{e.preventDefault();try{const shop={id:"wmshop-"+Date.now(),mallId,name:document.getElementById("wm-shop-name").value.trim(),category:document.getElementById("wm-shop-category").value.trim(),contact:document.getElementById("wm-shop-contact").value.trim(),logo:logo.files.length?(logo.dataset.jpeg||await wmImageToJpeg(logo.files[0])):"",tiktok:wmSafeUrl(document.getElementById("wm-shop-tiktok").value),telegramLink:wmSafeUrl(document.getElementById("wm-shop-telegram").value),products:[]};wmMallShops.push(shop);try{await wmSaveMallShops();}catch(syncError){wmToastMsg("Shop saved on this device; cloud sync will retry later.");}const msg={en:"Your shop was created successfully! Tap your shop card in this mall to open it, then use the + button to publish products.",am:"ሱቅዎ በተሳካ ሁኔታ ተፈጥሯል! ሱቅዎን ለመክፈት በዚህ ሞል ውስጥ ያለውን የሱቅ ካርድ ይንኩ፤ ከዚያ + ቁልፉን በመጠቀም ምርቶችን ያትሙ።",om:"Suuqiin kee milkaa'inaan uumameera! Kaardii suuqii kee moolii kana keessaa tuqi; achiis oomisha maxxansuuf mallattoo + fayyadami."}[state.lang];body.innerHTML=`<div class="wm-mall-confirm"><div class="ok">✓</div><h3>${state.lang==="am"?"ሱቅ ተፈጥሯል":state.lang==="om"?"Suuqiin uumameera":"Shop created successfully"}</h3><p style="font-size:13px;color:var(--text-secondary);margin:10px 0 18px">${msg}</p><button type="button" class="btn-red full" data-wm-return-mall="${wmEscape(mallId)}">${wmMallT("backMall")}</button></div>`;}catch(err){document.getElementById("wm-shop-error").textContent=err.message||wmMallT("saveError");}});
-    }
-    function wmEditMallShop(shopId){if(!wmAdminUnlocked)return;const mall=(CITY_DIRECTORY.find(c=>c.id===directoryState.cityId)?.malls||[]).find(m=>m.id===directoryState.mallId);if(mall)wmGetMallShopRecords(mall);const shop=wmMallShops.find(s=>String(s.id)===String(shopId));if(!shop)return;const body=document.getElementById("city-modal-body");body.innerHTML=`<button type="button" class="btn-outline directory-back" data-wm-return-mall="${wmEscape(shop.mallId)}">${wmMallT("backMall")}</button><form id="wm-edit-shop-form" class="wm-mall-form"><h3>Edit Shop</h3><div class="form-group"><label class="form-label">Shop Name</label><input class="form-input" id="wm-es-name" required maxlength="100" value="${wmEscape(typeof shop.name==="string"?shop.name:(shop.name.en||""))}"></div><div class="form-group"><label class="form-label">Category / Floor</label><input class="form-input" id="wm-es-category" value="${wmEscape(shop.category||"")}"></div><div class="form-group"><label class="form-label">Contact Phone / Telegram</label><input class="form-input" id="wm-es-contact" value="${wmEscape(shop.contact||"")}"></div><div class="form-group"><label class="form-label">Change Logo (JPEG, max 70 KB)</label><input class="form-input" id="wm-es-logo" type="file" accept="image/*"></div><div class="form-group"><label class="form-label">TikTok link</label><input class="form-input" id="wm-es-tiktok" type="url" value="${wmEscape(shop.tiktok||"")}"></div><div class="form-group"><label class="form-label">Telegram link</label><input class="form-input" id="wm-es-telegram" type="url" value="${wmEscape(shop.telegramLink||"")}"></div><p id="wm-es-error" class="wm-mall-error"></p><button class="btn-red full" type="submit">Save Changes</button></form>`;const logo=document.getElementById("wm-es-logo");logo.addEventListener("change",async e=>{try{e.target.dataset.jpeg=e.target.files.length?await wmImageToJpeg(e.target.files[0]):"";document.getElementById("wm-es-error").textContent="";}catch(err){e.target.value="";delete e.target.dataset.jpeg;document.getElementById("wm-es-error").textContent=err.message;}});document.getElementById("wm-edit-shop-form").addEventListener("submit",async e=>{e.preventDefault();try{shop.name=document.getElementById("wm-es-name").value.trim();shop.category=document.getElementById("wm-es-category").value.trim();shop.contact=document.getElementById("wm-es-contact").value.trim();if(logo.files.length)shop.logo=logo.dataset.jpeg||await wmImageToJpeg(logo.files[0]);shop.tiktok=wmSafeUrl(document.getElementById("wm-es-tiktok").value);shop.telegramLink=wmSafeUrl(document.getElementById("wm-es-telegram").value);try{await wmSaveMallShops();}catch(err){wmToastMsg("Shop updated locally; cloud sync failed.");}if(mall)wmRenderMallPage(mall);}catch(err){document.getElementById("wm-es-error").textContent=err.message||"Could not update shop.";}});}
-    function wmOpenMallEditor(cityId,mallId){if(!wmAdminUnlocked)return;const city=CITY_DIRECTORY.find(c=>c.id===cityId);if(!city)return;const existing=mallId?(city.malls||[]).find(m=>m.id===mallId):null,body=document.getElementById("city-modal-body");body.innerHTML=`<button class="btn-outline directory-back" data-directory-back>${wmMallT("back")}</button><form id="wm-mall-edit-form" class="wm-mall-form"><h3>${existing?"Edit Mall":"Add a Mall"}</h3><div class="form-group"><label class="form-label">Mall name</label><input class="form-input" id="wm-mall-name" required maxlength="100" value="${wmEscape(existing?cityText(existing.name):"")}"></div><div class="form-group"><label class="form-label">Mall banner image (JPEG, max 70 KB)</label><input class="form-input" id="wm-mall-banner" type="file" accept="image/*"></div><p id="wm-mall-error" class="wm-mall-error"></p><button class="btn-red full" type="submit">Save Mall</button></form>`;const input=document.getElementById("wm-mall-banner");input.addEventListener("change",async e=>{try{e.target.dataset.jpeg=e.target.files.length?await wmImageToJpeg(e.target.files[0]):"";document.getElementById("wm-mall-error").textContent="";}catch(err){e.target.value="";delete e.target.dataset.jpeg;document.getElementById("wm-mall-error").textContent=err.message;}});document.getElementById("wm-mall-edit-form").addEventListener("submit",async e=>{e.preventDefault();const name=document.getElementById("wm-mall-name").value.trim();if(existing){existing.name=name;if(input.files.length)existing.bgImage=input.dataset.jpeg||await wmImageToJpeg(input.files[0]);}else{city.malls=city.malls||[];city.malls.push({id:"mall-"+Date.now(),name,logo:"",gradient:"linear-gradient(135deg,#334155,#111827)",bgImage:input.files.length?(input.dataset.jpeg||await wmImageToJpeg(input.files[0])):"",shops:[]});}try{await wmSaveCityDirectory();}catch(err){wmToastMsg("Mall saved locally; cloud sync failed.");}renderDirectory();});}
-    async function wmDeleteMall(cityId,mallId){if(!wmAdminUnlocked)return;const city=CITY_DIRECTORY.find(c=>c.id===cityId);if(!city||!confirm("Delete this mall and all its shops and products?"))return;city.malls=(city.malls||[]).filter(m=>m.id!==mallId);wmMallShops=wmMallShops.filter(s=>String(s.mallId)!==String(mallId));try{await wmSaveCityDirectory();await wmSaveMallShops();}catch(e){wmToastMsg("Mall deleted locally; cloud sync failed.");}renderDirectory();}
-    async function wmDeleteMallShop(shopId){if(!wmAdminUnlocked)return;const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&(city.malls||[]).find(m=>m.id===directoryState.mallId);if(mall)wmGetMallShopRecords(mall);const shop=wmMallShops.find(x=>String(x.id)===String(shopId));if(!shop||!confirm("Delete this mall shop and all its products?"))return;wmMallShops=wmMallShops.filter(x=>String(x.id)!==String(shopId));if(mall)mall.shops=(mall.shops||[]).filter(x=>String(x.id)!==String(shopId));try{await wmSaveMallShops();await wmSaveCityDirectory();}catch(e){wmToastMsg("Deleted locally; mall cloud sync failed.");}if(mall)wmRenderMallPage(mall);}
-    async function wmDeleteMallProduct(shopId,productId){if(!wmAdminUnlocked)return;const activeMall=(CITY_DIRECTORY.find(c=>c.id===directoryState.cityId)?.malls||[]).find(m=>m.id===directoryState.mallId);if(activeMall)wmGetMallShopRecords(activeMall);const shop=wmMallShops.find(x=>String(x.id)===String(shopId));if(!shop||!confirm("Delete this mall product?"))return;shop.products=(shop.products||[]).filter(x=>String(x.id)!==String(productId));try{await wmSaveMallShops();}catch(e){wmToastMsg("Deleted locally; mall cloud sync failed.");}const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&(city.malls||[]).find(m=>m.id===directoryState.mallId);if(mall)wmRenderMallShop(shop);}
-    function wmPostShopProduct(shopId){
-      let shop=wmMallShops.find(s=>s.id===shopId);
-      if(!shop){const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&(city.malls||[]).find(m=>m.id===directoryState.mallId),item=mall&&(mall.shops||[]).find(x=>x.id===shopId);if(!item)return;shop={id:item.id,mallId:mall.id,name:item.name,category:item.category||"",contact:"",logo:"",tiktok:"",telegramLink:"",products:[]};wmMallShops.push(shop);writeLS("wm_mall_shops",wmMallShops);}
-      const body=document.getElementById("city-modal-body");
-      body.innerHTML=`<button class="btn-outline directory-back" data-wm-return-mall="${wmEscape(shop.mallId)}">${wmMallT("backMall")}</button><form id="wm-shop-product-form" class="wm-mall-form"><h3>${wmMallT("publish")}</h3><div class="form-group"><label class="form-label" for="wm-sp-name">${wmMallT("productName")}</label><input class="form-input" id="wm-sp-name" required maxlength="120"></div><div class="form-group"><label class="form-label" for="wm-sp-price">${wmMallT("price")}</label><input class="form-input" id="wm-sp-price" type="number" min="0" step="0.01" required></div><div class="form-group"><label class="form-label" for="wm-sp-photos">${wmMallT("photos")}</label><input class="form-input" id="wm-sp-photos" type="file" accept="image/*" multiple><p id="wm-sp-photo-status" class="wm-mall-hint"></p></div><div class="form-group"><label class="form-label" for="wm-sp-desc">${wmMallT("description")}</label><textarea class="form-input" id="wm-sp-desc" rows="3" style="height:auto;padding:10px"></textarea></div><p id="wm-sp-error" class="wm-mall-error" role="alert"></p><button class="btn-red full" type="submit">${wmMallT("post")}</button></form>`;
-      const input=document.getElementById("wm-sp-photos");
-      input.addEventListener("change",async e=>{try{const photos=await wmConvertFiles(e.target,2);e.target.dataset.jpegPhotos=JSON.stringify(photos);wmPhotoInputStatus("wm-sp-photo-status",photos);document.getElementById("wm-sp-error").textContent="";}catch(x){e.target.value="";delete e.target.dataset.jpegPhotos;document.getElementById("wm-sp-photo-status").textContent="";document.getElementById("wm-sp-error").textContent=x.message||wmLangMessage();}});
-      document.getElementById("wm-shop-product-form").addEventListener("submit",async e=>{e.preventDefault();try{const photos=input.files.length?(input.dataset.jpegPhotos?JSON.parse(input.dataset.jpegPhotos):await wmConvertFiles(input,2)):[];shop.products=shop.products||[];shop.products.push({id:"wmp-"+Date.now(),name:document.getElementById("wm-sp-name").value.trim(),price:Number(document.getElementById("wm-sp-price").value),photos,description:document.getElementById("wm-sp-desc").value.trim(),createdAt:Date.now()});try{await wmSaveMallShops();}catch(syncError){/* local copy retained */}const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),m=city&&city.malls.find(x=>x.id===shop.mallId);if(m)wmRenderMallShop(shop);wmToastMsg(wmMallT("productSaved"));}catch(err){document.getElementById("wm-sp-error").textContent=err.message||wmMallT("productError");}});
-    }
-    document.addEventListener("click",e=>{const addMall=e.target.closest("[data-wm-add-mall]");if(addMall){wmOpenMallEditor(addMall.getAttribute("data-wm-add-mall"),null);return;}const editMall=e.target.closest("[data-wm-edit-mall]");if(editMall){e.preventDefault();e.stopPropagation();wmOpenMallEditor(directoryState.cityId,editMall.getAttribute("data-wm-edit-mall"));return;}const delMall=e.target.closest("[data-wm-delete-mall]");if(delMall){e.preventDefault();e.stopPropagation();wmDeleteMall(directoryState.cityId,delMall.getAttribute("data-wm-delete-mall"));return;}const editShop=e.target.closest("[data-wm-edit-shop]");if(editShop){wmEditMallShop(editShop.getAttribute("data-wm-edit-shop"));return;}const openShop=e.target.closest("[data-wm-open-shop]");if(openShop){const mall=(CITY_DIRECTORY.find(c=>c.id===directoryState.cityId)?.malls||[]).find(m=>m.id===directoryState.mallId),shop=mall&&wmGetMallShopRecords(mall).find(x=>String(x.id)===String(openShop.getAttribute("data-wm-open-shop")));if(shop)wmRenderMallShop(shop);return;}const ds=e.target.closest("[data-wm-delete-mall-shop]");if(ds){wmDeleteMallShop(ds.getAttribute("data-wm-delete-mall-shop"));return;}const dp=e.target.closest("[data-wm-delete-mall-product]");if(dp){const pair=dp.getAttribute("data-wm-delete-mall-product").split("|");wmDeleteMallProduct(pair[0],pair[1]);return;}const ep=e.target.closest("[data-wm-edit-mall-product]");if(ep){const pair=ep.getAttribute("data-wm-edit-mall-product").split("|"),shop=wmMallShops.find(x=>String(x.id)===pair[0]),prod=shop&&(shop.products||[]).find(x=>String(x.id)===pair[1]);if(wmAdminUnlocked&&prod){const name=prompt("Product name",prod.name);if(name===null)return;const price=prompt("Price (Br)",String(prod.price||0));if(price===null)return;const description=prompt("Description",prod.description||"");if(description===null)return;prod.name=name.trim();prod.price=Number(price)||0;prod.description=description;wmSaveMallShops().then(()=>wmRenderMallShop(shop)).catch(()=>wmToastMsg("Product updated locally; cloud sync failed."));}return;}const c=e.target.closest("[data-wm-create-shop]");if(c){wmCreateShopForm(c.getAttribute("data-wm-create-shop"));return;}const p=e.target.closest("[data-wm-post-shop]");if(p){wmPostShopProduct(p.getAttribute("data-wm-post-shop"));return;}const b=e.target.closest("[data-wm-return-mall]");if(b){const city=CITY_DIRECTORY.find(x=>x.id===directoryState.cityId),m=city&&city.malls.find(x=>x.id===b.getAttribute("data-wm-return-mall"));if(m)wmRenderMallPage(m);return;}const d=e.target.closest("[data-wm-delete-listing]");if(d){wmDeleteListing(d.getAttribute("data-wm-delete-listing"));return;}});
-        function wmRenderListings(){const root=document.getElementById("wm-listings-root");if(!root)return;root.innerHTML=wmListings.length?wmListings.map(item=>{const photos=wmProductPhotos(item),cover=photos[0];return `<article class="product-card wm-seller-card" data-wm-seller-card="${wmEscape(item.id)}"><button type="button" class="wm-seller-card-open" data-wm-open-seller="${wmEscape(item.id)}" aria-label="View ${wmEscape(item.name)}"><div class="wm-seller-image">${cover?`<img src="${cover}" alt="${wmEscape(item.name)}" loading="lazy">`:`<div class="image-fallback" style="display:flex">📦</div>`}</div><div class="wm-seller-info"><div class="wm-seller-name">${wmEscape(item.name)}</div><div class="wm-seller-price">${Number(item.price||0).toLocaleString()} Br</div></div></button>${wmAdminUnlocked?`<div class="wm-seller-admin"><button type="button" class="btn-outline" data-wm-edit-listing="${wmEscape(item.id)}">Edit</button><button type="button" class="btn-outline" data-wm-delete-listing="${wmEscape(item.id)}">Delete</button></div>`:""}</article>`;}).join(""):`<div class="directory-empty" style="grid-column:1/-1">No seller listings yet.</div>`;}
-    async function wmSaveListing(listing){if(wmEditingListingId){const id=wmEditingListingId;listing.id=id;try{await wmFirebaseFetch("/listings/"+encodeURIComponent(id)+".json",{method:"PUT",body:JSON.stringify(listing)});}catch(e){wmToastMsg("Updated on this device; cloud sync failed.");}const index=wmListings.findIndex(x=>String(x.id)===String(id));if(index>=0)wmListings[index]=listing;else wmListings.unshift(listing);}else{try{const result=await wmFirebaseFetch("/listings.json",{method:"POST",body:JSON.stringify(listing)});if(result&&result.name)listing.id=result.name;}catch(e){wmToastMsg("Saved on this device; cloud sync failed.");}wmListings.unshift(listing);}writeLS("wm_seller_listings",wmListings);wmRenderListings();}
-    function wmOpenSellerForm(item){const form=document.getElementById("wm-sell-form");form.reset();const photosInput=document.getElementById("wm-sell-photos");delete photosInput.dataset.jpegPhotos;wmPendingSellPhotos=[];document.getElementById("wm-sell-message").textContent="";wmEditingListingId=item?String(item.id):null;if(item){document.getElementById("wm-sell-name").value=item.name||"";document.getElementById("wm-sell-price").value=item.price||"";document.getElementById("wm-sell-seller").value=item.seller||"";document.getElementById("wm-sell-contact").value=item.contact||"";document.getElementById("wm-sell-city").value=item.city||"Kombolcha";document.getElementById("wm-sell-desc").value=item.description||"";wmPendingSellPhotos=wmProductPhotos(item).slice();wmPhotoInputStatus("wm-sell-photo-status",wmPendingSellPhotos);document.getElementById("wm-sell-modal-title").textContent="Edit Seller Listing";}else{wmPhotoInputStatus("wm-sell-photo-status",[]);document.getElementById("wm-sell-modal-title").textContent="Sell Your Product";}openModal("wm-sell-form-modal");}
-    function wmOpenSellerDetail(id){const item=wmListings.find(x=>String(x.id)===String(id));if(!item)return;const photos=wmProductPhotos(item),contact=String(item.contact||"").trim(),digits=contact.replace(/[^0-9+]/g,""),telegram=contact.replace(/^@/,"").replace(/[^a-zA-Z0-9_]/g,"");const gallery=photos.length?`<div class="wm-seller-detail-gallery">${photos.map(src=>`<img src="${src}" alt="${wmEscape(item.name)}">`).join("")}</div>`:`<div class="wm-seller-detail-gallery"><div class="gallery-slide" style="background:var(--bg-muted);border-radius:14px">📦</div></div>`;document.getElementById("wm-seller-detail-title").textContent=item.name||"Product details";document.getElementById("wm-seller-detail-body").innerHTML=`${gallery}<div class="p-price" style="font-size:20px">${Number(item.price||0).toLocaleString()} Br</div><div class="wm-seller-detail-meta"><div><strong>City:</strong> ${wmEscape(item.city||"—")}</div><div><strong>Seller:</strong> ${wmEscape(item.seller||"—")}</div></div><p class="wm-seller-detail-description">${wmEscape(item.description||"No description provided.")}</p><div class="wm-seller-contact-actions">${digits?`<a href="tel:${wmEscape(digits)}">Call</a>`:""}${contact?`<a href="https://t.me/${encodeURIComponent(telegram||contact)}" target="_blank" rel="noopener">Telegram</a>`:""}${contact?`<a href="https://wa.me/${encodeURIComponent(digits)}" target="_blank" rel="noopener">Contact</a>`:""}</div>`;openModal("wm-seller-detail-modal");}
-    document.getElementById("wm-open-sell-form").addEventListener("click",()=>wmOpenSellerForm(null));
-    document.addEventListener("click",e=>{const closeSell=e.target.closest("[data-wm-close-sell-modal]");if(closeSell){closeModal("wm-sell-form-modal");return;}const closeDetail=e.target.closest("[data-wm-close-detail]");if(closeDetail){closeModal("wm-seller-detail-modal");return;}if(e.target.id==="wm-sell-form-modal"){closeModal("wm-sell-form-modal");return;}if(e.target.id==="wm-seller-detail-modal"){closeModal("wm-seller-detail-modal");return;}const edit=e.target.closest("[data-wm-edit-listing]");if(edit){e.preventDefault();e.stopPropagation();if(!wmAdminUnlocked)return;const item=wmListings.find(x=>String(x.id)===String(edit.getAttribute("data-wm-edit-listing")));if(item)wmOpenSellerForm(item);return;}const open=e.target.closest("[data-wm-open-seller]");if(open){wmOpenSellerDetail(open.getAttribute("data-wm-open-seller"));return;}});
+    function wmMallT(k) { const p = WM_MALL_TEXT[state.lang] || WM_MALL_TEXT.en; return p[k] || WM_MALL_TEXT.en[k] || k; }
 
-    document.getElementById("wm-sell-photos").addEventListener("change",async e=>{const status=document.getElementById("wm-sell-photo-status");try{wmPendingSellPhotos=await wmConvertFiles(e.target);e.target.dataset.jpegPhotos=JSON.stringify(wmPendingSellPhotos);wmPhotoInputStatus("wm-sell-photo-status",wmPendingSellPhotos);status.style.color="var(--text-secondary)";}catch(err){wmPendingSellPhotos=[];e.target.value="";delete e.target.dataset.jpegPhotos;status.textContent=err.message||wmLangMessage();status.style.color="var(--red)";}});
-    document.getElementById("wm-sell-form").addEventListener("submit",async e=>{e.preventDefault();const photosInput=document.getElementById("wm-sell-photos"),msg=document.getElementById("wm-sell-message");try{const photos=photosInput.files.length?(photosInput.dataset.jpegPhotos?JSON.parse(photosInput.dataset.jpegPhotos):await wmConvertFiles(photosInput)):wmPendingSellPhotos;const previous=wmListings.find(x=>String(x.id)===String(wmEditingListingId));const listing={id:wmEditingListingId||"listing-"+Date.now(),name:document.getElementById("wm-sell-name").value.trim(),price:Number(document.getElementById("wm-sell-price").value),seller:document.getElementById("wm-sell-seller").value.trim(),contact:document.getElementById("wm-sell-contact").value.trim(),city:document.getElementById("wm-sell-city").value,photos,description:document.getElementById("wm-sell-desc").value.trim(),createdAt:previous&&previous.createdAt||Date.now()};await wmSaveListing(listing);e.target.reset();wmPendingSellPhotos=[];delete photosInput.dataset.jpegPhotos;wmPhotoInputStatus("wm-sell-photo-status",[]);msg.textContent=wmEditingListingId?"Listing updated.":"Listing posted.";wmEditingListingId=null;document.getElementById("wm-sell-modal-title").textContent="Sell Your Product";closeModal("wm-sell-form-modal");}catch(err){msg.textContent=err.message||"Listing failed.";msg.style.color="var(--red)";}});
-    async function wmDeleteListing(id){const item=wmListings.find(x=>x.id===id);if(!item||!wmAdminUnlocked)return;const confirmDelete=confirm("Delete this listing?");if(!confirmDelete)return;wmListings=wmListings.filter(x=>x.id!==id);writeLS("wm_seller_listings",wmListings);wmRenderListings();try{await wmFirebaseFetch("/listings/"+encodeURIComponent(id)+".json",{method:"DELETE"});}catch(e){wmToastMsg("Deleted locally, cloud delete failed.");}}
-    function wmUnlockAdmin(){wmUnlockOwner();}
+    function wmGetAllShopsInMall(mall) {
+      const userShops = wmMallShops.filter(s => s.mallId === mall.id);
+      const userIds = new Set(userShops.map(s => s.id));
+      const builtIn = (mall.shops || []).filter(s => !userIds.has(s.id)).map(s => ({
+        id: s.id, mallId: mall.id, name: cityText(s.name),
+        category: directoryCategoryLabel(s.category), contact: "",
+        logo: s.logoImage || "", fallbackEmoji: s.logo || "🏪",
+        tiktok: "", telegramLink: "", products: [], isBuiltIn: true
+      }));
+      return [...userShops, ...builtIn];
+    }
 
-    /* PART 2: owner and partner live product management */
-    const WM_PARTNER_PIN_KEYS = { kimi:"abudi-perfume", boutique:"abudi-menswear", abudipc:"abudi-pc" };
-    let wmPartnerUnlocked = readLS("wm_partner_unlocked", {}) || {};
-    let wmCloudProductsLoaded = false;
-    async function wmSaveMainProducts(){writeLS("wm_live_products",PRODUCTS);try{await wmFirebaseFetch("/products.json",{method:"PUT",body:JSON.stringify(PRODUCTS)});}catch(e){wmToastMsg("Saved locally; main products cloud sync failed.");}renderHomeProducts();}
+    function wmRenderMallPage(mall) {
+      const body = document.getElementById("city-modal-body");
+      const allShops = wmGetAllShopsInMall(mall);
+      const shopCards = allShops.map(shop => {
+        const sName = typeof shop.name === "object" ? (shop.name[state.lang] || shop.name.en) : shop.name;
+        const pCount = (shop.products || []).length;
+        const logoMarkup = shop.logo
+          ? `<img class="wm-mall-logo" src="${shop.logo}" alt="${wmEscape(sName)}" loading="lazy" onerror="this.style.display='none'">`
+          : `<div class="wm-mall-logo wm-mall-logo-fallback">${wmEscape(shop.fallbackEmoji || "🏪")}</div>`;
+        const ownerDel = wmAdminUnlocked
+          ? `<button type="button" class="btn-outline" style="padding:6px 10px;font-size:11px;color:var(--red);flex-shrink:0;" data-wm-delete-mall-shop="${wmEscape(shop.id)}">Delete</button>`
+          : "";
+        return `
+          <div class="wm-mall-shop-card" data-wm-open-shop="${wmEscape(mall.id)}|${wmEscape(shop.id)}">
+            ${logoMarkup}
+            <div class="wm-mall-shop-meta">
+              <h4>${wmEscape(sName)}</h4>
+              <p>${wmEscape(shop.category || "")}${pCount ? " • " + pCount + " items" : ""}</p>
+              <p style="color:var(--red);font-weight:700;margin-top:4px;">${wmMallT("viewShop")}</p>
+            </div>
+            ${ownerDel}
+          </div>`;
+      }).join("");
 
-    let wmEditingMainProductId = null;
-    let wmEditorExistingImages = [];
-    let wmEditorUploadedImages = [];
-    function wmOpenProductEditor(existing){
-      if(!wmAdminUnlocked)return;
-      const p=existing||{id:null,category:"women",isDeal:false,badge:"",price:0,oldPrice:0,gradient:"linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)",icon:"package",images:[],tiktokUrl:"",youtubeUrl:"",name:{en:"",am:"",om:""},desc:{en:"",am:"",om:""}};
-      wmProductEditorMode="main";wmEditingMainProductId=existing?String(existing.id):null;
-      wmEditorExistingImages=Array.isArray(p.images)?p.images.slice(0,3):[];
-      wmEditorUploadedImages=[];
-      document.getElementById("wm-product-editor-title").textContent=existing?"Edit Product":"Add Product";
-      const set=(id,value)=>{document.getElementById(id).value=value==null?"":value;};
-      set("wm-pe-name-en",p.name&&p.name.en);set("wm-pe-name-am",p.name&&p.name.am);set("wm-pe-name-om",p.name&&p.name.om);
-      set("wm-pe-price",p.price);set("wm-pe-old-price",p.oldPrice||"");set("wm-pe-category",p.category||"women");
-      set("wm-pe-desc-en",p.desc&&p.desc.en);set("wm-pe-desc-am",p.desc&&p.desc.am);set("wm-pe-desc-om",p.desc&&p.desc.om);
-      set("wm-pe-image-names",wmEditorExistingImages.join(", "));
-      document.getElementById("wm-pe-is-deal").checked=!!p.isDeal;
-      document.getElementById("wm-pe-photos").value="";
-      document.getElementById("wm-pe-photo-status").textContent="Up to 3 photos";
-      document.getElementById("wm-pe-error").textContent="";
-      wmRenderProductEditorPreviews();
+      body.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;">
+          <button class="btn-outline" style="padding:8px 14px;" data-directory-back>${wmMallT("back")}</button>
+          <strong style="font-size:16px;font-weight:900;flex:1;text-align:center;">${cityText(mall.name)}</strong>
+          <button type="button" class="wm-plus-btn" data-wm-create-shop="${wmEscape(mall.id)}" aria-label="${wmMallT("create")}">＋</button>
+        </div>
+        ${shopCards || `<div class="wm-mall-empty">${wmMallT("noShops")}</div>`}
+      `;
+    }
+
+    function wmRenderShopDetail(mallId, shopId) {
+      const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
+      const mall = city && (city.malls || []).find(m => m.id === mallId);
+      if (!mall) return;
+      const allShops = wmGetAllShopsInMall(mall);
+      const shop = allShops.find(s => s.id === shopId);
+      if (!shop) { wmRenderMallPage(mall); return; }
+
+      const body = document.getElementById("city-modal-body");
+      const sName = typeof shop.name === "object" ? (shop.name[state.lang] || shop.name.en) : shop.name;
+      const tk = wmSafeUrl(shop.tiktok), tg = wmSafeUrl(shop.telegramLink);
+      const products = (shop.products || []).map(prod => `
+        <article class="wm-mall-product">
+          <div class="wm-sell-card-media" style="height:125px;margin-bottom:8px;">
+            ${wmProductPhotos(prod).length ? `<img src="${wmProductPhotos(prod)[0]}" alt="${wmEscape(prod.name)}" loading="lazy">` : `<span style="font-size:28px;">📦</span>`}
+          </div>
+          <b style="font-size:13px;display:block;">${wmEscape(prod.name)}</b>
+          <div class="p-price" style="margin-top:3px;">${Number(prod.price || 0).toLocaleString()} Br</div>
+          ${prod.description ? `<p>${wmEscape(prod.description)}</p>` : ""}
+          ${wmAdminUnlocked ? `<button type="button" class="btn-outline full" data-wm-delete-mall-product="${wmEscape(shop.id)}|${wmEscape(prod.id)}" style="margin-top:8px;padding:6px;font-size:11px;color:var(--red);">Delete</button>` : ""}
+        </article>`).join("");
+
+      body.innerHTML = `
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;">
+          <button class="btn-outline" style="padding:8px 14px;" data-wm-return-mall="${wmEscape(mall.id)}">${wmMallT("backMall")}</button>
+          <button type="button" class="wm-plus-btn" data-wm-post-shop="${wmEscape(shop.id)}" aria-label="${wmMallT("publish")}">＋</button>
+        </div>
+        <div class="white-card">
+          <div class="wm-mall-shop-head" style="margin-bottom:6px;">
+            ${shop.logo ? `<img class="wm-mall-logo" src="${shop.logo}" alt="${wmEscape(sName)}">` : `<div class="wm-mall-logo wm-mall-logo-fallback">${wmEscape(shop.fallbackEmoji || "🏪")}</div>`}
+            <div class="wm-mall-shop-meta">
+              <h4>${wmEscape(sName)}</h4>
+              ${shop.category ? `<p>${wmEscape(shop.category)}</p>` : ""}
+              ${shop.contact ? `<p style="color:var(--red);font-weight:700;">${wmEscape(shop.contact)}</p>` : ""}
+            </div>
+          </div>
+          ${(tk || tg) ? `<div class="wm-mall-links" style="margin-bottom:0;">${tk ? `<a href="${wmEscape(tk)}" target="_blank" rel="noopener noreferrer">TikTok</a>` : ""}${tg ? `<a href="${wmEscape(tg)}" target="_blank" rel="noopener noreferrer">Telegram</a>` : ""}</div>` : ""}
+        </div>
+        <div class="wm-mall-products">${products || `<div class="wm-mall-empty" style="grid-column:1/-1;">${wmMallT("noProducts")}</div>`}</div>
+      `;
+    }
+
+    function wmCreateShopForm(mallId) {
+      const body = document.getElementById("city-modal-body");
+      body.innerHTML = `
+        <button class="btn-outline directory-back" data-wm-return-mall="${wmEscape(mallId)}">${wmMallT("backMall")}</button>
+        <form id="wm-create-shop-form" class="wm-mall-form">
+          <h3>${wmMallT("create")}</h3>
+          <div class="form-group"><label class="form-label" for="wm-shop-name">${wmMallT("shopName")}</label><input class="form-input" id="wm-shop-name" required maxlength="100"></div>
+          <div class="form-group"><label class="form-label" for="wm-shop-category">${wmMallT("category")}</label><input class="form-input" id="wm-shop-category" required maxlength="160"></div>
+          <div class="form-group"><label class="form-label" for="wm-shop-contact">${wmMallT("contact")}</label><input class="form-input" id="wm-shop-contact" required maxlength="80"></div>
+          <div class="form-group"><label class="form-label" for="wm-shop-logo">${wmMallT("logo")}</label><input class="form-input" id="wm-shop-logo" type="file" accept="image/*"></div>
+          <div class="form-group"><label class="form-label" for="wm-shop-tiktok">${wmMallT("tiktok")}</label><input class="form-input" id="wm-shop-tiktok" type="url"></div>
+          <div class="form-group"><label class="form-label" for="wm-shop-telegram">${wmMallT("telegram")}</label><input class="form-input" id="wm-shop-telegram" type="url"></div>
+          <p id="wm-shop-error" class="wm-mall-error" role="alert"></p>
+          <button class="btn-red full" type="submit">${wmMallT("save")}</button>
+        </form>`;
+      const logo = document.getElementById("wm-shop-logo");
+      logo.addEventListener("change", async e => {
+        try {
+          e.target.dataset.jpeg = e.target.files.length ? await wmImageToJpeg(e.target.files[0]) : "";
+          document.getElementById("wm-shop-error").textContent = "";
+        } catch (x) {
+          e.target.value = ""; delete e.target.dataset.jpeg;
+          document.getElementById("wm-shop-error").textContent = x.message;
+        }
+      });
+      document.getElementById("wm-create-shop-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        try {
+          const shop = {
+            id: "wmshop-" + Date.now(), mallId,
+            name: document.getElementById("wm-shop-name").value.trim(),
+            category: document.getElementById("wm-shop-category").value.trim(),
+            contact: document.getElementById("wm-shop-contact").value.trim(),
+            logo: logo.files.length ? (logo.dataset.jpeg || await wmImageToJpeg(logo.files[0])) : "",
+            tiktok: wmSafeUrl(document.getElementById("wm-shop-tiktok").value),
+            telegramLink: wmSafeUrl(document.getElementById("wm-shop-telegram").value),
+            products: []
+          };
+          wmMallShops.unshift(shop);
+          try { await wmSaveMallShops(); } catch (syncError) {}
+          const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
+          const m = city && city.malls.find(x => x.id === mallId);
+          if (m) wmRenderMallPage(m);
+          wmShowPopupNotice(wmMallT("shopSavedTitle"), wmMallT("shopSavedMsg"));
+        } catch (err) {
+          document.getElementById("wm-shop-error").textContent = err.message || wmMallT("saveError");
+        }
+      });
+    }
+
+    function wmPostShopProduct(shopId) {
+      let shop = wmMallShops.find(s => s.id === shopId);
+      if (!shop) {
+        const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
+        const mall = city && (city.malls || []).find(m => m.id === directoryState.mallId);
+        const item = mall && (mall.shops || []).find(x => x.id === shopId);
+        if (!item) return;
+        shop = { id: item.id, mallId: mall.id, name: cityText(item.name), category: directoryCategoryLabel(item.category), contact: "", logo: item.logoImage || "", tiktok: "", telegramLink: "", products: [] };
+        wmMallShops.push(shop);
+        writeLS("wm_mall_shops", wmMallShops);
+      }
+      const body = document.getElementById("city-modal-body");
+      body.innerHTML = `
+        <button class="btn-outline directory-back" data-wm-open-shop="${wmEscape(shop.mallId)}|${wmEscape(shop.id)}">${wmMallT("back")}</button>
+        <form id="wm-shop-product-form" class="wm-mall-form">
+          <h3>${wmMallT("publish")}</h3>
+          <div class="form-group"><label class="form-label" for="wm-sp-name">${wmMallT("productName")}</label><input class="form-input" id="wm-sp-name" required maxlength="120"></div>
+          <div class="form-group"><label class="form-label" for="wm-sp-price">${wmMallT("price")}</label><input class="form-input" id="wm-sp-price" type="number" min="0" step="0.01" required></div>
+          <div class="form-group"><label class="form-label" for="wm-sp-photos">${wmMallT("photos")}</label><input class="form-input" id="wm-sp-photos" type="file" accept="image/*" multiple><p id="wm-sp-photo-status" class="wm-mall-hint"></p></div>
+          <div class="form-group"><label class="form-label" for="wm-sp-desc">${wmMallT("description")}</label><textarea class="form-input" id="wm-sp-desc" rows="3" style="height:auto;padding:10px"></textarea></div>
+          <p id="wm-sp-error" class="wm-mall-error" role="alert"></p>
+          <button class="btn-red full" type="submit">${wmMallT("post")}</button>
+        </form>`;
+      const input = document.getElementById("wm-sp-photos");
+      input.addEventListener("change", async e => {
+        try {
+          const photos = await wmConvertFiles(e.target, 2);
+          e.target.dataset.jpegPhotos = JSON.stringify(photos);
+          wmPhotoInputStatus("wm-sp-photo-status", photos);
+          document.getElementById("wm-sp-error").textContent = "";
+        } catch (x) {
+          e.target.value = ""; delete e.target.dataset.jpegPhotos;
+          document.getElementById("wm-sp-photo-status").textContent = "";
+          document.getElementById("wm-sp-error").textContent = x.message || wmLangMessage();
+        }
+      });
+      document.getElementById("wm-shop-product-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        try {
+          const photos = input.files.length ? (input.dataset.jpegPhotos ? JSON.parse(input.dataset.jpegPhotos) : await wmConvertFiles(input, 2)) : [];
+          shop.products = shop.products || [];
+          shop.products.unshift({
+            id: "wmp-" + Date.now(),
+            name: document.getElementById("wm-sp-name").value.trim(),
+            price: Number(document.getElementById("wm-sp-price").value),
+            photos,
+            description: document.getElementById("wm-sp-desc").value.trim(),
+            createdAt: Date.now()
+          });
+          try { await wmSaveMallShops(); } catch (syncError) {}
+          wmRenderShopDetail(shop.mallId, shop.id);
+          wmToastMsg(wmMallT("productSaved"));
+        } catch (err) {
+          document.getElementById("wm-sp-error").textContent = err.message || wmMallT("productError");
+        }
+      });
+    }
+
+    async function wmDeleteMallShop(shopId) {
+      if (!wmAdminUnlocked) return;
+      if (!confirm("Delete this shop and all its products?")) return;
+      wmMallShops = wmMallShops.filter(x => String(x.id) !== String(shopId));
+      const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
+      const mall = city && (city.malls || []).find(m => m.id === directoryState.mallId);
+      if (mall && Array.isArray(mall.shops)) {
+        mall.shops = mall.shops.filter(x => String(x.id) !== String(shopId));
+        try { await wmSaveCityDirectory(); } catch (e) {}
+      }
+      try { await wmSaveMallShops(); } catch (e) {}
+      if (mall) wmRenderMallPage(mall);
+    }
+
+    async function wmDeleteMallProduct(shopId, productId) {
+      if (!wmAdminUnlocked) return;
+      const shop = wmMallShops.find(x => String(x.id) === String(shopId));
+      if (!shop || !confirm("Delete this product?")) return;
+      shop.products = (shop.products || []).filter(x => String(x.id) !== String(productId));
+      try { await wmSaveMallShops(); } catch (e) {}
+      wmRenderShopDetail(shop.mallId, shop.id);
+    }
+
+    /* OWNER MALL ADD/EDIT/DELETE MODAL (Point #5) */
+    function wmOpenMallEditor(cityId, mallId) {
+      if (!wmAdminUnlocked) return;
+      const city = CITY_DIRECTORY.find(c => c.id === cityId);
+      if (!city) return;
+      const existing = mallId ? (city.malls || []).find(m => m.id === mallId) : null;
+      document.getElementById("me-head").textContent = existing ? "Edit Mall" : "Add New Mall";
+      const curImg = existing && existing.bgImage ? existing.bgImage : "";
+      document.getElementById("me-body").innerHTML = `
+        <form id="wm-mall-editor-form">
+          <div class="form-group"><label class="form-label">Mall Name (English)</label><input class="form-input" id="me-en" required value="${wmEscape(existing ? (existing.name.en || "") : "")}"></div>
+          <div class="form-group"><label class="form-label">Mall Name (Amharic / አማርኛ)</label><input class="form-input" id="me-am" required value="${wmEscape(existing ? (existing.name.am || "") : "")}"></div>
+          <div class="form-group"><label class="form-label">Mall Name (Oromo)</label><input class="form-input" id="me-om" required value="${wmEscape(existing ? (existing.name.om || "") : "")}"></div>
+          <div class="form-group">
+            <label class="form-label">Update Mall Banner Image (JPEG <= 70 KB)</label>
+            <input class="form-input" id="me-img-file" type="file" accept="image/*">
+            <div class="wm-editor-thumbs" id="me-img-preview">${curImg ? `<img src="${wmEscape(curImg)}" alt="">` : ""}</div>
+          </div>
+          <p id="me-err" class="wm-mall-error"></p>
+          <button type="submit" class="btn-red full">Save Mall</button>
+        </form>`;
+      let uploadedBg = curImg;
+      document.getElementById("me-img-file").addEventListener("change", async e => {
+        try {
+          if (e.target.files.length) {
+            uploadedBg = await wmImageToJpeg(e.target.files[0]);
+            document.getElementById("me-img-preview").innerHTML = `<img src="${uploadedBg}" alt="">`;
+            document.getElementById("me-err").textContent = "";
+          }
+        } catch (err) {
+          e.target.value = "";
+          document.getElementById("me-err").textContent = err.message;
+        }
+      });
+      document.getElementById("wm-mall-editor-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        const nameObj = {
+          en: document.getElementById("me-en").value.trim(),
+          am: document.getElementById("me-am").value.trim(),
+          om: document.getElementById("me-om").value.trim()
+        };
+        if (existing) {
+          existing.name = nameObj;
+          existing.bgImage = uploadedBg;
+        } else {
+          city.malls = city.malls || [];
+          city.malls.push({
+            id: city.id + "-mall-" + Date.now(),
+            name: nameObj,
+            bgImage: uploadedBg,
+            gradient: city.gradient,
+            shops: []
+          });
+        }
+        try { await wmSaveCityDirectory(); } catch (err) {}
+        closeModal("modal-mall-editor");
+        renderDirectory();
+        wmToastMsg("Mall saved!");
+      });
+      openModal("modal-mall-editor");
+    }
+
+    async function wmDeleteMall(mallId) {
+      if (!wmAdminUnlocked) return;
+      const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
+      if (!city || !confirm("Delete this mall?")) return;
+      city.malls = (city.malls || []).filter(m => m.id !== mallId);
+      try { await wmSaveCityDirectory(); } catch (e) {}
+      renderDirectory();
+      wmToastMsg("Mall deleted.");
+    }
+
+    /* SELL YOUR PRODUCT: EQUAL CARDS + DETAIL MODAL + OWNER EDIT/DELETE (Point #11) */
+    function wmRenderListings() {
+      const root = document.getElementById("wm-listings-root");
+      if (!root) return;
+      root.innerHTML = wmListings.length ? wmListings.map(item => {
+        const photos = wmProductPhotos(item);
+        const imgHtml = photos.length
+          ? `<img src="${photos[0]}" alt="${wmEscape(item.name)}" loading="lazy">`
+          : `<span style="font-size:32px;">📦</span>`;
+        const ownerBtns = wmAdminUnlocked
+          ? `<div style="display:flex;gap:6px;margin-top:8px;"><button type="button" class="btn-outline" style="flex:1;padding:6px;font-size:11px;" data-wm-edit-listing="${wmEscape(item.id)}">Edit</button><button type="button" class="btn-outline" style="flex:1;padding:6px;font-size:11px;color:var(--red);" data-wm-delete-listing="${wmEscape(item.id)}">Delete</button></div>`
+          : "";
+        return `
+          <article class="product-card" data-wm-view-listing="${wmEscape(item.id)}">
+            <div class="wm-sell-card-media">${imgHtml}</div>
+            <h3 class="p-title">${wmEscape(item.name)}</h3>
+            <div class="p-foot">
+              <span class="p-price">${Number(item.price || 0).toLocaleString()} Br</span>
+              <span style="font-size:11px;color:var(--text-muted);font-weight:700;">${wmEscape(item.city || "")}</span>
+            </div>
+            ${ownerBtns}
+          </article>`;
+      }).join("") : `<div class="directory-empty" style="grid-column:1/-1">No seller listings yet. Tap + above to sell your product!</div>`;
+    }
+
+    function wmOpenSellerDetail(id) {
+      const item = wmListings.find(x => String(x.id) === String(id));
+      if (!item) return;
+      const photos = wmProductPhotos(item);
+      const imgsHtml = photos.length
+        ? photos.map(src => `<img src="${src}" alt="${wmEscape(item.name)}" style="width:100%;max-height:240px;object-fit:cover;border-radius:14px;margin-bottom:10px;">`).join("")
+        : "";
+      document.getElementById("seller-detail-head").textContent = item.name || "Product Details";
+      document.getElementById("seller-detail-body").innerHTML = `
+        ${imgsHtml}
+        <h3 style="font-size:18px;font-weight:900;">${wmEscape(item.name)}</h3>
+        <div style="font-size:20px;font-weight:900;color:var(--red);margin:6px 0 10px;">${Number(item.price || 0).toLocaleString()} Br</div>
+        <div class="white-card" style="font-size:13px;line-height:1.7;">
+          <div><strong>City:</strong> ${wmEscape(item.city || "")}</div>
+          <div><strong>Seller:</strong> ${wmEscape(item.seller || "")}</div>
+          <div><strong>Contact:</strong> ${wmEscape(item.contact || "")}</div>
+        </div>
+        ${item.description ? `<p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;white-space:pre-line;">${wmEscape(item.description)}</p>` : ""}
+        <button type="button" class="btn-red full" data-copy="${wmEscape(item.contact || "")}">Copy Seller Contact</button>
+      `;
+      openModal("modal-seller-detail");
+    }
+
+    function wmOpenSellFormModal(editId) {
+      const form = document.getElementById("wm-sell-form");
+      form.reset();
+      wmPendingSellPhotos = [];
+      wmPhotoInputStatus("wm-sell-photo-status", []);
+      document.getElementById("wm-sell-message").textContent = "";
+      document.getElementById("wm-sell-edit-id").value = editId || "";
+      if (editId) {
+        const item = wmListings.find(x => String(x.id) === String(editId));
+        if (item) {
+          document.getElementById("sell-modal-head").textContent = "Edit Listing";
+          document.getElementById("wm-sell-name").value = item.name || "";
+          document.getElementById("wm-sell-price").value = item.price || 0;
+          document.getElementById("wm-sell-seller").value = item.seller || "";
+          document.getElementById("wm-sell-contact").value = item.contact || "";
+          document.getElementById("wm-sell-city").value = item.city || "Kombolcha";
+          document.getElementById("wm-sell-desc").value = item.description || "";
+          wmPendingSellPhotos = wmProductPhotos(item);
+          wmPhotoInputStatus("wm-sell-photo-status", wmPendingSellPhotos);
+        }
+      } else {
+        document.getElementById("sell-modal-head").textContent = document.getElementById("wm-sell-page-title").textContent;
+      }
+      openModal("modal-sell-form");
+    }
+
+    async function wmSaveListing(listing, isEdit) {
+      if (isEdit) {
+        wmListings = wmListings.map(x => String(x.id) === String(listing.id) ? listing : x);
+        writeLS("wm_seller_listings", wmListings);
+        wmRenderListings();
+        try { await wmFirebaseFetch("/listings/" + encodeURIComponent(listing.id) + ".json", { method: "PUT", body: JSON.stringify(listing) }); } catch (e) {}
+      } else {
+        try {
+          const result = await wmFirebaseFetch("/listings.json", { method: "POST", body: JSON.stringify(listing) });
+          if (result && result.name) listing.id = result.name;
+        } catch (e) { wmToastMsg("Saved on this device; cloud sync failed."); }
+        wmListings.unshift(listing);
+        writeLS("wm_seller_listings", wmListings);
+        wmRenderListings();
+      }
+    }
+
+    async function wmDeleteListing(id) {
+      if (!wmAdminUnlocked) return;
+      if (!confirm("Delete this listing?")) return;
+      wmListings = wmListings.filter(x => String(x.id) !== String(id));
+      writeLS("wm_seller_listings", wmListings);
+      wmRenderListings();
+      try { await wmFirebaseFetch("/listings/" + encodeURIComponent(id) + ".json", { method: "DELETE" }); } catch (e) {}
+    }
+
+    /* MULTI-LANGUAGE PRODUCT EDITOR MODAL (MAIN + PARTNER, Points #3 & #7) */
+    function wmOpenProductEditor(mode, existing, partnerKey) {
+      const isMain = mode === "main";
+      const isEdit = !!existing;
+      document.getElementById("pe-head").textContent = isEdit ? "Edit Product" : "Add Product";
+      const curImages = isMain
+        ? (existing && Array.isArray(existing.images) ? [...existing.images] : [])
+        : (existing && existing.image ? [existing.image] : []);
+
+      document.getElementById("pe-body").innerHTML = `
+        <form id="wm-pe-form">
+          <div class="form-group"><label class="form-label">Name (English)</label><input class="form-input" id="pe-en" required value="${wmEscape(existing ? (existing.name.en || "") : "")}"></div>
+          <div class="form-group"><label class="form-label">Name (Amharic / አማርኛ)</label><input class="form-input" id="pe-am" required value="${wmEscape(existing ? (existing.name.am || "") : "")}"></div>
+          <div class="form-group"><label class="form-label">Name (Afaan Oromoo)</label><input class="form-input" id="pe-om" required value="${wmEscape(existing ? (existing.name.om || "") : "")}"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div class="form-group"><label class="form-label">Price (Br)</label><input class="form-input" id="pe-price" type="number" min="0" step="1" required value="${existing ? (existing.price || 0) : ""}"></div>
+            ${isMain ? `<div class="form-group"><label class="form-label">Old Price (optional)</label><input class="form-input" id="pe-old" type="number" min="0" step="1" value="${existing ? (existing.oldPrice || 0) : 0}"></div>` : `<div></div>`}
+          </div>
+          ${isMain ? `
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-input" id="pe-cat">
+              <option value="women" ${existing && existing.category === "women" ? "selected" : ""}>For Women</option>
+              <option value="home" ${existing && existing.category === "home" ? "selected" : ""}>Home &amp; Kitchen</option>
+              <option value="tech" ${existing && existing.category === "tech" ? "selected" : ""}>Tech &amp; Gadgets</option>
+              <option value="fitness" ${existing && existing.category === "fitness" ? "selected" : ""}>Fitness &amp; Sports</option>
+            </select>
+          </div>` : ""}
+          <div class="form-group"><label class="form-label">Description (English)</label><textarea class="form-input" id="pe-desc-en" rows="2" style="height:auto;padding:10px;">${wmEscape(existing ? (existing.desc.en || "") : "")}</textarea></div>
+          <div class="form-group"><label class="form-label">Description (Amharic / አማርኛ)</label><textarea class="form-input" id="pe-desc-am" rows="2" style="height:auto;padding:10px;">${wmEscape(existing ? (existing.desc.am || "") : "")}</textarea></div>
+          <div class="form-group"><label class="form-label">Description (Afaan Oromoo)</label><textarea class="form-input" id="pe-desc-om" rows="2" style="height:auto;padding:10px;">${wmEscape(existing ? (existing.desc.om || "") : "")}</textarea></div>
+          <div class="form-group">
+            <label class="form-label">Update Image (JPEG <= 70 KB${isMain ? ", up to 3" : ""})</label>
+            <input class="form-input" id="pe-img-input" type="file" accept="image/*" ${isMain ? "multiple" : ""}>
+            <div class="wm-editor-thumbs" id="pe-img-thumbs">${curImages.map(src => `<img src="${wmEscape(src)}" alt="">`).join("")}</div>
+          </div>
+          <p id="pe-err" class="wm-mall-error"></p>
+          <button type="submit" class="btn-red full">Save Product</button>
+        </form>`;
+
+      let workingImages = [...curImages];
+      document.getElementById("pe-img-input").addEventListener("change", async e => {
+        try {
+          const converted = await wmConvertFiles(e.target, isMain ? 3 : 1);
+          if (converted.length) {
+            workingImages = converted;
+            document.getElementById("pe-img-thumbs").innerHTML = workingImages.map(src => `<img src="${src}" alt="">`).join("");
+          }
+          document.getElementById("pe-err").textContent = "";
+        } catch (err) {
+          e.target.value = "";
+          document.getElementById("pe-err").textContent = err.message;
+        }
+      });
+
+      document.getElementById("wm-pe-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        const nameObj = {
+          en: document.getElementById("pe-en").value.trim(),
+          am: document.getElementById("pe-am").value.trim(),
+          om: document.getElementById("pe-om").value.trim()
+        };
+        const descObj = {
+          en: document.getElementById("pe-desc-en").value.trim(),
+          am: document.getElementById("pe-desc-am").value.trim(),
+          om: document.getElementById("pe-desc-om").value.trim()
+        };
+        const priceVal = Number(document.getElementById("pe-price").value);
+
+        if (isMain) {
+          const oldVal = Number(document.getElementById("pe-old").value || 0);
+          const catVal = document.getElementById("pe-cat").value;
+          const updated = {
+            ...(existing || { id: Date.now(), isDeal: false, badge: "", gradient: "linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)", icon: "belt", tiktokUrl: "https://www.tiktok.com/@wollomarket", youtubeUrl: "" }),
+            category: catVal, price: priceVal, oldPrice: oldVal,
+            name: nameObj, desc: descObj, images: workingImages
+          };
+          if (isEdit) PRODUCTS = PRODUCTS.map(x => String(x.id) === String(existing.id) ? updated : x);
+          else PRODUCTS.unshift(updated);
+          closeModal("modal-product-editor");
+          await wmSaveMainProducts();
+        } else {
+          const store = PARTNER_STORES[partnerKey];
+          if (!store) return;
+          const updated = {
+            ...(existing || { id: "partner-" + Date.now(), icon: "sparkles", gradient: "linear-gradient(135deg, #334155 0%, #111827 100%)" }),
+            price: priceVal, name: nameObj, desc: descObj, image: workingImages[0] || ""
+          };
+          if (isEdit) store.products = store.products.map(x => String(x.id) === String(existing.id) ? updated : x);
+          else store.products.unshift(updated);
+          closeModal("modal-product-editor");
+          await wmSavePartnerProducts(partnerKey);
+        }
+        wmToastMsg("Saved!");
+      });
       openModal("modal-product-editor");
     }
-    function wmRenderProductEditorPreviews(){
-      const root=document.getElementById("wm-pe-previews");
-      const names=(document.getElementById("wm-pe-image-names").value||"").split(",").map(x=>x.trim()).filter(Boolean);
-      const items=[...wmEditorUploadedImages,...names].slice(0,3);
-      root.innerHTML=items.length?items.map((src,i)=>`<div class="wm-editor-preview"><img src="${wmEscape(src)}" alt="Product photo ${i+1}" onerror="this.replaceWith(document.createTextNode('Preview unavailable'))"><span>${i+1}</span></div>`).join(""):`<div class="wm-editor-preview">No photos selected</div>`;
-    }
-    document.getElementById("wm-pe-image-names").addEventListener("input",wmRenderProductEditorPreviews);
-    document.getElementById("wm-pe-photos").addEventListener("change",async e=>{
-      const status=document.getElementById("wm-pe-photo-status"),error=document.getElementById("wm-pe-error");
-      try{
-        wmEditorUploadedImages=await wmConvertFiles(e.target,(wmProductEditorMode==="partner")?1:3);
-        status.textContent=wmEditorUploadedImages.length+" compressed JPEG photo(s) ready (≤70 KB each)";
-        error.textContent="";wmRenderProductEditorPreviews();
-      }catch(err){wmEditorUploadedImages=[];e.target.value="";status.textContent="Up to 3 photos";error.textContent=err.message||wmLangMessage();wmRenderProductEditorPreviews();}
-    });
-    document.getElementById("wm-product-editor-form").addEventListener("submit",async e=>{
-      e.preventDefault();
-      const partnerStore=wmProductEditorMode==="partner"&&state.partnerId&&PARTNER_STORES[state.partnerId]&&(wmPartnerUnlocked[PARTNER_STORES[state.partnerId].id]||wmAdminUnlocked)?PARTNER_STORES[state.partnerId]:null;
-      if(!partnerStore&&!wmAdminUnlocked)return;
-      const error=document.getElementById("wm-pe-error"),price=Number(document.getElementById("wm-pe-price").value),oldRaw=document.getElementById("wm-pe-old-price").value;
-      if(!Number.isFinite(price)||price<0){error.textContent="Enter a valid price.";return;}
-      if(oldRaw!==""&&(!Number.isFinite(Number(oldRaw))||Number(oldRaw)<0)){error.textContent="Enter a valid old price.";return;}
-      if(partnerStore){
-        const old=wmEditingPartnerProductId?partnerStore.products.find(x=>String(x.id)===wmEditingPartnerProductId):null;
-        const filenames=document.getElementById("wm-pe-image-names").value.split(",").map(x=>x.trim()).filter(Boolean);
-        const images=[...wmEditorUploadedImages,...filenames].slice(0,1);
-        const item={...(old||{id:"partner-"+Date.now(),icon:"package",gradient:partnerStore.gradient}),price,name:{en:document.getElementById("wm-pe-name-en").value.trim(),am:document.getElementById("wm-pe-name-am").value.trim(),om:document.getElementById("wm-pe-name-om").value.trim()},desc:{en:document.getElementById("wm-pe-desc-en").value.trim(),am:document.getElementById("wm-pe-desc-am").value.trim(),om:document.getElementById("wm-pe-desc-om").value.trim()},image:images[0]||""};
-        if(!item.name.en){error.textContent="Product name in English is required.";return;}
-        if(old)partnerStore.products=partnerStore.products.map(x=>String(x.id)===String(old.id)?item:x);else partnerStore.products.push(item);
-        await wmSavePartnerProducts(state.partnerId);closeModal("modal-product-editor");wmToastMsg(old?"Partner product updated.":"Partner product added.");return;
-      }
-      const existing=wmEditingMainProductId?PRODUCTS.find(x=>String(x.id)===wmEditingMainProductId):null;
-      const filenames=document.getElementById("wm-pe-image-names").value.split(",").map(x=>x.trim()).filter(Boolean);
-      const images=[...wmEditorUploadedImages,...filenames].slice(0,3);
-      const product={
-        ...(existing||{id:"wmprod-"+Date.now(),badge:"",gradient:"linear-gradient(135deg, #7F1D1D 0%, #18181B 100%)",icon:"package",tiktokUrl:"",youtubeUrl:""}),
-        category:document.getElementById("wm-pe-category").value,
-        isDeal:document.getElementById("wm-pe-is-deal").checked,
-        price,oldPrice:oldRaw===""?0:Number(oldRaw),
-        name:{en:document.getElementById("wm-pe-name-en").value.trim(),am:document.getElementById("wm-pe-name-am").value.trim(),om:document.getElementById("wm-pe-name-om").value.trim()},
-        desc:{en:document.getElementById("wm-pe-desc-en").value.trim(),am:document.getElementById("wm-pe-desc-am").value.trim(),om:document.getElementById("wm-pe-desc-om").value.trim()},
-        images
-      };
-      if(!product.name.en){error.textContent="Product name in English is required.";return;}
-      if(existing)PRODUCTS=PRODUCTS.map(x=>String(x.id)===String(existing.id)?product:x);else PRODUCTS.push(product);
-      await wmSaveMainProducts();closeModal("modal-product-editor");wmToastMsg(existing?"Product updated.":"Product added.");
-    });
-    let wmEditingBannerIndex=null,wmAdUploadedImage="";
-    async function wmSaveBanners(){writeLS("wm_promo_banners",PROMO_BANNERS);try{await wmFirebaseFetch("/banners.json",{method:"PUT",body:JSON.stringify(PROMO_BANNERS)});}catch(e){wmToastMsg("Banner saved locally; cloud sync failed.");}renderCarousel();startAutoSlide();}
-    async function wmSavePartnerMeta(){writeLS("wm_partner_stores_meta",PARTNER_STORES);try{await wmFirebaseFetch("/partnerStoresMeta.json",{method:"PUT",body:JSON.stringify(PARTNER_STORES)});}catch(e){wmToastMsg("Partner shop saved locally; cloud sync failed.");}}
-    function wmOpenAdEditor(index){if(!wmAdminUnlocked)return;wmEditingBannerIndex=index;wmAdUploadedImage="";const b=index===null?{action:"partner",title:{en:"",am:"",om:""},pill:{en:"",am:"",om:""},sub:{en:"",am:"",om:""},cta:{en:"",am:"",om:""}}:PROMO_BANNERS[index];if(!b)return;const set=(id,v)=>document.getElementById(id).value=v||"";document.getElementById("wm-ad-editor-title").textContent=index===null?"Add Ad":"Edit Ad";set("wm-ad-image-url",b.bgImage);set("wm-ad-action",b.action);set("wm-ad-url",b.url);set("wm-ad-title-en",b.title?.en);set("wm-ad-title-am",b.title?.am);set("wm-ad-title-om",b.title?.om);set("wm-ad-pill-en",b.pill?.en);set("wm-ad-pill-am",b.pill?.am);set("wm-ad-pill-om",b.pill?.om);set("wm-ad-sub-en",b.sub?.en);set("wm-ad-sub-am",b.sub?.am);set("wm-ad-sub-om",b.sub?.om);set("wm-ad-cta-en",b.cta?.en);set("wm-ad-cta-am",b.cta?.am);set("wm-ad-cta-om",b.cta?.om);const sel=document.getElementById("wm-ad-partner");sel.innerHTML=Object.keys(PARTNER_STORES).map(k=>`<option value="${wmEscape(k)}">${wmEscape(PARTNER_STORES[k].name.en)}</option>`).join("");if(b.partnerId)sel.value=b.partnerId;set("wm-ad-new-partner","");set("wm-ad-partner-pin","");document.getElementById("wm-ad-image").value="";document.getElementById("wm-ad-image-status").textContent="";document.getElementById("wm-ad-error").textContent="";openModal("wm-ad-editor-modal");}
-    document.getElementById("wm-ad-action").addEventListener("change",e=>{document.getElementById("wm-ad-partner-fields").style.display=e.target.value==="partner"?"block":"none";});
-    document.getElementById("wm-ad-image").addEventListener("change",async e=>{try{wmAdUploadedImage=e.target.files.length?await wmImageToJpeg(e.target.files[0]):"";document.getElementById("wm-ad-image-status").textContent=wmAdUploadedImage?"Compressed JPEG ready (≤70 KB)":"";}catch(err){wmAdUploadedImage="";e.target.value="";document.getElementById("wm-ad-error").textContent=err.message;}});
-    document.getElementById("wm-ad-editor-form").addEventListener("submit",async e=>{e.preventDefault();if(!wmAdminUnlocked)return;const val=id=>document.getElementById(id).value.trim(),langs=(prefix)=>({en:val("wm-ad-"+prefix+"-en"),am:val("wm-ad-"+prefix+"-am"),om:val("wm-ad-"+prefix+"-om")});let partnerId=null;const action=val("wm-ad-action"),newName=val("wm-ad-new-partner");if(action==="partner"){if(newName){partnerId="partner-"+Date.now();const key=partnerId;PARTNER_STORES[key]={id:key,image:"",name:{en:newName,am:newName,om:newName},badge:{en:"Partner Shop",am:"አጋር ሱቅ",om:"Suuqii Michuu"},desc:{en:"Welcome to our partner shop.",am:"ወደ አጋር ሱቃችን እንኳን በደህና መጡ።",om:"Baga gara suuqii michuu keenyaa dhuftan."},gradient:"linear-gradient(135deg,#334155,#111827)",products:[],pin:val("wm-ad-partner-pin")};await wmSavePartnerMeta();}else partnerId=val("wm-ad-partner");}const old=wmEditingBannerIndex===null?{}:PROMO_BANNERS[wmEditingBannerIndex];const b={...(old||{}),id:old.id||"ad-"+Date.now(),action,partnerId:action==="partner"?partnerId:undefined,url:val("wm-ad-url"),bgImage:wmAdUploadedImage||val("wm-ad-image-url")||old.bgImage||"",gradient:old.gradient||"linear-gradient(135deg,#7F1D1D,#111827)",icon:old.icon||"megaphone",pill:langs("pill"),title:langs("title"),sub:langs("sub"),cta:langs("cta")};if(!b.title.en){document.getElementById("wm-ad-error").textContent="English ad title is required.";return;}if(wmEditingBannerIndex===null)PROMO_BANNERS.push(b);else PROMO_BANNERS[wmEditingBannerIndex]=b;await wmSaveBanners();closeModal("wm-ad-editor-modal");});
-    document.addEventListener("click",e=>{const add=e.target.closest("#wm-add-ad");if(add){wmOpenAdEditor(null);return;}const edit=e.target.closest("[data-wm-edit-ad]");if(edit){wmOpenAdEditor(Number(edit.dataset.wmEditAd));return;}const del=e.target.closest("[data-wm-delete-ad]");if(del&&wmAdminUnlocked){const i=Number(del.dataset.wmDeleteAd);if(confirm("Delete this ad card?")){PROMO_BANNERS.splice(i,1);wmSaveBanners();}return;}});
-    function wmUnlockOwner(){if(wmAdminUnlocked){wmAdminUnlocked=false;document.body.classList.remove("wm-admin-unlocked");writeLS("wm_admin_unlocked",false);const add=document.getElementById("wm-main-add");if(add)add.style.display="none";const adAdd=document.getElementById("wm-add-ad");if(adAdd)adAdd.style.display="none";renderCarousel();renderHomeProducts();wmRenderListings();if(state.partnerId&&document.getElementById("modal-partner").classList.contains("open"))renderPartnerBody();const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&(city.malls||[]).find(m=>m.id===directoryState.mallId);if(mall&&document.getElementById("modal-city").classList.contains("open"))wmRenderMallPage(mall);wmToastMsg("Owner access locked.");return;}const pin=prompt("Enter owner PIN");if(pin===STORE_CONFIG.adminPin){wmAdminUnlocked=true;document.body.classList.add("wm-admin-unlocked");writeLS("wm_admin_unlocked",true);const add=document.getElementById("wm-main-add");if(add)add.style.display="inline-flex";const adAdd=document.getElementById("wm-add-ad");if(adAdd)adAdd.style.display="inline-flex";renderCarousel();renderHomeProducts();wmRenderListings();if(state.partnerId&&document.getElementById("modal-partner").classList.contains("open"))renderPartnerBody();const city=CITY_DIRECTORY.find(c=>c.id===directoryState.cityId),mall=city&&(city.malls||[]).find(m=>m.id===directoryState.mallId);if(mall&&document.getElementById("modal-city").classList.contains("open"))wmRenderMallPage(mall);wmToastMsg("Owner access unlocked.");}else if(pin!==null)alert("Incorrect PIN.");}
-    async function wmLoadProducts(){try{const cloud=await wmFirebaseFetch("/products.json");if(cloud){PRODUCTS=Array.isArray(cloud)?cloud.filter(Boolean):Object.values(cloud).filter(Boolean);writeLS("wm_live_products",PRODUCTS);}else{const local=readLS("wm_live_products",null);if(local&&Array.isArray(local))PRODUCTS=local;}}catch(e){const local=readLS("wm_live_products",null);if(local&&Array.isArray(local))PRODUCTS=local;}wmCloudProductsLoaded=true;renderHomeProducts();}
-    async function wmLoadPartnerProducts(){const local=readLS("wm_partner_products",{});try{const cloud=await wmFirebaseFetch("/partners.json");Object.keys(PARTNER_STORES).forEach(k=>{const store=PARTNER_STORES[k],data=cloud&&(cloud[store.id]||cloud[k]);if(data&&Array.isArray(data.products))store.products=data.products;else if(Array.isArray(data))store.products=data;else if(local&&Array.isArray(local[k]))store.products=local[k];});}catch(e){Object.keys(local||{}).forEach(k=>{if(PARTNER_STORES[k]&&Array.isArray(local[k]))PARTNER_STORES[k].products=local[k];});}writeLS("wm_partner_products",Object.fromEntries(Object.keys(PARTNER_STORES).map(k=>[k,PARTNER_STORES[k].products])));}
-    async function wmSavePartnerProducts(storeKey){const store=PARTNER_STORES[storeKey];if(!store)return;writeLS("wm_partner_products",Object.fromEntries(Object.keys(PARTNER_STORES).map(k=>[k,PARTNER_STORES[k].products])));try{await wmFirebaseFetch("/partners/"+encodeURIComponent(store.id)+".json",{method:"PUT",body:JSON.stringify({products:store.products})});}catch(e){wmToastMsg("Saved locally; partner products cloud sync failed.");}renderPartnerBody();}
-    function wmPartnerUnlock(){const store=PARTNER_STORES[state.partnerId],pinKey=WM_PARTNER_PIN_KEYS[state.partnerId];if(!store)return;const pin=prompt("Enter Partner Store PIN or Master Owner PIN");if(pin===STORE_CONFIG.adminPin || (pin!==null&&pin===(store.pin||STORE_CONFIG.partnerPins[pinKey]))){wmPartnerUnlocked[store.id]=true;writeLS("wm_partner_unlocked",wmPartnerUnlocked);renderPartnerBody();wmToastMsg("Store owner access unlocked.");}else if(pin!==null)alert("Incorrect PIN.");}
-    function wmEditMainProduct(id){const p=PRODUCTS.find(x=>String(x.id)===String(id));if(!p||!wmAdminUnlocked)return;wmOpenProductEditor(p);}
-    function wmAddMainProduct(){if(!wmAdminUnlocked)return;wmOpenProductEditor(null);}
-    function wmDeleteMainProduct(id){if(!wmAdminUnlocked)return;const p=PRODUCTS.find(x=>String(x.id)===String(id));if(!p||!confirm("Delete this product?"))return;PRODUCTS=PRODUCTS.filter(x=>String(x.id)!==String(id));wmSaveMainProducts();}
-    function wmPartnerProductPrompt(existing){const base=existing||{id:"",name:{en:"",am:"",om:""},desc:{en:"",am:"",om:""},price:0,image:"",icon:"package",gradient:""};const en=prompt("Product name (English)",base.name.en||"");if(en===null)return null;const am=prompt("Product name (Amharic)",base.name.am||"");if(am===null)return null;const om=prompt("Product name (Oromo)",base.name.om||"");if(om===null)return null;const price=prompt("Price (Birr)",String(base.price||0));if(price===null||!Number.isFinite(Number(price))||Number(price)<0)return null;const image=prompt("Product image filename",base.image||"");if(image===null)return null;const enDesc=prompt("Description (English)",base.desc.en||"");if(enDesc===null)return null;const amDesc=prompt("Description (Amharic)",base.desc.am||"");if(amDesc===null)return null;const omDesc=prompt("Description (Oromo)",base.desc.om||"");if(omDesc===null)return null;return {...base,id:base.id||"partner-"+Date.now(),price:Number(price),image:image.trim(),name:{en:en.trim(),am:am.trim(),om:om.trim()},desc:{en:enDesc,am:amDesc,om:omDesc}};}
-    let wmEditingPartnerProductId=null,wmProductEditorMode="main";
-    function wmOpenPartnerProductEditor(existing){wmProductEditorMode="partner";const store=PARTNER_STORES[state.partnerId];if(!store||(!wmPartnerUnlocked[store.id]&&!wmAdminUnlocked))return;wmEditingPartnerProductId=existing?String(existing.id):null;const p=existing||{name:{en:"",am:"",om:""},desc:{en:"",am:"",om:""},price:0,image:""};wmEditorExistingImages=p.image?[p.image]:[];wmEditorUploadedImages=[];document.getElementById("wm-product-editor-title").textContent=existing?"Edit Partner Product":"Add Partner Product";document.getElementById("wm-pe-name-en").value=p.name?.en||"";document.getElementById("wm-pe-name-am").value=p.name?.am||"";document.getElementById("wm-pe-name-om").value=p.name?.om||"";document.getElementById("wm-pe-price").value=p.price||0;document.getElementById("wm-pe-old-price").value="";document.getElementById("wm-pe-category").value="women";document.getElementById("wm-pe-desc-en").value=p.desc?.en||"";document.getElementById("wm-pe-desc-am").value=p.desc?.am||"";document.getElementById("wm-pe-desc-om").value=p.desc?.om||"";document.getElementById("wm-pe-image-names").value=p.image||"";document.getElementById("wm-pe-is-deal").checked=false;document.getElementById("wm-pe-photos").value="";document.getElementById("wm-pe-photo-status").textContent="Upload one image (JPEG ≤ 70 KB)";document.getElementById("wm-pe-error").textContent="";wmRenderProductEditorPreviews();openModal("modal-product-editor");}
-    function wmPartnerEdit(id){const store=PARTNER_STORES[state.partnerId];if(!store||(!wmPartnerUnlocked[store.id]&&!wmAdminUnlocked))return;const it=store.products.find(x=>String(x.id)===String(id));if(it)wmOpenPartnerProductEditor(it);}
-    function wmPartnerAdd(){const store=PARTNER_STORES[state.partnerId];if(store&&(wmPartnerUnlocked[store.id]||wmAdminUnlocked))wmOpenPartnerProductEditor(null);}
-    function wmPartnerDelete(id){const store=PARTNER_STORES[state.partnerId];if(!store||(!wmPartnerUnlocked[store.id]&&!wmAdminUnlocked)||!confirm("Delete this partner product?"))return;store.products=store.products.filter(x=>String(x.id)!==String(id));wmSavePartnerProducts(state.partnerId);}
-    document.addEventListener("click",e=>{const a=e.target.closest("#wm-main-add");if(a){wmAddMainProduct();return;}const edit=e.target.closest("[data-wm-main-edit]");if(edit){wmEditMainProduct(edit.dataset.wmMainEdit);return;}const del=e.target.closest("[data-wm-main-delete]");if(del){wmDeleteMainProduct(del.dataset.wmMainDelete);return;}const pk=e.target.closest("[data-wm-partner-edit]");if(pk){wmPartnerEdit(pk.dataset.wmPartnerEdit);return;}const pd=e.target.closest("[data-wm-partner-delete]");if(pd){wmPartnerDelete(pd.dataset.wmPartnerDelete);return;}if(e.target.closest("#wm-partner-add")){wmPartnerAdd();return;}if(e.target.closest("#wm-partner-key")){wmPartnerUnlock();return;}});
 
-    window.addEventListener("load", function () {
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("sw.js").catch(() => {});
+    /* OWNER AD / BANNER EDITOR MODAL (Point #4) */
+    function wmOpenAdEditor(index) {
+      if (!wmAdminUnlocked) return;
+      const isEdit = index !== null && index !== undefined;
+      const b = isEdit ? PROMO_BANNERS[index] : null;
+      document.getElementById("ae-head").textContent = isEdit ? "Edit Ad Card" : "Add New Ad Card";
+      const curImg = b && b.bgImage ? b.bgImage : "";
+
+      document.getElementById("ae-body").innerHTML = `
+        <form id="wm-ae-form">
+          <div class="form-group"><label class="form-label">Title (English)</label><input class="form-input" id="ae-t-en" required value="${wmEscape(b ? (b.title.en || "") : "")}"></div>
+          <div class="form-group"><label class="form-label">Title (Amharic / አማርኛ)</label><input class="form-input" id="ae-t-am" required value="${wmEscape(b ? (b.title.am || "") : "")}"></div>
+          <div class="form-group"><label class="form-label">Title (Oromo)</label><input class="form-input" id="ae-t-om" required value="${wmEscape(b ? (b.title.om || "") : "")}"></div>
+          <div class="form-group"><label class="form-label">Subtitle (English)</label><input class="form-input" id="ae-s-en" value="${wmEscape(b ? (b.sub.en || "") : "")}"></div>
+          <div class="form-group"><label class="form-label">Badge / Pill Text</label><input class="form-input" id="ae-pill" value="${wmEscape(b ? (b.pill.en || "") : "Partner Shop")}"></div>
+          <div class="form-group">
+            <label class="form-label">Action Type</label>
+            <select class="form-input" id="ae-action">
+              <option value="partner" ${!b || b.action === "partner" ? "selected" : ""}>Partner Shop (with Products &amp; Lock)</option>
+              <option value="scroll" ${b && b.action === "scroll" ? "selected" : ""}>Scroll to Products</option>
+              <option value="link" ${b && b.action === "link" ? "selected" : ""}>External Link (Telegram/Web)</option>
+            </select>
+          </div>
+          <div class="form-group" id="ae-pin-wrap"><label class="form-label">Partner Store Password / PIN (if Partner Shop)</label><input class="form-input" id="ae-pin" placeholder="e.g. 4444" value=""></div>
+          <div class="form-group" id="ae-url-wrap" style="display:none;"><label class="form-label">External URL</label><input class="form-input" id="ae-url" value="${wmEscape(b && b.url ? b.url : "")}"></div>
+          <div class="form-group">
+            <label class="form-label">Update Banner Image (JPEG <= 70 KB)</label>
+            <input class="form-input" id="ae-img-file" type="file" accept="image/*">
+            <div class="wm-editor-thumbs" id="ae-img-preview">${curImg ? `<img src="${wmEscape(curImg)}" alt="">` : ""}</div>
+          </div>
+          <p id="ae-err" class="wm-mall-error"></p>
+          <button type="submit" class="btn-red full">Save Ad</button>
+        </form>`;
+
+      const actSel = document.getElementById("ae-action");
+      function toggleActFields() {
+        document.getElementById("ae-pin-wrap").style.display = actSel.value === "partner" ? "block" : "none";
+        document.getElementById("ae-url-wrap").style.display = actSel.value === "link" ? "block" : "none";
+      }
+      actSel.addEventListener("change", toggleActFields);
+      toggleActFields();
+
+      let uploadedImg = curImg;
+      document.getElementById("ae-img-file").addEventListener("change", async e => {
+        try {
+          if (e.target.files.length) {
+            uploadedImg = await wmImageToJpeg(e.target.files[0]);
+            document.getElementById("ae-img-preview").innerHTML = `<img src="${uploadedImg}" alt="">`;
+            document.getElementById("ae-err").textContent = "";
+          }
+        } catch (err) {
+          e.target.value = "";
+          document.getElementById("ae-err").textContent = err.message;
+        }
+      });
+
+      document.getElementById("wm-ae-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        const tEn = document.getElementById("ae-t-en").value.trim();
+        const tAm = document.getElementById("ae-t-am").value.trim();
+        const tOm = document.getElementById("ae-t-om").value.trim();
+        const sEn = document.getElementById("ae-s-en").value.trim();
+        const pillTxt = document.getElementById("ae-pill").value.trim() || "Featured";
+        const action = actSel.value;
+        const pinVal = document.getElementById("ae-pin").value.trim();
+        let pid = (b && b.partnerId) ? b.partnerId : ("partner-" + Date.now());
+
+        const bannerObj = {
+          ...(b || { id: "ad-" + Date.now(), gradient: "linear-gradient(135deg, #991B1B 0%, #111827 100%)", icon: "sparkles", iconEmoji: "🛍️", cta: { en: "Visit Shop", am: "ሱቁን ይጎብኙ", om: "Suuqii Daawwadhu" } }),
+          action, bgImage: uploadedImg,
+          pill: { en: pillTxt, am: pillTxt, om: pillTxt },
+          title: { en: tEn, am: tAm, om: tOm },
+          sub: { en: sEn, am: sEn, om: sEn }
+        };
+        if (action === "partner") {
+          bannerObj.partnerId = pid;
+          if (!PARTNER_STORES[pid]) {
+            PARTNER_STORES[pid] = {
+              id: pid, image: uploadedImg,
+              name: bannerObj.title, badge: bannerObj.pill, desc: bannerObj.sub,
+              gradient: bannerObj.gradient, telegram: STORE_CONFIG.telegramUsername,
+              accountName: tEn, telebirr: STORE_CONFIG.telebirrNumber, cbe: STORE_CONFIG.cbeAccount,
+              deliveryFee: STORE_CONFIG.deliveryFee, products: [], pin: pinVal || STORE_CONFIG.adminPin
+            };
+          } else {
+            PARTNER_STORES[pid].name = bannerObj.title;
+            PARTNER_STORES[pid].image = uploadedImg;
+            if (pinVal) PARTNER_STORES[pid].pin = pinVal;
+          }
+          WM_PARTNER_PIN_KEYS[pid] = pid;
+          STORE_CONFIG.partnerPins[pid] = pinVal || STORE_CONFIG.partnerPins[pid] || STORE_CONFIG.adminPin;
+          try { await wmFirebaseFetch("/partnerStoresMeta/" + encodeURIComponent(pid) + ".json", { method: "PUT", body: JSON.stringify(PARTNER_STORES[pid]) }); } catch (err) {}
+        } else if (action === "link") {
+          bannerObj.url = document.getElementById("ae-url").value.trim();
+        }
+
+        if (isEdit) PROMO_BANNERS[index] = bannerObj;
+        else PROMO_BANNERS.push(bannerObj);
+        try { await wmSaveBanners(); } catch (err) {}
+        closeModal("modal-ad-editor");
+        renderCarousel();
+        wmToastMsg("Ad saved!");
+      });
+      openModal("modal-ad-editor");
+    }
+
+    async function wmDeleteAd(index) {
+      if (!wmAdminUnlocked) return;
+      if (!confirm("Delete this Ad Card?")) return;
+      PROMO_BANNERS.splice(index, 1);
+      try { await wmSaveBanners(); } catch (e) {}
+      renderCarousel();
+      wmToastMsg("Ad deleted.");
+    }
+
+    /* MAIN & PARTNER PRODUCT SAVE/LOAD */
+    async function wmSaveMainProducts() {
+      writeLS("wm_live_products", PRODUCTS);
+      try { await wmFirebaseFetch("/products.json", { method: "PUT", body: JSON.stringify(PRODUCTS) }); }
+      catch (e) { wmToastMsg("Saved locally; cloud sync failed."); }
+      renderHomeProducts();
+    }
+
+    async function wmLoadProducts() {
+      try {
+        const cloud = await wmFirebaseFetch("/products.json");
+        if (cloud) {
+          PRODUCTS = Array.isArray(cloud) ? cloud.filter(Boolean) : Object.values(cloud).filter(Boolean);
+          writeLS("wm_live_products", PRODUCTS);
+        } else {
+          const local = readLS("wm_live_products", null);
+          if (local && Array.isArray(local)) PRODUCTS = local;
+        }
+      } catch (e) {
+        const local = readLS("wm_live_products", null);
+        if (local && Array.isArray(local)) PRODUCTS = local;
+      }
+      wmCloudProductsLoaded = true;
+      renderHomeProducts();
+    }
+
+    async function wmLoadPartnerProducts() {
+      const local = readLS("wm_partner_products", {});
+      try {
+        const cloud = await wmFirebaseFetch("/partners.json");
+        Object.keys(PARTNER_STORES).forEach(k => {
+          const store = PARTNER_STORES[k];
+          const key = WM_PARTNER_PIN_KEYS[k] || k;
+          const data = cloud && (cloud[store.id] || cloud[key] || cloud[k]);
+          if (data && Array.isArray(data.products)) store.products = data.products;
+          else if (Array.isArray(data)) store.products = data;
+          else if (local && Array.isArray(local[k])) store.products = local[k];
+        });
+      } catch (e) {
+        Object.keys(local || {}).forEach(k => {
+          if (PARTNER_STORES[k] && Array.isArray(local[k])) PARTNER_STORES[k].products = local[k];
+        });
+      }
+    }
+
+    async function wmSavePartnerProducts(storeKey) {
+      const store = PARTNER_STORES[storeKey];
+      if (!store) return;
+      const allLocal = Object.fromEntries(Object.keys(PARTNER_STORES).map(k => [k, PARTNER_STORES[k].products || []]));
+      writeLS("wm_partner_products", allLocal);
+      try { await wmFirebaseFetch("/partners/" + encodeURIComponent(store.id) + ".json", { method: "PUT", body: JSON.stringify({ products: store.products }) }); }
+      catch (e) { wmToastMsg("Saved locally; cloud sync failed."); }
+      renderPartnerBody();
+    }
+
+    /* STRICT OWNER & PARTNER LOCK/UNLOCK TOGGLES */
+    function wmRefreshAllAdminViews() {
+      const add = document.getElementById("wm-main-add");
+      if (add) add.style.display = wmAdminUnlocked ? "inline-flex" : "none";
+      renderCarousel();
+      renderHomeProducts();
+      wmRenderListings();
+      if (state.partnerId && document.getElementById("modal-partner").classList.contains("open")) renderPartnerBody();
+      if (directoryState.cityId && document.getElementById("modal-city").classList.contains("open")) renderDirectory();
+    }
+
+    function wmUnlockOwner() {
+      if (wmAdminUnlocked) {
+        wmAdminUnlocked = false;
+        wmRefreshAllAdminViews();
+        wmToastMsg("Owner mode locked.");
+        return;
+      }
+      const pin = prompt("Enter owner PIN");
+      if (pin === STORE_CONFIG.adminPin) {
+        wmAdminUnlocked = true;
+        wmRefreshAllAdminViews();
+        wmToastMsg("Owner access unlocked.");
+      } else if (pin !== null) {
+        alert("Incorrect PIN.");
+      }
+    }
+
+    function wmPartnerUnlock() {
+      const store = PARTNER_STORES[state.partnerId];
+      if (!store) return;
+      const pinKey = WM_PARTNER_PIN_KEYS[state.partnerId] || state.partnerId;
+      if (wmPartnerUnlocked[store.id]) {
+        wmPartnerUnlocked[store.id] = false;
+        renderPartnerBody();
+        wmToastMsg("Store locked.");
+        return;
+      }
+      const pin = prompt("Enter partner store PIN");
+      const expected = STORE_CONFIG.partnerPins[pinKey] || store.pin;
+      if (pin === expected || pin === STORE_CONFIG.adminPin) {
+        wmPartnerUnlocked[store.id] = true;
+        renderPartnerBody();
+        wmToastMsg("Store owner access unlocked.");
+      } else if (pin !== null) {
+        alert("Incorrect PIN.");
+      }
+    }
+
+    function wmEditMainProduct(id) {
+      const p = PRODUCTS.find(x => String(x.id) === String(id));
+      if (!p || !wmAdminUnlocked) return;
+      wmOpenProductEditor("main", p);
+    }
+    function wmAddMainProduct() {
+      if (!wmAdminUnlocked) return;
+      wmOpenProductEditor("main", null);
+    }
+    function wmDeleteMainProduct(id) {
+      if (!wmAdminUnlocked) return;
+      if (!confirm("Delete this product?")) return;
+      PRODUCTS = PRODUCTS.filter(x => String(x.id) !== String(id));
+      wmSaveMainProducts();
+    }
+    function wmPartnerEdit(id) {
+      const store = PARTNER_STORES[state.partnerId];
+      if (!store || (!wmPartnerUnlocked[store.id] && !wmAdminUnlocked)) return;
+      const it = store.products.find(x => String(x.id) === String(id));
+      if (it) wmOpenProductEditor("partner", it, state.partnerId);
+    }
+    function wmPartnerAdd() {
+      const store = PARTNER_STORES[state.partnerId];
+      if (!store || (!wmPartnerUnlocked[store.id] && !wmAdminUnlocked)) return;
+      wmOpenProductEditor("partner", null, state.partnerId);
+    }
+    function wmPartnerDelete(id) {
+      const store = PARTNER_STORES[state.partnerId];
+      if (!store || (!wmPartnerUnlocked[store.id] && !wmAdminUnlocked) || !confirm("Delete this product?")) return;
+      store.products = store.products.filter(x => String(x.id) !== String(id));
+      wmSavePartnerProducts(state.partnerId);
+    }
+
+    /* SINGLE UNIFIED CLICK HANDLER FOR ADMIN / MALL / SELL CONTROLS (NO DUPLICATES) */
+    document.addEventListener("click", e => {
+      const openSellBtn = e.target.closest("#btn-open-sell-form");
+      if (openSellBtn) { wmOpenSellFormModal(null); return; }
+
+      const editListBtn = e.target.closest("[data-wm-edit-listing]");
+      if (editListBtn) { e.stopPropagation(); wmOpenSellFormModal(editListBtn.getAttribute("data-wm-edit-listing")); return; }
+
+      const delListBtn = e.target.closest("[data-wm-delete-listing]");
+      if (delListBtn) { e.stopPropagation(); wmDeleteListing(delListBtn.getAttribute("data-wm-delete-listing")); return; }
+
+      const viewListCard = e.target.closest("[data-wm-view-listing]");
+      if (viewListCard) { wmOpenSellerDetail(viewListCard.getAttribute("data-wm-view-listing")); return; }
+
+      const addAdBtn = e.target.closest("#wm-add-ad-btn");
+      if (addAdBtn) { wmOpenAdEditor(null); return; }
+
+      const editAdBtn = e.target.closest("[data-wm-ad-edit]");
+      if (editAdBtn) { e.stopPropagation(); wmOpenAdEditor(Number(editAdBtn.getAttribute("data-wm-ad-edit"))); return; }
+
+      const delAdBtn = e.target.closest("[data-wm-ad-delete]");
+      if (delAdBtn) { e.stopPropagation(); wmDeleteAd(Number(delAdBtn.getAttribute("data-wm-ad-delete"))); return; }
+
+      const addMallBtn = e.target.closest("[data-wm-mall-add]");
+      if (addMallBtn) { wmOpenMallEditor(addMallBtn.getAttribute("data-wm-mall-add"), null); return; }
+
+      const editMallBtn = e.target.closest("[data-wm-mall-edit]");
+      if (editMallBtn) { e.stopPropagation(); wmOpenMallEditor(directoryState.cityId, editMallBtn.getAttribute("data-wm-mall-edit")); return; }
+
+      const delMallBtn = e.target.closest("[data-wm-mall-delete]");
+      if (delMallBtn) { e.stopPropagation(); wmDeleteMall(delMallBtn.getAttribute("data-wm-mall-delete")); return; }
+
+      const ds = e.target.closest("[data-wm-delete-mall-shop]");
+      if (ds) { e.stopPropagation(); wmDeleteMallShop(ds.getAttribute("data-wm-delete-mall-shop")); return; }
+
+      const dp = e.target.closest("[data-wm-delete-mall-product]");
+      if (dp) { const pair = dp.getAttribute("data-wm-delete-mall-product").split("|"); wmDeleteMallProduct(pair[0], pair[1]); return; }
+
+      const openShop = e.target.closest("[data-wm-open-shop]");
+      if (openShop) {
+        const pair = openShop.getAttribute("data-wm-open-shop").split("|");
+        directoryState.mallId = pair[0];
+        directoryState.activeShopId = pair[1];
+        directoryState.view = "shop";
+        wmRenderShopDetail(pair[0], pair[1]);
+        return;
+      }
+
+      const c = e.target.closest("[data-wm-create-shop]");
+      if (c) { wmCreateShopForm(c.getAttribute("data-wm-create-shop")); return; }
+
+      const p = e.target.closest("[data-wm-post-shop]");
+      if (p) { wmPostShopProduct(p.getAttribute("data-wm-post-shop")); return; }
+
+      const b = e.target.closest("[data-wm-return-mall]");
+      if (b) {
+        const city = CITY_DIRECTORY.find(x => x.id === directoryState.cityId);
+        const m = city && city.malls.find(x => x.id === b.getAttribute("data-wm-return-mall"));
+        directoryState.view = "coming";
+        directoryState.activeShopId = null;
+        if (m) wmRenderMallPage(m);
+        return;
+      }
+
+      const a = e.target.closest("#wm-main-add");
+      if (a) { wmAddMainProduct(); return; }
+
+      const edit = e.target.closest("[data-wm-main-edit]");
+      if (edit) { e.stopPropagation(); wmEditMainProduct(edit.dataset.wmMainEdit); return; }
+
+      const del = e.target.closest("[data-wm-main-delete]");
+      if (del) { e.stopPropagation(); wmDeleteMainProduct(del.dataset.wmMainDelete); return; }
+
+      const pk = e.target.closest("[data-wm-partner-edit]");
+      if (pk) { e.stopPropagation(); wmPartnerEdit(pk.dataset.wmPartnerEdit); return; }
+
+      const pd = e.target.closest("[data-wm-partner-delete]");
+      if (pd) { e.stopPropagation(); wmPartnerDelete(pd.dataset.wmPartnerDelete); return; }
+
+      if (e.target.closest("#wm-partner-add")) { wmPartnerAdd(); return; }
+      if (e.target.closest("#wm-partner-key")) { wmPartnerUnlock(); return; }
+    });
+
+    /* SELL FORM LISTENERS */
+    document.getElementById("wm-sell-photos").addEventListener("change", async e => {
+      const status = document.getElementById("wm-sell-photo-status");
+      try {
+        wmPendingSellPhotos = await wmConvertFiles(e.target, 2);
+        e.target.dataset.jpegPhotos = JSON.stringify(wmPendingSellPhotos);
+        wmPhotoInputStatus("wm-sell-photo-status", wmPendingSellPhotos);
+        status.style.color = "var(--text-secondary)";
+      } catch (err) {
+        wmPendingSellPhotos = []; e.target.value = ""; delete e.target.dataset.jpegPhotos;
+        status.textContent = err.message || wmLangMessage();
+        status.style.color = "var(--red)";
+      }
+    });
+
+    document.getElementById("wm-sell-form").addEventListener("submit", async e => {
+      e.preventDefault();
+      const photosInput = document.getElementById("wm-sell-photos");
+      const msg = document.getElementById("wm-sell-message");
+      const editId = document.getElementById("wm-sell-edit-id").value.trim();
+      try {
+        const photos = photosInput.files.length
+          ? (photosInput.dataset.jpegPhotos ? JSON.parse(photosInput.dataset.jpegPhotos) : await wmConvertFiles(photosInput, 2))
+          : wmPendingSellPhotos;
+        const listing = {
+          id: editId || ("listing-" + Date.now()),
+          name: document.getElementById("wm-sell-name").value.trim(),
+          price: Number(document.getElementById("wm-sell-price").value),
+          seller: document.getElementById("wm-sell-seller").value.trim(),
+          contact: document.getElementById("wm-sell-contact").value.trim(),
+          city: document.getElementById("wm-sell-city").value,
+          photos,
+          description: document.getElementById("wm-sell-desc").value.trim(),
+          createdAt: Date.now()
+        };
+        await wmSaveListing(listing, !!editId);
+        e.target.reset();
+        wmPendingSellPhotos = [];
+        wmPhotoInputStatus("wm-sell-photo-status", []);
+        closeModal("modal-sell-form");
+        wmToastMsg(editId ? "Listing updated!" : "Listing posted!");
+      } catch (err) {
+        msg.textContent = err.message || "Listing failed.";
+        msg.style.color = "var(--red)";
       }
     });
 
     document.addEventListener("DOMContentLoaded", function () {
+      if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true) {
+        document.body.classList.add("is-standalone");
+      }
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      }
       applyTheme();
-      const localBanners=readLS("wm_promo_banners",null);if(Array.isArray(localBanners))PROMO_BANNERS=localBanners;
-      const localPartnerMeta=readLS("wm_partner_stores_meta",null);if(localPartnerMeta&&typeof localPartnerMeta==="object")PARTNER_STORES={...PARTNER_STORES,...localPartnerMeta};
       renderAll();
-      if(wmAdminUnlocked){document.body.classList.add("wm-admin-unlocked");const add=document.getElementById("wm-main-add");if(add)add.style.display="inline-flex";const adAdd=document.getElementById("wm-add-ad");if(adAdd)adAdd.style.display="inline-flex";renderCarousel();}
+      if(wmAdminUnlocked){const add=document.getElementById("wm-main-add");if(add)add.style.display="inline-flex";}
       wmRenderListings();
       // Start cloud synchronization independently; each loader has local fallbacks.
-      Promise.resolve().then(() => wmLoadCityDirectory()).then(() => wmLoadFirebase()).catch(() => wmRenderListings());
+      Promise.resolve().then(() => wmLoadFirebase()).catch(() => wmRenderListings());
       Promise.resolve().then(() => wmLoadProducts()).catch(() => { wmCloudProductsLoaded = true; renderHomeProducts(); });
-      Promise.resolve().then(async()=>{try{const cloud=await wmFirebaseFetch("/banners.json");if(Array.isArray(cloud)){PROMO_BANNERS=cloud;writeLS("wm_promo_banners",cloud);renderCarousel();}}catch(e){}try{const meta=await wmFirebaseFetch("/partnerStoresMeta.json");if(meta&&typeof meta==="object"){PARTNER_STORES={...PARTNER_STORES,...meta};writeLS("wm_partner_stores_meta",PARTNER_STORES);}}catch(e){}await wmLoadPartnerProducts();}).catch(()=>{});
+      Promise.resolve().then(() => wmLoadPartnerProducts()).catch(() => {});
       startAutoSlide();
 
       document.getElementById("btn-brand-home").addEventListener("click", function () { switchTab("home"); });
@@ -5770,7 +6606,6 @@
       const cWrap = document.getElementById("carousel-wrap");
       const cTrack = document.getElementById("carousel-track");
       cTrack.addEventListener("click", function (e) {
-        if(e.target.closest(".wm-banner-admin"))return;
         const card = e.target.closest("[data-bidx]");
         if (!card) return;
         const b = PROMO_BANNERS[Number(card.getAttribute("data-bidx"))];
@@ -5855,9 +6690,8 @@
 
         const dirBack = e.target.closest("[data-directory-back]");
         if (dirBack) {
-          if(directoryState.view === "shop" && directoryState.shopRef){const mall=(CITY_DIRECTORY.find(c=>c.id===directoryState.cityId)?.malls||[]).find(m=>m.id===directoryState.mallId);if(mall){wmRenderMallPage(mall);return;}}
           directoryState.view = "root";
-          directoryState.tab = "malls";
+          directoryState.tab = directoryState.mallId ? "malls" : "shops";
           directoryState.mallId = null;
           directoryState.shopRef = null;
           directoryState.category = "all";
@@ -5872,7 +6706,8 @@
           if (mall) {
             directoryState.mallId = mall.id;
             directoryState.shopRef = mall;
-            wmRenderMallPage(mall);
+            directoryState.view = "coming";
+            renderDirectory();
           }
           return;
         }
