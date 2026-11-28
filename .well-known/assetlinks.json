@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "io.github.wollomarket.twa",
+    "sha256_cert_fingerprints": ["72:78:CB:44:36:C4:F1:E9:CD:98:3F:BE:8E:0F:4C:29:9C:E8:F3:57:7E:0C:FD:79:39:5E:00:7A:53:74:36:02"]
+  }
+}]
