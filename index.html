@@ -887,7 +887,9 @@
       object-position: center;
     }
 
-    .image-fallback { width:100%;height:100%;align-items:center;justify-content:center; }\n    .gallery-fallback { position:absolute;inset:0;display:grid;place-items:center; }\n    .partner-thumb {
+    .image-fallback { width:100%;height:100%;align-items:center;justify-content:center; }
+    .gallery-fallback { position:absolute;inset:0;display:grid;place-items:center; }
+    .partner-thumb {
       width: 68px;
       height: 68px;
       border-radius: 14px;
@@ -1447,7 +1449,7 @@
       background: var(--nav-bg);
       border-top: 1px solid var(--border);
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       padding: 6px 4px;
     }
 
@@ -2086,6 +2088,187 @@
     }
     .wm-mall-admin-tools button.danger { background: rgba(220, 38, 38, 0.85); }
 
+
+    /* === V2 UPGRADES: DRAG/REORDER, GRID MALL SHOPS, JOBS, VISUAL EDITOR === */
+    .bnav-btn { font-size: 10px; padding: 2px 0; }
+    .wm-mall-shops-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .wm-mall-shop-grid-card {
+      min-width: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform 0.14s ease, box-shadow 0.14s ease;
+    }
+    .wm-mall-shop-grid-card:active { transform: scale(0.98); }
+    .wm-mall-shop-grid-photo {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-size: 34px;
+      position: relative;
+    }
+    .wm-mall-shop-grid-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .wm-mall-shop-grid-info {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .wm-mall-shop-grid-info h4 {
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.3;
+      color: var(--text-primary);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .wm-mall-shop-grid-info p {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+
+    /* Drag & Reorder Styles */
+    .wm-draggable-active {
+      outline: 2px dashed rgba(220, 38, 38, 0.45);
+      outline-offset: -2px;
+      cursor: grab;
+    }
+    .wm-dragging {
+      opacity: 0.45;
+      transform: scale(0.96);
+    }
+    .wm-drag-over {
+      outline: 2.5px solid var(--red) !important;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.25) !important;
+    }
+    .wm-reorder-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 6px;
+    }
+    .wm-reorder-btn {
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: var(--bg-muted);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .wm-reorder-btn:active { background: var(--red); color: #fff; }
+
+    /* Contact Action Grid (Call, Telegram, TikTok, Instagram) */
+    .wm-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .wm-contact-btn {
+      height: 42px;
+      border-radius: 12px;
+      font-size: 12.5px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+    .wm-contact-btn.call { background: #10B981; }
+    .wm-contact-btn.tg { background: #0088CC; }
+    .wm-contact-btn.tiktok { background: #111115; }
+    .wm-contact-btn.insta { background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF); }
+
+    /* Jobs Grid & Cards */
+    .wm-jobs-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    @media (min-width: 640px) {
+      .wm-jobs-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    .wm-job-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .wm-job-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--red-soft);
+      color: var(--red-soft-text);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* Owner Studio Floating Toolbar (ONLY when Owner Unlocked) */
+    .wm-owner-toolbar {
+      position: fixed;
+      left: 50%;
+      top: 10px;
+      transform: translateX(-50%);
+      z-index: 250;
+      background: #111318;
+      color: #FFFFFF;
+      border: 1.5px solid var(--red);
+      border-radius: 999px;
+      padding: 6px 10px;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+      max-width: 96vw;
+      overflow-x: auto;
+    }
+    .wm-owner-toolbar.show { display: flex; }
+    .wm-owner-tbtn {
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #FFFFFF;
+      font-size: 11.5px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .wm-owner-tbtn.active { background: var(--red); color: #FFFFFF; }
+    body.wm-visual-edit-on *:hover {
+      outline: 1.5px dashed var(--red);
+      cursor: crosshair !important;
+    }
+
   </style>
 </head>
 <body>
@@ -2124,6 +2307,8 @@
             <span id="dnav-orders">Orders</span>
             <span class="dnav-badge" id="dnav-orders-badge">0</span>
           </button>
+          <button type="button" class="dnav-btn" data-nav="sell" id="dnav-sell">Sell</button>
+          <button type="button" class="dnav-btn" data-nav="jobs" id="dnav-jobs">Jobs</button>
           <button type="button" class="dnav-btn" data-nav="profile" id="dnav-profile">Profile</button>
         </nav>
 
@@ -2259,6 +2444,31 @@
     </div>
   </section>
 
+  <!-- JOBS TAB (KOMBOLCHA, DESSIE, KEMISE, HARBU) -->
+  <section class="tab-panel" id="tab-jobs">
+    <div class="container">
+      <div class="page-head" style="justify-content:space-between;">
+        <h2 class="page-title" id="wm-jobs-page-title">Jobs / ስራዎች</h2>
+        <button type="button" class="wm-plus-btn" id="btn-open-job-form" aria-label="Post a Job">＋</button>
+      </div>
+      <div class="cat-row no-scrollbar" id="wm-jobs-city-filter" style="margin-bottom:14px;">
+        <button type="button" class="cat-chip active" data-job-city="all">All Cities</button>
+        <button type="button" class="cat-chip" data-job-city="Kombolcha">Kombolcha</button>
+        <button type="button" class="cat-chip" data-job-city="Dessie">Dessie</button>
+        <button type="button" class="cat-chip" data-job-city="Kemise">Kemise</button>
+        <button type="button" class="cat-chip" data-job-city="Harbu">Harbu</button>
+      </div>
+      <div id="wm-jobs-root" class="wm-jobs-grid"></div>
+    </div>
+  </section>
+
+  <!-- OWNER STUDIO FLOATING BAR (VISIBLE ONLY WHEN OWNER PIN UNLOCKED) -->
+  <div class="wm-owner-toolbar" id="wm-owner-toolbar">
+    <button type="button" class="wm-owner-tbtn" id="wm-toggle-visual-edit">✏️ Visual Edit: OFF</button>
+    <button type="button" class="wm-owner-tbtn" id="wm-open-store-settings">⚙️ Settings &amp; Theme</button>
+    <button type="button" class="wm-owner-tbtn" id="wm-toolbar-lock">🔒 Lock</button>
+  </div>
+
   <!-- DESKTOP FOOTER -->
   <footer class="site-footer">
     <div class="container">
@@ -2282,17 +2492,17 @@
     </div>
   </footer>
 
-  <!-- MOBILE BOTTOM NAVIGATION -->
+  <!-- MOBILE BOTTOM NAVIGATION (PROFILE AT FAR RIGHT) -->
   <nav class="bottom-nav" aria-label="Bottom Navigation">
     <button type="button" class="bnav-btn active" data-nav="home">
-      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
         <polyline points="9 22 9 12 15 12 15 22"></polyline>
       </svg>
       <span id="bnav-home">Home</span>
     </button>
     <button type="button" class="bnav-btn" data-nav="cart">
-      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="9" cy="21" r="1"></circle>
         <circle cx="20" cy="21" r="1"></circle>
         <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -2301,7 +2511,7 @@
       <span id="bnav-cart">Cart</span>
     </button>
     <button type="button" class="bnav-btn" data-nav="orders">
-      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
         <polyline points="14 2 14 8 20 8"></polyline>
         <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -2310,16 +2520,20 @@
       <span class="bnav-badge" id="bnav-orders-badge">0</span>
       <span id="bnav-orders">Orders</span>
     </button>
+    <button type="button" class="bnav-btn" data-nav="sell" aria-label="Sell Your Product">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
+      <span id="bnav-sell">Sell</span>
+    </button>
+    <button type="button" class="bnav-btn" data-nav="jobs" aria-label="Jobs">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+      <span id="bnav-jobs">Jobs</span>
+    </button>
     <button type="button" class="bnav-btn" data-nav="profile">
-      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
         <circle cx="12" cy="7" r="4"></circle>
       </svg>
       <span id="bnav-profile">Profile</span>
-    </button>
-    <button type="button" class="bnav-btn" data-nav="sell" aria-label="Sell Your Product">
-      <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg>
-      <span id="bnav-sell">Sell</span>
     </button>
   </nav>
 
@@ -2418,7 +2632,7 @@
     </div>
   </div>
 
-  <!-- SELL YOUR PRODUCT FORM MODAL -->
+  <!-- SELL YOUR PRODUCT FORM MODAL (CALL, TELEGRAM, TIKTOK, INSTAGRAM) -->
   <div class="modal-backdrop" id="modal-sell-form">
     <div class="modal-sheet">
       <div class="modal-head">
@@ -2431,7 +2645,10 @@
           <div class="form-group"><label class="form-label" for="wm-sell-name">Product Name</label><input class="form-input" id="wm-sell-name" required maxlength="120"></div>
           <div class="form-group"><label class="form-label" for="wm-sell-price">Price (Br)</label><input class="form-input" id="wm-sell-price" type="number" min="0" step="0.01" required></div>
           <div class="form-group"><label class="form-label" for="wm-sell-seller">Seller Name</label><input class="form-input" id="wm-sell-seller" required maxlength="80"></div>
-          <div class="form-group"><label class="form-label" for="wm-sell-contact">Seller Phone / Telegram</label><input class="form-input" id="wm-sell-contact" required maxlength="80"></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-phone">Phone Number (for Call button)</label><input class="form-input" id="wm-sell-phone" type="tel" placeholder="09XXXXXXXX" required maxlength="40"></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-telegram">Telegram Username or Link (optional)</label><input class="form-input" id="wm-sell-telegram" placeholder="@username or https://t.me/..." maxlength="120"></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-tiktok">TikTok Link (optional)</label><input class="form-input" id="wm-sell-tiktok" placeholder="https://www.tiktok.com/@..." maxlength="200"></div>
+          <div class="form-group"><label class="form-label" for="wm-sell-instagram">Instagram Link (optional)</label><input class="form-input" id="wm-sell-instagram" placeholder="https://www.instagram.com/..." maxlength="200"></div>
           <div class="form-group"><label class="form-label" for="wm-sell-city">City</label><select class="form-input" id="wm-sell-city" required><option>Kombolcha</option><option>Dessie</option><option>Kemise</option><option>Harbu</option></select></div>
           <div class="form-group"><label class="form-label" for="wm-sell-photos">Photos (up to 2; JPEG, max 70 KB each)</label><input class="form-input" id="wm-sell-photos" type="file" accept="image/*" multiple><div id="wm-sell-photo-status" style="font-size:12px;color:var(--text-secondary);margin-top:5px"></div></div>
           <div class="form-group"><label class="form-label" for="wm-sell-desc">Description</label><textarea class="form-input" id="wm-sell-desc" rows="3" style="height:auto;padding:10px" maxlength="1000"></textarea></div>
@@ -2497,6 +2714,67 @@
     </div>
   </div>
 
+  <!-- JOB POSTING FORM MODAL -->
+  <div class="modal-backdrop" id="modal-job-form">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="job-modal-head">Post a Job / ስራ ይለጥፉ</strong>
+        <button type="button" class="modal-x" data-close="modal-job-form">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="wm-job-form">
+          <input type="hidden" id="wm-job-edit-id" value="" />
+          <div class="form-group"><label class="form-label" for="wm-job-title">Job Title / የስራው ርዕስ</label><input class="form-input" id="wm-job-title" required maxlength="120" placeholder="e.g. Salesperson, Driver, Accountant"></div>
+          <div class="form-group"><label class="form-label" for="wm-job-company">Company / Employer Name</label><input class="form-input" id="wm-job-company" required maxlength="100"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div class="form-group"><label class="form-label" for="wm-job-city">City</label><select class="form-input" id="wm-job-city" required><option>Kombolcha</option><option>Dessie</option><option>Kemise</option><option>Harbu</option></select></div>
+            <div class="form-group"><label class="form-label" for="wm-job-type">Job Type</label><select class="form-input" id="wm-job-type"><option>Full-time</option><option>Part-time</option><option>Contract</option><option>Remote</option></select></div>
+          </div>
+          <div class="form-group"><label class="form-label" for="wm-job-salary">Salary / ደመወዝ</label><input class="form-input" id="wm-job-salary" placeholder="e.g. 8,000 Br / Negotiable" maxlength="80"></div>
+          <div class="form-group"><label class="form-label" for="wm-job-phone">Contact Phone (for Call)</label><input class="form-input" id="wm-job-phone" type="tel" required placeholder="09XXXXXXXX" maxlength="40"></div>
+          <div class="form-group"><label class="form-label" for="wm-job-telegram">Telegram Username or Link (optional)</label><input class="form-input" id="wm-job-telegram" placeholder="@username" maxlength="120"></div>
+          <div class="form-group"><label class="form-label" for="wm-job-tiktok">TikTok Link (optional)</label><input class="form-input" id="wm-job-tiktok" maxlength="200"></div>
+          <div class="form-group"><label class="form-label" for="wm-job-instagram">Instagram Link (optional)</label><input class="form-input" id="wm-job-instagram" maxlength="200"></div>
+          <div class="form-group"><label class="form-label" for="wm-job-desc">Job Description &amp; Requirements</label><textarea class="form-input" id="wm-job-desc" rows="4" style="height:auto;padding:10px" required maxlength="1500"></textarea></div>
+          <button class="btn-red full" type="submit" id="wm-job-submit-btn">Publish Job</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOB DETAIL MODAL -->
+  <div class="modal-backdrop" id="modal-job-detail">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong id="job-detail-head">Job Details</strong>
+        <button type="button" class="modal-x" data-close="modal-job-detail">✕</button>
+      </div>
+      <div class="modal-body" id="job-detail-body"></div>
+    </div>
+  </div>
+
+  <!-- OWNER VISUAL TEXT / FONT / COLOR / BORDER EDITOR MODAL -->
+  <div class="modal-backdrop" id="modal-visual-editor">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong>✏️ Edit Element Style &amp; Text</strong>
+        <button type="button" class="modal-x" data-close="modal-visual-editor">✕</button>
+      </div>
+      <div class="modal-body" id="ve-body"></div>
+    </div>
+  </div>
+
+  <!-- OWNER STORE SETTINGS & GLOBAL THEME EDITOR MODAL -->
+  <div class="modal-backdrop" id="modal-store-settings">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <strong>⚙️ Store Settings &amp; Global Design</strong>
+        <button type="button" class="modal-x" data-close="modal-store-settings">✕</button>
+      </div>
+      <div class="modal-body" id="ss-body"></div>
+    </div>
+  </div>
+
   <div class="toast" id="toast"></div>
 
   <script>
@@ -2520,9 +2798,9 @@
       telegramChatId: "",                         // Paste your Telegram chat/channel ID here
       adminPin: "2026",
       partnerPins: { "abudi-perfume": "1111", "abudi-menswear": "2222", "abudi-pc": "3333" },
-      accountName: "Wollo Market",
+      accountName: "Abdelfetah Suleyman",
       telebirrNumber: "0990120100",
-      cbeAccount: "1000 66 82 93 763",
+      cbeAccount: "1000668293763",
       phone: "0990120100",
       deliveryFee: 200,                           // Upfront delivery fee in Birr
       deliveryTime: {
@@ -2572,68 +2850,7 @@
             name: { en: "Maza Mall", am: "ማዛ ሞል", om: "Maza Mall" },
             bgImage: "kombolcha-mazamall.jpg", logoImage: "kombolcha-mazamall-logo.jpg",
             gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)",
-            shops: [
-              {
-                id: "kombolcha-mazamall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "kombolcha-mazamall-shop-01.jpg", logoImage: "kombolcha-mazamall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-mazamall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "kombolcha-mazamall-shop-02.jpg", logoImage: "kombolcha-mazamall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-mazamall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "kombolcha-mazamall-shop-03.jpg", logoImage: "kombolcha-mazamall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-mazamall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "kombolcha-mazamall-shop-04.jpg", logoImage: "kombolcha-mazamall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-mazamall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "kombolcha-mazamall-shop-05.jpg", logoImage: "kombolcha-mazamall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-mazamall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "kombolcha-mazamall-shop-06.jpg", logoImage: "kombolcha-mazamall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-mazamall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "kombolcha-mazamall-shop-07.jpg", logoImage: "kombolcha-mazamall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-mazamall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "kombolcha-mazamall-shop-08.jpg", logoImage: "kombolcha-mazamall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-mazamall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "kombolcha-mazamall-shop-09.jpg", logoImage: "kombolcha-mazamall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-mazamall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "kombolcha-mazamall-shop-10.jpg", logoImage: "kombolcha-mazamall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 2: Family Tower (ፋሚሊ ታወር) ---
@@ -2642,68 +2859,7 @@
             name: { en: "Family Tower", am: "ፋሚሊ ታወር", om: "Family Tower" },
             bgImage: "kombolcha-familytower.jpg", logoImage: "kombolcha-familytower-logo.jpg",
             gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)",
-            shops: [
-              {
-                id: "kombolcha-familytower-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "kombolcha-familytower-shop-01.jpg", logoImage: "kombolcha-familytower-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-familytower-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "kombolcha-familytower-shop-02.jpg", logoImage: "kombolcha-familytower-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-familytower-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "kombolcha-familytower-shop-03.jpg", logoImage: "kombolcha-familytower-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-familytower-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "kombolcha-familytower-shop-04.jpg", logoImage: "kombolcha-familytower-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-familytower-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "kombolcha-familytower-shop-05.jpg", logoImage: "kombolcha-familytower-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-familytower-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "kombolcha-familytower-shop-06.jpg", logoImage: "kombolcha-familytower-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-familytower-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "kombolcha-familytower-shop-07.jpg", logoImage: "kombolcha-familytower-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-familytower-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "kombolcha-familytower-shop-08.jpg", logoImage: "kombolcha-familytower-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-familytower-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "kombolcha-familytower-shop-09.jpg", logoImage: "kombolcha-familytower-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-familytower-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "kombolcha-familytower-shop-10.jpg", logoImage: "kombolcha-familytower-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 3: Fun Building (ፈን ህንጻ) ---
@@ -2712,68 +2868,7 @@
             name: { en: "Fun Building", am: "ፈን ህንጻ", om: "Fun Building" },
             bgImage: "kombolcha-funbuilding.jpg", logoImage: "kombolcha-funbuilding-logo.jpg",
             gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)",
-            shops: [
-              {
-                id: "kombolcha-funbuilding-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "kombolcha-funbuilding-shop-01.jpg", logoImage: "kombolcha-funbuilding-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-funbuilding-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "kombolcha-funbuilding-shop-02.jpg", logoImage: "kombolcha-funbuilding-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-funbuilding-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "kombolcha-funbuilding-shop-03.jpg", logoImage: "kombolcha-funbuilding-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-funbuilding-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "kombolcha-funbuilding-shop-04.jpg", logoImage: "kombolcha-funbuilding-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-funbuilding-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "kombolcha-funbuilding-shop-05.jpg", logoImage: "kombolcha-funbuilding-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-funbuilding-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "kombolcha-funbuilding-shop-06.jpg", logoImage: "kombolcha-funbuilding-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-funbuilding-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "kombolcha-funbuilding-shop-07.jpg", logoImage: "kombolcha-funbuilding-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-funbuilding-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "kombolcha-funbuilding-shop-08.jpg", logoImage: "kombolcha-funbuilding-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-funbuilding-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "kombolcha-funbuilding-shop-09.jpg", logoImage: "kombolcha-funbuilding-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-funbuilding-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "kombolcha-funbuilding-shop-10.jpg", logoImage: "kombolcha-funbuilding-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 4: Mina Mall (ሚና ሞል) ---
@@ -2782,68 +2877,7 @@
             name: { en: "Mina Mall", am: "ሚና ሞል", om: "Mina Mall" },
             bgImage: "kombolcha-minamall.jpg", logoImage: "kombolcha-minamall-logo.jpg",
             gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)",
-            shops: [
-              {
-                id: "kombolcha-minamall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "kombolcha-minamall-shop-01.jpg", logoImage: "kombolcha-minamall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-minamall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "kombolcha-minamall-shop-02.jpg", logoImage: "kombolcha-minamall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-minamall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "kombolcha-minamall-shop-03.jpg", logoImage: "kombolcha-minamall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-minamall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "kombolcha-minamall-shop-04.jpg", logoImage: "kombolcha-minamall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-minamall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "kombolcha-minamall-shop-05.jpg", logoImage: "kombolcha-minamall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-minamall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "kombolcha-minamall-shop-06.jpg", logoImage: "kombolcha-minamall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-minamall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "kombolcha-minamall-shop-07.jpg", logoImage: "kombolcha-minamall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-minamall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "kombolcha-minamall-shop-08.jpg", logoImage: "kombolcha-minamall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-minamall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "kombolcha-minamall-shop-09.jpg", logoImage: "kombolcha-minamall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-minamall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "kombolcha-minamall-shop-10.jpg", logoImage: "kombolcha-minamall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 5: Fikir Mall (ፍቅር ሞል) ---
@@ -2852,68 +2886,7 @@
             name: { en: "Fikir Mall", am: "ፍቅር ሞል", om: "Fikir Mall" },
             bgImage: "kombolcha-fikirmall.jpg", logoImage: "kombolcha-fikirmall-logo.jpg",
             gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)",
-            shops: [
-              {
-                id: "kombolcha-fikirmall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "kombolcha-fikirmall-shop-01.jpg", logoImage: "kombolcha-fikirmall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-fikirmall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "kombolcha-fikirmall-shop-02.jpg", logoImage: "kombolcha-fikirmall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-fikirmall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "kombolcha-fikirmall-shop-03.jpg", logoImage: "kombolcha-fikirmall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-fikirmall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "kombolcha-fikirmall-shop-04.jpg", logoImage: "kombolcha-fikirmall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-fikirmall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "kombolcha-fikirmall-shop-05.jpg", logoImage: "kombolcha-fikirmall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-fikirmall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "kombolcha-fikirmall-shop-06.jpg", logoImage: "kombolcha-fikirmall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-fikirmall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "kombolcha-fikirmall-shop-07.jpg", logoImage: "kombolcha-fikirmall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-fikirmall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "kombolcha-fikirmall-shop-08.jpg", logoImage: "kombolcha-fikirmall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-fikirmall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "kombolcha-fikirmall-shop-09.jpg", logoImage: "kombolcha-fikirmall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-fikirmall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "kombolcha-fikirmall-shop-10.jpg", logoImage: "kombolcha-fikirmall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 6: Awash Mall (አዋሽ ሞል) ---
@@ -2922,68 +2895,7 @@
             name: { en: "Awash Mall", am: "አዋሽ ሞል", om: "Awash Mall" },
             bgImage: "kombolcha-awashmall.jpg", logoImage: "kombolcha-awashmall-logo.jpg",
             gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)",
-            shops: [
-              {
-                id: "kombolcha-awashmall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "kombolcha-awashmall-shop-01.jpg", logoImage: "kombolcha-awashmall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-awashmall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "kombolcha-awashmall-shop-02.jpg", logoImage: "kombolcha-awashmall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-awashmall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "kombolcha-awashmall-shop-03.jpg", logoImage: "kombolcha-awashmall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-awashmall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "kombolcha-awashmall-shop-04.jpg", logoImage: "kombolcha-awashmall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-awashmall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "kombolcha-awashmall-shop-05.jpg", logoImage: "kombolcha-awashmall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-awashmall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "kombolcha-awashmall-shop-06.jpg", logoImage: "kombolcha-awashmall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-awashmall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "kombolcha-awashmall-shop-07.jpg", logoImage: "kombolcha-awashmall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-awashmall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "kombolcha-awashmall-shop-08.jpg", logoImage: "kombolcha-awashmall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-awashmall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "kombolcha-awashmall-shop-09.jpg", logoImage: "kombolcha-awashmall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              },
-              {
-                id: "kombolcha-awashmall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "kombolcha-awashmall-shop-10.jpg", logoImage: "kombolcha-awashmall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #991B1B 0%, #18181B 100%)"
-              }
-            ]
+            shops: []
           }
         ],
         // --- Kombolcha Local Shops ---
@@ -3004,68 +2916,7 @@
             name: { en: "Seid Yasin Mall", am: "ሰይድ ያሲን ሞል", om: "Seid Yasin Mall" },
             bgImage: "dessie-seidyasinmall.jpg", logoImage: "dessie-seidyasinmall-logo.jpg",
             gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)",
-            shops: [
-              {
-                id: "dessie-seidyasinmall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "dessie-seidyasinmall-shop-01.jpg", logoImage: "dessie-seidyasinmall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-seidyasinmall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "dessie-seidyasinmall-shop-02.jpg", logoImage: "dessie-seidyasinmall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-seidyasinmall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "dessie-seidyasinmall-shop-03.jpg", logoImage: "dessie-seidyasinmall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-seidyasinmall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "dessie-seidyasinmall-shop-04.jpg", logoImage: "dessie-seidyasinmall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-seidyasinmall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "dessie-seidyasinmall-shop-05.jpg", logoImage: "dessie-seidyasinmall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-seidyasinmall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "dessie-seidyasinmall-shop-06.jpg", logoImage: "dessie-seidyasinmall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-seidyasinmall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "dessie-seidyasinmall-shop-07.jpg", logoImage: "dessie-seidyasinmall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-seidyasinmall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "dessie-seidyasinmall-shop-08.jpg", logoImage: "dessie-seidyasinmall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-seidyasinmall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "dessie-seidyasinmall-shop-09.jpg", logoImage: "dessie-seidyasinmall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-seidyasinmall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "dessie-seidyasinmall-shop-10.jpg", logoImage: "dessie-seidyasinmall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 2: Mugad Building (ሙጋድ ህንጻ) ---
@@ -3074,68 +2925,7 @@
             name: { en: "Mugad Building", am: "ሙጋድ ህንጻ", om: "Mugad Building" },
             bgImage: "dessie-mugadbuilding.jpg", logoImage: "dessie-mugadbuilding-logo.jpg",
             gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)",
-            shops: [
-              {
-                id: "dessie-mugadbuilding-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "dessie-mugadbuilding-shop-01.jpg", logoImage: "dessie-mugadbuilding-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-mugadbuilding-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "dessie-mugadbuilding-shop-02.jpg", logoImage: "dessie-mugadbuilding-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-mugadbuilding-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "dessie-mugadbuilding-shop-03.jpg", logoImage: "dessie-mugadbuilding-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-mugadbuilding-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "dessie-mugadbuilding-shop-04.jpg", logoImage: "dessie-mugadbuilding-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-mugadbuilding-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "dessie-mugadbuilding-shop-05.jpg", logoImage: "dessie-mugadbuilding-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-mugadbuilding-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "dessie-mugadbuilding-shop-06.jpg", logoImage: "dessie-mugadbuilding-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-mugadbuilding-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "dessie-mugadbuilding-shop-07.jpg", logoImage: "dessie-mugadbuilding-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-mugadbuilding-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "dessie-mugadbuilding-shop-08.jpg", logoImage: "dessie-mugadbuilding-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-mugadbuilding-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "dessie-mugadbuilding-shop-09.jpg", logoImage: "dessie-mugadbuilding-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-mugadbuilding-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "dessie-mugadbuilding-shop-10.jpg", logoImage: "dessie-mugadbuilding-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 3: Eman Building (ኢማን ህንጻ) ---
@@ -3144,68 +2934,7 @@
             name: { en: "Eman Building", am: "ኢማን ህንጻ", om: "Eman Building" },
             bgImage: "dessie-emanbuilding.jpg", logoImage: "dessie-emanbuilding-logo.jpg",
             gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)",
-            shops: [
-              {
-                id: "dessie-emanbuilding-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "dessie-emanbuilding-shop-01.jpg", logoImage: "dessie-emanbuilding-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-emanbuilding-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "dessie-emanbuilding-shop-02.jpg", logoImage: "dessie-emanbuilding-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-emanbuilding-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "dessie-emanbuilding-shop-03.jpg", logoImage: "dessie-emanbuilding-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-emanbuilding-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "dessie-emanbuilding-shop-04.jpg", logoImage: "dessie-emanbuilding-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-emanbuilding-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "dessie-emanbuilding-shop-05.jpg", logoImage: "dessie-emanbuilding-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-emanbuilding-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "dessie-emanbuilding-shop-06.jpg", logoImage: "dessie-emanbuilding-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-emanbuilding-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "dessie-emanbuilding-shop-07.jpg", logoImage: "dessie-emanbuilding-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-emanbuilding-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "dessie-emanbuilding-shop-08.jpg", logoImage: "dessie-emanbuilding-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-emanbuilding-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "dessie-emanbuilding-shop-09.jpg", logoImage: "dessie-emanbuilding-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-emanbuilding-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "dessie-emanbuilding-shop-10.jpg", logoImage: "dessie-emanbuilding-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 4: Wub Mall (ውብ ሞል) ---
@@ -3214,68 +2943,7 @@
             name: { en: "Wub Mall", am: "ውብ ሞል", om: "Wub Mall" },
             bgImage: "dessie-wubmall.jpg", logoImage: "dessie-wubmall-logo.jpg",
             gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)",
-            shops: [
-              {
-                id: "dessie-wubmall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "dessie-wubmall-shop-01.jpg", logoImage: "dessie-wubmall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-wubmall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "dessie-wubmall-shop-02.jpg", logoImage: "dessie-wubmall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-wubmall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "dessie-wubmall-shop-03.jpg", logoImage: "dessie-wubmall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-wubmall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "dessie-wubmall-shop-04.jpg", logoImage: "dessie-wubmall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-wubmall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "dessie-wubmall-shop-05.jpg", logoImage: "dessie-wubmall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-wubmall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "dessie-wubmall-shop-06.jpg", logoImage: "dessie-wubmall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-wubmall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "dessie-wubmall-shop-07.jpg", logoImage: "dessie-wubmall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-wubmall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "dessie-wubmall-shop-08.jpg", logoImage: "dessie-wubmall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-wubmall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "dessie-wubmall-shop-09.jpg", logoImage: "dessie-wubmall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-wubmall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "dessie-wubmall-shop-10.jpg", logoImage: "dessie-wubmall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 5: Chew Tera Mall (ጨው ተራ ሞል) ---
@@ -3284,68 +2952,7 @@
             name: { en: "Chew Tera Mall", am: "ጨው ተራ ሞል", om: "Chew Tera Mall" },
             bgImage: "dessie-chewteramall.jpg", logoImage: "dessie-chewteramall-logo.jpg",
             gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)",
-            shops: [
-              {
-                id: "dessie-chewteramall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "dessie-chewteramall-shop-01.jpg", logoImage: "dessie-chewteramall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-chewteramall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "dessie-chewteramall-shop-02.jpg", logoImage: "dessie-chewteramall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-chewteramall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "dessie-chewteramall-shop-03.jpg", logoImage: "dessie-chewteramall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-chewteramall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "dessie-chewteramall-shop-04.jpg", logoImage: "dessie-chewteramall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-chewteramall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "dessie-chewteramall-shop-05.jpg", logoImage: "dessie-chewteramall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-chewteramall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "dessie-chewteramall-shop-06.jpg", logoImage: "dessie-chewteramall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-chewteramall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "dessie-chewteramall-shop-07.jpg", logoImage: "dessie-chewteramall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-chewteramall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "dessie-chewteramall-shop-08.jpg", logoImage: "dessie-chewteramall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-chewteramall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "dessie-chewteramall-shop-09.jpg", logoImage: "dessie-chewteramall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-chewteramall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "dessie-chewteramall-shop-10.jpg", logoImage: "dessie-chewteramall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 6: Andnet Mall (አንድነት ሞል) ---
@@ -3354,68 +2961,7 @@
             name: { en: "Andnet Mall", am: "አንድነት ሞል", om: "Andnet Mall" },
             bgImage: "dessie-andnetmall.jpg", logoImage: "dessie-andnetmall-logo.jpg",
             gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)",
-            shops: [
-              {
-                id: "dessie-andnetmall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "dessie-andnetmall-shop-01.jpg", logoImage: "dessie-andnetmall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-andnetmall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "dessie-andnetmall-shop-02.jpg", logoImage: "dessie-andnetmall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-andnetmall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "dessie-andnetmall-shop-03.jpg", logoImage: "dessie-andnetmall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-andnetmall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "dessie-andnetmall-shop-04.jpg", logoImage: "dessie-andnetmall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-andnetmall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "dessie-andnetmall-shop-05.jpg", logoImage: "dessie-andnetmall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-andnetmall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "dessie-andnetmall-shop-06.jpg", logoImage: "dessie-andnetmall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-andnetmall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "dessie-andnetmall-shop-07.jpg", logoImage: "dessie-andnetmall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-andnetmall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "dessie-andnetmall-shop-08.jpg", logoImage: "dessie-andnetmall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-andnetmall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "dessie-andnetmall-shop-09.jpg", logoImage: "dessie-andnetmall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              },
-              {
-                id: "dessie-andnetmall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "dessie-andnetmall-shop-10.jpg", logoImage: "dessie-andnetmall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #1E293B 0%, #0F172A 100%)"
-              }
-            ]
+            shops: []
           }
         ],
         // --- Dessie Local Shops ---
@@ -3436,68 +2982,7 @@
             name: { en: "Arefa Mall", am: "አረፋ ሞል", om: "Arefa Mall" },
             bgImage: "kemise-arefamall.jpg", logoImage: "kemise-arefamall-logo.jpg",
             gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)",
-            shops: [
-              {
-                id: "kemise-arefamall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "kemise-arefamall-shop-01.jpg", logoImage: "kemise-arefamall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-arefamall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "kemise-arefamall-shop-02.jpg", logoImage: "kemise-arefamall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-arefamall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "kemise-arefamall-shop-03.jpg", logoImage: "kemise-arefamall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-arefamall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "kemise-arefamall-shop-04.jpg", logoImage: "kemise-arefamall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-arefamall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "kemise-arefamall-shop-05.jpg", logoImage: "kemise-arefamall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-arefamall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "kemise-arefamall-shop-06.jpg", logoImage: "kemise-arefamall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-arefamall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "kemise-arefamall-shop-07.jpg", logoImage: "kemise-arefamall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-arefamall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "kemise-arefamall-shop-08.jpg", logoImage: "kemise-arefamall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-arefamall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "kemise-arefamall-shop-09.jpg", logoImage: "kemise-arefamall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-arefamall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "kemise-arefamall-shop-10.jpg", logoImage: "kemise-arefamall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              }
-            ]
+            shops: []
           },
 
           // --- Mall 2: Kemise Mall (ኬሚሴ ሞል) ---
@@ -3506,68 +2991,7 @@
             name: { en: "Kemise Mall", am: "ኬሚሴ ሞል", om: "Kemise Mall" },
             bgImage: "kemise-kemisemall.jpg", logoImage: "kemise-kemisemall-logo.jpg",
             gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)",
-            shops: [
-              {
-                id: "kemise-kemisemall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "kemise-kemisemall-shop-01.jpg", logoImage: "kemise-kemisemall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-kemisemall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "kemise-kemisemall-shop-02.jpg", logoImage: "kemise-kemisemall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-kemisemall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "kemise-kemisemall-shop-03.jpg", logoImage: "kemise-kemisemall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-kemisemall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "kemise-kemisemall-shop-04.jpg", logoImage: "kemise-kemisemall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-kemisemall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "kemise-kemisemall-shop-05.jpg", logoImage: "kemise-kemisemall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-kemisemall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "kemise-kemisemall-shop-06.jpg", logoImage: "kemise-kemisemall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-kemisemall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "kemise-kemisemall-shop-07.jpg", logoImage: "kemise-kemisemall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-kemisemall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "kemise-kemisemall-shop-08.jpg", logoImage: "kemise-kemisemall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-kemisemall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "kemise-kemisemall-shop-09.jpg", logoImage: "kemise-kemisemall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              },
-              {
-                id: "kemise-kemisemall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "kemise-kemisemall-shop-10.jpg", logoImage: "kemise-kemisemall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #064E3B 0%, #071A15 100%)"
-              }
-            ]
+            shops: []
           }
         ],
         // --- Kemise Local Shops ---
@@ -3588,68 +3012,7 @@
             name: { en: "Merkato Mall", am: "መርካቶ ሞል", om: "Merkato Mall" },
             bgImage: "harbu-merkatomall.jpg", logoImage: "harbu-merkatomall-logo.jpg",
             gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)",
-            shops: [
-              {
-                id: "harbu-merkatomall-shop-01", category: "tech", logo: "📱",
-                name: { en: "Tech Shop 01", am: "ቴክ ሱቅ 01", om: "Tech Shop 01" },
-                bgImage: "harbu-merkatomall-shop-01.jpg", logoImage: "harbu-merkatomall-shop-01-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              },
-              {
-                id: "harbu-merkatomall-shop-02", category: "tech", logo: "📲",
-                name: { en: "Mobile Shop 02", am: "ሞባይል ሱቅ 02", om: "Mobile Shop 02" },
-                bgImage: "harbu-merkatomall-shop-02.jpg", logoImage: "harbu-merkatomall-shop-02-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              },
-              {
-                id: "harbu-merkatomall-shop-03", category: "clothing", logo: "👕",
-                name: { en: "Clothing Shop 03", am: "ልብስ ሱቅ 03", om: "Clothing Shop 03" },
-                bgImage: "harbu-merkatomall-shop-03.jpg", logoImage: "harbu-merkatomall-shop-03-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              },
-              {
-                id: "harbu-merkatomall-shop-04", category: "clothing", logo: "👗",
-                name: { en: "Fashion Shop 04", am: "ፋሽን ሱቅ 04", om: "Fashion Shop 04" },
-                bgImage: "harbu-merkatomall-shop-04.jpg", logoImage: "harbu-merkatomall-shop-04-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              },
-              {
-                id: "harbu-merkatomall-shop-05", category: "food", logo: "☕",
-                name: { en: "Food Shop 05", am: "ምግብ ሱቅ 05", om: "Food Shop 05" },
-                bgImage: "harbu-merkatomall-shop-05.jpg", logoImage: "harbu-merkatomall-shop-05-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              },
-              {
-                id: "harbu-merkatomall-shop-06", category: "food", logo: "🍽️",
-                name: { en: "Cafe 06", am: "ካፌ 06", om: "Cafe 06" },
-                bgImage: "harbu-merkatomall-shop-06.jpg", logoImage: "harbu-merkatomall-shop-06-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              },
-              {
-                id: "harbu-merkatomall-shop-07", category: "home", logo: "🏠",
-                name: { en: "Home Shop 07", am: "የቤት ሱቅ 07", om: "Home Shop 07" },
-                bgImage: "harbu-merkatomall-shop-07.jpg", logoImage: "harbu-merkatomall-shop-07-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              },
-              {
-                id: "harbu-merkatomall-shop-08", category: "home", logo: "🛋️",
-                name: { en: "Furniture Shop 08", am: "ፈርኒቸር ሱቅ 08", om: "Furniture Shop 08" },
-                bgImage: "harbu-merkatomall-shop-08.jpg", logoImage: "harbu-merkatomall-shop-08-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              },
-              {
-                id: "harbu-merkatomall-shop-09", category: "tech", logo: "🎧",
-                name: { en: "Gadget Shop 09", am: "ጋጄት ሱቅ 09", om: "Gadget Shop 09" },
-                bgImage: "harbu-merkatomall-shop-09.jpg", logoImage: "harbu-merkatomall-shop-09-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              },
-              {
-                id: "harbu-merkatomall-shop-10", category: "clothing", logo: "👟",
-                name: { en: "Shoes Shop 10", am: "ጫማ ሱቅ 10", om: "Shoes Shop 10" },
-                bgImage: "harbu-merkatomall-shop-10.jpg", logoImage: "harbu-merkatomall-shop-10-logo.jpg",
-                gradient: "linear-gradient(135deg, #78350F 0%, #1C1917 100%)"
-              }
-            ]
+            shops: []
           }
         ],
         // --- Harbu Local Shops ---
@@ -4277,8 +3640,7 @@
         const token = String(STORE_CONFIG.telegramBotToken || "").trim();
         const chatId = String(STORE_CONFIG.telegramChatId || "").trim();
         if (!token || !chatId) {
-          toast(t("telegramFallback"));
-          openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
+          toast("Order saved! Telegram Bot is not configured yet (Owner: add Bot Token & Chat ID in Settings).");
           switchTab("orders");
           return false;
         }
@@ -4303,15 +3665,14 @@
         }
         const result = await response.json();
         if (!response.ok || !result || !result.ok) {
-          throw new Error((result && result.description) || "Telegram could not accept the order.");
+          throw new Error((result && result.description) || "Telegram Bot could not accept the order.");
         }
         toast(t("orderSent"));
         switchTab("orders");
         return true;
       } catch (error) {
-        console.error("Telegram order submission failed:", error);
-        toast(t("telegramFallback"));
-        openTG(fallbackUsername || STORE_CONFIG.telegramUsername, message);
+        console.error("Telegram Bot submission failed:", error);
+        toast("Order saved locally, but Bot sending failed. Check internet & Bot settings.");
         switchTab("orders");
         return false;
       }
@@ -4387,6 +3748,12 @@
       const sellLabels = { en: "Sell", am: "ሽጥ", om: "Gurguri" };
       const sellTitles = { en: "Sell Your Product", am: "ምርትዎን ይሽጡ", om: "Oomisha Kee Gurguri" };
       document.getElementById("bnav-sell").textContent = sellLabels[state.lang] || sellLabels.en;
+      const dSell = document.getElementById("dnav-sell"); if (dSell) dSell.textContent = sellLabels[state.lang] || sellLabels.en;
+      const jobLabels = { en: "Jobs", am: "ስራ", om: "Hojii" };
+      const jobTitles = { en: "Jobs", am: "ስራዎች", om: "Hojiiwwan" };
+      const bJobs = document.getElementById("bnav-jobs"); if (bJobs) bJobs.textContent = jobLabels[state.lang] || "Jobs";
+      const dJobs = document.getElementById("dnav-jobs"); if (dJobs) dJobs.textContent = jobLabels[state.lang] || "Jobs";
+      const jTitle = document.getElementById("wm-jobs-page-title"); if (jTitle) jTitle.textContent = jobTitles[state.lang] || "Jobs";
       document.getElementById("wm-sell-page-title").textContent = sellTitles[state.lang] || sellTitles.en;
       document.getElementById("wm-listed-title").textContent = ({en:"Listed by Sellers",am:"በሻጮች የተዘረዘሩ",om:"Kan Gurgurtootaan Tarreeffaman"})[state.lang] || "Listed by Sellers";
 
@@ -4454,9 +3821,9 @@
       track.innerHTML = PROMO_BANNERS.map(function (b, i) {
         const bg = `background:${b.gradient || "linear-gradient(135deg,#DC2626,#0F0F12)"};`;
         const overlay = b.bgImage ? `<img src="${b.bgImage}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;" onload="if(this.nextElementSibling && this.nextElementSibling.classList.contains('banner-scrim')) this.nextElementSibling.style.display='block';" onerror="this.style.display='none'; if(this.nextElementSibling && this.nextElementSibling.classList.contains('banner-scrim')) this.nextElementSibling.style.display='none';"><div class="banner-scrim" style="z-index:1;background:rgba(12, 12, 16, 0.14);"></div>` : "";
-        const adminTools = wmAdminUnlocked ? `<div class="wm-ad-card-tools"><button type="button" class="wm-ad-tool-btn" data-wm-ad-edit="${i}">Edit</button><button type="button" class="wm-ad-tool-btn danger" data-wm-ad-delete="${i}">Delete</button></div>` : "";
+        const adminTools = wmAdminUnlocked ? `<div class="wm-ad-card-tools"><button type="button" class="wm-ad-tool-btn" data-wm-move="banner|${i}|-1" title="Move Left">◀</button><button type="button" class="wm-ad-tool-btn" data-wm-move="banner|${i}|1" title="Move Right">▶</button><button type="button" class="wm-ad-tool-btn" data-wm-ad-edit="${i}">Edit</button><button type="button" class="wm-ad-tool-btn danger" data-wm-ad-delete="${i}">Delete</button></div>` : "";
         return `
-          <div class="banner-card" data-bidx="${i}" style="${bg}">
+          <div class="banner-card ${wmAdminUnlocked ? "wm-draggable-active" : ""}" ${wmAdminUnlocked ? `draggable="true" data-drag-group="banner" data-drag-idx="${i}"` : ""} data-bidx="${i}" style="${bg}">
             ${overlay}
             ${adminTools}
             <div class="banner-content">
@@ -4539,8 +3906,9 @@
     function cardHtml(p, isDeal) {
       const liked = state.wishlist.indexOf(p.id) !== -1;
       const hasImg = Array.isArray(p.images) && p.images.length > 0 && p.images[0];
+      const pIdx = PRODUCTS.findIndex(function (x) { return String(x.id) === String(p.id); });
       return `
-        <article class="${isDeal ? "deal-card" : "product-card"}" data-prod="${p.id}">
+        <article class="${isDeal ? "deal-card" : "product-card"} ${wmAdminUnlocked ? "wm-draggable-active" : ""}" ${wmAdminUnlocked ? `draggable="true" data-drag-group="product" data-drag-idx="${pIdx}"` : ""} data-prod="${p.id}">
           <div class="p-media" style="background:${p.gradient}">
             ${p.badge ? `<span class="p-badge">${p.badge}</span>` : ""}
             <button type="button" class="p-wish ${liked ? "liked" : ""}" data-wish="${p.id}" aria-label="Favorite">${HEART_ICO}</button>
@@ -4554,7 +3922,7 @@
             </div>
             <button type="button" class="p-add" data-add="${p.id}" aria-label="Add to Cart">${BAG_ICO}</button>
           </div>
-          ${wmAdminUnlocked ? `<div style="display:flex;gap:6px;margin-top:8px;"><button type="button" class="btn-outline" style="flex:1;padding:6px;font-size:11px" data-wm-main-edit="${p.id}">Edit</button><button type="button" class="btn-outline" style="flex:1;padding:6px;font-size:11px;color:var(--red)" data-wm-main-delete="${p.id}">Delete</button></div>` : ""}
+          ${wmAdminUnlocked ? `<div class="wm-reorder-bar"><button type="button" class="wm-reorder-btn" data-wm-move="product|${pIdx}|-1">◀</button><button type="button" class="wm-reorder-btn" data-wm-move="product|${pIdx}|1">▶</button></div><div style="display:flex;gap:6px;margin-top:6px;"><button type="button" class="btn-outline" style="flex:1;padding:6px;font-size:11px" data-wm-main-edit="${p.id}">Edit</button><button type="button" class="btn-outline" style="flex:1;padding:6px;font-size:11px;color:var(--red)" data-wm-main-delete="${p.id}">Delete</button></div>` : ""}
         </article>
       `;
     }
@@ -4666,11 +4034,13 @@
       const detail = type === "mall"
         ? (state.lang === "am" ? `${count} ሱቆችን ይመልከቱ ›` : state.lang === "om" ? `Suuqii ${count} Ilaali ›` : `View ${count} Shops ›`)
         : directoryCategoryLabel(item.category);
+      const cityRef = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
+      const mallIdx = (cityRef && cityRef.malls) ? cityRef.malls.findIndex(m => m.id === item.id) : -1;
       const mallTools = (type === "mall" && wmAdminUnlocked)
-        ? `<div class="wm-mall-admin-tools"><button type="button" data-wm-mall-edit="${item.id}">Edit</button><button type="button" class="danger" data-wm-mall-delete="${item.id}">Delete</button></div>`
+        ? `<div class="wm-mall-admin-tools"><button type="button" data-wm-move="mall|${mallIdx}|-1">◀</button><button type="button" data-wm-move="mall|${mallIdx}|1">▶</button><button type="button" data-wm-mall-edit="${item.id}">Edit</button><button type="button" class="danger" data-wm-mall-delete="${item.id}">Delete</button></div>`
         : "";
 
-      return `<div class="directory-card">
+      return `<div class="directory-card ${(type === "mall" && wmAdminUnlocked) ? "wm-draggable-active" : ""}" ${(type === "mall" && wmAdminUnlocked) ? `draggable="true" data-drag-group="mall" data-drag-idx="${mallIdx}"` : ""}>
         <button type="button" style="width:100%;text-align:left;color:inherit;display:flex;flex-direction:column;flex:1;" data-directory-${type}="${item.id}">
           <span class="directory-photo" style="--directory-gradient:${gradient}">${photo}</span>
           <span class="directory-card-info"><span class="directory-meta"><span class="directory-name">${cityText(item.name)}</span><span class="directory-detail">${detail}</span></span></span>
@@ -4693,12 +4063,8 @@
       }
 
       if (directoryState.view === "coming") {
-        const shop = directoryState.shopRef || {};
-        if (directoryState.mallId && shop && shop.shops !== undefined) { wmRenderMallPage(shop); return; }
-        body.innerHTML = `<button class="btn-outline directory-back" data-directory-back>${ui.back}</button>
-          <div class="directory-coming"><div class="directory-coming-icon">🏪</div><h3>${ui.coming}</h3>
-          <div style="font-size:17px;font-weight:800;margin-top:10px;">${cityText(shop.name)}</div><p>${ui.soon}</p></div>`;
-        return;
+        const mallObj = directoryState.shopRef || {};
+        if (directoryState.mallId && mallObj) { wmRenderMallPage(mallObj); return; }
       }
 
       const malls = city.malls || [];
@@ -5159,8 +4525,10 @@
           <div class="partner-products-grid">${store.products.map(function (it) {
             const hasImg = Boolean(it.image && it.image.trim());
             const thumbBg = it.gradient || store.gradient;
+            const ptIdx = store.products.findIndex(function (x) { return String(x.id) === String(it.id); });
+            const ptCanEdit = Boolean(wmPartnerUnlocked[store.id] || wmAdminUnlocked);
             return `
-              <div class="partner-product-card">
+              <div class="partner-product-card ${ptCanEdit ? "wm-draggable-active" : ""}" ${ptCanEdit ? `draggable="true" data-drag-group="partner-prod" data-drag-idx="${ptIdx}"` : ""}>
                 <div class="partner-product-image" style="background:${thumbBg};">
                   ${hasImg ? `<img src="${it.image}" alt="${it.name[state.lang] || it.name.en}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><span class="image-fallback" style="display:none">${svgIcon(it.icon || "cake", 28)}</span>` : svgIcon(it.icon || "cake", 28)}
                 </div><div class="partner-product-card-info">
@@ -5168,7 +4536,7 @@
                   <div style="font-size:12px;color:var(--text-secondary);">${it.desc[state.lang] || it.desc.en}</div>
                   <div style="font-size:15px;font-weight:900;color:var(--red);">${br(it.price)}</div>
                   <button type="button" class="btn-red" style="padding:8px 10px;font-size:12px;" data-pitem="${it.id}">${t("orderNow")}</button>
-                  ${(wmPartnerUnlocked[store.id] || wmAdminUnlocked) ? `<div style="display:flex;gap:5px;margin-top:6px"><button type="button" class="btn-outline" style="flex:1;padding:5px;font-size:10px" data-wm-partner-edit="${it.id}">Edit</button><button type="button" class="btn-outline" style="flex:1;padding:5px;font-size:10px;color:var(--red)" data-wm-partner-delete="${it.id}">Delete</button></div>` : ""}
+                  ${ptCanEdit ? `<div class="wm-reorder-bar"><button type="button" class="wm-reorder-btn" data-wm-move="partner-prod|${ptIdx}|-1">◀</button><button type="button" class="wm-reorder-btn" data-wm-move="partner-prod|${ptIdx}|1">▶</button></div><div style="display:flex;gap:5px;margin-top:5px"><button type="button" class="btn-outline" style="flex:1;padding:5px;font-size:10px" data-wm-partner-edit="${it.id}">Edit</button><button type="button" class="btn-outline" style="flex:1;padding:5px;font-size:10px;color:var(--red)" data-wm-partner-delete="${it.id}">Delete</button></div>` : ""}
                 </div>
               </div>`;
           }).join("")}</div>
@@ -5479,6 +4847,7 @@
       if (name === "orders") renderOrders();
       if (name === "profile") renderProfile();
       if (name === "sell") wmRenderListings();
+      if (name === "jobs") wmRenderJobs();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -5703,24 +5072,24 @@
     function wmRenderMallPage(mall) {
       const body = document.getElementById("city-modal-body");
       const allShops = wmGetAllShopsInMall(mall);
-      const shopCards = allShops.map(shop => {
+      const shopCards = allShops.map((shop, sIdx) => {
         const sName = typeof shop.name === "object" ? (shop.name[state.lang] || shop.name.en) : shop.name;
         const pCount = (shop.products || []).length;
-        const logoMarkup = shop.logo
-          ? `<img class="wm-mall-logo" src="${shop.logo}" alt="${wmEscape(sName)}" loading="lazy" onerror="this.style.display='none'">`
-          : `<div class="wm-mall-logo wm-mall-logo-fallback">${wmEscape(shop.fallbackEmoji || "🏪")}</div>`;
-        const ownerDel = wmAdminUnlocked
-          ? `<button type="button" class="btn-outline" style="padding:6px 10px;font-size:11px;color:var(--red);flex-shrink:0;" data-wm-delete-mall-shop="${wmEscape(shop.id)}">Delete</button>`
+        const photoMarkup = shop.logo
+          ? `<img src="${shop.logo}" alt="${wmEscape(sName)}" loading="lazy" onerror="this.style.display='none'">`
+          : `<span>${wmEscape(shop.fallbackEmoji || "🏪")}</span>`;
+        const ownerControls = wmAdminUnlocked
+          ? `<div class="wm-reorder-bar"><button type="button" class="wm-reorder-btn" data-wm-move="mall-shop|${sIdx}|-1">◀</button><button type="button" class="wm-reorder-btn" data-wm-move="mall-shop|${sIdx}|1">▶</button></div><button type="button" class="btn-outline full" style="padding:5px;font-size:10.5px;color:var(--red);margin-top:5px;" data-wm-delete-mall-shop="${wmEscape(shop.id)}">Delete</button>`
           : "";
         return `
-          <div class="wm-mall-shop-card" data-wm-open-shop="${wmEscape(mall.id)}|${wmEscape(shop.id)}">
-            ${logoMarkup}
-            <div class="wm-mall-shop-meta">
+          <div class="wm-mall-shop-grid-card ${wmAdminUnlocked ? "wm-draggable-active" : ""}" ${wmAdminUnlocked ? `draggable="true" data-drag-group="mall-shop" data-drag-idx="${sIdx}"` : ""} data-wm-open-shop="${wmEscape(mall.id)}|${wmEscape(shop.id)}">
+            <div class="wm-mall-shop-grid-photo">${photoMarkup}</div>
+            <div class="wm-mall-shop-grid-info">
               <h4>${wmEscape(sName)}</h4>
               <p>${wmEscape(shop.category || "")}${pCount ? " • " + pCount + " items" : ""}</p>
-              <p style="color:var(--red);font-weight:700;margin-top:4px;">${wmMallT("viewShop")}</p>
+              <p style="color:var(--red);font-weight:800;margin-top:auto;">${wmMallT("viewShop")}</p>
+              ${ownerControls}
             </div>
-            ${ownerDel}
           </div>`;
       }).join("");
 
@@ -5730,7 +5099,7 @@
           <strong style="font-size:16px;font-weight:900;flex:1;text-align:center;">${cityText(mall.name)}</strong>
           <button type="button" class="wm-plus-btn" data-wm-create-shop="${wmEscape(mall.id)}" aria-label="${wmMallT("create")}">＋</button>
         </div>
-        ${shopCards || `<div class="wm-mall-empty">${wmMallT("noShops")}</div>`}
+        ${allShops.length ? `<div class="wm-mall-shops-grid">${shopCards}</div>` : `<div class="wm-mall-empty">${wmMallT("noShops")}</div>`}
       `;
     }
 
@@ -5745,15 +5114,15 @@
       const body = document.getElementById("city-modal-body");
       const sName = typeof shop.name === "object" ? (shop.name[state.lang] || shop.name.en) : shop.name;
       const tk = wmSafeUrl(shop.tiktok), tg = wmSafeUrl(shop.telegramLink);
-      const products = (shop.products || []).map(prod => `
-        <article class="wm-mall-product">
+      const products = (shop.products || []).map((prod, prIdx) => `
+        <article class="wm-mall-product ${wmAdminUnlocked ? "wm-draggable-active" : ""}" ${wmAdminUnlocked ? `draggable="true" data-drag-group="mall-prod" data-drag-idx="${prIdx}"` : ""}>
           <div class="wm-sell-card-media" style="height:125px;margin-bottom:8px;">
             ${wmProductPhotos(prod).length ? `<img src="${wmProductPhotos(prod)[0]}" alt="${wmEscape(prod.name)}" loading="lazy">` : `<span style="font-size:28px;">📦</span>`}
           </div>
           <b style="font-size:13px;display:block;">${wmEscape(prod.name)}</b>
           <div class="p-price" style="margin-top:3px;">${Number(prod.price || 0).toLocaleString()} Br</div>
           ${prod.description ? `<p>${wmEscape(prod.description)}</p>` : ""}
-          ${wmAdminUnlocked ? `<button type="button" class="btn-outline full" data-wm-delete-mall-product="${wmEscape(shop.id)}|${wmEscape(prod.id)}" style="margin-top:8px;padding:6px;font-size:11px;color:var(--red);">Delete</button>` : ""}
+          ${wmAdminUnlocked ? `<div class="wm-reorder-bar"><button type="button" class="wm-reorder-btn" data-wm-move="mall-prod|${prIdx}|-1">◀</button><button type="button" class="wm-reorder-btn" data-wm-move="mall-prod|${prIdx}|1">▶</button></div><button type="button" class="btn-outline full" data-wm-delete-mall-product="${wmEscape(shop.id)}|${wmEscape(prod.id)}" style="margin-top:6px;padding:6px;font-size:11px;color:var(--red);">Delete</button>` : ""}
         </article>`).join("");
 
       body.innerHTML = `
@@ -6004,6 +5373,26 @@
       }).join("") : `<div class="directory-empty" style="grid-column:1/-1">No seller listings yet. Tap + above to sell your product!</div>`;
     }
 
+    function wmNormTgUrl(val) {
+      const s = String(val || "").trim();
+      if (!s) return "";
+      if (/^https?:\/\//i.test(s)) return s;
+      return "https://t.me/" + encodeURIComponent(s.replace(/^@/, ""));
+    }
+
+    function wmBuildContactButtons(phone, tg, tiktok, insta) {
+      const ph = String(phone || "").replace(/[^+\d]/g, "");
+      const tgUrl = wmNormTgUrl(tg);
+      const tkUrl = wmSafeUrl(tiktok);
+      const igUrl = wmSafeUrl(insta);
+      let btns = "";
+      if (ph) btns += `<a href="tel:${wmEscape(ph)}" class="wm-contact-btn call">📞 Call</a>`;
+      if (tgUrl) btns += `<a href="${wmEscape(tgUrl)}" target="_blank" rel="noopener noreferrer" class="wm-contact-btn tg">✈️ Telegram</a>`;
+      if (tkUrl) btns += `<a href="${wmEscape(tkUrl)}" target="_blank" rel="noopener noreferrer" class="wm-contact-btn tiktok">🎵 TikTok</a>`;
+      if (igUrl) btns += `<a href="${wmEscape(igUrl)}" target="_blank" rel="noopener noreferrer" class="wm-contact-btn insta">📸 Instagram</a>`;
+      return btns ? `<div class="wm-contact-grid">${btns}</div>` : "";
+    }
+
     function wmOpenSellerDetail(id) {
       const item = wmListings.find(x => String(x.id) === String(id));
       if (!item) return;
@@ -6011,6 +5400,10 @@
       const imgsHtml = photos.length
         ? photos.map(src => `<img src="${src}" alt="${wmEscape(item.name)}" style="width:100%;max-height:240px;object-fit:cover;border-radius:14px;margin-bottom:10px;">`).join("")
         : "";
+      const phone = item.phone || item.contact || "";
+      const tg = item.telegram || (item.contact && item.contact.includes("@") ? item.contact : "");
+      const contactBtns = wmBuildContactButtons(phone, tg, item.tiktok, item.instagram);
+
       document.getElementById("seller-detail-head").textContent = item.name || "Product Details";
       document.getElementById("seller-detail-body").innerHTML = `
         ${imgsHtml}
@@ -6019,10 +5412,11 @@
         <div class="white-card" style="font-size:13px;line-height:1.7;">
           <div><strong>City:</strong> ${wmEscape(item.city || "")}</div>
           <div><strong>Seller:</strong> ${wmEscape(item.seller || "")}</div>
-          <div><strong>Contact:</strong> ${wmEscape(item.contact || "")}</div>
+          ${phone ? `<div><strong>Phone:</strong> ${wmEscape(phone)}</div>` : ""}
         </div>
-        ${item.description ? `<p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:14px;white-space:pre-line;">${wmEscape(item.description)}</p>` : ""}
-        <button type="button" class="btn-red full" data-copy="${wmEscape(item.contact || "")}">Copy Seller Contact</button>
+        ${item.description ? `<p style="font-size:13.5px;color:var(--text-secondary);line-height:1.6;margin-bottom:10px;white-space:pre-line;">${wmEscape(item.description)}</p>` : ""}
+        ${contactBtns}
+        ${wmAdminUnlocked ? `<button type="button" class="btn-outline full" style="margin-top:10px;" onclick="closeModal('modal-seller-detail');wmOpenSellFormModal('${wmEscape(item.id)}');">✏️ Edit Links &amp; Details</button>` : ""}
       `;
       openModal("modal-seller-detail");
     }
@@ -6041,7 +5435,10 @@
           document.getElementById("wm-sell-name").value = item.name || "";
           document.getElementById("wm-sell-price").value = item.price || 0;
           document.getElementById("wm-sell-seller").value = item.seller || "";
-          document.getElementById("wm-sell-contact").value = item.contact || "";
+          document.getElementById("wm-sell-phone").value = item.phone || item.contact || "";
+          document.getElementById("wm-sell-telegram").value = item.telegram || "";
+          document.getElementById("wm-sell-tiktok").value = item.tiktok || "";
+          document.getElementById("wm-sell-instagram").value = item.instagram || "";
           document.getElementById("wm-sell-city").value = item.city || "Kombolcha";
           document.getElementById("wm-sell-desc").value = item.description || "";
           wmPendingSellPhotos = wmProductPhotos(item);
@@ -6541,7 +5938,11 @@
           name: document.getElementById("wm-sell-name").value.trim(),
           price: Number(document.getElementById("wm-sell-price").value),
           seller: document.getElementById("wm-sell-seller").value.trim(),
-          contact: document.getElementById("wm-sell-contact").value.trim(),
+          phone: document.getElementById("wm-sell-phone").value.trim(),
+          contact: document.getElementById("wm-sell-phone").value.trim(),
+          telegram: document.getElementById("wm-sell-telegram").value.trim(),
+          tiktok: document.getElementById("wm-sell-tiktok").value.trim(),
+          instagram: document.getElementById("wm-sell-instagram").value.trim(),
           city: document.getElementById("wm-sell-city").value,
           photos,
           description: document.getElementById("wm-sell-desc").value.trim(),
@@ -6559,6 +5960,466 @@
       }
     });
 
+
+    /* =========================================================================
+       V2 ENGINES: JOBS PAGE, DRAG-AND-DROP REORDER, VISUAL EDITOR, STORE SETTINGS
+       ========================================================================= */
+    let wmJobs = readLS("wm_jobs", []);
+    let wmJobCityFilter = "all";
+    let wmVisualEditOn = false;
+    let wmSiteCustom = readLS("wm_site_custom", { theme: {}, elements: {} });
+
+    async function wmLoadV2Cloud() {
+      try {
+        const cloudJobs = await wmFirebaseFetch("/jobs.json");
+        if (Array.isArray(cloudJobs)) wmJobs = cloudJobs.filter(Boolean);
+        else if (cloudJobs && typeof cloudJobs === "object") wmJobs = Object.values(cloudJobs).filter(Boolean);
+        writeLS("wm_jobs", wmJobs);
+        wmRenderJobs();
+      } catch (e) {}
+
+      try {
+        const cloudCfg = await wmFirebaseFetch("/storeConfig.json");
+        if (cloudCfg && typeof cloudCfg === "object") {
+          Object.assign(STORE_CONFIG, cloudCfg);
+          writeLS("wm_store_config", STORE_CONFIG);
+          renderAll();
+        }
+      } catch (e) {
+        const localCfg = readLS("wm_store_config", null);
+        if (localCfg && typeof localCfg === "object") { Object.assign(STORE_CONFIG, localCfg); renderAll(); }
+      }
+
+      try {
+        const cloudCustom = await wmFirebaseFetch("/siteCustomizations.json");
+        if (cloudCustom && typeof cloudCustom === "object") {
+          wmSiteCustom = { theme: cloudCustom.theme || {}, elements: cloudCustom.elements || {} };
+          writeLS("wm_site_custom", wmSiteCustom);
+          wmApplySiteCustomizations();
+        }
+      } catch (e) { wmApplySiteCustomizations(); }
+    }
+
+    function wmSaveJobs() {
+      writeLS("wm_jobs", wmJobs);
+      return wmFirebaseFetch("/jobs.json", { method: "PUT", body: JSON.stringify(wmJobs) });
+    }
+    function wmSaveStoreConfig() {
+      writeLS("wm_store_config", STORE_CONFIG);
+      return wmFirebaseFetch("/storeConfig.json", { method: "PUT", body: JSON.stringify(STORE_CONFIG) });
+    }
+    function wmSaveSiteCustom() {
+      writeLS("wm_site_custom", wmSiteCustom);
+      return wmFirebaseFetch("/siteCustomizations.json", { method: "PUT", body: JSON.stringify(wmSiteCustom) });
+    }
+
+    /* --- JOBS RENDER & CRUD --- */
+    function wmRenderJobs() {
+      const root = document.getElementById("wm-jobs-root");
+      if (!root) return;
+      const filtered = wmJobs.filter(j => wmJobCityFilter === "all" || j.city === wmJobCityFilter);
+      if (!filtered.length) {
+        root.innerHTML = `<div class="directory-empty" style="grid-column:1/-1;">No jobs posted yet. Tap + above to post a job in Kombolcha, Dessie, Kemise, or Harbu!</div>`;
+        return;
+      }
+      root.innerHTML = filtered.map(job => {
+        const jIdx = wmJobs.findIndex(x => String(x.id) === String(job.id));
+        const ownerBtns = wmAdminUnlocked
+          ? `<div class="wm-reorder-bar"><button type="button" class="wm-reorder-btn" data-wm-move="job|${jIdx}|-1">◀</button><button type="button" class="wm-reorder-btn" data-wm-move="job|${jIdx}|1">▶</button></div><div style="display:flex;gap:6px;margin-top:6px;"><button type="button" class="btn-outline" style="flex:1;padding:6px;font-size:11px;" data-wm-edit-job="${wmEscape(job.id)}">Edit</button><button type="button" class="btn-outline" style="flex:1;padding:6px;font-size:11px;color:var(--red);" data-wm-delete-job="${wmEscape(job.id)}">Delete</button></div>`
+          : "";
+        return `
+          <article class="wm-job-card ${wmAdminUnlocked ? "wm-draggable-active" : ""}" ${wmAdminUnlocked ? `draggable="true" data-drag-group="job" data-drag-idx="${jIdx}"` : ""} data-wm-view-job="${wmEscape(job.id)}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+              <strong style="font-size:15px;font-weight:900;color:var(--text-primary);">${wmEscape(job.title)}</strong>
+              <span class="wm-job-badge">${wmEscape(job.type || "Full-time")}</span>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:var(--text-secondary);">${wmEscape(job.company)} • ${wmEscape(job.city)}</div>
+            ${job.salary ? `<div style="font-size:14px;font-weight:900;color:var(--red);">${wmEscape(job.salary)}</div>` : ""}
+            <div style="font-size:11.5px;color:var(--text-muted);">${wmEscape(job.date || "")}</div>
+            ${ownerBtns}
+          </article>`;
+      }).join("");
+    }
+
+    function wmOpenJobForm(editId) {
+      const form = document.getElementById("wm-job-form");
+      form.reset();
+      document.getElementById("wm-job-edit-id").value = editId || "";
+      if (editId) {
+        const j = wmJobs.find(x => String(x.id) === String(editId));
+        if (j) {
+          document.getElementById("job-modal-head").textContent = "Edit Job";
+          document.getElementById("wm-job-title").value = j.title || "";
+          document.getElementById("wm-job-company").value = j.company || "";
+          document.getElementById("wm-job-city").value = j.city || "Kombolcha";
+          document.getElementById("wm-job-type").value = j.type || "Full-time";
+          document.getElementById("wm-job-salary").value = j.salary || "";
+          document.getElementById("wm-job-phone").value = j.phone || "";
+          document.getElementById("wm-job-telegram").value = j.telegram || "";
+          document.getElementById("wm-job-tiktok").value = j.tiktok || "";
+          document.getElementById("wm-job-instagram").value = j.instagram || "";
+          document.getElementById("wm-job-desc").value = j.description || "";
+        }
+      } else {
+        document.getElementById("job-modal-head").textContent = "Post a Job / ስራ ይለጥፉ";
+      }
+      openModal("modal-job-form");
+    }
+
+    function wmOpenJobDetail(id) {
+      const j = wmJobs.find(x => String(x.id) === String(id));
+      if (!j) return;
+      document.getElementById("job-detail-head").textContent = j.title || "Job Details";
+      document.getElementById("job-detail-body").innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px;">
+          <h3 style="font-size:18px;font-weight:900;">${wmEscape(j.title)}</h3>
+          <span class="wm-job-badge">${wmEscape(j.type || "Full-time")}</span>
+        </div>
+        <div class="white-card" style="font-size:13px;line-height:1.7;">
+          <div><strong>Company / Employer:</strong> ${wmEscape(j.company)}</div>
+          <div><strong>City:</strong> ${wmEscape(j.city)}</div>
+          ${j.salary ? `<div><strong>Salary:</strong> <span style="color:var(--red);font-weight:800;">${wmEscape(j.salary)}</span></div>` : ""}
+          ${j.phone ? `<div><strong>Phone:</strong> ${wmEscape(j.phone)}</div>` : ""}
+        </div>
+        <p style="font-size:13.5px;color:var(--text-secondary);line-height:1.65;white-space:pre-line;margin-bottom:12px;">${wmEscape(j.description)}</p>
+        ${wmBuildContactButtons(j.phone, j.telegram, j.tiktok, j.instagram)}
+      `;
+      openModal("modal-job-detail");
+    }
+
+    /* --- REORDER / DRAG-AND-DROP ENGINE (ALL LISTS) --- */
+    async function wmReorderItem(group, fromIdx, toIdx) {
+      let arr = null;
+      let onSave = null;
+      if (group === "banner") {
+        arr = PROMO_BANNERS;
+        onSave = async () => { renderCarousel(); try { await wmSaveBanners(); } catch (e) {} };
+      } else if (group === "product") {
+        arr = PRODUCTS;
+        onSave = async () => { await wmSaveMainProducts(); };
+      } else if (group === "partner-prod" && state.partnerId && PARTNER_STORES[state.partnerId]) {
+        arr = PARTNER_STORES[state.partnerId].products;
+        onSave = async () => { await wmSavePartnerProducts(state.partnerId); };
+      } else if (group === "mall") {
+        const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
+        if (city && Array.isArray(city.malls)) {
+          arr = city.malls;
+          onSave = async () => { renderDirectory(); try { await wmSaveCityDirectory(); } catch (e) {} };
+        }
+      } else if (group === "mall-shop") {
+        const mallShopsForMall = wmMallShops.filter(s => s.mallId === directoryState.mallId);
+        if (fromIdx >= 0 && toIdx >= 0 && fromIdx < mallShopsForMall.length && toIdx < mallShopsForMall.length) {
+          const item = mallShopsForMall.splice(fromIdx, 1)[0];
+          mallShopsForMall.splice(toIdx, 0, item);
+          const others = wmMallShops.filter(s => s.mallId !== directoryState.mallId);
+          wmMallShops = [...mallShopsForMall, ...others];
+          const city = CITY_DIRECTORY.find(c => c.id === directoryState.cityId);
+          const mall = city && (city.malls || []).find(m => m.id === directoryState.mallId);
+          if (mall) wmRenderMallPage(mall);
+          try { await wmSaveMallShops(); } catch (e) {}
+          wmToastMsg("Order updated!");
+        }
+        return;
+      } else if (group === "mall-prod") {
+        const shop = wmMallShops.find(s => s.id === directoryState.activeShopId);
+        if (shop && Array.isArray(shop.products)) {
+          arr = shop.products;
+          onSave = async () => { wmRenderShopDetail(shop.mallId, shop.id); try { await wmSaveMallShops(); } catch (e) {} };
+        }
+      } else if (group === "job") {
+        arr = wmJobs;
+        onSave = async () => { wmRenderJobs(); try { await wmSaveJobs(); } catch (e) {} };
+      }
+
+      if (!arr || fromIdx === toIdx || fromIdx < 0 || toIdx < 0 || fromIdx >= arr.length || toIdx >= arr.length) return;
+      const moved = arr.splice(fromIdx, 1)[0];
+      arr.splice(toIdx, 0, moved);
+      if (onSave) await onSave();
+      wmToastMsg("Position updated!");
+    }
+
+    let wmDragState = { group: null, fromIdx: -1 };
+    document.addEventListener("dragstart", e => {
+      const el = e.target.closest("[data-drag-group]");
+      if (!el) return;
+      wmDragState.group = el.getAttribute("data-drag-group");
+      wmDragState.fromIdx = Number(el.getAttribute("data-drag-idx"));
+      el.classList.add("wm-dragging");
+      if (e.dataTransfer) e.dataTransfer.effectAllowed = "move";
+    });
+    document.addEventListener("dragover", e => {
+      const el = e.target.closest("[data-drag-group]");
+      if (!el || el.getAttribute("data-drag-group") !== wmDragState.group) return;
+      e.preventDefault();
+      el.classList.add("wm-drag-over");
+    });
+    document.addEventListener("dragleave", e => {
+      const el = e.target.closest("[data-drag-group]");
+      if (el) el.classList.remove("wm-drag-over");
+    });
+    document.addEventListener("drop", e => {
+      const el = e.target.closest("[data-drag-group]");
+      document.querySelectorAll(".wm-drag-over,.wm-dragging").forEach(x => x.classList.remove("wm-drag-over", "wm-dragging"));
+      if (!el || el.getAttribute("data-drag-group") !== wmDragState.group) return;
+      e.preventDefault();
+      const toIdx = Number(el.getAttribute("data-drag-idx"));
+      wmReorderItem(wmDragState.group, wmDragState.fromIdx, toIdx);
+      wmDragState = { group: null, fromIdx: -1 };
+    });
+    document.addEventListener("dragend", () => {
+      document.querySelectorAll(".wm-drag-over,.wm-dragging").forEach(x => x.classList.remove("wm-drag-over", "wm-dragging"));
+      wmDragState = { group: null, fromIdx: -1 };
+    });
+
+    /* --- VISUAL TEXT / FONT / COLOR / BORDER EDITOR & STORE SETTINGS --- */
+    function wmApplySiteCustomizations() {
+      const th = (wmSiteCustom && wmSiteCustom.theme) || {};
+      if (th.primaryColor) document.documentElement.style.setProperty("--red", th.primaryColor);
+      if (th.fontFamily) document.documentElement.style.fontFamily = th.fontFamily;
+      if (th.borderColor) document.documentElement.style.setProperty("--border", th.borderColor);
+
+      const els = (wmSiteCustom && wmSiteCustom.elements) || {};
+      Object.keys(els).forEach(key => {
+        const el = document.getElementById(key);
+        if (!el) return;
+        const cfg = els[key];
+        if (cfg.text !== undefined && cfg.text !== null && el.children.length === 0) el.textContent = cfg.text;
+        if (cfg.fontFamily) el.style.fontFamily = cfg.fontFamily;
+        if (cfg.fontSize) el.style.fontSize = cfg.fontSize + "px";
+        if (cfg.color) el.style.color = cfg.color;
+        if (cfg.bgColor) el.style.backgroundColor = cfg.bgColor;
+        if (cfg.borderWidth && Number(cfg.borderWidth) > 0) {
+          el.style.border = `${cfg.borderWidth}px ${cfg.borderStyle || "solid"} ${cfg.borderColor || "#DC2626"}`;
+        }
+        if (cfg.borderRadius !== undefined && cfg.borderRadius !== "") el.style.borderRadius = cfg.borderRadius + "px";
+      });
+    }
+
+    function wmOpenVisualElementEditor(el) {
+      if (!el) return;
+      if (!el.id) {
+        const tag = el.tagName.toLowerCase();
+        const idx = Array.from(document.querySelectorAll(tag)).indexOf(el);
+        el.id = "wm-el-" + tag + "-" + idx;
+      }
+      const key = el.id;
+      const cur = (wmSiteCustom.elements && wmSiteCustom.elements[key]) || {};
+      const cs = window.getComputedStyle(el);
+      const isLeaf = el.children.length === 0;
+
+      document.getElementById("ve-body").innerHTML = `
+        <form id="wm-ve-form">
+          ${isLeaf ? `<div class="form-group"><label class="form-label">Text Content</label><input class="form-input" id="ve-text" value="${wmEscape(el.textContent.trim())}"></div>` : ""}
+          <div class="form-group">
+            <label class="form-label">Font Family</label>
+            <select class="form-input" id="ve-font">
+              <option value="">Default</option>
+              <option value="Georgia, serif" ${cur.fontFamily === "Georgia, serif" ? "selected" : ""}>Classic Serif</option>
+              <option value="'Courier New', monospace" ${cur.fontFamily === "'Courier New', monospace" ? "selected" : ""}>Monospace</option>
+              <option value="'Trebuchet MS', sans-serif" ${cur.fontFamily === "'Trebuchet MS', sans-serif" ? "selected" : ""}>Modern Sans</option>
+              <option value="Impact, Charcoal, sans-serif" ${cur.fontFamily === "Impact, Charcoal, sans-serif" ? "selected" : ""}>Bold Display</option>
+            </select>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div class="form-group"><label class="form-label">Font Size (px)</label><input class="form-input" id="ve-size" type="number" min="8" max="60" value="${cur.fontSize || Math.round(parseFloat(cs.fontSize) || 14)}"></div>
+            <div class="form-group"><label class="form-label">Text Color</label><input class="form-input" id="ve-color" type="color" style="padding:4px;" value="${cur.color || "#DC2626"}"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div class="form-group"><label class="form-label">Background Color (optional)</label><input class="form-input" id="ve-bg" placeholder="#FFFFFF or transparent" value="${wmEscape(cur.bgColor || "")}"></div>
+            <div class="form-group"><label class="form-label">Border Radius (px)</label><input class="form-input" id="ve-radius" type="number" min="0" max="50" value="${cur.borderRadius || ""}"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+            <div class="form-group"><label class="form-label">Border (px)</label><input class="form-input" id="ve-bw" type="number" min="0" max="10" value="${cur.borderWidth || 0}"></div>
+            <div class="form-group"><label class="form-label">Style</label><select class="form-input" id="ve-bs"><option value="solid">Solid</option><option value="dashed">Dashed</option><option value="dotted">Dotted</option></select></div>
+            <div class="form-group"><label class="form-label">Border Color</label><input class="form-input" id="ve-bc" type="color" style="padding:4px;" value="${cur.borderColor || "#DC2626"}"></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:10px;">
+            <button type="submit" class="btn-red" style="flex:1;">Apply &amp; Save</button>
+            <button type="button" class="btn-outline" id="ve-reset">Reset</button>
+          </div>
+        </form>`;
+
+      document.getElementById("wm-ve-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        wmSiteCustom.elements = wmSiteCustom.elements || {};
+        wmSiteCustom.elements[key] = {
+          text: isLeaf ? document.getElementById("ve-text").value : undefined,
+          fontFamily: document.getElementById("ve-font").value,
+          fontSize: document.getElementById("ve-size").value,
+          color: document.getElementById("ve-color").value,
+          bgColor: document.getElementById("ve-bg").value.trim(),
+          borderWidth: document.getElementById("ve-bw").value,
+          borderStyle: document.getElementById("ve-bs").value,
+          borderColor: document.getElementById("ve-bc").value,
+          borderRadius: document.getElementById("ve-radius").value
+        };
+        wmApplySiteCustomizations();
+        closeModal("modal-visual-editor");
+        try { await wmSaveSiteCustom(); } catch (err) {}
+        wmToastMsg("Style saved!");
+      });
+
+      document.getElementById("ve-reset").addEventListener("click", async () => {
+        if (wmSiteCustom.elements) delete wmSiteCustom.elements[key];
+        el.removeAttribute("style");
+        closeModal("modal-visual-editor");
+        try { await wmSaveSiteCustom(); } catch (err) {}
+        wmToastMsg("Element reset!");
+      });
+
+      openModal("modal-visual-editor");
+    }
+
+    function wmOpenStoreSettingsModal() {
+      const th = (wmSiteCustom && wmSiteCustom.theme) || {};
+      document.getElementById("ss-body").innerHTML = `
+        <form id="wm-ss-form">
+          <div class="form-group"><label class="form-label">Account Holder Name</label><input class="form-input" id="ss-acc" value="${wmEscape(STORE_CONFIG.accountName)}"></div>
+          <div class="form-group"><label class="form-label">CBE Account Number</label><input class="form-input" id="ss-cbe" value="${wmEscape(STORE_CONFIG.cbeAccount)}"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div class="form-group"><label class="form-label">Telebirr / Phone</label><input class="form-input" id="ss-tel" value="${wmEscape(STORE_CONFIG.telebirrNumber)}"></div>
+            <div class="form-group"><label class="form-label">Delivery Fee (Br)</label><input class="form-input" id="ss-fee" type="number" value="${STORE_CONFIG.deliveryFee}"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Telegram Username (no @)</label><input class="form-input" id="ss-tg" value="${wmEscape(STORE_CONFIG.telegramUsername)}"></div>
+          <div class="form-group"><label class="form-label">Telegram Bot Token (Direct Orders)</label><input class="form-input" id="ss-bot" placeholder="123456:ABC-DEF..." value="${wmEscape(STORE_CONFIG.telegramBotToken)}"></div>
+          <div class="form-group"><label class="form-label">Telegram Chat ID (Direct Orders)</label><input class="form-input" id="ss-chat" placeholder="e.g. 123456789" value="${wmEscape(STORE_CONFIG.telegramChatId)}"></div>
+          <hr style="border:none;border-top:1px solid var(--border);margin:12px 0;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+            <div class="form-group"><label class="form-label">Brand Color</label><input class="form-input" id="ss-color" type="color" style="padding:4px;" value="${th.primaryColor || "#DC2626"}"></div>
+            <div class="form-group"><label class="form-label">Border Color</label><input class="form-input" id="ss-border" type="color" style="padding:4px;" value="${th.borderColor || "#EAEDF0"}"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Global Site Font</label>
+            <select class="form-input" id="ss-font">
+              <option value="">Default System Font</option>
+              <option value="Georgia, serif" ${th.fontFamily === "Georgia, serif" ? "selected" : ""}>Classic Serif</option>
+              <option value="'Trebuchet MS', sans-serif" ${th.fontFamily === "'Trebuchet MS', sans-serif" ? "selected" : ""}>Modern Sans</option>
+              <option value="'Courier New', monospace" ${th.fontFamily === "'Courier New', monospace" ? "selected" : ""}>Monospace</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-red full">Save All Settings</button>
+        </form>`;
+
+      document.getElementById("wm-ss-form").addEventListener("submit", async e => {
+        e.preventDefault();
+        STORE_CONFIG.accountName = document.getElementById("ss-acc").value.trim();
+        STORE_CONFIG.cbeAccount = document.getElementById("ss-cbe").value.replace(/\s+/g, "");
+        STORE_CONFIG.telebirrNumber = document.getElementById("ss-tel").value.trim();
+        STORE_CONFIG.phone = STORE_CONFIG.telebirrNumber;
+        STORE_CONFIG.deliveryFee = Number(document.getElementById("ss-fee").value || 200);
+        STORE_CONFIG.telegramUsername = document.getElementById("ss-tg").value.trim().replace(/^@/, "");
+        STORE_CONFIG.telegramBotToken = document.getElementById("ss-bot").value.trim();
+        STORE_CONFIG.telegramChatId = document.getElementById("ss-chat").value.trim();
+
+        wmSiteCustom.theme = {
+          primaryColor: document.getElementById("ss-color").value,
+          borderColor: document.getElementById("ss-border").value,
+          fontFamily: document.getElementById("ss-font").value
+        };
+        wmApplySiteCustomizations();
+        renderAll();
+        closeModal("modal-store-settings");
+        try { await wmSaveStoreConfig(); } catch (err) {}
+        try { await wmSaveSiteCustom(); } catch (err) {}
+        wmToastMsg("Store & Theme settings saved!");
+      });
+      openModal("modal-store-settings");
+    }
+
+    /* Hook Owner Toolbar into wmRefreshAllAdminViews */
+    const _origRefreshAdmin = wmRefreshAllAdminViews;
+    wmRefreshAllAdminViews = function () {
+      _origRefreshAdmin();
+      const tb = document.getElementById("wm-owner-toolbar");
+      if (tb) tb.classList.toggle("show", wmAdminUnlocked);
+      if (!wmAdminUnlocked) {
+        wmVisualEditOn = false;
+        document.body.classList.remove("wm-visual-edit-on");
+        const vb = document.getElementById("wm-toggle-visual-edit");
+        if (vb) { vb.classList.remove("active"); vb.textContent = "✏️ Visual Edit: OFF"; }
+      }
+      wmRenderJobs();
+    };
+
+    /* Unified V2 Event Listeners */
+    document.addEventListener("click", e => {
+      // Visual Edit Tap Intercept (ignore clicks inside modals or owner toolbar)
+      if (wmAdminUnlocked && wmVisualEditOn && !e.target.closest("#wm-owner-toolbar") && !e.target.closest(".modal-backdrop")) {
+        e.preventDefault();
+        e.stopPropagation();
+        wmOpenVisualElementEditor(e.target);
+        return;
+      }
+
+      const mv = e.target.closest("[data-wm-move]");
+      if (mv) {
+        e.stopPropagation();
+        const parts = mv.getAttribute("data-wm-move").split("|");
+        const idx = Number(parts[1]), delta = Number(parts[2]);
+        wmReorderItem(parts[0], idx, idx + delta);
+        return;
+      }
+
+      if (e.target.closest("#wm-toggle-visual-edit")) {
+        wmVisualEditOn = !wmVisualEditOn;
+        document.body.classList.toggle("wm-visual-edit-on", wmVisualEditOn);
+        const btn = document.getElementById("wm-toggle-visual-edit");
+        btn.classList.toggle("active", wmVisualEditOn);
+        btn.textContent = wmVisualEditOn ? "✏️ Visual Edit: ON (Tap Text)" : "✏️ Visual Edit: OFF";
+        return;
+      }
+      if (e.target.closest("#wm-open-store-settings")) { wmOpenStoreSettingsModal(); return; }
+      if (e.target.closest("#wm-toolbar-lock")) { wmUnlockOwner(); return; }
+
+      if (e.target.closest("#btn-open-job-form")) { wmOpenJobForm(null); return; }
+      const jc = e.target.closest("[data-job-city]");
+      if (jc) {
+        wmJobCityFilter = jc.getAttribute("data-job-city");
+        document.querySelectorAll("#wm-jobs-city-filter .cat-chip").forEach(b => b.classList.toggle("active", b === jc));
+        wmRenderJobs();
+        return;
+      }
+      const ej = e.target.closest("[data-wm-edit-job]");
+      if (ej) { e.stopPropagation(); wmOpenJobForm(ej.getAttribute("data-wm-edit-job")); return; }
+      const dj = e.target.closest("[data-wm-delete-job]");
+      if (dj) {
+        e.stopPropagation();
+        if (!wmAdminUnlocked || !confirm("Delete this job?")) return;
+        wmJobs = wmJobs.filter(x => String(x.id) !== String(dj.getAttribute("data-wm-delete-job")));
+        wmRenderJobs();
+        wmSaveJobs().catch(() => {});
+        return;
+      }
+      const vj = e.target.closest("[data-wm-view-job]");
+      if (vj) { wmOpenJobDetail(vj.getAttribute("data-wm-view-job")); return; }
+    }, true);
+
+    document.getElementById("wm-job-form").addEventListener("submit", async e => {
+      e.preventDefault();
+      const editId = document.getElementById("wm-job-edit-id").value.trim();
+      const job = {
+        id: editId || ("job-" + Date.now()),
+        title: document.getElementById("wm-job-title").value.trim(),
+        company: document.getElementById("wm-job-company").value.trim(),
+        city: document.getElementById("wm-job-city").value,
+        type: document.getElementById("wm-job-type").value,
+        salary: document.getElementById("wm-job-salary").value.trim(),
+        phone: document.getElementById("wm-job-phone").value.trim(),
+        telegram: document.getElementById("wm-job-telegram").value.trim(),
+        tiktok: document.getElementById("wm-job-tiktok").value.trim(),
+        instagram: document.getElementById("wm-job-instagram").value.trim(),
+        description: document.getElementById("wm-job-desc").value.trim(),
+        date: new Date().toLocaleDateString()
+      };
+      if (editId) wmJobs = wmJobs.map(x => String(x.id) === String(editId) ? job : x);
+      else wmJobs.unshift(job);
+      closeModal("modal-job-form");
+      wmRenderJobs();
+      try { await wmSaveJobs(); } catch (err) {}
+      wmToastMsg(editId ? "Job updated!" : "Job published!");
+    });
+
+
     document.addEventListener("DOMContentLoaded", function () {
       if (window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true) {
         document.body.classList.add("is-standalone");
@@ -6574,6 +6435,9 @@
       Promise.resolve().then(() => wmLoadFirebase()).catch(() => wmRenderListings());
       Promise.resolve().then(() => wmLoadProducts()).catch(() => { wmCloudProductsLoaded = true; renderHomeProducts(); });
       Promise.resolve().then(() => wmLoadPartnerProducts()).catch(() => {});
+      Promise.resolve().then(() => wmLoadV2Cloud()).catch(() => {});
+      wmRenderJobs();
+      wmApplySiteCustomizations();
       startAutoSlide();
 
       document.getElementById("btn-brand-home").addEventListener("click", function () { switchTab("home"); });
